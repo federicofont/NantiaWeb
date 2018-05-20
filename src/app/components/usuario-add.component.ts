@@ -49,7 +49,7 @@ export class UsuarioAddComponent{
 	}
 
 	guardar(usuarioAdd:NgForm){
-		console.log(this.id);
+		console.log("usuario ADD/Update ID:", this.id);
 		if (this.id==null) {
 			// Add user
 		
@@ -58,12 +58,11 @@ export class UsuarioAddComponent{
 			console.log("Usuario:",this.usuario);
 		
 			this._usuarioService.addUsuario(this.usuario)
-				.subscribe(response => {
-				console.log("response:",response);
- 					if(response.status==200){
- 						this._router.navigate(['/home']);
+				.subscribe(result => {
+ 					if(result.status==201){
+ 						this._router.navigate(['/usuarios/'+result.json().id]);
  					}else{
- 						console.log(response);
+ 						console.log("Result Controler",result.status);
 					}
  				},
  				error => {
@@ -78,12 +77,12 @@ export class UsuarioAddComponent{
 			console.log("Usuario:",this.usuario);
 		
 			this._usuarioService.updateUsuario(this.usuario)
-				.subscribe(response => {
-				console.log("response:",response);
- 					if(response.status==200){
- 						this._router.navigate(['/home']);
+				.subscribe(result => {
+				console.log("Result Controler",result.status);
+ 					if(result.status==200){
+ 						this._router.navigate(['/usuarios/'+result.json().id]);
  					}else{
- 						console.log(response);
+ 						console.log("Result Controler",result.status);
 					}
  				},
  				error => {

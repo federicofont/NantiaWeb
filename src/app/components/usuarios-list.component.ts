@@ -14,6 +14,7 @@ export class UsuariosListComponent{
 	public usuarios: Usuario[];
 
 	public id:number;
+	public status:number;
 
 	
 	constructor(
@@ -34,38 +35,31 @@ export class UsuariosListComponent{
 		//alert(this._usuarioService.getUsuarios());
 		if (this.id==null) {
 			this._usuarioService.getUsuarios().subscribe(
-				result =>{
-					console.log(result.status);
-					if(result.code !=200){
-						 console.log(result);
-						 this.usuarios = result;
-					}else{
-						this.usuarios = result.data;
-					}
-
-				},
-				error =>{
-					console.log(<any>error);
-				}
-			);
-		}else{
-			console.log("Entre al else")
-			this._usuarioService.getUsuario(this.id).subscribe(
-				result =>{
-					//console.log(result.status);
-					if(result.code !=200){
-						 console.log(result);
-						 this.usuario = result;
-					}else{
-						this.usuario = result.data;
-					}
-
-				},
-				error =>{
-					console.log(<any>error);
-				}
-			);
-		}
+	            result => {
+	                if(result.status == 200){
+	                	this.usuarios = result.json();
+	                }else{
+	                	console.log("Result Controler",result.status);   
+	                }
+	            },
+	            error => {
+	                console.log(<any>error);
+	            }
+	        );
+		 }else{
+		 	this._usuarioService.getUsuario(this.id).subscribe(
+		 		result =>{
+		 			if(result.status == 200){
+		 				 this.usuario = result.json();
+		 			}else{
+						console.log("ID:",this.id," Result Controler:",result.status);
+		 			}
+		 		},
+		 		error =>{
+		 			console.log(<any>error);
+		 		}
+		 	);
+		 }
 	}
 
 }

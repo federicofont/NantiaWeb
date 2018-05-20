@@ -43,11 +43,12 @@ export class LoginComponent{
 			this.loginUsuario=loginUser.value;
 		
 			this._loginService.login(this.loginUsuario)
-				.subscribe(response => {
- 					console.log("Response:",Response);
- 					if(response){
+				.subscribe(result => {
+ 					if(result.status == 200){
  						this._router.navigate(['/home']);
  					}else{
+ 						//401 Unauthorized
+ 						console.log("Login Status:",result.status);
  						this.error="Error! : usuario invalido."
 					}
  				},

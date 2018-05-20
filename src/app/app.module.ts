@@ -11,9 +11,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login.component';
 import { HomeComponent } from './components/home.component';
 import { ErrorComponent } from './components/error.component';
-import { ProductosListComponent } from './components/productos-list.component';
 import { UsuariosListComponent } from './components/usuarios-list.component';
 import { UsuarioAddComponent } from './components/usuario-add.component';
+import { ProductosListComponent } from './components/productos-list.component';
+import { ProductoAddComponent } from './components/producto-add.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,10 @@ import { UsuarioAddComponent } from './components/usuario-add.component';
     LoginComponent,
     HomeComponent,
     ErrorComponent,
-    ProductosListComponent,
     UsuariosListComponent,
-    UsuarioAddComponent
+    UsuarioAddComponent,
+    ProductosListComponent,
+    ProductoAddComponent
   ],
   imports: [
     BrowserModule,

@@ -1,54 +1,62 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-success text-primary"  >
+<nav class="navbar navbar-expand-lg navbar-light bg-success text-primary">
+    <!-- logo -->
+    <td>
+        <tr><img src="assets/bootstrap/image/logo.png" class="img-rounded" width="100">
+            <tr>
+                <a class="navbar-brand text-white" href="#">Nantia Web</a>
+    </td>
+    <br>
 
-  <!-- logo -->
-  <td>
-  <tr><img src="assets/bootstrap/image/logo.png" class = "img-rounded" width="100"><tr>
-
-   <a class="navbar-brand text-white" href="#">Nantia Web</a>
-   </td>
-  <br>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      
-      <li class="nav-item active">
-        <a class="nav-link" href="#login" [routerLink]="['/login']" [routerLinkActive]="['activado']">Login<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#home" [routerLink]="['/home']" [routerLinkActive]="['activado']">Home<span class="sr-only">(current)</span></a>
-      </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Usuarios
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#verUsuarios" [routerLink]="['/usuarios']" [routerLinkActive]="['activado']">Ver Usuarios</a>
-          <a class="dropdown-item" href="#addUsuarios"  [routerLink]="['/usuario-add']" [routerLinkActive]="['activado']">Nuevo Usuario</a>
-          <div class="dropdown-divider"></div>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#"  [routerLink]="['/productos']" [routerLinkActive]="['activado']">Productos </a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-    </form>
-  </div>
+            <li class="nav-item active">
+                <a class="nav-link" href="#login" [routerLink]="['/login']" [routerLinkActive]="['activado']">Login<span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#home" [routerLink]="['/home']" [routerLinkActive]="['activado']">Home<span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       Usuarios
+      </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#verUsuarios" [routerLink]="['/usuarios']" [routerLinkActive]="['activado']">Ver Usuarios</a>
+                    <a class="dropdown-item" href="#addUsuarios" [routerLink]="['/usuario-add']" [routerLinkActive]="['activado']">Nuevo Usuario</a>
+                    <div class="dropdown-divider"></div>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Productos
+      </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#verProductos" [routerLink]="['/productos']" [routerLinkActive]="['activado']">Ver Productos</a>
+                    <a class="dropdown-item" href="#addProductos" [routerLink]="['/producto-add']" [routerLinkActive]="['activado']">Nuevo Producto</a>
+                    <div class="dropdown-divider"></div>
+                </div>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+    </div>
 </nav>
 
 <section id="main" class="col-lg-12">
     <!--Componente Actual -->
     <router-outlet> </router-outlet>
-    
+
 </section>
 
 <footer id="footer" class="col-lg-12">
-  <p>Soda Nantia @</p>
+    <p>Soda Nantia @</p>
 </footer>
-

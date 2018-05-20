@@ -1,0 +1,36 @@
+<div class="col-lg-10 col-lg-offset-1">
+    <div class="jumbotron">
+        <h5>{{titulo}} </h5>
+
+        <form (ngSubmit)="guardar(productoAdd)" #productoAdd="ngForm" class="col-lg-6" id="formProductoAdd">
+
+        <label>Nombre
+			<span *ngIf="!producto.valid && producto.touched " class="label label-danger" >El Producto es obligatorio</span>
+		</label>
+            <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="producto.nombre" class="form-control" minlength="4" required />
+            <div *ngIf="nombre.error?.required">
+                El campo es requerido.
+            </div>
+            <div *ngIf="nombre.error?.minlength">
+                Por lo menos {{ producto.errors.minglength.requiredLenght }} caracteres.
+            </div>
+
+        <label>Presentacion
+        </label>
+            <input type="text" #presentacion="ngModel" name="presentacion" [(ngModel)]="producto.presentacion" class="form-control" />
+
+        <label>Descripcion
+        </label>
+            <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" />
+
+        <label>Retornale
+		</label>
+            <input type="number" #retornable="ngModel" name="retornable" [(ngModel)]="producto.retornable" class="form-control" />
+
+            <br/>
+            <input type="submit" value="{{titulo}}" class="btn btn-success" />
+
+        </form>
+
+    </div>
+</div>

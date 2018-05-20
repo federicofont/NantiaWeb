@@ -10,7 +10,7 @@ import { Login} from '../models/login.model';
 @Injectable()
 export class LoginService{
 	public url:string;
-	 statusRes:number;
+
 	constructor(
 		public _http: Http
 	){
@@ -18,18 +18,11 @@ export class LoginService{
 	}
 
 	login(loginUsuario:Login){
-		console.log("loginUsuario:");
-
 		let body = JSON.stringify(loginUsuario);
 		let headers = new Headers({
 			'Content-Type':'application/json'});
 
-		return this._http.post(this.url+'login',body,{headers: headers})
-						 .map(res =>{
-						 	console.log("Return Service:",res.status);
-						 	this.statusRes= res.status;
-						 	return res.json();
-						 });
+		return this._http.post(this.url+'login',body,{headers: headers});
 
 	}
 

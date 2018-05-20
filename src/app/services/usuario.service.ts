@@ -15,27 +15,26 @@ export class UsuarioService{
 		this.url = GLOBAL.url;
 	}
 
-	getUsuarios(){
-		return this._http.get(this.url+'usuarios').map(res => res.json()); 
+
+	getUsuarios(): Observable<any>{
+		//return this._http.get(this.url+'usuarios').map(res => res.json()); 
+	    return this._http.get(this.url+'usuarios');
 	}
 
 	getUsuario(id:number){
-		return this._http.get(this.url+'usuarios/'+id).map(res => res.json()); 
+		return this._http.get(this.url+'usuarios/'+id)
 	}
 
 	addUsuario(usuario:Usuario){
-		console.log("json:");
-		//console.log(body);
-		//let params = body;
 		let body = JSON.stringify(usuario);
 		let headers = new Headers({
 			'Content-Type':'application/json'});
 
-		return this._http.post(this.url+'usuarios',body,{headers: headers})
-						 .map(res =>{
-						 	console.log(res.json());
-						 	return res.json();
-						 });
+		return this._http.post(this.url+'usuarios',body,{headers: headers});
+						 //.map(res =>{
+						 //	console.log(res.json());
+						 //	return res.json();
+						 //});
 
 	}
 
@@ -45,11 +44,11 @@ export class UsuarioService{
 		let headers = new Headers({
 			'Content-Type':'application/json'});
 
-		return this._http.put(this.url+'usuarios/'+usuario.id,body,{headers: headers})
-						 .map(res =>{
-						 	console.log(res.json());
-						 	return res.json();
-						 });
+		return this._http.put(this.url+'usuarios/'+usuario.id,body,{headers: headers});
+						// .map(res =>{
+						// 	console.log(res.json());
+						// 	return res.json();
+						// });
 
 	}
 	
