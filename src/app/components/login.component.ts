@@ -18,7 +18,7 @@ import { Usuario } from '../models/usuario.model';
 
 export class LoginComponent{
 	public titulo: string;
-	public error:string;
+
 	loginUsuario:Login = {
 			nombreUsuario : null,
 			contrasenia :null
@@ -49,11 +49,13 @@ export class LoginComponent{
  					}else{
  						//401 Unauthorized
  						console.log("Login Status:",result.status);
- 						this.error="Error! : usuario invalido."
+ 						this._router.navigate(['/login_error']);
 					}
  				},
  				error => {
  					console.log(<any>error);
+ 					console.log("Login Status:",error.status);
+ 					this._router.navigate(['/login_error']);
  				})
 	}
 }

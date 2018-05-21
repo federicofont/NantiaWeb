@@ -31,7 +31,14 @@ export class ProductoService{
 		return this._http.post(this.url+'productos',body,{headers: headers});
 	}
 
-	updateProducto(producto:Producto){
+	//updateProducto(producto:Producto){
+	//	let body = JSON.stringify(producto);
+	//	let headers = new Headers({'Content-Type':'application/json'});
+
+	//	return this._http.put(this.url+'productos/'+producto.id,body,{headers: headers});
+	//}
+
+	editProducto(id, producto:Producto){
 		let body = JSON.stringify(producto);
 		let headers = new Headers({'Content-Type':'application/json'});
 

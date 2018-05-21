@@ -1,57 +1,77 @@
 <div class="col-lg-10 col-lg-offset-1">
-    <div class="table-responsve">
-        <div class="jumbotron">
-            <h5>{{titulo}} </h5>
+<div class="table-responsve">
+<div class="jumbotron">
+<h5>{{titulo}} </h5>
 
-            <div class="row" *ngIf="producto">
-                <div class="row" *ngIf="producto.producto">
-                    <br>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr class="bg-success">
-                                <th>#</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">presentacion </th>
-                                <th scope="col">descripcion </th>
-                                <th scope="col">retornable </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{producto.id}} </td>
-                                <td>{{producto.nombre}} </td>
-                                <td>{{producto.presentacion}} </td>
-                                <td>{{producto.descripcion}} </td>
-                                <td>{{producto.retornable}} </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="row" *ngIf="productos">
-                <br>
-                <table class="table table-striped">
-                    <thead>
-                        <tr class="bg-success">
-                            <th>#</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Presentacion </th>
-                            <th scope="col">Descripcion </th>
-                            <th scope="col">Retornable </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="col-lg-3" *ngFor="let producto of productos">
-                            <td>{{producto.id}} </td>
-                            <td>{{producto.nombre}} </td>
-                            <td>{{producto.presentacion}} </td>
-                            <td>{{producto.descripcion}} </td>
-                            <td>{{producto.retornable}} </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <!--div class="row" *ngIf="producto">
+        <div class="row" *ngIf="producto.id">
+            <br>
+            <table class="table table-striped">
+                <thead>
+                    <tr class="bg-success">
+                        <th>#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">presentacion </th>
+                        <th scope="col">descripcion </th>
+                        <th scope="col">retornable </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{producto.id}} </td>
+                        <td>{{producto.nombre}} </td>
+                        <td>{{producto.presentacion}} </td>
+                        <td>{{producto.descripcion}} </td>
+                        <td>{{producto.retornable}} </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+    </div-->
+
+<div *ngIf="productos">
+<div class="row">
+    <div class="col-lg-3" *ngFor="let producto of productos">
+        <div class="thumbnail">
+            <img src="assets/bootstrap/image/droplet-xxl.png" class="img-rounded" class="producto_imagen" />
+        </div>
+            <div class="Caption">
+                <p>{{producto.descripcion}} </p>
+                <p>{{producto.retornable}} </p>  
+                <p>
+                    <a [routerLink]="['/productos',producto.id]" href="#" class="btn btn-sm btn-primary">Ver</a>
+                    <a [routerLink]="['/producto-edit',producto.id]" href="#" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="#" class="btn btn-sm btn-danger">Borrar</a>
+                </p>  
+            </div>
     </div>
+</div>
+</div>
+
+
+    <!--div class="row" *ngIf="productos">
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr class="bg-success">
+                <th>#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Presentacion </th>
+                <th scope="col">Descripcion </th>
+                <th scope="col">Retornable </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="col-lg-3" *ngFor="let producto of productos">
+                <td>{{producto.id}} </td>
+                <td>{{producto.nombre}} </td>
+                <td>{{producto.presentacion}} </td>
+                <td>{{producto.descripcion}} </td>
+                <td>{{producto.retornable}} </td>
+            </tr>
+        </tbody>
+    </table>
+    </div-->
+</div>
+</div>
 </div>
