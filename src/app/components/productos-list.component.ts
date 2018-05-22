@@ -34,18 +34,7 @@ export class ProductosListComponent{
 		//alert(this._productoService.getProductos());
 		if (this.id==null) {
 			console.log("pase el if");
-			this._productoService.getProductos().subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.productos = result.json();
-					}else{
-						console.log("Result Controler",result.status); 
-					}
-				},
-				error =>{
-					console.log(<any>error);
-				}
-			);
+			this.getProductos();
 		}else{
 			console.log("Entre al else")
 			this._productoService.getProducto(this.id).subscribe(
@@ -62,6 +51,45 @@ export class ProductosListComponent{
 				}
 			);
 		}
-	}
+}
+		getProductos(){
+			this._productoService.getProductos().subscribe(
+				result =>{
+					if(result.status == 200){
+						 this.productos = result.json();
+					}else{
+						console.log("Result Controler",result.status); 
+					}
+				},
+				error =>{
+					console.log(<any>error);
+				}
+			);
+		}
+
+		public confirmado;
+
+		borrarConfirm(id){
+			this.confirmado=id;
+		}
+
+		cancelarConfirm(){
+			this.confirmado=null;
+		}
+
+		onDeleteProducto(id){
+			this._productoService.deleteProducto(id).subscribe(
+				result =>{
+					if(result.status == 200){
+						this.getProductos();
+					}else{
+						alert("Error al borrar producto")
+					}
+				},
+				error =>{
+					console.log(<any>error);
+				}
+			);
+		}
 
 }

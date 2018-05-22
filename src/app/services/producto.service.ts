@@ -45,5 +45,9 @@ export class ProductoService{
 		return this._http.put(this.url+'productos/'+producto.id,body,{headers: headers});
 	}
 
+	deleteProducto(id:number){
+		return this._http.delete(this.url+'productos/'+id); 
+	}
+
 	
 }
