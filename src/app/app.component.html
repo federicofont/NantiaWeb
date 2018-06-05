@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-success text-primary">
-    <!-- logo -->
+    
     <td>
         <tr><img src="assets/bootstrap/image/logo.png" class="img-rounded" width="100">
             <tr>
@@ -35,6 +35,17 @@
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       Clientes
+      </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#verClientes" [routerLink]="['/clientes']" [routerLinkActive]="['activado']">Ver Clientes</a>
+                    <a class="dropdown-item" href="#addClientes" [routerLink]="['/cliente-add']" [routerLinkActive]="['activado']">Nuevo Cliente</a>
+                    <div class="dropdown-divider"></div>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">      
       Productos
       </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -42,7 +53,10 @@
                     <a class="dropdown-item" href="#addProductos" [routerLink]="['/producto-add']" [routerLinkActive]="['activado']">Nuevo Producto</a>
                     <div class="dropdown-divider"></div>
                 </div>
-
+             
+             <li class="nav-item active">
+                <a class="nav-link" href="#mapa" [routerLink]="['/mapa']" [routerLinkActive]="['activado']">Mapa<span class="sr-only">(current)</span></a>
+            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -52,7 +66,8 @@
 </nav>
 
 <section id="main" class="col-lg-12">
-    <!--Componente Actual -->
+    
+   <!--Componente Actual -->
     <router-outlet> </router-outlet>
 
 </section>
@@ -60,3 +75,4 @@
 <footer id="footer" class="col-lg-12">
     <p>Soda Nantia @</p>
 </footer>
+

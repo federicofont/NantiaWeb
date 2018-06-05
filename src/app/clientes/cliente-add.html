@@ -1,0 +1,70 @@
+<div class="col-lg-10 col-lg-offset-1">
+    <div class="jumbotron">
+        <h5>{{titulo}} </h5>
+
+        <form (ngSubmit)="guardar(clienteAdd)" #clienteAdd="ngForm" class="col-lg-6" id="form-cliente-add">
+
+            <label>Tipo Documento</label>
+            <input type="text" #nombre="ngModel" name="tipoDocumento" [(ngModel)]="cliente.tipoDocumento" class="form-control"/>
+
+            <label>Nro. Documento</label>
+            <input type="text" #nombre="ngModel" name="nroDocumento" [(ngModel)]="cliente.nroDocumento" class="form-control"/>
+
+            <label>Nombre 1</label>
+            <input type="text" #nombre="ngModel" name="nombre1" [(ngModel)]="cliente.nombre1" class="form-control" />
+
+            <label>Nombre 2</label>
+            <input type="text" #nombre="ngModel" name="nombre2" [(ngModel)]="cliente.nombre2" class="form-control" />
+
+            <label>Saldo</label>
+            <input type="text" #nombre="ngModel" name="saldo" [(ngModel)]="cliente.saldo" class="form-control" />
+
+            <label>Fecha de Nacimiento</label>
+            <input type="text" #nombre="ngModel" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" class="form-control" />
+
+            <label>Fecha Alta</label>
+            <input type="text" #nombre="ngModel" name="fechaAlta" [(ngModel)]="cliente.fechaAlta" class="form-control" />
+
+            <label>Celular</label>
+            <input type="text" #nombre="ngModel" name="celular" [(ngModel)]="cliente.celular" class="form-control" />
+
+            <label>Mail</label>
+            <input type="text" #nombre="ngModel" name="mail" [(ngModel)]="cliente.mail" class="form-control"/>
+
+            <label>ID Lista</label>
+            <input type="text" #nombre="ngModel" name="idLista" [(ngModel)]="cliente.idLista" class="form-control" />
+
+            <label>Observaciones</label>
+            <input type="text" #nombre="ngModel" name="observaciones" [(ngModel)]="cliente.observaciones" class="form-control" />
+
+            <label>Activo</label>
+            <input type="text" #nombre="ngModel" name="activo" [(ngModel)]="cliente.activo" class="form-control" />
+
+            <label>Direccion</label>
+            <input type="text" #nombre="ngModel" name="direccion" [(ngModel)]="direccion.direccion" class="form-control" />
+
+            <label>Longitud</label>
+            <input type="text" #nombre="ngModel" name="coordLon" [(ngModel)]="direccion.coordLon" class="form-control" />
+
+            <label>Latitud</label>
+            <input type="text" #nombre="ngModel" name="coordLat" [(ngModel)]="direccion.coordLat" class="form-control" />
+
+            <label>Telefono</label>
+            <input type="text" #nombre="ngModel" name="telefono" [(ngModel)]="direccion.telefono" class="form-control" />
+
+            <label>Departamento</label>
+            <input type="text" #nombre="ngModel" name="departamento" [(ngModel)]="direccion.departamento" class="form-control" />
+
+            <label>Codigo Postal</label>
+            <input type="text" #nombre="ngModel" name="codigoPostal" [(ngModel)]="direccion.codigoPostal" class="form-control" />
+
+            <label>Ciudad</label>
+            <input type="text" #nombre="ngModel" name="ciudad" [(ngModel)]="direccion.ciudad" class="form-control" />
+
+            <br/>
+            <input type="submit" value="{{titulo}}" class="btn btn-success" />
+
+        </form>
+
+    </div>
+</div>
