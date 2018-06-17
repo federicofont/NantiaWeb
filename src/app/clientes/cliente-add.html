@@ -49,18 +49,24 @@
                         <div class="col-lg-6">                          
                             
                             <div class="input-group input-group-sm">
-                                <span class="input-group-addon"> tipoDocumento </span>
+                                <span class="input-group-addon"> Tipo Documento </span>
                             </div>
                             
-                            <div class="input-group input-group-sm mb-4">
-                                <select class="input-group input-group-sm" required name="tipoDocumento" placeholder="Tipo Documento" [(ngModel)]="cliente.tipoDocumento"
-                                ng-init="cliente.tipoDocumento">
-                                    <option *ngIf="cliente.tipoDocumento; then selected" [value]=1>Cedula</option>
-                                    <option *ngIf="cliente.tipoDocumento; then selected" selected="" [value]=2>Rut</option>
+                            <!--div class="input-group input-group-sm mb-4">
+                                <select class="input-group input-group-sm" required name="tipoDocumento"
+                                [(ngModel)]="cliente.tipoDocumento"
+                                ng-init="1" >
+                                    <option selected [value]=1>Cedula</option>
+                                    <option [value]=2>Rut</option>
                               </select>
-                            </div>
-                              
+                            </div-->
 
+                            <div class="input-group-sm mb-1">
+                             <select [(ngModel)]="cliente.tipoDocumento" name="tipoDocumento" class="custom-select">
+                                <option *ngFor="let doc of documentos" [ngValue]="cliente.tipoDocumento">{{doc.tipo}}</option>
+                            </select>
+                            </div>
+                         
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Nombre 1</span>
                             </div>
@@ -69,25 +75,18 @@
                             </div>
 
                             <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Fecha de Nacimiento</span>
+                                <span class="input-group-addon">Mail</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" class="form-control" />
-                            </div>
-                        
+                                <input type="text" #descripcion="ngModel" name="mail" [(ngModel)]="cliente.mail" class="form-control" />
+                            </div>  
+                     
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Celular</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
                                 <input type="text" #descripcion="ngModel" name="celular" [(ngModel)]="cliente.celular" class="form-control" />
                             </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Mail</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="mail" [(ngModel)]="cliente.mail" class="form-control" />
-                            </div>                        
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Saldo</span>
@@ -135,10 +134,10 @@
                             </div>
 
                             <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Fecha Alta</span>
+                                <span class="input-group-addon">Fecha de Nacimiento</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="fechaAlta" [(ngModel)]="cliente.fechaAlta" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" class="form-control" />
                             </div>
 
                             <div class="input-group input-group-sm">

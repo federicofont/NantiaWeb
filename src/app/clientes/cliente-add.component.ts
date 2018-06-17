@@ -4,8 +4,9 @@ import { NgForm} from '@angular/forms';
 
 import { ClienteService } from './cliente.service';
 import { Cliente } from './cliente.model';
-import { Marcador } from '../models/marcador.model';
 import { Direccion } from './direccion.model';
+import { Marcador } from '../models/marcador.model';
+import { Documento } from '../models/documento.model';
 
 //import { MarkerService } from '../mapa/mapa.marker.service';
 
@@ -26,11 +27,15 @@ export class ClienteAddComponent{
 	nuevo:boolean=false;
 	id:number;
 	marcadores:Marcador[]=[];
+	documentos:Documento[]=[];
 
 	  //Posicion Inicial
 	  lat: number =  -34.4549810;
 	  lng: number = -56.3999980;
 	  zoom:number = 14;
+
+	  documento1 : Documento = new Documento(1,"Cedula");
+	  documento2 : Documento = new Documento(2,"Rut");
 
 	  marcador : Marcador = new Marcador("Nantia",this.lat, this.lng,false);
 		
@@ -70,6 +75,11 @@ export class ClienteAddComponent{
 		if(this.id != null){
 			this.getCliente();
 		}
+
+
+	  this.documentos[0] = this.documento1;
+	  this.documentos[1] = this.documento2;
+	  console.log("Documentos:",this.documentos);
 	}
 
 
