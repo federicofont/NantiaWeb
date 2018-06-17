@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../assets/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../../assets/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="table-responsve">
+<!-- /.wrapper -->
+<div id="wrapper">
+<!-- /.row -->
+<div class="row">
+<!-- PANEL CENTRAL Titulo-->
+    <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    
+                    <h3>{{titulo}} </h3>
+                
+                </div>
+<!-- PANEL CENTRAL-->
+        <img src="assets/bootstrap/image/ico/new-badge-2-32.ico" [routerLink]="['/productos']" href="#" class="btn btn-sm btn-success" value="Listado de Productos" /> 
+
+        <br><br>
+
+        <div *ngIf="productos">
+            <div class="col-lg-3" *ngFor="let producto of productos">
+
+                    <img src="assets/bootstrap/image/ico/soda-bottle-16.ico"/>
+                    
+                    <div class="Caption">
+                        <p>{{producto.descripcion}} </p>
+                        <p *ngIf="true == producto.retornable">Retornable</p>  
+                        <p *ngIf="!producto.retornable">NO Retornable</p>  
+                    </div>
+                        
+                        <div class="botones" *ngIf="confirmado != producto.id">
+                            <a [routerLink]="['/productos',producto.id]" href="#" class="btn btn-sm btn-primary">Ver</a>
+                            <a [routerLink]="['/producto-edit',producto.id]" href="#" class="btn btn-sm btn-warning">Editar</a>
+                            <a (click)="borrarConfirm(producto.id)" class="btn btn-sm btn-danger">Borrar</a>
+                        </div>
+                        <div clas="seguro" *ngIf="confirmado == producto.id">
+                            <p class="text-danger">¿Esta seguro de borrar el producto?</p>
+                            <a (click)="onDeleteProducto(producto.id)" class="btn-sm btn-danger">Confirmar</a>
+                            <a (click)="cancelarConfirm()" class="btn-sm btn-warning">Cancelar</a>
+                        </div>
+            <br>
+            </div>
+        </div>
+
+        <!-- FIN PANEL CENTRAL-->
+    </div>
+    <!-- FIN PANEL CENTRAL Titulo-->
+</div>
+<!-- /.row -->
+</div>
+<!-- /#wrapper -->
+</div>
+
+    <!-- jQuery -->
+    <script src="../../assets/bootstrap/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../../assets/bootstrap/dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

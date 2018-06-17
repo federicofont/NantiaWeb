@@ -1,20 +1,236 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<head>
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Soda Nantia</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="../assets/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../assets/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="../assets/bootstrap/vendor/morrisjs/morris.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img src="../assets/bootstrap/image/logo2.png" class="img-rounded" width="150" href="index.html">
+            <!--a class="navbar-brand" href="index.html">Soda Nanatia</a-->
+        </div>
+        <!-- /.navbar-header -->
+<!---------------------------------------------------- 
+Barra Superior derecha 
+------------------------------------------------------->
+
+        <ul class="nav navbar-top-links navbar-right">
+<!-- /.dropdown-user -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <img src="../assets/bootstrap/image/ico/user-16.ico">
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li>
+                        <a href="#"><img src="../assets/bootstrap/image/ico/user-16.ico"> Usuario</a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="../assets/bootstrap/image/ico/settings-5-16.ico"> Configuración</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="login.html"><img src="../assets/bootstrap/image/ico/logout-16.ico"> Logout</a>
+                    </li>
+                </ul>
+<!-- /.dropdown-user -->
+            </li>      
+        </ul>
+    </nav>
+
+<!---------------------------------------------------- /Barra Izquierda 
+------------------------------------------------------->
+            <div class="navbar-default sidebar" role="navigation" >
+                <div class="sidebar-nav navbar-collapse">
+<!-- /Serch-->                        
+                        <tr class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <img src="../assets/bootstrap/image/ico/search-3-16.ico">
+                                    </button>
+                                </span>
+                            </div>
+                        </tr>
+
+                        <tr class="nav-item active">
+                            <a class="nav-link" href="#login" [routerLink]="['/login']" [routerLinkActive]="['activado']">
+                                <img src="../assets/bootstrap/image/ico/key-16.ico"> Login <span class="sr-only">(current)</span></a>
+                        </tr>
+
+                        <tr class="nav-item active">
+                            <a class="nav-link" href="#home" [routerLink]="['/home']" [routerLinkActive]="['activado']">
+                                <img src="../assets/bootstrap/image/ico/home-16.ico"> Inicio <span class="sr-only">(current)</span></a>
+                        </tr>
+
+                        <tr class="nav-item active">
+                            <a class="nav-link" href="#verUsuarios" [routerLink]="['/usuarios']" [routerLinkActive]="['activado']">
+                                <img src="../assets/bootstrap/image/ico/user-16.ico"> Usuarios <span class="sr-only">(current)</span></a>
+                        </tr>
+
+                        <tr class="nav-item active">
+                            <a class="nav-link" href="#verClientes" [routerLink]="['/clientes']" [routerLinkActive]="['activado']">
+                                <img src="../assets/bootstrap/image/ico/conference-16.ico"> Clientes <span class="sr-only">(current)</span></a>
+                        </tr>
+
+                        <tr class="nav-item active">
+                            <a class="nav-link" href="#verProductos" [routerLink]="['/productos']" [routerLinkActive]="['activado']">
+                                <img src="../assets/bootstrap/image/ico/soda-bottle-16.ico"> Productos <span class="sr-only">(current)</span></a>
+                        </tr>
+
+                        <tr class="nav-item active">
+                            <a class="nav-link" href="#mapa" [routerLink]="['/mapa']" [routerLinkActive]="['activado']">
+                                <img src="../assets/bootstrap/image/ico/map-5-16.ico"> Rutas <span class="sr-only">(current)</span></a>
+                        </tr>
+
+                        <tr class="nav-item active">
+                            <a class="nav-link" href="#listas" [routerLink]="['/listas']" [routerLinkActive]="['activado']">
+                                <img src="../assets/bootstrap/image/ico/view-details-16.ico"> Listas de Precio <span class="sr-only">(current)</span></a>
+                        </tr>
+
+                        <tr>
+                            <a class="nav-link" href="#reportes" [routerLink]="['/reportes']" [routerLinkActive]="['activado']">
+                                <img src="../assets/bootstrap/image/ico/clipboard-2-16.ico"> Reportes <span class="sr-only">(current)</span></a>
+                        </tr>
+
+                </div>
+            </div>
+<!---------------------------------------------------- /FIN Barra Izquierda 
+------------------------------------------------------->
+
+<!----------------------------------------------------------------------------------------
+  Comienza parte central
+---------------------------------------------------------------------------------------- -->        
+<!----------------------------------------------------------------------------------------
+                                         IMPORTANTE!!!
+    Se carga el componente que estoy cargando en la ruta, Sin esto las rutas no andan.
+---------------------------------------------------------------------------------------- -->
+    <div id="page-wrapper">
+        <div class="row">
+            
+            <router-outlet> </router-outlet>
+
+        </div>
+    </div>
+<!----------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------- -->
+
+</div>
+<!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../assets/bootstrap/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../assets/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
+
+</body>
+
+
+<!--
+<nav class="navbar navbar-expand-lg navbar-light bg-success text-primary">
+    
+    <td>
+        <tr><img src="assets/bootstrap/image/logo.png" class="img-rounded" width="100">
+            <tr>
+                <a class="navbar-brand text-white" href="#">Nantia Web</a>
+    </td>
+    <br>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#login" [routerLink]="['/login']" [routerLinkActive]="['activado']">Login<span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#home" [routerLink]="['/home']" [routerLinkActive]="['activado']">Home<span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       Usuarios
+      </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#verUsuarios" [routerLink]="['/usuarios']" [routerLinkActive]="['activado']">Ver Usuarios</a>
+                    <a class="dropdown-item" href="#addUsuarios" [routerLink]="['/usuario-add']" [routerLinkActive]="['activado']">Nuevo Usuario</a>
+                    <div class="dropdown-divider"></div>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       Clientes
+      </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#verClientes" [routerLink]="['/clientes']" [routerLinkActive]="['activado']">Ver Clientes</a>
+                    <a class="dropdown-item" href="#addClientes" [routerLink]="['/cliente-add']" [routerLinkActive]="['activado']">Nuevo Cliente</a>
+                    <div class="dropdown-divider"></div>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">      
+      Productos
+      </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#verProductos" [routerLink]="['/productos']" [routerLinkActive]="['activado']">Ver Productos</a>
+                    <a class="dropdown-item" href="#addProductos" [routerLink]="['/producto-add']" [routerLinkActive]="['activado']">Nuevo Producto</a>
+                    <div class="dropdown-divider"></div>
+                </div>
+             
+             <li class="nav-item active">
+                <a class="nav-link" href="#mapa" [routerLink]="['/mapa']" [routerLinkActive]="['activado']">Mapa<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+    </div>
+</nav>
+
+<section id="main" class="col-lg-12">
+
+
+</section>
+
+<footer id="footer" class="col-lg-12">
+    <p>Soda Nantia @</p>
+</footer>
+
+-->

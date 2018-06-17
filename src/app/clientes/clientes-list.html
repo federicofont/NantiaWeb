@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../assets/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../../assets/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="table-responsve">
+	<!-- /.wrapper -->
+	<div id="wrapper">
+	<!-- /.row -->
+	<div class="row">
+	<!-- PANEL CENTRAL Titulo-->
+	    <div class="panel panel-default">
+
+	                <div class="panel-heading">
+	                    
+	                    <h3>{{titulo}} </h3>
+	                
+	                </div>
+	<!-- PANEL CENTRAL-->
+			<img src="assets/bootstrap/image/ico/add-user-3-32.ico" alt="Nuevo Cliente" style="float:left"  [routerLink]="['/cliente-add']" href="#" class="btn btn-sm" value="Nuevo Cliente" /> 
+
+	        <br><br><br>
+
+			<div *ngIf="clientes">
+			    <div class="col-lg-3" *ngFor="let cliente of clientes">
+			            
+			    	<div class="Caption">
+			            <img src="assets/bootstrap/image/ico/businessman-16.ico"/>
+			                <a>{{cliente.nombre1}} {{cliente.nombre2}} </a> 
+			                <p>{{cliente.celular}} </p>
+			                <!--p>{{cliente.direccion.direccion}}</p-->  
+			                <div class="botones" *ngIf="confirmado != cliente.id">
+			                    <a [routerLink]="['/clientes',cliente.id]" href="#" class="btn btn-sm btn-primary">Ver</a>
+			                    <a [routerLink]="['/cliente-edit',cliente.id]" href="#" class="btn btn-sm btn-warning">Editar</a>
+			                    <a (click)="borrarConfirm(cliente.id)" class="btn btn-sm btn-danger">Borrar</a>
+			                </div>
+			                <div clas="seguro" *ngIf="confirmado == cliente.id">
+			                    <p  class="text-danger">¿Esta seguro de borrar el cliente?</p>
+			                    <a (click)="onDeleteCliente(cliente.id)" class="btn btn-danger">Confirmar</a>
+			                    <a (click)="cancelarConfirm()" class="btn btn-warning">Cancelar</a>
+			                </div>
+			    		</div>
+				<br>
+				</div>
+			</div>
+	        <!-- FIN PANEL CENTRAL-->
+		</div>
+			<!-- FIN PANEL CENTRAL Titulo-->
+	</div>
+	<!-- /.row -->
+	</div>
+	<!-- /#wrapper -->
+</div>
+	<!--FIN Table response --!
+
+    <!-- jQuery -->
+    <script src="../../assets/bootstrap/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../../assets/bootstrap/dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>
+<!--
+		<div class="row" *ngIf="cliente">
+		<div class="row" *ngIf="cliente.id">
+		<br>
+			<table class="table table-striped">
+			  <thead>
+			    <tr class="bg-success">
+					<th>#</th>
+					<th scope="col">Tipo Documento</th>
+					<th scope="col">Nro Documento</th> 
+					<th scope="col">Nombre1</th>
+					<th scope="col">Nombre2</th> 
+					<th scope="col">Saldo</th> 
+					<th scope="col">Fecha Nacimiento</th>
+					<th scope="col">Fecha Alta</th>	
+					<th scope="col">Celular</th> 
+					<th scope="col">Mail</th>
+					<th scope="col">Envases</th> 
+					<th scope="col">Lista de Precios</th>	 
+					<th scope="col">Observaciones</th> 
+					<th scope="col">Activo</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+					<td>{{cliente.id}} </td>
+					<td>{{cliente.tipoDocumento}} </td>
+					<td>{{cliente.nroDocumento}} </td>
+					<td>{{cliente.nombre1}} </td>
+					<td>{{cliente.nombre2}} </td>
+					<td>{{cliente.saldo}} </td>
+					<td>{{cliente.fechaNacimiento}} </td>
+					<td>{{cliente.fechaAlta}} </td>
+					<td>{{cliente.celular}} </td>
+					<td>{{cliente.mail}} </td>
+					<td>{{cliente.envases}} </td>
+					<td>{{cliente.idLista}} </td>
+					<td>{{cliente.observaciones}} </td>
+					<td>{{cliente.activo}} </td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+		</div>
+
+		<div class="row" *ngIf="clientes">
+		<br>
+			<table class="table table-striped">
+			  <thead>
+			    <tr class="bg-success">
+					<th>#</th>
+					<th scope="col">Tipo Documento</th>
+					<th scope="col">Nro Documento</th> 
+					<th scope="col">Nombre1</th>
+					<th scope="col">Nombre2</th> 
+					<th scope="col">Saldo</th> 
+					<th scope="col">Fecha Nacimiento</th>
+					<th scope="col">Fecha Alta</th>	
+					<th scope="col">Celular</th> 
+					<th scope="col">Mail</th>
+					<th scope="col">Envases</th> 
+					<th scope="col">Lista de Precios</th>	 
+					<th scope="col">Observaciones</th> 
+					<th scope="col">Activo</th>
+				</tr>
+			  </thead>
+			  <tbody>
+			    <tr class="col-lg-3" *ngFor="let cliente of clientes">
+					<td>{{cliente.ID}} </td>
+					<td>{{cliente.tipoDocumento}} </td>
+					<td>{{cliente.nroDocumento}} </td>
+					<td>{{cliente.nombre1}} </td>
+					<td>{{cliente.nombre2}} </td>
+					<td>{{cliente.saldo}} </td>
+					<td>{{cliente.fechaNacimiento}} </td>
+					<td>{{cliente.fechaAlta}} </td>
+					<td>{{cliente.celular}} </td>
+					<td>{{cliente.mail}} </td>
+					<td>{{cliente.envases}} </td>
+					<td>{{cliente.idLista}} </td>
+					<td>{{cliente.observaciones}} </td>
+					<td>{{cliente.activo}} </td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+
+
+</div>
+</div>
+</div>
+
+-->

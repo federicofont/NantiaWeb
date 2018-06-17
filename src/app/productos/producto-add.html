@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../assets/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../../assets/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<div class="table-responsve">
+<!-- /.wrapper -->
+<div id="wrapper">
+<!-- /.row -->
+<div class="row">
+
+<!-- PANEL CENTRAL Titulo-->
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+
+                    <img src="assets/bootstrap/image/ico/arrow-91-16.ico" [routerLink]="['/productos']" href="#" class="btn btn-sm btn-success" value="Listado de Productos" /> 
+                    
+                    <h3>{{titulo}} </h3>
+                
+                </div>
+<!-- PANEL CENTRAL-->
+                
+                <div class="panel-body">
+
+                    <form (ngSubmit)="guardar(productoAdd)" #productoAdd="ngForm" class="col-lg-6" id="formProductoAdd">
+                        <div class="col-lg-6">                          
+                            <span *ngIf="!producto.valid && producto.touched " class="label label-danger" >El Producto es obligatorio</span>
+
+                            <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"> Nombre </span>
+                            </div>
+                            <div class="input-group input-group-sm mb-3"> <!--mb-3 deja espacio debajo -->
+                                <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="producto.nombre" class="form-control" placeholder="Nombre" minlength="4" required />
+                                <div *ngIf="nombre.error?.required">
+                                    El campo es requerido.
+                                </div>
+                                <div *ngIf="nombre.error?.minlength">
+                                    Por lo menos {{ producto.errors.minglength.requiredLenght }} caracteres.
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">Descripcion</span>
+                            </div>
+                            <div class="input-group input-group-sm">
+                                <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" />
+                            </div>
+                        </div>
+<!--Pantalla central derecha -->
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">Presentacion</span>
+                            </div>
+                                <div class="input-group input-group-sm mb-3">
+                                <select class="form-control">
+                                    <option>1/2 Litro</option>
+                                    <option>1 Litro</option>
+                                    <option>1.5 Litros</option>
+                                    <option>2 Litros</option>
+                                    <option>5 Litros</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">Retornable</span>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <select class="form-control">
+                                    <option>Si</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+                        </div>
+<!--FIN Pantalla central derecha -->
+                        <br/>
+                        <input type="submit" value="{{titulo}}" class="btn btn-success" />    
+                </form>
+            </div>
+            <!-- FIN PANEL CENTRAL-->
+        </div>
+        <!-- FIN PANEL CENTRAL Titulo-->
+</div>
+<!-- /.row -->
+</div>
+<!-- /#wrapper -->
+</div>
+
+    <!-- jQuery -->
+    <script src="../../assets/bootstrap/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../../assets/bootstrap/dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>
+
+
+<!--div class="col-lg-10 col-lg-offset-1">
+    <div class="jumbotron">
+        <h5>{{titulo}} </h5>
+
+        <form (ngSubmit)="guardar(productoAdd)" #productoAdd="ngForm" class="col-lg-6" id="formProductoAdd">
+
+        <label>Nombre
+			<span *ngIf="!producto.valid && producto.touched " class="label label-danger" >El Producto es obligatorio</span>
+		</label>
+            <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="producto.nombre" class="form-control" minlength="4" required />
+            <div *ngIf="nombre.error?.required">
+                El campo es requerido.
+            </div>
+            <div *ngIf="nombre.error?.minlength">
+                Por lo menos {{ producto.errors.minglength.requiredLenght }} caracteres.
+            </div>
+
+        <label>Presentacion
+        </label>
+            <input type="text" #presentacion="ngModel" name="presentacion" [(ngModel)]="producto.presentacion" class="form-control" />
+
+        <label>Descripcion
+        </label>
+            <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" />
+
+        <label>Retornale
+		</label>
+            <input type="number" #retornable="ngModel" name="retornable" [(ngModel)]="producto.retornable" class="form-control" />
+
+            <br/>
+            <input type="submit" value="{{titulo}}" class="btn btn-success" />
+
+        </form>
+
+    </div>
+</div-->

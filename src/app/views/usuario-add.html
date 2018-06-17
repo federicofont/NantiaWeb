@@ -1,0 +1,40 @@
+<div class="col-lg-10 col-lg-offset-1">
+    <div class="jumbotron">
+        <h5>{{titulo}} </h5>
+
+        <form (ngSubmit)="guardar(usuarioAdd)" #usuarioAdd="ngForm" class="col-lg-6" id="form-usuario-add">
+
+            <label>
+			Usuario
+			<span *ngIf="!usuario.valid && usuario.touched " class="label label-danger" >El Usuario es obligatorio</span>
+		</label>
+            <input type="text" #usuario="ngModel" name="usuario" [(ngModel)]="usuario.usuario" class="form-control" minlength="4" required />
+            <div *ngIf="nombre.error?.required">
+                El campo es requerido.
+            </div>
+            <div *ngIf="nombre.error?.minlength">
+                Por lo menos {{ usuario.errors.minglength.requiredLenght }} caracteres.
+            </div>
+
+            <label>Nombre</label>
+            <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="usuario.nombre" class="form-control" />
+
+            <label>Apellido</label>
+            <input type="text" #apellido="ngModel" name="apellido" [(ngModel)]="usuario.apellido" class="form-control" />
+
+            <label>
+			Rol
+			<span *ngIf="!rol.valid && rol.touched " class="label label-danger">El rol no es correcto</span>
+		</label>
+            <input type="number" #rol="ngModel" name="rol" [(ngModel)]="usuario.rol" class="form-control" required pattern="[0-9]+" />
+
+            <label>Contraseña</label>
+            <input type="text" #contrasenia="ngModel" name="contrasenia" [(ngModel)]="usuario.contrasenia" class="form-control" />
+
+            <br/>
+            <input type="submit" value="{{titulo}}" class="btn btn-success" />
+
+        </form>
+
+    </div>
+</div>
