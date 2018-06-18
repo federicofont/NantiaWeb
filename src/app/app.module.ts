@@ -20,8 +20,8 @@ import { LoginErrorComponent } from './components/login-error.component';
 import { HomeComponent } from './components/home.component';
 import { ErrorComponent } from './components/error.component';
 
-import { UsuariosListComponent } from './components/usuarios-list.component';
-import { UsuarioAddComponent } from './components/usuario-add.component';
+import { UsuariosListComponent } from './usuarios/usuarios-list.component';
+import { UsuarioAddComponent } from './usuarios/usuario-add.component';
 
 import { ProductosListComponent } from './productos/productos-list.component';
 import { ProductoAddComponent } from './productos/producto-add.component';

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UsuarioService } from '../services/usuario.service';
+import { UsuarioService } from '../usuarios/usuario.service';
 import { Usuario} from '../models/usuario.model';
 
 @Component({
 	selector: 'usuarios-list',
-	templateUrl: '../views/usuarios-list.html',
+	templateUrl: '../usuarios/usuarios-list.html',
 	providers: [UsuarioService]
 })
 export class UsuariosListComponent{

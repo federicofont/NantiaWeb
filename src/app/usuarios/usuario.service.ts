@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http'; //tipos
 import 'rxjs/add/operator/map'; //mapear respuestas y conseguir objetos de la respuesta
 import { Observable} from 'rxjs/Observable';
 import { Usuario} from '../models/usuario.model';
-import { GLOBAL} from './global';
+import { GLOBAL} from '../services/global';
 
 @Injectable()
 export class UsuarioService{

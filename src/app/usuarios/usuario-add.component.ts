@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgForm} from '@angular/forms';
 
-import { UsuarioService } from '../services/usuario.service';
+import { UsuarioService } from '../usuarios/usuario.service';
 import { Usuario } from '../models/usuario.model';
 
 @Component ({
 	selector: 'formUsuarioAdd',
-	templateUrl: '../views/usuario-add.html',
+	templateUrl: '../usuarios/usuario-add.html',
 	providers: [UsuarioService],
 	styles: [`
 		.ng-invalid.ng-touched:not(form){
