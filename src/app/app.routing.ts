@@ -23,6 +23,11 @@ import { ClienteDetailComponent } from './clientes/cliente-detail.component';
 
 import { MapaComponent } from './mapa/mapa.component';
 
+import { EnvasesListComponent } from './envases/envases-list.component';
+import { EnvaseAddComponent } from './envases/envase-add.component';
+import { EnvaseDetailComponent } from './envases/envase-detail.component';
+import { EnvaseEditComponent } from './envases/envase-edit.component';
+
 const appRoutes: Routes = [
 {path: '', component: HomeComponent},
 {path: 'login', component: LoginComponent},
@@ -40,6 +45,10 @@ const appRoutes: Routes = [
 {path: 'clientes/:id', component: ClienteDetailComponent},
 {path: 'cliente-edit/:id', component: ClienteAddComponent},
 {path: 'cliente-add', component: ClienteAddComponent},
+{path: 'envases', component: EnvasesListComponent},
+{path: 'envases/:id', component: EnvaseDetailComponent},
+{path: 'envase-add', component: EnvaseAddComponent},
+{path: 'envase-edit/:id', component: EnvaseEditComponent},
 {path: 'mapa', component: MapaComponent},
 {path: '**', component: ErrorComponent}
 ];

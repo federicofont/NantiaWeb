@@ -32,6 +32,11 @@ import { ClientesListComponent } from './clientes/clientes-list.component';
 import { ClienteAddComponent } from './clientes/cliente-add.component';
 import { ClienteDetailComponent } from './clientes/cliente-detail.component';
 
+import { EnvasesListComponent } from './envases/envases-list.component';
+import { EnvaseAddComponent } from './envases/envase-add.component';
+import { EnvaseDetailComponent } from './envases/envase-detail.component';
+import { EnvaseEditComponent } from './envases/envase-edit.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +53,11 @@ import { ClienteDetailComponent } from './clientes/cliente-detail.component';
     ClientesListComponent,
     ClienteAddComponent,
     ClienteDetailComponent,
-    MapaComponent
+    MapaComponent,
+    EnvasesListComponent,
+    EnvaseAddComponent,
+    EnvaseDetailComponent,
+    EnvaseEditComponent
   ],
   imports: [
     BrowserModule,
