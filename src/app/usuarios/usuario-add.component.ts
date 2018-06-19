@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgForm} from '@angular/forms';
 
 import { UsuarioService } from '../usuarios/usuario.service';
-import { Usuario } from '../models/usuario.model';
+import { Usuario } from './usuario.model';
 
 @Component ({
 	selector: 'formUsuarioAdd',

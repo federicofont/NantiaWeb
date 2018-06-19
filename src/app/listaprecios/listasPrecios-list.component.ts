@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ProductoService } from './producto.service';
-import { Producto} from './producto.model';
+import { ListaPrecioService } from './listaprecio.service';
+import { ListaPrecio} from './listaprecio.model';
 
 @Component({
-	selector: 'productos-list',
-	templateUrl: '../productos/productos-list.html',
-	providers: [ProductoService]
+	selector: 'listaprecios-list',
+	templateUrl: '../listaprecios/listaprecios-list.html',
+	providers: [ListaPrecioService]
 })
-export class ProductosListComponent{
+export class ListaPreciosListComponent{
 	public titulo: string;
-	public producto:Producto;
-	public productos: Producto[];
+	public listaprecio:ListaPrecio;
+	public listaprecios: ListaPrecio[];
 
 	public id:number;
 
@@ -19,9 +19,9 @@ export class ProductosListComponent{
 	constructor(
 		private _activatedRoute: ActivatedRoute,
 		private _router: Router,
-		private _productoService: ProductoService
+		private _listaprecioService: ListaPrecioService
 	){
-		this.titulo = 'Listado de productos';
+		this.titulo = 'Listado de precios';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
 			console.log("id",parametros.id);
@@ -30,17 +30,17 @@ export class ProductosListComponent{
 	}
 
 	ngOnInit(){
-		console.log('Productos-list.compoent.ts cargado');
-		//alert(this._productoService.getProductos());
+		console.log('ListaPrecios-list.compoent.ts cargado');
+		//alert(this._listaprecioService.getListaPrecios());
 		if (this.id==null) {
 			console.log("pase el if");
-			this.getProductos();
+			this.getListaPrecios();
 		}else{
 			console.log("Entre al else")
-			this._productoService.getProducto(this.id).subscribe(
+			this._listaprecioService.getListaPrecio(this.id).subscribe(
 				result =>{
 					if(result.status == 200){
-						 this.producto = result.json();
+						 this.listaprecio = result.json();
 					}else{
 						console.log("ID:",this.id," Result Controler:",result.status);
 					}
@@ -52,11 +52,11 @@ export class ProductosListComponent{
 			);
 		}
 }
-		getProductos(){
-			this._productoService.getProductos().subscribe(
+		getListaPrecios(){
+			this._listaprecioService.getListaPrecios().subscribe(
 				result =>{
 					if(result.status == 200){
-						 this.productos = result.json();
+						 this.listaprecios = result.json();
 					}else{
 						console.log("Result Controler",result.status); 
 					}
@@ -77,13 +77,13 @@ export class ProductosListComponent{
 			this.confirmado=null;
 		}
 
-		onDeleteProducto(id){
-			this._productoService.deleteProducto(id).subscribe(
+		onDeleteListaPrecio(id){
+			this._listaprecioService.deleteListaPrecio(id).subscribe(
 				result =>{
 					if(result.status == 200){
-						this.getProductos();
+						this.getListaPrecios();
 					}else{
-						alert("Error al borrar producto")
+						alert("Error al borrar listaprecio")
 					}
 				},
 				error =>{

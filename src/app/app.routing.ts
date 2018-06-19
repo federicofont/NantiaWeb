@@ -6,8 +6,8 @@ import { HomeComponent } from './components/home.component';
 import { ErrorComponent } from './components/error.component';
 
 // Components
-import { LoginComponent } from './components/login.component';
-import { LoginErrorComponent } from './components/login-error.component';
+import { LoginComponent } from './login/login.component';
+import { LoginErrorComponent } from './login/login-error.component';
 
 import { UsuariosListComponent } from './usuarios/usuarios-list.component';
 import { UsuarioAddComponent } from './usuarios/usuario-add.component';
@@ -27,6 +27,14 @@ import { EnvasesListComponent } from './envases/envases-list.component';
 import { EnvaseAddComponent } from './envases/envase-add.component';
 import { EnvaseDetailComponent } from './envases/envase-detail.component';
 import { EnvaseEditComponent } from './envases/envase-edit.component';
+
+import { ListaPreciosListComponent } from './listaprecios/listasprecios-list.component';
+import { ListaPrecioAddComponent } from './listaprecios/listaprecio-add.component';
+//import { ListaPrecioDetailComponent } from './listasprecios/listaprecio-detail.component';
+
+import { ProductoListasListComponent } from './productolistas/productolistas-list.component';
+import { ProductoListaAddComponent } from './productolistas/productolista-add.component';
+//import { ProductoListaDetailComponent } from './productolistas/listaprecio-detail.component';
 
 const appRoutes: Routes = [
 {path: '', component: HomeComponent},
@@ -49,6 +57,14 @@ const appRoutes: Routes = [
 {path: 'envases/:id', component: EnvaseDetailComponent},
 {path: 'envase-add', component: EnvaseAddComponent},
 {path: 'envase-edit/:id', component: EnvaseEditComponent},
+{path: 'listaprecios', component: ListaPreciosListComponent},
+//{path: 'listaprecios/:id', component: ListaPrecioDetailComponent},
+{path: 'listaprecio-edit/:id', component: ListaPrecioAddComponent},
+{path: 'listaprecio-add', component: ListaPrecioAddComponent},
+{path: 'productolistas', component: ProductoListasListComponent},
+//{path: 'productolistas/:id', component: ProductoListaDetailComponent},
+{path: 'productolista-edit/:id', component: ProductoListaAddComponent},
+{path: 'productolista-add', component: ProductoListaAddComponent},
 {path: 'mapa', component: MapaComponent},
 {path: '**', component: ErrorComponent}
 ];

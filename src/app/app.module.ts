@@ -15,8 +15,8 @@ import { MapaComponent } from './mapa/mapa.component';
 import {routing, appRoutingProviders} from './app.routing';
 
 //Components
-import { LoginComponent } from './components/login.component';
-import { LoginErrorComponent } from './components/login-error.component';
+import { LoginComponent } from './login/login.component';
+import { LoginErrorComponent } from './login/login-error.component';
 import { HomeComponent } from './components/home.component';
 import { ErrorComponent } from './components/error.component';
 
@@ -36,6 +36,14 @@ import { EnvasesListComponent } from './envases/envases-list.component';
 import { EnvaseAddComponent } from './envases/envase-add.component';
 import { EnvaseDetailComponent } from './envases/envase-detail.component';
 import { EnvaseEditComponent } from './envases/envase-edit.component';
+
+import { ListaPreciosListComponent } from './listaprecios/listasprecios-list.component';
+import { ListaPrecioAddComponent } from './listaprecios/listaprecio-add.component';
+//import { ListaPrecioDetailComponent } from './listasprecios/listaprecio-detail.component';
+
+import { ProductoListasListComponent } from './productolistas/productolistas-list.component';
+import { ProductoListaAddComponent } from './productolistas/productolista-add.component';
+//import { ProductoListaDetailComponent } from './productolistas/listaprecio-detail.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +65,11 @@ import { EnvaseEditComponent } from './envases/envase-edit.component';
     EnvasesListComponent,
     EnvaseAddComponent,
     EnvaseDetailComponent,
-    EnvaseEditComponent
+    EnvaseEditComponent,
+    ListaPreciosListComponent,
+    ListaPrecioAddComponent,
+    ProductoListasListComponent,
+    ProductoListaAddComponent
   ],
   imports: [
     BrowserModule,

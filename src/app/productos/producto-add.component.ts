@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgForm} from '@angular/forms';
 
-import { ProductoService } from '../services/producto.service';
-import { Producto } from '../models/producto.model';
+import { ProductoService } from './producto.service';
+import { Producto } from './producto.model';
 
 @Component ({
 	selector: 'formProductoAdd',

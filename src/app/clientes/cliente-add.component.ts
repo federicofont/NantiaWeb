@@ -6,7 +6,7 @@ import { ClienteService } from './cliente.service';
 import { Cliente } from './cliente.model';
 import { Direccion } from './direccion.model';
 import { Marcador } from '../models/marcador.model';
-import { Documento } from '../models/documento.model';
+import { Documento } from './documento.model';
 
 //import { MarkerService } from '../mapa/mapa.marker.service';
 

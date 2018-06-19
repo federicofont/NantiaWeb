@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ProductoService } from './producto.service';
-import { Producto} from './producto.model';
+import { ProductoListaService } from './productolista.service';
+import { ProductoLista} from './productolista.model';
 
 @Component({
-	selector: 'productos-list',
-	templateUrl: '../productos/productos-list.html',
-	providers: [ProductoService]
+	selector: 'productolistas-list',
+	templateUrl: '../productolistas/productolistas-list.html',
+	providers: [ProductoListaService]
 })
-export class ProductosListComponent{
+export class ProductoListasListComponent{
 	public titulo: string;
-	public producto:Producto;
-	public productos: Producto[];
+	public productolista:ProductoLista;
+	public productolistas: ProductoLista[];
 
 	public id:number;
 
@@ -19,9 +19,9 @@ export class ProductosListComponent{
 	constructor(
 		private _activatedRoute: ActivatedRoute,
 		private _router: Router,
-		private _productoService: ProductoService
+		private _productolistaService: ProductoListaService
 	){
-		this.titulo = 'Listado de productos';
+		this.titulo = 'Listado de productolistas';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
 			console.log("id",parametros.id);
@@ -30,17 +30,17 @@ export class ProductosListComponent{
 	}
 
 	ngOnInit(){
-		console.log('Productos-list.compoent.ts cargado');
-		//alert(this._productoService.getProductos());
+		console.log('ProductoListas-list.compoent.ts cargado');
+		//alert(this._productolistaService.getProductoListas());
 		if (this.id==null) {
 			console.log("pase el if");
-			this.getProductos();
+			this.getProductoListas();
 		}else{
 			console.log("Entre al else")
-			this._productoService.getProducto(this.id).subscribe(
+			this._productolistaService.getProductoLista(this.id).subscribe(
 				result =>{
 					if(result.status == 200){
-						 this.producto = result.json();
+						 this.productolista = result.json();
 					}else{
 						console.log("ID:",this.id," Result Controler:",result.status);
 					}
@@ -52,11 +52,11 @@ export class ProductosListComponent{
 			);
 		}
 }
-		getProductos(){
-			this._productoService.getProductos().subscribe(
+		getProductoListas(){
+			this._productolistaService.getProductoListas().subscribe(
 				result =>{
 					if(result.status == 200){
-						 this.productos = result.json();
+						 this.productolistas = result.json();
 					}else{
 						console.log("Result Controler",result.status); 
 					}
@@ -77,13 +77,13 @@ export class ProductosListComponent{
 			this.confirmado=null;
 		}
 
-		onDeleteProducto(id){
-			this._productoService.deleteProducto(id).subscribe(
+		onDeleteProductoLista(id){
+			this._productolistaService.deleteProductoLista(id).subscribe(
 				result =>{
 					if(result.status == 200){
-						this.getProductos();
+						this.getProductoListas();
 					}else{
-						alert("Error al borrar producto")
+						alert("Error al borrar productolista")
 					}
 				},
 				error =>{
