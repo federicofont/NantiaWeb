@@ -25,13 +25,13 @@ export class UsuariosListComponent{
 		this.titulo = 'Listado de usuarios';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			console.log("id",parametros.id);
+			//console.log("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
 
 	ngOnInit(){
-		console.log('Usuarios-list.compoent.ts cargado');
+		//console.log('Usuarios-list.compoent.ts cargado');
 		//alert(this._usuarioService.getUsuarios());
 		if (this.id==null) {
 			this._usuarioService.getUsuarios().subscribe(
@@ -39,11 +39,11 @@ export class UsuariosListComponent{
 	                if(result.status == 200){
 	                	this.usuarios = result.json();
 	                }else{
-	                	console.log("Result Controler",result.status);   
+	                	//console.log("Result Controler",result.status);   
 	                }
 	            },
 	            error => {
-	                console.log(<any>error);
+	                //console.log(<any>error);
 	            }
 	        );
 		 }else{
@@ -52,11 +52,11 @@ export class UsuariosListComponent{
 		 			if(result.status == 200){
 		 				 this.usuario = result.json();
 		 			}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						//console.log("ID:",this.id," Result Controler:",result.status);
 		 			}
 		 		},
 		 		error =>{
-		 			console.log(<any>error);
+		 			//console.log(<any>error);
 		 		}
 		 	);
 		 }

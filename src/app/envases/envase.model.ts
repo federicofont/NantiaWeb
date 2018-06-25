@@ -1,6 +1,6 @@
 export class Envase{
 	constructor(
-		public id:number,
-		public descripcion:string
+		public id:number = null,
+		public descripcion:string = null
 		){}
 }

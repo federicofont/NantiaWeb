@@ -48,6 +48,13 @@
                     <form (ngSubmit)="guardar(clienteAdd)" #clienteAdd="ngForm" class="col-lg-6" id="formclienteAdd">
                         <div class="col-lg-6">                          
                             
+                            <button type="button" class="btn btn-secondary" 
+                                    [routerLink]="['/envaseEnprestamo-add']" href="#">
+                                <img src="assets/bootstrap/image/ico/plus-5-16.ico" 
+                                 style="float:center"/> <p> Envases en Prestamo </p>
+                            </button>
+                            <br><br>
+
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon"> Tipo Documento </span>
                             </div>
@@ -63,8 +70,9 @@
 
                             <div class="input-group-sm mb-1">
                              <select [(ngModel)]="cliente.tipoDocumento" name="tipoDocumento" class="custom-select">
-                                <option *ngFor="let doc of documentos" [ngValue]="cliente.tipoDocumento">{{doc.tipo}}</option>
+                                <option *ngFor="let doc of documentos" [ngValue]="doc.id">{{doc.tipo}}</option>
                             </select>
+
                             </div>
                          
                             <div class="input-group input-group-sm">
@@ -137,7 +145,7 @@
                                 <span class="input-group-addon">Fecha de Nacimiento</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" class="form-control" />
+                                <input type="date" #descripcion="ngModel" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" class="form-control" />
                             </div>
 
                             <div class="input-group input-group-sm">
@@ -174,6 +182,53 @@
                             <div class="input-group input-group-sm mb-3">
                                 <input type="text" #descripcion="ngModel" name="observaciones" [(ngModel)]="cliente.observaciones" class="form-control" />
                             </div> 
+
+                    <form (ngSubmit)="addEnvaseEnPrestamo(envaseAdd)" #envaseAdd="ngForm" class="col-lg-6" id="addEnvaseEnPrestamo">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon"> Envase </span>
+                    </div>
+
+                    <div class="input-group-sm mb-1">
+                     <select [(ngModel)]="envase.id" 
+                            name="id" class="custom-select">
+                        <option *ngFor="let tipo of envases" 
+                            [ngValue]="tipo.id">{{tipo.descripcion}}
+                        </option>
+                    </select>
+
+                    </div>
+
+
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">Cantidad</span>
+                    </div>
+
+                    <div class="input-group input-group-sm">
+                    
+                        <span class="input-group-btn">
+                            <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                <span>-</span>
+                            </button>
+                        </span>
+                        
+                        <input type="text" #cantidad="ngModel" name="cantidad" 
+                        [(ngModel)]="envaseEnprestamo.cantidad" class="form-control input-number" value="0" min="0" max="100"/>
+                        
+                        <span class="input-group-btn">
+                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                <span>+</span>
+                            </button>
+                        </span>
+                    </div>
+
+                        <input type="submit" value="Add Envase" class="btn btn-success" />   
+                        <!--button style="align-content: center;" (click)="addEnvaseEnPrestamo(clienteAdd)" class="btn-alert">Add</button-->
+
+                        <br><br>
+
+                </form>    
+
+
 
                         </div>
 <!--FIN Pantalla central derecha -->
@@ -212,10 +267,16 @@
                         </div>
                         </div>
                         </div>
+
+                        
+
+
+
 <!--FIN Pantalla central derecha Mapa -->
                     <br/>
                     <input type="submit" value="{{titulo}}" class="btn btn-success" />    
                 </form>
+
             </div>
             <!-- FIN PANEL CENTRAL-->
         </div>

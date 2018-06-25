@@ -44,19 +44,19 @@ export class ClienteDetailComponent{
 		}
 	
 	ngOnInit(){
-		console.log('cliente-detail.component.ts cargado');
 
 		this._clienteService.getCliente(this.id).subscribe(
 				result =>{
 					if(result.status = 200){
 						 this.cliente = result.json();
+						 console.log("this.cliente",this.cliente);
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						////console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					////console.log(<any>error);
 				}
 			)
 		};

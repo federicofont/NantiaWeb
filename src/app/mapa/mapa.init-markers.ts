@@ -1,7 +1,7 @@
 export class Init{
 	load(){
 		if(localStorage.getItem('markers')==null || localStorage.getItem('markers')==undefined){
-			console.log('No se ecnontraron marcadores...');
+			//console.log('No se ecnontraron marcadores...');
 
 			var markers=[
 	  		 {
@@ -27,7 +27,7 @@ export class Init{
 
 			localStorage.setItem('markers',JSON.stringify(markers));
 		}else{
-			console.log('Cargando Marcadores...');
+			//console.log('Cargando Marcadores...');
 		}
 	}
 }

@@ -45,31 +45,46 @@ import { ProductoListasListComponent } from './productolistas/productolistas-lis
 import { ProductoListaAddComponent } from './productolistas/productolista-add.component';
 //import { ProductoListaDetailComponent } from './productolistas/listaprecio-detail.component';
 
+import { EnvaseEnPrestamoListComponent } from './envasesEnprestamo/envaseEnprestamo-list.component';
+import { EnvaseEnPrestamoAddComponent } from './envasesEnprestamo/envaseEnprestamo-add.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LoginErrorComponent,
+    
     HomeComponent,
     ErrorComponent,
+    
     UsuariosListComponent,
     UsuarioAddComponent,
+    
     ProductosListComponent,
     ProductoAddComponent,
     ProductoDetailComponent,
     ProductoEditComponent,
+    
     ClientesListComponent,
     ClienteAddComponent,
     ClienteDetailComponent,
+    
     MapaComponent,
+    
     EnvasesListComponent,
     EnvaseAddComponent,
     EnvaseDetailComponent,
     EnvaseEditComponent,
+    
     ListaPreciosListComponent,
     ListaPrecioAddComponent,
+
     ProductoListasListComponent,
-    ProductoListaAddComponent
+    ProductoListaAddComponent,
+
+    EnvaseEnPrestamoListComponent,
+    EnvaseEnPrestamoAddComponent
+    
   ],
   imports: [
     BrowserModule,

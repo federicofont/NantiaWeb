@@ -38,35 +38,35 @@ export class UsuarioAddComponent{
 
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			console.log("id",parametros.id);
+			//console.log("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
 	 
 
 	ngOnInit(){
-		console.log('usuario-add.component.ts cargado');
+		//console.log('usuario-add.component.ts cargado');
 	}
 
 	guardar(usuarioAdd:NgForm){
-		console.log("usuario ADD/Update ID:", this.id);
+		//console.log("usuario ADD/Update ID:", this.id);
 		if (this.id==null) {
 			// Add user
 		
 			//Creo el usuario desde el formulario
 			this.usuario=usuarioAdd.value;
-			console.log("Usuario:",this.usuario);
+			//console.log("Usuario:",this.usuario);
 		
 			this._usuarioService.addUsuario(this.usuario)
 				.subscribe(result => {
  					if(result.status==201){
  						this._router.navigate(['/usuarios/'+result.json().id]);
  					}else{
- 						console.log("Result Controler",result.status);
+ 						//console.log("Result Controler",result.status);
 					}
  				},
  				error => {
- 					console.log(<any>error);
+ 					//console.log(<any>error);
  				})
  		}else{
  			// Update user
@@ -74,19 +74,19 @@ export class UsuarioAddComponent{
 			//Actualizo el usuario desde el formulario
 			this.usuario=usuarioAdd.value;
 			this.usuario.id=this.id;
-			console.log("Usuario:",this.usuario);
+			//console.log("Usuario:",this.usuario);
 		
 			this._usuarioService.updateUsuario(this.usuario)
 				.subscribe(result => {
-				console.log("Result Controler",result.status);
+				//console.log("Result Controler",result.status);
  					if(result.status==200){
  						this._router.navigate(['/usuarios/'+result.json().id]);
  					}else{
- 						console.log("Result Controler",result.status);
+ 						//console.log("Result Controler",result.status);
 					}
  				},
  				error => {
- 					console.log(<any>error);
+ 					//console.log(<any>error);
  				})
  		}
 

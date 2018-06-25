@@ -53,17 +53,33 @@
 			                <p>{{cliente.celular}} </p>
 			                <!--p>{{cliente.direccion.direccion}}</p-->  
 			                <div class="botones" *ngIf="confirmado != cliente.id">
-			                    <a [routerLink]="['/clientes',cliente.id]" href="#" class="btn btn-sm btn-primary">Ver</a>
+			                    
+			                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/clientes',cliente.id]" href="#" class="btn btn-sm" value="Ver" /> 
+
+			                    <img src="assets/bootstrap/image/ico/edit-9-16.ico" alt="Editar" style="float:left"  [routerLink]="['/cliente-edit',cliente.id]" href="#" class="btn btn-sm" value="Editar" /> 
+
+			                    <img src="assets/bootstrap/image/ico/delete-16.ico" alt="Borrar" style="float:left"  (click)="borrarConfirm(cliente.id)" href="#" class="btn btn-sm" value="Borrar" /> 
+				                    
+
+			                    <!--a [routerLink]="['/clientes',cliente.id]" href="#" class="btn btn-sm btn-primary">Ver</a>
+			                    
 			                    <a [routerLink]="['/cliente-edit',cliente.id]" href="#" class="btn btn-sm btn-warning">Editar</a>
-			                    <a (click)="borrarConfirm(cliente.id)" class="btn btn-sm btn-danger">Borrar</a>
+			                    
+			                    <a (click)="borrarConfirm(cliente.id)" class="btn btn-sm btn-danger">Borrar</a-->
+			                
 			                </div>
 			                <div clas="seguro" *ngIf="confirmado == cliente.id">
 			                    <p  class="text-danger">¿Esta seguro de borrar el cliente?</p>
-			                    <a (click)="onDeleteCliente(cliente.id)" class="btn btn-danger">Confirmar</a>
-			                    <a (click)="cancelarConfirm()" class="btn btn-warning">Cancelar</a>
+			                    
+			                    <img src="assets/bootstrap/image/ico/check-mark-3-16.ico" alt="Borrar" style="float:left"  (click)="onDeleteCliente(cliente.id)" href="#" class="btn btn-sm" value="Borrar" /> 
+
+			                    <img src="assets/bootstrap/image/ico/x-mark-16.ico" alt="Borrar" style="float:left"  (click)="cancelarConfirm()" href="#" class="btn btn-sm" value="Borrar" /> 
+
+			                    <!--a (click)="onDeleteCliente(cliente.id)" class="btn btn-danger">Confirmar</a>
+			                    <a (click)="cancelarConfirm()" class="btn btn-warning">Cancelar</a-->
 			                </div>
 			    		</div>
-				<br>
+				<br><br><br>
 				</div>
 			</div>
 	        <!-- FIN PANEL CENTRAL-->

@@ -13,6 +13,6 @@ export class ErrorComponent{
 	}
 
 	ngOnInit(){
-		console.log("Componente errocomponent.ts cargado");
+		//console.log("Componente errocomponent.ts cargado");
 	}
 }

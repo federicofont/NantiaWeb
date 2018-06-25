@@ -32,7 +32,7 @@ export class UsuarioService{
 
 		return this._http.post(this.url+'usuarios',body,{headers: headers});
 						 //.map(res =>{
-						 //	console.log(res.json());
+						 //	//console.log(res.json());
 						 //	return res.json();
 						 //});
 
@@ -40,13 +40,13 @@ export class UsuarioService{
 
 	updateUsuario(usuario:Usuario){
 		let body = JSON.stringify(usuario);
-		console.log("body:",body);
+		//console.log("body:",body);
 		let headers = new Headers({
 			'Content-Type':'application/json'});
 
 		return this._http.put(this.url+'usuarios/'+usuario.id,body,{headers: headers});
 						// .map(res =>{
-						// 	console.log(res.json());
+						// 	//console.log(res.json());
 						// 	return res.json();
 						// });
 

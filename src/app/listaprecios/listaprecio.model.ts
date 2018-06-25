@@ -1,4 +1,4 @@
-import { ProductoLista } from '../productoslista/ProductoLista.model';
+import { ProductoLista } from '../productolistas/productolista.model';
 
 export class ListaPrecio{
 	constructor(

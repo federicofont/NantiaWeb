@@ -31,7 +31,7 @@ export class ListaPrecioAddComponent{
 
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			console.log("id",parametros.id);
+			//console.log("id",parametros.id);
 			this.id = parametros['id'];
 			})
 
@@ -47,7 +47,7 @@ export class ListaPrecioAddComponent{
 	 
 
 	ngOnInit(){
-		console.log('listaprecio-add.component.ts cargado');	
+		//console.log('listaprecio-add.component.ts cargado');	
 		if(this.id != null){
 			this.getListaPrecio();
 		}
@@ -56,22 +56,22 @@ export class ListaPrecioAddComponent{
 
 
 	getListaPrecio(){
-	console.log("entre al getlistaprecio");
+	//console.log("entre al getlistaprecio");
 	this._listaprecioService.getListaPrecio(this.id).subscribe(
 				result =>{
-					console.log("status:",result.status);
+					//console.log("status:",result.status);
 					if(result.status == 200){
 						 this.listaprecio = result.json();
 						 
-						console.log("listaprecio:",this.listaprecio);
+						//console.log("listaprecio:",this.listaprecio);
 
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						//console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			)
 	}
@@ -82,24 +82,24 @@ export class ListaPrecioAddComponent{
 			this.updateListaPrecio();
 		} 
 		else{
-		console.log("listaprecio ADD/Update ID:", this.id);
+		//console.log("listaprecio ADD/Update ID:", this.id);
 		//if (this.id==null) {
 			// Add user
 		
-			console.log(this.listaprecio);
+			//console.log(this.listaprecio);
 			
 			//Llamo al servicio que creara el nuevo listaprecio
 			this._listaprecioService.addListaPrecio(this.listaprecio)
 				.subscribe(result => {
  					if(result.status==201){
- 						console.log("Result Controler",result.status);
+ 						//console.log("Result Controler",result.status);
  						this._router.navigate(['/listaprecios/'+result.json().id]);
  					}else{
- 						console.log("Result Controler",result.status);
+ 						//console.log("Result Controler",result.status);
 					}
  				},
  				error => {
- 					console.log(<any>error);
+ 					//console.log(<any>error);
  				})
  		//}else{
  			// Update user
@@ -107,20 +107,20 @@ export class ListaPrecioAddComponent{
 			//Actualizo el listaprecio desde el formulario
 			// this.listaprecio=listaprecioAdd.value;
 			// this.listaprecio.id=this.id;
-			// console.log("listaprecio:",this.listaprecio);
+			// //console.log("listaprecio:",this.listaprecio);
 		
 			// this._listaprecioService.updateListaPrecio(this.listaprecio)
 			// 	.subscribe(result => {
-			// 	console.log("Result Controler",result.status);
+			// 	//console.log("Result Controler",result.status);
  		// 			if(result.status==200){
  		// 				this._router.navigate(['/listaprecios/'+result.json().id]);
  		// 			}else{
  		// 				//204 -- No Content
- 		// 				console.log("Result Controler",result.status);
+ 		// 				//console.log("Result Controler",result.status);
 			// 		}
  		// 		},
  		// 		error => {
- 		// 			console.log(<any>error);
+ 		// 			//console.log(<any>error);
  		// 		})
  		// }
  		}
@@ -128,19 +128,19 @@ export class ListaPrecioAddComponent{
 	}
 
 	updateListaPrecio(){
-		console.log("update:",this.listaprecio);
+		//console.log("update:",this.listaprecio);
 		this._listaprecioService.editListaPrecio(this.id, this.listaprecio)
 				.subscribe(result => {
-				console.log("Result Controler",result.status);
+				//console.log("Result Controler",result.status);
  					if(result.status=200){
  						this._router.navigate(['/listaprecios/'+result.json().id]);
  					}else{
  						//204 -- No Content
- 						console.log("Result Controler",result.status);
+ 						//console.log("Result Controler",result.status);
 					}
  				},
  				error => {
- 					console.log(<any>error);
+ 					//console.log(<any>error);
  				})
 	};
 

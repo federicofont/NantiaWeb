@@ -24,30 +24,30 @@ export class EnvasesListComponent{
 		this.titulo = 'Listado de envases';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			console.log("id",parametros.id);
+			//console.log("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
 
 	ngOnInit(){
-		console.log('Envases-list.compoent.ts cargado');
+		//console.log('Envases-list.compoent.ts cargado');
 		//alert(this._envaseService.getEnvases());
 		if (this.id==null) {
-			console.log("pase el if");
+			//console.log("pase el if");
 			this.getEnvases();
 		}else{
-			console.log("Entre al else")
+			//console.log("Entre al else")
 			this._envaseService.getEnvase(this.id).subscribe(
 				result =>{
 					if(result.status == 200){
 						 this.envase = result.json();
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						//console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -57,12 +57,13 @@ export class EnvasesListComponent{
 				result =>{
 					if(result.status == 200){
 						 this.envases = result.json();
+						 console.log(result.json());
 					}else{
-						console.log("Result Controler",result.status); 
+						//console.log("Result Controler",result.status); 
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -87,7 +88,7 @@ export class EnvasesListComponent{
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}

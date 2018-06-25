@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgForm} from '@angular/forms';
 
@@ -8,12 +8,15 @@ import { Direccion } from './direccion.model';
 import { Marcador } from '../models/marcador.model';
 import { Documento } from './documento.model';
 
+import { EnvaseEnPrestamo } from '../envasesEnprestamo/envaseEnprestamo.model';
+import { Envase } from '../envases/envase.model';
+import { EnvaseService } from '../envases/envase.service';
 //import { MarkerService } from '../mapa/mapa.marker.service';
 
 @Component ({
 	selector: 'formClienteAdd',
 	templateUrl: './cliente-add.html',
-	providers: [ClienteService],
+	providers: [ClienteService, EnvaseService],
 	styleUrls: ['./mapa.style.css']
 //	styles: [`
 //		.ng-invalid.ng-touched:not(form){
@@ -28,6 +31,12 @@ export class ClienteAddComponent{
 	id:number;
 	marcadores:Marcador[]=[];
 	documentos:Documento[]=[];
+	
+	envase : Envase = new Envase();
+	envases : Envase [] = [];
+	envaseEnprestamo: EnvaseEnPrestamo = new EnvaseEnPrestamo();
+	envasesIndex : number;
+	envasesEnprestamo:EnvaseEnPrestamo[] = [];
 
 	  //Posicion Inicial
 	  lat: number =  -34.4549810;
@@ -45,12 +54,13 @@ export class ClienteAddComponent{
 	
 	constructor(private _clienteService: ClienteService,
 				private _router:Router,
-				private _activatedRoute:ActivatedRoute
+				private _activatedRoute:ActivatedRoute,
+				private _envaseService: EnvaseService
 				){
 
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			console.log("id",parametros.id);
+			////console.log("id",parametros.id);
 			this.id = parametros['id'];
 			})
 
@@ -71,7 +81,7 @@ export class ClienteAddComponent{
 	 
 
 	ngOnInit(){
-		console.log('cliente-add.component.ts cargado');	
+		////console.log('cliente-add.component.ts cargado');	
 		if(this.id != null){
 			this.getCliente();
 		}
@@ -79,12 +89,15 @@ export class ClienteAddComponent{
 
 	  this.documentos[0] = this.documento1;
 	  this.documentos[1] = this.documento2;
-	  console.log("Documentos:",this.documentos);
+	  ////console.log("Documentos:",this.documentos);
+
+	  this.getEnvases();
+
 	}
 
 
   marcadorCliqueado(marcador:Marcador,index:number){
-  	console.log("Marcador cliqueado: ",marcador);
+  	////console.log("Marcador cliqueado: ",marcador);
 
   }
 
@@ -99,8 +112,8 @@ export class ClienteAddComponent{
     this.marcadores.push(nuevoMarcador);
     //guardo cambios
     this.guardarStorage(this.marcadores);
-    console.log(evento);
-    //console.log(evento.coords.lat);
+    ////console.log(evento);
+    //////console.log(evento.coords.lat);
   }
 
   guardarStorage(marcadoresAux:Marcador[]){
@@ -109,7 +122,7 @@ export class ClienteAddComponent{
   	localStorage.removeItem('marcadores');
   	//guardo el nuevo item
     localStorage.setItem('marcadores',JSON.stringify( marcadoresAux ) );
-    console.log("Marcadores: ", marcadoresAux);
+    ////console.log("Marcadores: ", marcadoresAux);
   }
 
   borrarMarcador(i: number){
@@ -120,7 +133,7 @@ export class ClienteAddComponent{
   }
 
   posicionFinalMarcador(marcador:any, $event:any, posicion:number){
-  	console.log("Posicion Final:",marcador,$event);
+  	////console.log("Posicion Final:",marcador,$event);
 
   	var actuaMarcador ={
   		Nombre: marcador.nombre,
@@ -132,7 +145,7 @@ export class ClienteAddComponent{
   	var nuevaLat = $event.coords.lat;
   	var nuevaLong = $event.coords.lng;
 
-    console.log('actuaMarcador: ', actuaMarcador);
+    ////console.log('actuaMarcador: ', actuaMarcador);
 
     this.actualizarMarcador(actuaMarcador, nuevaLat, nuevaLong, posicion);	
   }
@@ -149,8 +162,8 @@ export class ClienteAddComponent{
 
 
 		// for(var i=0; i<markers.lenght; i++){
-		//	console.log(marker_aux.Lat); console.log(markers[i].Lat);
-		//	console.log(marker_aux.Long); console.log(markers[i].Long);
+		//	////console.log(marker_aux.Lat); ////console.log(markers[i].Lat);
+		//	////console.log(marker_aux.Long); ////console.log(markers[i].Long);
 		//	if(marker_aux.Lat == markers[i].Lat && marker_aux.Long == markers[i].Long){	
 		//		markers[i].Lat=nuevaLatAux;
 		//		markers[i].Long=nuevaLongAux;
@@ -163,21 +176,21 @@ export class ClienteAddComponent{
 
  //    mapCliqueado($event:any){
   	
- //  		console.log("Mapa Cliqueado");
+ //  		////console.log("Mapa Cliqueado");
  //  		this.coord.nombre = "Direccion";
  //  		this.coord.lat = $event.coords.lat;
  //  		this.coord.lng = $event.coords.lng;
  //  		this.coord.movil = true;
 
- //  		console.log("Coord: ",this.coord);
+ //  		////console.log("Coord: ",this.coord);
 
  //  		//this.coords.push(this.coord);
  //    	this.agregarMarcador(this.coord);
  //  	}
 
  //  	agregarMarcador(nuevoMarcador:Coord){
-	// 	    console.log("--------------------- Agregar Marcador -----------------");
-	// 	    console.log(nuevoMarcador);
+	// 	    ////console.log("--------------------- Agregar Marcador -----------------");
+	// 	    ////console.log(nuevoMarcador);
 		
 	// 	//mostrar marcadores
 	// 	var coords =JSON.parse(localStorage.getItem('coords'));
@@ -190,10 +203,10 @@ export class ClienteAddComponent{
 	// }
 
 	getCliente(){
-	console.log("entre al getcliente");
+	////console.log("entre al getcliente");
 	this._clienteService.getCliente(this.id).subscribe(
 				result =>{
-					console.log("status:",result.status);
+					////console.log("status:",result.status);
 					if(result.status == 200){
 						 this.cliente = result.json();
 						 this.direccion = this.cliente.direccion;
@@ -204,8 +217,8 @@ export class ClienteAddComponent{
 														  this.cliente.direccion.coordLon,
 														  true
 														  );
-						console.log("marcadores:",this.marcadores);
-						console.log("cliente:",this.cliente);
+						////console.log("marcadores:",this.marcadores);
+						////console.log("cliente:",this.cliente);
 						this.actualizarMarcador( this.marcadores,
 												 this.cliente.direccion.coordLat,
 												 this.cliente.direccion.coordLon, 
@@ -216,12 +229,12 @@ export class ClienteAddComponent{
 						//this.guardarStorage(this.marcadores);
 
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						////console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					////console.log(<any>error);
 				}
 			)
 	}
@@ -232,25 +245,19 @@ export class ClienteAddComponent{
 			this.updateCliente();
 		} 
 		else{
-		console.log("cliente ADD/Update ID:", this.id);
-		//if (this.id==null) {
-			// Add user
-		
-			//Creo el cliente desde el formulario
-			//this.cliente=clienteAdd.value;
+			//Cargo las cordenadas del mapa en el objeto direccion
 			this.direccion.coordLat=this.marcadores[0].lat;
 			this.direccion.coordLon=this.marcadores[0].lng;
-			console.log("Direccion Mapa: ",this.direccion);
 			//Asigno el objeto direccion dentro del objeto cliente
 			this.cliente.direccion = this.direccion;
-			console.log(this.cliente);
-			
+			this.cliente.setEnvasesEnPrestamo=this.envasesEnprestamo;
+			console.log("Cliente",this.cliente)
 			//Llamo al servicio que creara el nuevo cliente
 			this._clienteService.addCliente(this.cliente)
 				.subscribe(result => {
  					if(result.status==201){
- 						console.log("Result Controler",result.status);
- 						//this._router.navigate(['/clientes/'+result.json().id]);
+ 						////console.log("Result Controler",result.status);
+ 						this._router.navigate(['/clientes/'+result.json().id]);
  					}else{
  						console.log("Result Controler",result.status);
 					}
@@ -264,40 +271,70 @@ export class ClienteAddComponent{
 			//Actualizo el cliente desde el formulario
 			// this.cliente=clienteAdd.value;
 			// this.cliente.id=this.id;
-			// console.log("cliente:",this.cliente);
+			// ////console.log("cliente:",this.cliente);
 		
 			// this._clienteService.updateCliente(this.cliente)
 			// 	.subscribe(result => {
-			// 	console.log("Result Controler",result.status);
+			// 	////console.log("Result Controler",result.status);
  		// 			if(result.status==200){
  		// 				this._router.navigate(['/clientes/'+result.json().id]);
  		// 			}else{
  		// 				//204 -- No Content
- 		// 				console.log("Result Controler",result.status);
+ 		// 				////console.log("Result Controler",result.status);
 			// 		}
  		// 		},
  		// 		error => {
- 		// 			console.log(<any>error);
+ 		// 			////console.log(<any>error);
  		// 		})
  		// }
  		}
 
 	}
 
+	getEnvases(){
+		this._envaseService.getEnvases().subscribe(
+			result =>{
+				if(result.status == 200){
+					 this.envases = result.json();
+					 //console.log(result.json());
+				}else{
+					//console.log("Result Controler",result.status); 
+				}
+			},
+			error =>{
+				//console.log(<any>error);
+			}
+		);
+	}
+
+	addEnvaseEnPrestamo(clienteAdd:NgForm){	
+
+		//Cargo el objeto envase y el arreglo envases
+		this.envaseEnprestamo.cantidad = clienteAdd.controls['cantidad'].value;
+		this.envase = this.envases[ clienteAdd.controls['id'].value ];
+		console.log(this.envase);
+		this.envaseEnprestamo.envasetipos = this.envase;
+		this.envasesIndex = this.envasesEnprestamo.length; 
+		//this.envasesEnprestamo[this.envasesIndex] = this.envaseEnprestamo;
+		this.envasesEnprestamo.push(this.envaseEnprestamo);
+		console.log("envasesIndex",this.envasesIndex);
+		console.log("Envases: ",this.envasesEnprestamo);
+	}
+
 	updateCliente(){
-		console.log("update:",this.cliente);
+		////console.log("update:",this.cliente);
 		this._clienteService.editCliente(this.id, this.cliente)
 				.subscribe(result => {
-				console.log("Result Controler",result.status);
+				////console.log("Result Controler",result.status);
  					if(result.status=200){
  						this._router.navigate(['/clientes/'+result.json().id]);
  					}else{
  						//204 -- No Content
- 						console.log("Result Controler",result.status);
+ 						////console.log("Result Controler",result.status);
 					}
  				},
  				error => {
- 					console.log(<any>error);
+ 					////console.log(<any>error);
  				})
 	};
 

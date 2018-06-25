@@ -33,7 +33,7 @@ export class LoginComponent{
 	 
 
 	ngOnInit(){
-		console.log('login.component.ts cargado');
+		//console.log('login.component.ts cargado');
 	}
 
 	validar(loginUser:NgForm){
@@ -48,13 +48,13 @@ export class LoginComponent{
  						this._router.navigate(['/home']);
  					}else{
  						//401 Unauthorized
- 						console.log("Login Status:",result.status);
+ 						//console.log("Login Status:",result.status);
  						this._router.navigate(['/login_error']);
 					}
  				},
  				error => {
- 					console.log(<any>error);
- 					console.log("Login Status:",error.status);
+ 					//console.log(<any>error);
+ 					//console.log("Login Status:",error.status);
  					this._router.navigate(['/login_error']);
  				})
 	}

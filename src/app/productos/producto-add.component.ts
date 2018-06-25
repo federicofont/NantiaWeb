@@ -37,35 +37,35 @@ producto: Producto = {
 
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			console.log("id",parametros.id);
+			//console.log("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
 	 
 
 	ngOnInit(){
-		console.log('producto-add.component.ts cargado');
+		//console.log('producto-add.component.ts cargado');
 	}
 
 	guardar(productoAdd:NgForm){
-		console.log("producto ADD/Update ID:", this.id);
+		//console.log("producto ADD/Update ID:", this.id);
 		//if (this.id==null) {
 			// Add user
 		
 			//Creo el producto desde el formulario
 			this.producto=productoAdd.value;
-			console.log("Producto:",this.producto);
+			//console.log("Producto:",this.producto);
 		
 			this._productoService.addProducto(this.producto)
 				.subscribe(result => {
  					if(result.status==201){
  						this._router.navigate(['/productos/'+result.json().id]);
  					}else{
- 						console.log("Result Controler",result.status);
+ 						//console.log("Result Controler",result.status);
 					}
  				},
  				error => {
- 					console.log(<any>error);
+ 					//console.log(<any>error);
  				})
  		//}else{
  			// Update user
@@ -73,20 +73,20 @@ producto: Producto = {
 			//Actualizo el producto desde el formulario
 			// this.producto=productoAdd.value;
 			// this.producto.id=this.id;
-			// console.log("producto:",this.producto);
+			// //console.log("producto:",this.producto);
 		
 			// this._productoService.updateProducto(this.producto)
 			// 	.subscribe(result => {
-			// 	console.log("Result Controler",result.status);
+			// 	//console.log("Result Controler",result.status);
  		// 			if(result.status==200){
  		// 				this._router.navigate(['/productos/'+result.json().id]);
  		// 			}else{
  		// 				//204 -- No Content
- 		// 				console.log("Result Controler",result.status);
+ 		// 				//console.log("Result Controler",result.status);
 			// 		}
  		// 		},
  		// 		error => {
- 		// 			console.log(<any>error);
+ 		// 			//console.log(<any>error);
  		// 		})
  		// }
 

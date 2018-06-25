@@ -24,30 +24,30 @@ export class ProductosListComponent{
 		this.titulo = 'Listado de productos';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			console.log("id",parametros.id);
+			//console.log("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
 
 	ngOnInit(){
-		console.log('Productos-list.compoent.ts cargado');
+		//console.log('Productos-list.compoent.ts cargado');
 		//alert(this._productoService.getProductos());
 		if (this.id==null) {
-			console.log("pase el if");
+			//console.log("pase el if");
 			this.getProductos();
 		}else{
-			console.log("Entre al else")
+			//console.log("Entre al else")
 			this._productoService.getProducto(this.id).subscribe(
 				result =>{
 					if(result.status == 200){
 						 this.producto = result.json();
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						//console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -58,11 +58,11 @@ export class ProductosListComponent{
 					if(result.status == 200){
 						 this.productos = result.json();
 					}else{
-						console.log("Result Controler",result.status); 
+						//console.log("Result Controler",result.status); 
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -87,7 +87,7 @@ export class ProductosListComponent{
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}

@@ -51,19 +51,19 @@ export class MapaComponent  {
 
     this._activatedRoute.params
       .subscribe( parametros=>{
-      console.log("id",parametros.id);
+      //console.log("id",parametros.id);
       this.id = parametros['id'];
       })
   }
 //Fin cli 
   
    marcadorCliqueado(marcador:marker,index:number){
-  	console.log("Marcador cliqueado: " + marcador.Nombre);
+  	//console.log("Marcador cliqueado: " + marcador.Nombre);
 
   }
 
   mapCliqueado($event:any){
-  	console.log("Mapa Cliqueado");
+  	//console.log("Mapa Cliqueado");
 
     //Borro el storage para que simpre quede solo un punto
 
@@ -79,7 +79,7 @@ export class MapaComponent  {
   }
 
   posicionFinalMarcador(marcador:any, $event:any){
-  	console.log("Posicion Final:",marcador,$event);
+  	//console.log("Posicion Final:",marcador,$event);
 
   	var actuaMarcador ={
   		Nombre: marcador.Nombre,
@@ -91,16 +91,16 @@ export class MapaComponent  {
   	var nuevaLat = $event.coords.lat;
   	var nuevaLong = $event.coords.lng;
 
-    console.log('nuevaLat: '+ nuevaLat);
-  	console.log('nuevaLong: '+ nuevaLong);
-    console.log('actuaMarcador: '+ actuaMarcador.Nombre);
+    //console.log('nuevaLat: '+ nuevaLat);
+  	//console.log('nuevaLong: '+ nuevaLong);
+    //console.log('actuaMarcador: '+ actuaMarcador.Nombre);
 
     this._markerService.actualizarMarcador(actuaMarcador, nuevaLat, nuevaLong);	
   }
 
   agregarMarcador(){
-    console.log('Agregando Marcador');
-    console.log("--------------------- Agregar Marcador -----------------");
+    //console.log('Agregando Marcador');
+    //console.log("--------------------- Agregar Marcador -----------------");
 
     var esMovil = true;
     if (this.marcadorMovil == 'si') {
@@ -109,9 +109,9 @@ export class MapaComponent  {
       var esMovil = false;
     }
     
-    console.log(esMovil);
-    console.log(this.nombreMarcador);
-    console.log(this.latitudMarcador);
+    //console.log(esMovil);
+    //console.log(this.nombreMarcador);
+    //console.log(this.latitudMarcador);
     var nuevoMarcador ={
       Nombre:this.nombreMarcador,
       Lat:parseFloat(this.latitudMarcador),
@@ -125,23 +125,23 @@ export class MapaComponent  {
 
 
     ngOnInit(){
-     console.log(this._requestService.getPrueba);
+     //console.log(this._requestService.getPrueba);
         
      //LISTADO
      // this._requestService.getListado().subscribe(
      //   result => {
      //     this.markers = result;
-     //     console.log("Listado: ");
-     //     console.log(result);
+     //     //console.log("Listado: ");
+     //     //console.log(result);
          
      //     if(!this.markers){
-     //       console.log("Error en el servidor");
+     //       //console.log("Error en el servidor");
      //     }
 
      //   },
      //   error => {
      //     var errorMessage = <any>error;
-     //     console.log(errorMessage);
+     //     //console.log(errorMessage);
      //   }),
           //PUNTO INICIAL
      this._requestService.getPuntoInicial().subscribe(
@@ -154,31 +154,31 @@ export class MapaComponent  {
       Movil:true
     }
 
-    console.log("Result-----------");
-    console.log(nuevoMarcador);
+    //console.log("Result-----------");
+    //console.log(nuevoMarcador);
     this.markers.push(nuevoMarcador);
     this._markerService.agregarMarcador(nuevoMarcador);
 
     this._markerService.obtenerMarcadores();
 
          //this.inicialMarcador(result.idCliente,result.corLat,result.corLan);
-        //  console.log("------------Antes de getpuntoinicial");
-        // console.log(this.markers[0].Lat);
-        // console.log(this.markers[0].Long);
+        //  //console.log("------------Antes de getpuntoinicial");
+        // //console.log(this.markers[0].Lat);
+        // //console.log(this.markers[0].Long);
     
         //  this.markers[0].Lat = result.corLat ;
-        //  console.log("----------------------------------------------");
-        //  console.log(result.corLat);
-        //  console.log(this.Lat);
+        //  //console.log("----------------------------------------------");
+        //  //console.log(result.corLat);
+        //  //console.log(this.Lat);
         //  this.markers[0].Long = result.corLon ;
-        //  console.log(result.corLan);
-        //  console.log(this.Long);
+        //  //console.log(result.corLan);
+        //  //console.log(this.Long);
         //  this.markers[0].Nombre=result.idCliente;
-        //  console.log(result.idCliente);
-        //  console.log(this.nombreMarcador);
+        //  //console.log(result.idCliente);
+        //  //console.log(this.nombreMarcador);
 
-        //  console.log("Punto Inicial :");
-        //  console.log(result);
+        //  //console.log("Punto Inicial :");
+        //  //console.log(result);
 
       })
 

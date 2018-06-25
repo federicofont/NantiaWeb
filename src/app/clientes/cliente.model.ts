@@ -1,4 +1,5 @@
 import { Direccion } from './direccion.model';
+import { EnvaseEnPrestamo } from '../envasesEnprestamo/envaseEnprestamo.model';
 
 export class Cliente {
 	constructor(
@@ -13,10 +14,10 @@ export class Cliente {
 		public fechaAlta : Date=null, 
 		public celular : string=null, 
 		public mail : string=null, 
-		public envases : number=null, 
 		public idLista : number=null, 
 		public observaciones : string=null, 		
-		public activo : boolean=null
+		public activo : boolean=null,
+		public setEnvasesEnPrestamo: EnvaseEnPrestamo[]=[]
 		){}
 
 }

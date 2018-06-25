@@ -5,7 +5,7 @@ import { ProductoLista} from './productolista.model';
 
 @Component({
 	selector: 'productolistas-list',
-	templateUrl: '../productolistas/productolistas-list.html',
+	templateUrl: './productolistas-list.html',
 	providers: [ProductoListaService]
 })
 export class ProductoListasListComponent{
@@ -24,30 +24,30 @@ export class ProductoListasListComponent{
 		this.titulo = 'Listado de productolistas';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			console.log("id",parametros.id);
+			//console.log("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
 
 	ngOnInit(){
-		console.log('ProductoListas-list.compoent.ts cargado');
+		//console.log('ProductoListas-list.compoent.ts cargado');
 		//alert(this._productolistaService.getProductoListas());
 		if (this.id==null) {
-			console.log("pase el if");
+			//console.log("pase el if");
 			this.getProductoListas();
 		}else{
-			console.log("Entre al else")
+			//console.log("Entre al else")
 			this._productolistaService.getProductoLista(this.id).subscribe(
 				result =>{
 					if(result.status == 200){
 						 this.productolista = result.json();
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						//console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -58,11 +58,11 @@ export class ProductoListasListComponent{
 					if(result.status == 200){
 						 this.productolistas = result.json();
 					}else{
-						console.log("Result Controler",result.status); 
+						//console.log("Result Controler",result.status); 
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -87,7 +87,7 @@ export class ProductoListasListComponent{
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}

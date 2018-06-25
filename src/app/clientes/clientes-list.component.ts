@@ -24,33 +24,33 @@ export class ClientesListComponent{
 		this.titulo = 'Listado de clientes';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			console.log("id",parametros.id);
+			////console.log("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
 
 	ngOnInit(){
-		console.log('Clientes-list.compoent.ts cargado');
-		console.log('ID:', this.id);
+		////console.log('Clientes-list.compoent.ts cargado');
+		////console.log('ID:', this.id);
 		
 		if (this.id ==null) {
-			console.log("Listo todos los clientes");
+			////console.log("Listo todos los clientes");
 			this.getClientes();
 		}else{
-			console.log("Listo el cliente con ID:",this.id)
+			////console.log("Listo el cliente con ID:",this.id)
 			this._clienteService.getCliente(this.id).subscribe(
 				result =>{
-					console.log('status',result.status);
+					////console.log('status',result.status);
 					if(result.status == 200){
-						console.log('Result',result.json());
+						////console.log('Result',result.json());
 						 this.cliente = result.json();
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						////console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					////console.log(<any>error);
 				}
 			);
 		}
@@ -60,13 +60,13 @@ export class ClientesListComponent{
 				result =>{
 					if(result.status == 200){
 						 this.clientes = result.json();
-						 console.log("Clientes:",result.json());
+						 ////console.log("Clientes:",result.json());
 					}else{
-						console.log("Result Controler",result.status); 
+						////console.log("Result Controler",result.status); 
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					////console.log(<any>error);
 				}
 			);
 		}
@@ -75,14 +75,14 @@ export class ClientesListComponent{
 			this._clienteService.getCliente(this.id).subscribe(
 		 		result =>{
 		 			if(result.status == 200){
-		 				 console.log('Cliente:',this.cliente = result.json())
+		 				 ////console.log('Cliente:',this.cliente = result.json())
 		 				 this.cliente = result.json();
 		 			}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						////console.log("ID:",this.id," Result Controler:",result.status);
 		 			}
 		 		},
 		 		error =>{
-		 			console.log(<any>error);
+		 			////console.log(<any>error);
 		 		}
 		 	);
 		}
@@ -107,7 +107,7 @@ export class ClientesListComponent{
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					////console.log(<any>error);
 				}
 			);
 		}

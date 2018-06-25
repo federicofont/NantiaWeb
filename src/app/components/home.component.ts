@@ -12,6 +12,6 @@ export class HomeComponent{
 	}
 
 	ngOnInit(){
-		console.log('Se ha cargado el componente home.component.ts');
+		//console.log('Se ha cargado el componente home.component.ts');
 	}
 }

@@ -13,6 +13,6 @@ export class LoginErrorComponent{
 	}
 
 	ngOnInit(){
-		console.log("Componente login-error.ts cargado");
+		//console.log("Componente login-error.ts cargado");
 	}
 }

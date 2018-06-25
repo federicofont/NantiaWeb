@@ -24,30 +24,30 @@ export class ListaPreciosListComponent{
 		this.titulo = 'Listado de precios';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			console.log("id",parametros.id);
+			//console.log("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
 
 	ngOnInit(){
-		console.log('ListaPrecios-list.compoent.ts cargado');
+		//console.log('ListaPrecios-list.compoent.ts cargado');
 		//alert(this._listaprecioService.getListaPrecios());
 		if (this.id==null) {
-			console.log("pase el if");
+			//console.log("pase el if");
 			this.getListaPrecios();
 		}else{
-			console.log("Entre al else")
+			//console.log("Entre al else")
 			this._listaprecioService.getListaPrecio(this.id).subscribe(
 				result =>{
 					if(result.status == 200){
 						 this.listaprecio = result.json();
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						//console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -58,11 +58,11 @@ export class ListaPreciosListComponent{
 					if(result.status == 200){
 						 this.listaprecios = result.json();
 					}else{
-						console.log("Result Controler",result.status); 
+						//console.log("Result Controler",result.status); 
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -87,7 +87,7 @@ export class ListaPreciosListComponent{
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}

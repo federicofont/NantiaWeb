@@ -23,26 +23,26 @@ export class ProductoDetailComponent{
 
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			console.log("id",parametros.id);
+			//console.log("id",parametros.id);
 			this.id = parametros['id'];
 			})
 		}
 	
 	ngOnInit(){
-		console.log('producto-detail.component.ts cargado');
+		//console.log('producto-detail.component.ts cargado');
 
 		this._productoService.getProducto(this.id).subscribe(
 				result =>{
 					if(result.status == 200){
-						console.log("Result:",result.json());
+						//console.log("Result:",result.json());
 						 this.producto = result.json();
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						//console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			)
 		};

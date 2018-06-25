@@ -5,7 +5,7 @@ import{Init} from './mapa.init-markers';
 export class MarkerService extends Init{
 	constructor(){
 		super();
-		console.log('Servicio de marcador iniciado...');
+		//console.log('Servicio de marcador iniciado...');
 		this.load();
 	}
 
@@ -15,8 +15,8 @@ export class MarkerService extends Init{
 	}
 
 	agregarMarcador(nuevoMarcador){
-		    console.log("--------------------- Agregar Marcador -----------------");
-		    console.log(nuevoMarcador);
+		    //console.log("--------------------- Agregar Marcador -----------------");
+		    //console.log(nuevoMarcador);
 		//mostrar marcadores
 		var markers =JSON.parse(localStorage.getItem('markers'));
 
@@ -31,8 +31,8 @@ export class MarkerService extends Init{
 		var markers =JSON.parse(localStorage.getItem('markers'));
 		
 		for(var i=0; i<markers.lenght; i++){
-			console.log(marker_aux.Lat); console.log(markers[i].Lat);
-			console.log(marker_aux.Long); console.log(markers[i].Long);
+			//console.log(marker_aux.Lat); //console.log(markers[i].Lat);
+			//console.log(marker_aux.Long); //console.log(markers[i].Long);
 			if(marker_aux.Lat == markers[i].Lat && marker_aux.Long == markers[i].Long){	
 				markers[i].Lat=nuevaLatAux;
 				markers[i].Long=nuevaLongAux;
