@@ -101,12 +101,12 @@ export class ClienteAddComponent{
 
 
   marcadorCliqueado(marcador:Marcador,index:number){
-  	////console.log("Marcador cliqueado: ",marcador);
+  	console.log("Marcador cliqueado: ",marcador);
 
   }
 
   agregarMarcador( evento){
-
+	console.log("agregarMarcador")
   	//limpio el arreglo para que quede solo 1 marcador
   	this.marcadores=[];
     
@@ -121,7 +121,7 @@ export class ClienteAddComponent{
   }
 
   guardarStorage(marcadoresAux:Marcador[]){
-
+  	console.log("guardarStorage");
   	//borro el local storage de "marcadores"
   	localStorage.removeItem('marcadores');
   	//guardo el nuevo item
@@ -137,7 +137,7 @@ export class ClienteAddComponent{
   }
 
   posicionFinalMarcador(marcador:any, $event:any, posicion:number){
-  	////console.log("Posicion Final:",marcador,$event);
+  	console.log("Posicion Final:",marcador,$event);
 
   	var actuaMarcador ={
   		Nombre: marcador.nombre,
@@ -157,10 +157,12 @@ export class ClienteAddComponent{
 
   actualizarMarcador(marker_aux,nuevaLatAux,nuevaLongAux, posicion){
 		//Obtener marcadores
+		console.log("actualizarMarcador")
 		var marcadoresLS =JSON.parse(localStorage.getItem('marcadores'));
 		
 		marcadoresLS[posicion].lat = nuevaLatAux;
 		marcadoresLS[posicion].lng = nuevaLongAux;
+
 		this.cliente.direccion.coordLat=nuevaLatAux;
 		this.cliente.direccion.coordLon=nuevaLongAux;
 
@@ -288,10 +290,10 @@ export class ClienteAddComponent{
 		this._clienteService.addCliente(this.cliente)
 			.subscribe(result => {
 					if(result.status==201){
-						////console.log("Result Controler",result.status);
-						//this._router.navigate(['/clientes/'+result.json().id]);
+						console.log("Result Controler:",result.status);
+						this._router.navigate(['/clientes']);
 					}else{
-						console.log("Result Controler",result.status);
+						console.log("Result Controler:",result.status);
 				}
 				},
 				error => {
