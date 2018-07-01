@@ -38,13 +38,14 @@ export class ClienteAddComponent{
 	envasesIndex : number;
 	envasesEnprestamo:EnvaseEnPrestamo[] = [];
 
-	  //Posicion Inicial
+	  //Posicion de referencia de mapa
 	  lat: number =  -34.4549810;
 	  lng: number = -56.3999980;
 	  zoom:number = 14;
 
-	  documento1 : Documento = new Documento(1,"Cedula");
-	  documento2 : Documento = new Documento(2,"Rut");
+	  documento0 : Documento = new Documento(0,"CI");
+	  documento1 : Documento = new Documento(1,"Rut");
+	  documento2 : Documento = new Documento(2,"NA");
 
 	  marcador : Marcador = new Marcador("Nantia",this.lat, this.lng,false);
 		
@@ -82,16 +83,19 @@ export class ClienteAddComponent{
 
 	ngOnInit(){
 		////console.log('cliente-add.component.ts cargado');	
+		  this.documentos[0] = this.documento0;
+		  this.documentos[1] = this.documento1;
+		  this.documentos[2] = this.documento2;
+		  ////console.log("Documentos:",this.documentos);
+
+		   this.envasesEnprestamo=[];
+
 		if(this.id != null){
 			this.getCliente();
+
 		}
 
-
-	  this.documentos[0] = this.documento1;
-	  this.documentos[1] = this.documento2;
-	  ////console.log("Documentos:",this.documentos);
-
-	  this.getEnvases();
+		  this.getEnvases();
 
 	}
 
@@ -160,47 +164,8 @@ export class ClienteAddComponent{
 		this.cliente.direccion.coordLat=nuevaLatAux;
 		this.cliente.direccion.coordLon=nuevaLongAux;
 
-
-		// for(var i=0; i<markers.lenght; i++){
-		//	////console.log(marker_aux.Lat); ////console.log(markers[i].Lat);
-		//	////console.log(marker_aux.Long); ////console.log(markers[i].Long);
-		//	if(marker_aux.Lat == markers[i].Lat && marker_aux.Long == markers[i].Long){	
-		//		markers[i].Lat=nuevaLatAux;
-		//		markers[i].Long=nuevaLongAux;
-		//	}
-		//}
-		//configurar en el local storage
-		//localStorage.setItem('marcadores',JSON.stringify(marcadoresLS));	
 		this.guardarStorage(marcadoresLS);
 	}
-
- //    mapCliqueado($event:any){
-  	
- //  		////console.log("Mapa Cliqueado");
- //  		this.coord.nombre = "Direccion";
- //  		this.coord.lat = $event.coords.lat;
- //  		this.coord.lng = $event.coords.lng;
- //  		this.coord.movil = true;
-
- //  		////console.log("Coord: ",this.coord);
-
- //  		//this.coords.push(this.coord);
- //    	this.agregarMarcador(this.coord);
- //  	}
-
- //  	agregarMarcador(nuevoMarcador:Coord){
-	// 	    ////console.log("--------------------- Agregar Marcador -----------------");
-	// 	    ////console.log(nuevoMarcador);
-		
-	// 	//mostrar marcadores
-	// 	var coords =JSON.parse(localStorage.getItem('coords'));
-
-	// 	//agregar el arreglo
-	// 	coords.push(nuevoMarcador);
-	// 	//configurar en el local storage
-	// 	localStorage.setItem('markers',JSON.stringify(coords));
-
-	// }
 
 	getCliente(){
 	////console.log("entre al getcliente");
@@ -209,8 +174,10 @@ export class ClienteAddComponent{
 					////console.log("status:",result.status);
 					if(result.status == 200){
 						 this.cliente = result.json();
+						 //console.log("cliente:",this.cliente);
 						 this.direccion = this.cliente.direccion;
-						 
+						 this.envasesEnprestamo = this.cliente.setEnvasesEnPrestamo;
+						//console.log("Get envasesEnprestamo",this.envasesEnprestamo);
 						//Cargo marcador del mapa
 						this.marcadores[0] = new Marcador("Nantia",
 														  this.cliente.direccion.coordLat, 
@@ -218,7 +185,7 @@ export class ClienteAddComponent{
 														  true
 														  );
 						////console.log("marcadores:",this.marcadores);
-						////console.log("cliente:",this.cliente);
+						console.log("cliente:",this.cliente);
 						this.actualizarMarcador( this.marcadores,
 												 this.cliente.direccion.coordLat,
 												 this.cliente.direccion.coordLon, 
@@ -241,53 +208,23 @@ export class ClienteAddComponent{
 
 	guardar(clienteAdd:NgForm){
 
+		//Cargo las cordenadas del mapa en el objeto direccion
+		//console.log("Guardar",this.cliente);
+		this.direccion.coordLat=this.marcadores[0].lat;
+		this.direccion.coordLon=this.marcadores[0].lng;
+		//Asigno el objeto direccion dentro del objeto cliente
+		this.cliente.direccion = this.direccion;
+		this.cliente.setEnvasesEnPrestamo=this.envasesEnprestamo;
+		//console.log("Cliente",this.cliente)
+		
 		if(this.id != null){
+			//Llamo al servicio que actualiza el cliente
 			this.updateCliente();
 		} 
 		else{
-			//Cargo las cordenadas del mapa en el objeto direccion
-			this.direccion.coordLat=this.marcadores[0].lat;
-			this.direccion.coordLon=this.marcadores[0].lng;
-			//Asigno el objeto direccion dentro del objeto cliente
-			this.cliente.direccion = this.direccion;
-			this.cliente.setEnvasesEnPrestamo=this.envasesEnprestamo;
-			console.log("Cliente",this.cliente)
 			//Llamo al servicio que creara el nuevo cliente
-			this._clienteService.addCliente(this.cliente)
-				.subscribe(result => {
- 					if(result.status==201){
- 						////console.log("Result Controler",result.status);
- 						this._router.navigate(['/clientes/'+result.json().id]);
- 					}else{
- 						console.log("Result Controler",result.status);
-					}
- 				},
- 				error => {
- 					console.log(<any>error);
- 				})
- 		//}else{
- 			// Update user
-			
-			//Actualizo el cliente desde el formulario
-			// this.cliente=clienteAdd.value;
-			// this.cliente.id=this.id;
-			// ////console.log("cliente:",this.cliente);
-		
-			// this._clienteService.updateCliente(this.cliente)
-			// 	.subscribe(result => {
-			// 	////console.log("Result Controler",result.status);
- 		// 			if(result.status==200){
- 		// 				this._router.navigate(['/clientes/'+result.json().id]);
- 		// 			}else{
- 		// 				//204 -- No Content
- 		// 				////console.log("Result Controler",result.status);
-			// 		}
- 		// 		},
- 		// 		error => {
- 		// 			////console.log(<any>error);
- 		// 		})
- 		// }
- 		}
+			this.AddCliente();
+		}
 
 	}
 
@@ -308,17 +245,24 @@ export class ClienteAddComponent{
 	}
 
 	addEnvaseEnPrestamo(clienteAdd:NgForm){	
-
+    ////console.log(evento);
+    //////console.log(evento.coords.lat);
 		//Cargo el objeto envase y el arreglo envases
-		this.envaseEnprestamo.cantidad = clienteAdd.controls['cantidad'].value;
-		this.envase = this.envases[ clienteAdd.controls['id'].value ];
-		console.log(this.envase);
-		this.envaseEnprestamo.envasetipos = this.envase;
-		this.envasesIndex = this.envasesEnprestamo.length; 
-		//this.envasesEnprestamo[this.envasesIndex] = this.envaseEnprestamo;
-		this.envasesEnprestamo.push(this.envaseEnprestamo);
-		console.log("envasesIndex",this.envasesIndex);
-		console.log("Envases: ",this.envasesEnprestamo);
+		const nuevo_envaseEnprestamo = new EnvaseEnPrestamo( null,
+											this.envases[ clienteAdd.controls['id'].value ] ,
+														  clienteAdd.controls['cantidad'].value);
+
+		this.envasesEnprestamo.push(nuevo_envaseEnprestamo);
+		//console.log("this.envaseEnprestamo0",this.envasesEnprestamo);
+
+		this.getEnvasesEnprestamo();
+		//console.log("envasesIndex",this.envasesIndex);
+		//console.log("Envases: ",this.envasesEnprestamo);
+	}
+
+	getEnvasesEnprestamo(){
+		this.envasesEnprestamo;
+		//console.log(this.envasesEnprestamo);
 	}
 
 	updateCliente(){
@@ -327,7 +271,7 @@ export class ClienteAddComponent{
 				.subscribe(result => {
 				////console.log("Result Controler",result.status);
  					if(result.status=200){
- 						this._router.navigate(['/clientes/'+result.json().id]);
+ 						//this._router.navigate(['/clientes/'+result.json().id]);
  					}else{
  						//204 -- No Content
  						////console.log("Result Controler",result.status);
@@ -336,6 +280,24 @@ export class ClienteAddComponent{
  				error => {
  					////console.log(<any>error);
  				})
-	};
+	}
 
-}
+
+	AddCliente(){
+		//console.log("Cliente ADD",this.cliente)
+		this._clienteService.addCliente(this.cliente)
+			.subscribe(result => {
+					if(result.status==201){
+						////console.log("Result Controler",result.status);
+						//this._router.navigate(['/clientes/'+result.json().id]);
+					}else{
+						console.log("Result Controler",result.status);
+				}
+				},
+				error => {
+					console.log(<any>error);
+				})
+	}
+
+
+};	

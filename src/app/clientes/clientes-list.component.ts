@@ -12,7 +12,7 @@ export class ClientesListComponent{
 	public titulo: string;
 	public cliente:Cliente;
 	public clientes: Cliente[];
-
+	public confirmado;
 	public id:number;
 
 	
@@ -86,8 +86,6 @@ export class ClientesListComponent{
 		 		}
 		 	);
 		}
-
-		public confirmado;
 
 		borrarConfirm(id){
 			this.confirmado=id;

@@ -8,7 +8,7 @@ export class Direccion{
 		public telefono: string=null, 
 		public ciudad : string=null, 
 		public departamento : string=null, 
-		public codigoPostal : number=null
+		public codPostal : number=null
 		){}
 
 }

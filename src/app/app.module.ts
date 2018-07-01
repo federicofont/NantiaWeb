@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
@@ -45,9 +45,6 @@ import { ProductoListasListComponent } from './productolistas/productolistas-lis
 import { ProductoListaAddComponent } from './productolistas/productolista-add.component';
 //import { ProductoListaDetailComponent } from './productolistas/listaprecio-detail.component';
 
-import { EnvaseEnPrestamoListComponent } from './envasesEnprestamo/envaseEnprestamo-list.component';
-import { EnvaseEnPrestamoAddComponent } from './envasesEnprestamo/envaseEnprestamo-add.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,10 +77,7 @@ import { EnvaseEnPrestamoAddComponent } from './envasesEnprestamo/envaseEnpresta
     ListaPrecioAddComponent,
 
     ProductoListasListComponent,
-    ProductoListaAddComponent,
-
-    EnvaseEnPrestamoListComponent,
-    EnvaseEnPrestamoAddComponent
+    ProductoListaAddComponent
     
   ],
   imports: [
@@ -91,6 +85,7 @@ import { EnvaseEnPrestamoAddComponent } from './envasesEnprestamo/envaseEnpresta
     CommonModule,
     FormsModule,
     HttpModule,
+    ReactiveFormsModule,
     routing,
    // MaterialModule,
     AgmCoreModule.forRoot({

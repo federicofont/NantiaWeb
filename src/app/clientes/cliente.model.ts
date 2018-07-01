@@ -5,7 +5,7 @@ export class Cliente {
 	constructor(
 		public id : number=null,
 		public direccion : Direccion=null,
-		public tipoDocumento : string=null, 
+		public tipoDocumento : number=null, 
 		public nroDocumento : string=null, 
 		public nombre1: string=null, 
 		public nombre2: string=null, 

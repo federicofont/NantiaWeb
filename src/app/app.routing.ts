@@ -36,9 +36,6 @@ import { ProductoListasListComponent } from './productolistas/productolistas-lis
 import { ProductoListaAddComponent } from './productolistas/productolista-add.component';
 //import { ProductoListaDetailComponent } from './productolistas/listaprecio-detail.component';
 
-import { EnvaseEnPrestamoListComponent } from './envasesEnprestamo/envaseEnprestamo-list.component';
-import { EnvaseEnPrestamoAddComponent } from './envasesEnprestamo/envaseEnprestamo-add.component';
-
 const appRoutes: Routes = [
 {path: '', component: HomeComponent},
 {path: 'login', component: LoginComponent},
@@ -75,10 +72,6 @@ const appRoutes: Routes = [
 {path: 'productolista-edit/:id', component: ProductoListaAddComponent},
 {path: 'productolista-add', component: ProductoListaAddComponent},
 
-
-{path: 'envaseEnprestamolistas', component: EnvaseEnPrestamoListComponent},
-{path: 'envaseEnprestamo-edit/:id', component: EnvaseEnPrestamoListComponent},
-{path: 'envaseEnprestamo-add', component: EnvaseEnPrestamoAddComponent},
 
 {path: 'mapa', component: MapaComponent},
 {path: '**', component: ErrorComponent}

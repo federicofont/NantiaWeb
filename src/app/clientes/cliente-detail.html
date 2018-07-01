@@ -45,27 +45,28 @@
 
                 <div class="panel-body">
                     
-                    <form (ngSubmit)="guardar(clienteAdd)" #clienteAdd="ngForm" class="col-lg-6" id="formclienteAdd">
-                        <div class="col-lg-6">                          
+                    <!--form  #cliente-detail="ngForm" class="col-lg-6" id="cliente-detail"-->
+                    <div class="row" *ngIf="cliente">
+                    <div class="col-lg-6" *ngIf="cliente.id">
+
+                        <div class="col-lg-6">   
                          <fieldset disabled>   
+                        
                             <div class="input-group input-group-sm">
-                                <span class="input-group-addon"> tipoDocumento </span>
+                                <span class="input-group-addon"> Tipo Documento </span>
                             </div>
                             
-                            <div class="input-group input-group-sm mb-4">
-                                <select class="input-group input-group-sm" required name="tipoDocumento" placeholder="Tipo Documento" [(ngModel)]="cliente.tipoDocumento"
-                                ng-init="cliente.tipoDocumento">
-                                    <option *ngIf="cliente.tipoDocumento; then selected" [value]=1>Cedula</option>
-                                    <option *ngIf="cliente.tipoDocumento; then selected" selected="ngIf" [value]=2>Rut</option>
-                              </select>
+                            <div class="input-group input-group-sm mb-3">
+                                <input type="text" #descripcion="ngModel" name="tipoDocumento" 
+                                [(ngModel)]="cliente.tipoDocumento" class="form-control" />
                             </div>
                               
-
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Nombre 1</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="nombre1" [(ngModel)]="cliente.nombre1" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="nombre1" 
+                                [(ngModel)]="cliente.nombre1" class="form-control" />
                             </div>
 
                             <div class="input-group input-group-sm">
@@ -79,42 +80,48 @@
                                 <span class="input-group-addon">Celular</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="celular" [(ngModel)]="cliente.celular" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="celular" 
+                                [(ngModel)]="cliente.celular" class="form-control" />
                             </div>
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Mail</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="mail" [(ngModel)]="cliente.mail" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="mail" 
+                                [(ngModel)]="cliente.mail" class="form-control" />
                             </div>                        
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Saldo</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="saldo" [(ngModel)]="cliente.saldo" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="saldo" 
+                                [(ngModel)]="cliente.saldo" class="form-control" />
                             </div>  
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Direccion</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="direccion" [(ngModel)]="direccion.direccion" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="direccion" 
+                                [(ngModel)]="cliente.direccion.direccion" class="form-control" />
                             </div>  
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Ciudad</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="ciudad" [(ngModel)]="direccion.ciudad" class="form-control" />
+                                <input type="text" #ciudad="ngModel" name="ciudad" 
+                                [(ngModel)]="cliente.direccion.ciudad" class="form-control" />
                             </div> 
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Activo</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="activo" [(ngModel)]="cliente.activo" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="activo" 
+                                [(ngModel)]="cliente.activo" class="form-control" />
                             </div> 
                         </fieldset>
                         </div>
@@ -125,56 +132,64 @@
                                 <span class="input-group-addon">Nro Documento</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="nroDocumento" [(ngModel)]="cliente.nroDocumento" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="nroDocumento" 
+                                [(ngModel)]="cliente.nroDocumento" class="form-control" />
                             </div>
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Nombre 2</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="nombre2" [(ngModel)]="cliente.nombre2" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="nombre2" 
+                                [(ngModel)]="cliente.nombre2" class="form-control" />
                             </div>
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Fecha Alta</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="fechaAlta" [(ngModel)]="cliente.fechaAlta" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="fechaAlta" 
+                                [(ngModel)]="cliente.fechaAlta" class="form-control" />
                             </div>
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Telefono</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="telefono" [(ngModel)]="direccion.telefono" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="telefono" 
+                                [(ngModel)]="cliente.direccion.telefono" class="form-control" />
                             </div>
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Lista de Precios</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="idLista" [(ngModel)]="cliente.idLista" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="idLista" 
+                                [(ngModel)]="cliente.idLista" class="form-control" />
                             </div>  
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Departamento</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="departamento" [(ngModel)]="direccion.departamento" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="departamento" 
+                                [(ngModel)]="cliente.direccion.departamento" class="form-control" />
                             </div>         
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Codigo Postal</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="codigoPostal" [(ngModel)]="direccion.codigoPostal" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="codigoPostal" 
+                                [(ngModel)]="cliente.direccion.codigoPostal" class="form-control" />
                             </div> 
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Observaciones</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="observaciones" [(ngModel)]="cliente.observaciones" class="form-control" />
+                                <input type="text" #descripcion="ngModel" name="observaciones" 
+                                [(ngModel)]="cliente.observaciones" class="form-control" />
                             </div> 
                         </fieldset>
                         </div>
@@ -194,17 +209,11 @@
                               >
                               
                               <agm-marker 
-                              *ngFor="let marcador of marcadores; let i = index"
-                              (markerclick)="marcadorCliqueado(marcador,i)"
-                              [latitude]="marcador.lat" 
-                              [longitude]="marcador.lng"
-                              [markerDraggable]="marcador.movil"
-                              (dragEnd)="posicionFinalMarcador(marcador,$event,i)"
+                              [latitude]="cliente.direccion.coordLat" 
+                              [longitude]="cliente.direccion.coordLon"
                               >
                                <agm-info-window> 
                                 <strong>{{marcador.nombre}}</strong>
-
-                                <button (click)="borrarMarcador(i)" class="btn-alert">Borrar</button>
 
                                </agm-info-window>
                               
@@ -215,10 +224,34 @@
                         </div>
                         </div>
                         </div>
+
+
+                    <br><br>
+
+                    <div class="input-group input-group-sm">
+
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr class="bg-success">
+                                    <th scope="col">Envase</th>
+                                    <th scope="col">Cantidad</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let ep of cliente.setEnvasesEnPrestamo">
+                                    <td>{{ep.envasetipos.descripcion}} </td>
+                                    <td>{{ep.cantidad}} </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                    </div>    
+
 <!--FIN Pantalla central derecha Mapa -->
                     <br/>
 
-                </form>
+                <!--/form-->
+                </div>
+                </div>
             </div>
             <!-- FIN PANEL CENTRAL-->
         </div>

@@ -25,9 +25,7 @@ export class ClienteDetailComponent{
 	  lng: number = -56.3999980;
 	  zoom:number = 14;
 
-	  marcador : Marcador = new Marcador("Nantia",this.lat, this.lng,false);
-		
-	/*Creo los objetos que voy a referenciar y editar en el HTML*/
+	marcador : Marcador = new Marcador("Nantia",this.lat, this.lng,false);
 	direccion : Direccion = new Direccion();
 	cliente : Cliente = new Cliente();
 
@@ -60,6 +58,5 @@ export class ClienteDetailComponent{
 				}
 			)
 		};
-
 
 	}
