@@ -35,7 +35,6 @@ export class ClienteAddComponent{
 	envase : Envase = new Envase();
 	envases : Envase [] = [];
 	envaseEnprestamo: EnvaseEnPrestamo = new EnvaseEnPrestamo();
-	envasesIndex : number;
 	envasesEnprestamo:EnvaseEnPrestamo[] = [];
 
 	  //Posicion de referencia de mapa
@@ -95,6 +94,7 @@ export class ClienteAddComponent{
 
 		}
 
+		  
 		  this.getEnvases();
 
 	}
@@ -106,7 +106,7 @@ export class ClienteAddComponent{
   }
 
   agregarMarcador( evento){
-	console.log("agregarMarcador")
+	//console.log("agregarMarcador")
   	//limpio el arreglo para que quede solo 1 marcador
   	this.marcadores=[];
     
@@ -121,7 +121,7 @@ export class ClienteAddComponent{
   }
 
   guardarStorage(marcadoresAux:Marcador[]){
-  	console.log("guardarStorage");
+  	//console.log("guardarStorage");
   	//borro el local storage de "marcadores"
   	localStorage.removeItem('marcadores');
   	//guardo el nuevo item
@@ -137,7 +137,7 @@ export class ClienteAddComponent{
   }
 
   posicionFinalMarcador(marcador:any, $event:any, posicion:number){
-  	console.log("Posicion Final:",marcador,$event);
+  	//console.log("Posicion Final:",marcador,$event);
 
   	var actuaMarcador ={
   		Nombre: marcador.nombre,
@@ -157,7 +157,7 @@ export class ClienteAddComponent{
 
   actualizarMarcador(marker_aux,nuevaLatAux,nuevaLongAux, posicion){
 		//Obtener marcadores
-		console.log("actualizarMarcador")
+		//console.log("actualizarMarcador")
 		var marcadoresLS =JSON.parse(localStorage.getItem('marcadores'));
 		
 		marcadoresLS[posicion].lat = nuevaLatAux;
@@ -237,29 +237,51 @@ export class ClienteAddComponent{
 					 this.envases = result.json();
 					 //console.log(result.json());
 				}else{
-					//console.log("Result Controler",result.status); 
+					console.log("Result Controler",result.status); 
 				}
 			},
 			error =>{
-				//console.log(<any>error);
+				console.log(<any>error);
 			}
 		);
 	}
 
-	addEnvaseEnPrestamo(clienteAdd:NgForm){	
-    ////console.log(evento);
-    //////console.log(evento.coords.lat);
+	getEnvase(id:number){
+			this._envaseService.getEnvase(id).subscribe(
+				result =>{
+					if(result.status == 200){
+						 return result.json();
+					}else{
+						console.log("ID:",this.id," Result Controler:",result.status);
+					}
+
+				},
+				error =>{
+					console.log(<any>error);
+				}
+			);
+		}
+
+
+	addEnvaseEnPrestamo(envaseAdd:NgForm){	
 		//Cargo el objeto envase y el arreglo envases
+		var ind:number=0;
+		var idEnvase:number =envaseAdd.controls['id'].value;
+		//console.log("this.envases",this.envases);
+    	for (var i = this.envases.length - 1; i >= 0; i--) {
+			if(this.envases[i].id == idEnvase)
+				ind = i;
+			else
+				console.log("i",i);
+		}
+
 		const nuevo_envaseEnprestamo = new EnvaseEnPrestamo( null,
-											this.envases[ clienteAdd.controls['id'].value ] ,
-														  clienteAdd.controls['cantidad'].value);
+											this.envases[ ind ] ,
+														  envaseAdd.controls['cantidad'].value);
 
+		//console.log("nuevo_envaseEnprestamo",nuevo_envaseEnprestamo);
 		this.envasesEnprestamo.push(nuevo_envaseEnprestamo);
-		//console.log("this.envaseEnprestamo0",this.envasesEnprestamo);
-
 		this.getEnvasesEnprestamo();
-		//console.log("envasesIndex",this.envasesIndex);
-		//console.log("Envases: ",this.envasesEnprestamo);
 	}
 
 	getEnvasesEnprestamo(){
@@ -273,14 +295,14 @@ export class ClienteAddComponent{
 				.subscribe(result => {
 				////console.log("Result Controler",result.status);
  					if(result.status=200){
- 						//this._router.navigate(['/clientes/'+result.json().id]);
+ 						this._router.navigate(['/clientes']);
  					}else{
  						//204 -- No Content
- 						////console.log("Result Controler",result.status);
+ 						console.log("Result Controler",result.status);
 					}
  				},
  				error => {
- 					////console.log(<any>error);
+ 					console.log(<any>error);
  				})
 	}
 
@@ -290,7 +312,7 @@ export class ClienteAddComponent{
 		this._clienteService.addCliente(this.cliente)
 			.subscribe(result => {
 					if(result.status==201){
-						console.log("Result Controler:",result.status);
+						//console.log("Result Controler:",result.status);
 						this._router.navigate(['/clientes']);
 					}else{
 						console.log("Result Controler:",result.status);

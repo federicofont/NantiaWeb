@@ -5,10 +5,16 @@ import { NgForm} from '@angular/forms';
 import { ListaPrecioService } from './listaprecio.service';
 import { ListaPrecio } from './listaprecio.model';
 
+import { Producto } from '../productos/producto.model';
+import { ProductoService } from '../productos/producto.service';
+
+import { ProductoLista } from '../productolistas/productolista.model';
+import { ProductoListaService } from '../productolistas/productolista.service';
+
 @Component ({
 	selector: 'formListaPrecioAdd',
 	templateUrl: './listaprecio-add.html',
-	providers: [ListaPrecioService],
+	providers: [ListaPrecioService,ProductoService],
 	styles: [`
 		.ng-invalid.ng-touched:not(form){
 		border:1px solid red;
@@ -23,10 +29,15 @@ export class ListaPrecioAddComponent{
 	
 	/*Creo los objetos que voy a referenciar y editar en el HTML*/
 	listaprecio : ListaPrecio = new ListaPrecio();
+	producto : Producto = new Producto();
+	productos : Producto [] = [];
+	productoLista: ProductoLista = new ProductoLista();
+	productosLista:ProductoLista[] = [];
 	
 	constructor(private _listaprecioService: ListaPrecioService,
 				private _router:Router,
-				private _activatedRoute:ActivatedRoute
+				private _activatedRoute:ActivatedRoute,
+				private _productoService: ProductoService
 				){
 
 		this._activatedRoute.params
@@ -37,9 +48,9 @@ export class ListaPrecioAddComponent{
 
 
 		if(this.id != null){
-			this.titulo = 'Editar ListaPrecio'
+			this.titulo = 'Editar Lista Precio'
 		}else{
-			this.titulo = 'Nuevo ListaPrecio';	
+			this.titulo = 'Nuevo Lista Precio';	
 		} 
 		
 
@@ -48,10 +59,15 @@ export class ListaPrecioAddComponent{
 
 	ngOnInit(){
 		//console.log('listaprecio-add.component.ts cargado');	
+		
 		if(this.id != null){
 			this.getListaPrecio();
 		}
 
+
+		   this.productosLista=[];
+		  
+		  this.getProductos();
 	}
 
 
@@ -62,70 +78,56 @@ export class ListaPrecioAddComponent{
 					//console.log("status:",result.status);
 					if(result.status == 200){
 						 this.listaprecio = result.json();
-						 
-						//console.log("listaprecio:",this.listaprecio);
+						 this.productosLista = this.listaprecio.setProductoLista;						 
+						
+						console.log("listaprecio:",this.listaprecio);
+						console.log("productosLista:",this.productosLista);
 
 					}else{
-						//console.log("ID:",this.id," Result Controler:",result.status);
+						console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					//console.log(<any>error);
+					console.log(<any>error);
 				}
 			)
 	}
 
-	guardar(listaprecioAdd:NgForm){
+	getProductosLista(){
+		this.productosLista;
+		console.log("productosLista:",this.productosLista);
+	}
+
+	getProductos(){
+		this._productoService.getProductos().subscribe(
+			result =>{
+				if(result.status == 200){
+					 this.productos = result.json();
+					 //console.log(result.json());
+				}else{
+					console.log("Result Controler",result.status); 
+				}
+			},
+			error =>{
+				console.log(<any>error);
+			}
+		);
+	}
+
+	guardar(formlistaAdd:NgForm){
+
+		this.listaprecio.setProductoLista=this.productosLista;
 
 		if(this.id != null){
 			this.updateListaPrecio();
 		} 
 		else{
-		//console.log("listaprecio ADD/Update ID:", this.id);
-		//if (this.id==null) {
-			// Add user
-		
-			//console.log(this.listaprecio);
-			
-			//Llamo al servicio que creara el nuevo listaprecio
-			this._listaprecioService.addListaPrecio(this.listaprecio)
-				.subscribe(result => {
- 					if(result.status==201){
- 						//console.log("Result Controler",result.status);
- 						this._router.navigate(['/listaprecios/'+result.json().id]);
- 					}else{
- 						//console.log("Result Controler",result.status);
-					}
- 				},
- 				error => {
- 					//console.log(<any>error);
- 				})
- 		//}else{
- 			// Update user
-			
-			//Actualizo el listaprecio desde el formulario
-			// this.listaprecio=listaprecioAdd.value;
-			// this.listaprecio.id=this.id;
-			// //console.log("listaprecio:",this.listaprecio);
-		
-			// this._listaprecioService.updateListaPrecio(this.listaprecio)
-			// 	.subscribe(result => {
-			// 	//console.log("Result Controler",result.status);
- 		// 			if(result.status==200){
- 		// 				this._router.navigate(['/listaprecios/'+result.json().id]);
- 		// 			}else{
- 		// 				//204 -- No Content
- 		// 				//console.log("Result Controler",result.status);
-			// 		}
- 		// 		},
- 		// 		error => {
- 		// 			//console.log(<any>error);
- 		// 		})
- 		// }
+			this.addListaPrecio();
  		}
 
 	}
+
 
 	updateListaPrecio(){
 		//console.log("update:",this.listaprecio);
@@ -143,5 +145,50 @@ export class ListaPrecioAddComponent{
  					//console.log(<any>error);
  				})
 	};
+
+	addListaPrecio(){
+		//Llamo al servicio que creara el nuevo listaprecio
+		console.log("this.listaprecio",this.listaprecio);
+		this._listaprecioService.addListaPrecio(this.listaprecio)
+			.subscribe(result => {
+					if(result.status==201){
+						//console.log("Result Controler",result.status);
+						this._router.navigate(['/listaprecios/'+result.json().id]);
+					}else{
+						console.log("Result Controler",result.status);
+				}
+				},
+				error => {
+					console.log(<any>error);
+				})
+	};
+
+
+	addProductoLista(formproductosAdd:NgForm){	
+		//Cargo el objeto envase y el arreglo envases
+		console.log("Conectado a addProductoLista");
+		var ind:number=0;
+		console.log(formproductosAdd);
+		var idProducto:number = formproductosAdd.controls['id'].value;
+		//console.log("this.envases",this.envases);
+    	for (var i = this.productos.length - 1; i >= 0; i--) {
+			if(this.productos[i].id == idProducto)
+				ind = i;
+			else
+				console.log("i",i);
+		}
+
+		const nuevo_productoLista = new ProductoLista( null,
+											formproductosAdd.controls['precio'].value,
+											null,
+											this.productos[ ind ]);
+
+		//console.log("nuevo_envaseEnprestamo",nuevo_envaseEnprestamo);
+		this.productosLista.push(nuevo_productoLista);
+		this.getProductosLista();
+	}
+
+
+
 
 }

@@ -44,7 +44,7 @@ const appRoutes: Routes = [
 
 {path: 'usuarios', component: UsuariosListComponent},
 {path: 'usuarios/:id', component: UsuariosListComponent},
-{path: 'usuario-add/:id', component: UsuarioAddComponent},
+{path: 'usuario-edit/:id', component: UsuarioAddComponent},
 {path: 'usuario-add', component: UsuarioAddComponent},
 
 {path: 'productos', component: ProductosListComponent},

@@ -5,6 +5,6 @@ export class ListaPrecio{
 		public id:number=null,
 		public nombrelista:string=null,
 		public fechaAlta:Date=null,
-		public productoslista:ProductoLista[]=[]
+		public setProductoLista:ProductoLista[]=[]
 		){}
 }

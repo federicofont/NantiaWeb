@@ -36,7 +36,7 @@
             <div class="panel panel-default">
 
                 <div class="panel-heading">
-                    <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/listaprecios']" href="#" value="Listado de ListaPrecios" style="float:left" />
+                    <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/listaprecios']" href="#" value="Listads de Precios" style="float:left" />
                     <h3> </h3>
                     <h4> {{titulo}} </h4>
 
@@ -45,177 +45,99 @@
 
                 <div class="panel-body">
                     
-                    <form (ngSubmit)="guardar(listaprecioAdd)" #listaprecioAdd="ngForm" class="col-lg-6" id="formlistaprecioAdd">
-                        <div class="col-lg-6">                          
-                            
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon"> Tipo Documento </span>
-                            </div>
-                            
-                            <!--div class="input-group input-group-sm mb-4">
-                                <select class="input-group input-group-sm" required name="tipoDocumento"
-                                [(ngModel)]="listaprecio.tipoDocumento"
-                                ng-init="1" >
-                                    <option selected [value]=1>Cedula</option>
-                                    <option [value]=2>Rut</option>
-                              </select>
-                            </div-->
-
-                            <div class="input-group-sm mb-1">
-                             <select [(ngModel)]="listaprecio.tipoDocumento" name="tipoDocumento" class="custom-select">
-                                <option *ngFor="let doc of documentos" [ngValue]="listaprecio.tipoDocumento">{{doc.tipo}}</option>
-                            </select>
-                            </div>
-                         
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Nombre 1</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="nombre1" [(ngModel)]="listaprecio.nombre1" class="form-control" />
-                            </div>
+                    <form (ngSubmit)="guardar(formlistaAdd)" #clienteAdd="ngForm" class="col-lg-6" id="formlistaAdd">
+                        <div class="col-lg-6">     
 
                             <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Mail</span>
+                                <span class="input-group-addon">Nombre Lista</span>
                             </div>
                             <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="mail" [(ngModel)]="listaprecio.mail" class="form-control" />
-                            </div>  
-                     
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Celular</span>
+                                <input type="text" #descripcion="ngModel" name="nombreLista" 
+                                [(ngModel)]="listaprecio.nombreLista" class="form-control" />
                             </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="celular" [(ngModel)]="listaprecio.celular" class="form-control" />
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Saldo</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="saldo" [(ngModel)]="listaprecio.saldo" class="form-control" />
-                            </div>  
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Direccion</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="direccion" [(ngModel)]="direccion.direccion" class="form-control" />
-                            </div>  
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Ciudad</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="ciudad" [(ngModel)]="direccion.ciudad" class="form-control" />
-                            </div> 
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Activo</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="activo" [(ngModel)]="listaprecio.activo" class="form-control" />
-                            </div> 
 
                         </div>
 <!--Pantalla central derecha -->
                         <div class="col-lg-6">
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Nro Documento</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="nroDocumento" [(ngModel)]="listaprecio.nroDocumento" class="form-control" />
-                            </div>
 
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Nombre 2</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="nombre2" [(ngModel)]="listaprecio.nombre2" class="form-control" />
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Fecha de Nacimiento</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="fechaNacimiento" [(ngModel)]="listaprecio.fechaNacimiento" class="form-control" />
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Telefono</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="telefono" [(ngModel)]="direccion.telefono" class="form-control" />
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Lista de Precios</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="idLista" [(ngModel)]="listaprecio.idLista" class="form-control" />
-                            </div>  
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Departamento</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="departamento" [(ngModel)]="direccion.departamento" class="form-control" />
-                            </div>         
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Codigo Postal</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="codigoPostal" [(ngModel)]="direccion.codigoPostal" class="form-control" />
-                            </div> 
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Observaciones</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="observaciones" [(ngModel)]="listaprecio.observaciones" class="form-control" />
-                            </div> 
-
-                        </div>
+ 
+                       </div>
 <!--FIN Pantalla central derecha -->
                         <div class="conainer">
                         <div class="row">
                         <div class="col-md-12">
 
-                            <div class="mapa">
-                             <agm-map 
-                              [latitude]="lat"
-                              [longitude]="lng"   
-                              [zoom]="zoom"
-                              [disableDefaultUI]="false"
-                              [zoomControl]="false"
-                              (mapClick)="agregarMarcador($event)" 
-                              >
-                              
-                              <agm-marker 
-                              *ngFor="let marcador of marcadores; let i = index"
-                              (markerclick)="marcadorCliqueado(marcador,i)"
-                              [latitude]="marcador.lat" 
-                              [longitude]="marcador.lng"
-                              [markerDraggable]="marcador.movil"
-                              (dragEnd)="posicionFinalMarcador(marcador,$event,i)"
-                              >
-                               <agm-info-window> 
-                                <strong>{{marcador.nombre}}</strong>
+                            
+                        </div>
+                        </div>
+                        </div>
 
-                                <button (click)="borrarMarcador(i)" class="btn-alert">Borrar</button>
 
-                               </agm-info-window>
-                              
-                              </agm-marker>
-                            </agm-map>
-                            </div>
-                        </div>
-                        </div>
-                        </div>
+                <div class="input-group input-group-sm">
+
+                <form (ngSubmit)="addProductoLista(formproductosAdd)" #formproductosAdd="ngForm" 
+                class="col-lg-6" id="addProductoLista">       
+
+                    <div class="input-group input-group-sm">
+                    <tr>
+                        <td>
+                            <span class="input-group-addon"> Producto </span>
+                        </td>
+                        <td>
+                            <span class="input-group-addon"> $ </span>    
+                        </td>
+                    </tr>
+                    </div>
+
+
+                    <div class="input-group-sm mb-3">
+                    <tr>
+                        <td>   
+                            <select [(ngModel)]="producto.id" name="id" class="custom-select">
+                                <option *ngFor="let producto of productos; let ind = index" 
+                                    [ngValue]="producto.id">{{producto.descripcion}}
+                                </option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="form-control input-number" type="number" value="0" min="0" max="100" step="1" #descripcion="ngModel" name="precio"  
+                             [(ngModel)]="productoLista.precio">
+                        </td>
+                    </tr>
+                        <button type="ngSubmitmit" value="Add Producto" class="btn btn-outline-light btn-sm">
+                                <img src="assets/bootstrap/image/ico/plus-5-16.ico" 
+                                 style="float:center"/> <p> Producto en Lista </p>
+                        </button>
+                    </div>
+
+
+                    <div class="input-group input-group-sm">
+
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr class="bg-success">
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Precio</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let productoLista of productosLista">
+                                    <td>{{productoLista.productos.descripcion}} </td>
+                                    <td>{{productoLista.precio}} </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                    </div>    
+
+                </form>  
+                </div>
+
+
 <!--FIN Pantalla central derecha Mapa -->
                     <br/>
                     <input type="submit" value="{{titulo}}" class="btn btn-success" />    
                 </form>
+
             </div>
             <!-- FIN PANEL CENTRAL-->
         </div>
@@ -241,3 +163,4 @@
 </body>
 
 </html>
+

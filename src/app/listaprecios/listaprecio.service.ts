@@ -17,18 +17,19 @@ export class ListaPrecioService{
 
 	getListaPrecios(): Observable<any>{
 	//return this._http.get(this.url+'listaprecios').map(res => res.json()); 
-    return this._http.get(this.url+'listaprecios');
+    return this._http.get(this.url+'listaprecio');
 	}
 
 	getListaPrecio(id:number){
-		return this._http.get(this.url+'listaprecios/'+id); 
+		return this._http.get(this.url+'listaprecio/'+id); 
 	}
 
 	addListaPrecio(listaprecio:ListaPrecio){
 		let body = JSON.stringify(listaprecio);
 		let headers = new Headers({'Content-Type':'application/json'});
+		console.log("body",body);
 
-		return this._http.post(this.url+'listaprecios',body,{headers: headers});
+		return this._http.post(this.url+'listaprecio',body,{headers: headers});
 	}
 
 	//updateListaPrecio(listaprecio:ListaPrecio){
@@ -42,11 +43,11 @@ export class ListaPrecioService{
 		let body = JSON.stringify(listaprecio);
 		let headers = new Headers({'Content-Type':'application/json'});
 
-		return this._http.put(this.url+'listaprecios/'+listaprecio.id,body,{headers: headers});
+		return this._http.put(this.url+'listaprecio/'+listaprecio.id,body,{headers: headers});
 	}
 
 	deleteListaPrecio(id:number){
-		return this._http.delete(this.url+'listaprecios/'+id); 
+		return this._http.delete(this.url+'listaprecio/'+id); 
 	}
 
 	

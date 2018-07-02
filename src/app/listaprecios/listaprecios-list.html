@@ -47,8 +47,8 @@
 			            
 			    	<div class="Caption">
 			            <img src="assets/bootstrap/image/ico/businessman-16.ico"/>
-			                <a>{{listaprecio.nombre1}} {{listaprecio.nombre2}} </a> 
-			                <p>{{listaprecio.celular}} </p>
+			                <a>{{listaprecio.nombreLista}}</a> 
+			                <p>{{listaprecio.fechaAlta}} </p>
 			                <!--p>{{listaprecio.direccion.direccion}}</p-->  
 			                <div class="botones" *ngIf="confirmado != listaprecio.id">
 			                    <a [routerLink]="['/listaprecios',listaprecio.id]" href="#" class="btn btn-sm btn-primary">Ver</a>

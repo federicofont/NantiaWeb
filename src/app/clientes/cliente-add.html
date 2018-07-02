@@ -281,7 +281,7 @@
                     <tr>
                         <td>   
                             <select [(ngModel)]="envase.id" name="id" class="custom-select">
-                                <option *ngFor="let tipo of envases" 
+                                <option *ngFor="let tipo of envases; let ind = index" 
                                     [ngValue]="tipo.id">{{tipo.descripcion}}
                                 </option>
                             </select>

@@ -51,6 +51,9 @@ export class ProductosListComponent{
 				}
 			);
 		}
+
+		console.log("productos:",this.productos);
+
 }
 		getProductos(){
 			this._productoService.getProductos().subscribe(

@@ -17,10 +17,10 @@ export class EnvaseService{
 
 	getEnvases(): Observable<any>{
 	//return this._http.get(this.url+'envasesTipo').map(res => res.json()); 
-    return this._http.get(this.url+'envasesTipo');
+    	return this._http.get(this.url+'envasesTipo');
 	}
 
-	getEnvase(id:number){
+	getEnvase(id:number): Observable<any>{
 		return this._http.get(this.url+'envasesTipo/'+id); 
 	}
 

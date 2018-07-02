@@ -35,21 +35,11 @@ export class ListaPreciosListComponent{
 		if (this.id==null) {
 			//console.log("pase el if");
 			this.getListaPrecios();
+			console.log("lista Precio: ",this.listaprecio)
 		}else{
 			//console.log("Entre al else")
-			this._listaprecioService.getListaPrecio(this.id).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.listaprecio = result.json();
-					}else{
-						//console.log("ID:",this.id," Result Controler:",result.status);
-					}
-
-				},
-				error =>{
-					//console.log(<any>error);
-				}
-			);
+			this.getListaPrecio()
+			console.log("listaprecios: ",this.listaprecios)
 		}
 }
 		getListaPrecios(){
@@ -60,6 +50,22 @@ export class ListaPreciosListComponent{
 					}else{
 						//console.log("Result Controler",result.status); 
 					}
+				},
+				error =>{
+					//console.log(<any>error);
+				}
+			);
+		}
+
+		getListaPrecio(){
+			this._listaprecioService.getListaPrecio(this.id).subscribe(
+				result =>{
+					if(result.status == 200){
+						 this.listaprecio = result.json();
+					}else{
+						//console.log("ID:",this.id," Result Controler:",result.status);
+					}
+
 				},
 				error =>{
 					//console.log(<any>error);

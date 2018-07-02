@@ -37,19 +37,7 @@ export class EnvasesListComponent{
 			this.getEnvases();
 		}else{
 			//console.log("Entre al else")
-			this._envaseService.getEnvase(this.id).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.envase = result.json();
-					}else{
-						//console.log("ID:",this.id," Result Controler:",result.status);
-					}
-
-				},
-				error =>{
-					//console.log(<any>error);
-				}
-			);
+			this.getEnvase(this.id);
 		}
 }
 		getEnvases(){
@@ -67,6 +55,24 @@ export class EnvasesListComponent{
 				}
 			);
 		}
+
+		getEnvase(id){
+			this._envaseService.getEnvase(id).subscribe(
+				result =>{
+					if(result.status == 200){
+						 this.envase = result.json();
+						 console.log("GetEnvase",result.json());
+					}else{
+						console.log("ID:",this.id," Result Controler:",result.status);
+					}
+
+				},
+				error =>{
+					//console.log(<any>error);
+				}
+			);
+		}
+
 
 		public confirmado;
 
