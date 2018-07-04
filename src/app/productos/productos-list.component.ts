@@ -5,14 +5,14 @@ import { Producto} from './producto.model';
 
 @Component({
 	selector: 'productos-list',
-	templateUrl: '../productos/productos-list.html',
+	templateUrl: './productos-list.html',
 	providers: [ProductoService]
 })
 export class ProductosListComponent{
 	public titulo: string;
 	public producto:Producto;
 	public productos: Producto[];
-
+	public confirmado;
 	public id:number;
 
 	
@@ -37,40 +37,43 @@ export class ProductosListComponent{
 			this.getProductos();
 		}else{
 			//console.log("Entre al else")
-			this._productoService.getProducto(this.id).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.producto = result.json();
-					}else{
-						//console.log("ID:",this.id," Result Controler:",result.status);
-					}
-
-				},
-				error =>{
-					//console.log(<any>error);
-				}
-			);
+			this.getProducto();
+			
 		}
 
-		console.log("productos:",this.productos);
+	}
 
-}
 		getProductos(){
 			this._productoService.getProductos().subscribe(
 				result =>{
 					if(result.status == 200){
 						 this.productos = result.json();
+						 console.log("result.status:", result.status);
 					}else{
-						//console.log("Result Controler",result.status); 
+						console.log("Result Controler",result.status); 
 					}
 				},
 				error =>{
-					//console.log(<any>error);
+					console.log(<any>error);
 				}
 			);
 		}
 
-		public confirmado;
+		getProducto(){
+			this._productoService.getProducto(this.id).subscribe(
+				result =>{
+					if(result.status == 200){
+						 this.producto = result.json();
+					}else{
+						console.log("ID:",this.id," Result Controler:",result.status);
+					}
+
+				},
+				error =>{
+					console.log(<any>error);
+				}
+			);
+		}
 
 		borrarConfirm(id){
 			this.confirmado=id;
@@ -90,7 +93,7 @@ export class ProductosListComponent{
 					}
 				},
 				error =>{
-					//console.log(<any>error);
+					console.log(<any>error);
 				}
 			);
 		}

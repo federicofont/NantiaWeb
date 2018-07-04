@@ -26,7 +26,6 @@ import { UsuarioAddComponent } from './usuarios/usuario-add.component';
 import { ProductosListComponent } from './productos/productos-list.component';
 import { ProductoAddComponent } from './productos/producto-add.component';
 import { ProductoDetailComponent } from './productos/producto-detail.component';
-import { ProductoEditComponent } from './productos/producto-edit.component';
 
 import { ClientesListComponent } from './clientes/clientes-list.component';
 import { ClienteAddComponent } from './clientes/cliente-add.component';
@@ -39,11 +38,7 @@ import { EnvaseEditComponent } from './envases/envase-edit.component';
 
 import { ListaPreciosListComponent } from './listaprecios/listasprecios-list.component';
 import { ListaPrecioAddComponent } from './listaprecios/listaprecio-add.component';
-//import { ListaPrecioDetailComponent } from './listasprecios/listaprecio-detail.component';
-
-import { ProductoListasListComponent } from './productolistas/productolistas-list.component';
-import { ProductoListaAddComponent } from './productolistas/productolista-add.component';
-//import { ProductoListaDetailComponent } from './productolistas/listaprecio-detail.component';
+import { ListaPrecioDetailComponent } from './listaprecios/listaprecio-detail.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +55,6 @@ import { ProductoListaAddComponent } from './productolistas/productolista-add.co
     ProductosListComponent,
     ProductoAddComponent,
     ProductoDetailComponent,
-    ProductoEditComponent,
     
     ClientesListComponent,
     ClienteAddComponent,
@@ -75,9 +69,7 @@ import { ProductoListaAddComponent } from './productolistas/productolista-add.co
     
     ListaPreciosListComponent,
     ListaPrecioAddComponent,
-
-    ProductoListasListComponent,
-    ProductoListaAddComponent
+    ListaPrecioDetailComponent
     
   ],
   imports: [

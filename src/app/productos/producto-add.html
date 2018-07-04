@@ -66,7 +66,7 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Descripcion</span>
                             </div>
-                            <div class="input-group input-group-sm">
+                            <div class="input-group input-group-sm  mb-3">
                                 <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" />
                             </div>
                         </div>
@@ -75,24 +75,25 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Presentacion</span>
                             </div>
-                                <div class="input-group input-group-sm mb-3">
-                                <select class="form-control">
-                                    <option>1/2 Litro</option>
-                                    <option>1 Litro</option>
-                                    <option>1.5 Litros</option>
-                                    <option>2 Litros</option>
-                                    <option>5 Litros</option>
+
+                            <div class="input-group input-group-sm mb-4">
+ 
+                                <select class="input-group input-group-sm" 
+                                name="presentacion" [(ngModel)]="producto.presentacion">
+                                    <option>{{producto.presentacion}} </option>
+
+                                    <option *ngFor="let pres of presentaciones"
+                                            [value]="pres.presentacion">{{pres.presentacion}}
+                                    </option>
                                 </select>
+
                             </div>
 
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">Retornable</span>
                             </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <select class="form-control">
-                                    <option>Si</option>
-                                    <option>No</option>
-                                </select>
+                            <div class="input-group input-group-sm mb-3" style="float:left">
+                                <input [(ngModel)]="producto.retornable" name="retornable" type="checkbox" class="form-check-input"> 
                             </div>
                         </div>
 <!--FIN Pantalla central derecha -->
@@ -124,41 +125,3 @@
 </body>
 
 </html>
-
-
-<!--div class="col-lg-10 col-lg-offset-1">
-    <div class="jumbotron">
-        <h5>{{titulo}} </h5>
-
-        <form (ngSubmit)="guardar(productoAdd)" #productoAdd="ngForm" class="col-lg-6" id="formProductoAdd">
-
-        <label>Nombre
-			<span *ngIf="!producto.valid && producto.touched " class="label label-danger" >El Producto es obligatorio</span>
-		</label>
-            <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="producto.nombre" class="form-control" minlength="4" required />
-            <div *ngIf="nombre.error?.required">
-                El campo es requerido.
-            </div>
-            <div *ngIf="nombre.error?.minlength">
-                Por lo menos {{ producto.errors.minglength.requiredLenght }} caracteres.
-            </div>
-
-        <label>Presentacion
-        </label>
-            <input type="text" #presentacion="ngModel" name="presentacion" [(ngModel)]="producto.presentacion" class="form-control" />
-
-        <label>Descripcion
-        </label>
-            <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" />
-
-        <label>Retornale
-		</label>
-            <input type="number" #retornable="ngModel" name="retornable" [(ngModel)]="producto.retornable" class="form-control" />
-
-            <br/>
-            <input type="submit" value="{{titulo}}" class="btn btn-success" />
-
-        </form>
-
-    </div>
-</div-->

@@ -47,7 +47,7 @@
             <div class="panel-body">
 
                 <div class="row" *ngIf="producto">
-                    <div class="col-lg-6" *ngIf="producto.id">
+                    <div class="col-lg-6" *ngIf="producto.productoId">
                         <div class="col-lg-6">                          
                         <fieldset disabled>
 
@@ -117,7 +117,7 @@
 
 
     <div class="row" *ngIf="producto">
-        <div class="row" *ngIf="producto.id">
+        <div class="row" *ngIf="producto.productoId">
             <br>
             <table class="table table-striped">
                 <thead>
@@ -131,7 +131,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{producto.id}} </td>
+                        <td>{{producto.productoId}} </td>
                         <td>{{producto.nombre}} </td>
                         <td>{{producto.presentacion}} </td>
                         <td>{{producto.descripcion}} </td>

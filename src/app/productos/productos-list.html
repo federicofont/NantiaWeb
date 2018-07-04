@@ -27,56 +27,63 @@
 
 <body>
 <div class="table-responsve">
-<!-- /.wrapper -->
-<div id="wrapper">
-<!-- /.row -->
-<div class="row">
-<!-- PANEL CENTRAL Titulo-->
-    <div class="panel panel-default">
+    <!-- /.wrapper -->
+    <div id="wrapper">
+    <!-- /.row -->
+    <div class="row">
+    <!-- PANEL CENTRAL Titulo-->
+        <div class="panel panel-default">
 
-                <div class="panel-heading">
-                    
-                    <h3>{{titulo}} </h3>
-                
-                </div>
-<!-- PANEL CENTRAL-->
-        <img src="assets/bootstrap/image/ico/new-badge-2-32.ico" [routerLink]="['/producto-add']" href="#" value="Nuevo Producto" /> 
-
-        <br><br>
-
-        <div *ngIf="productos">
-            <div class="col-lg-3" *ngFor="let producto of productos">
-
-                    <img src="assets/bootstrap/image/ico/soda-bottle-16.ico"/>
-                    
-                    <div class="Caption">
-                        <p>{{producto.descripcion}} </p>
-                        <p *ngIf="true == producto.retornable">Retornable</p>  
-                        <p *ngIf="!producto.retornable">NO Retornable</p>  
-                    </div>
+                    <div class="panel-heading">
                         
-                        <div class="botones" *ngIf="confirmado != producto.id">
-                            <a [routerLink]="['/productos',producto.id]" href="#" class="btn btn-sm btn-primary">Ver</a>
-                            <a [routerLink]="['/producto-edit',producto.id]" href="#" class="btn btn-sm btn-warning">Editar</a>
-                            <a (click)="borrarConfirm(producto.id)" class="btn btn-sm btn-danger">Borrar</a>
-                        </div>
-                        <div clas="seguro" *ngIf="confirmado == producto.id">
-                            <p class="text-danger">¿Esta seguro de borrar el producto?</p>
-                            <a (click)="onDeleteProducto(producto.id)" class="btn-sm btn-danger">Confirmar</a>
-                            <a (click)="cancelarConfirm()" class="btn-sm btn-warning">Cancelar</a>
-                        </div>
-            <br>
-            </div>
-        </div>
+                        <h3>{{titulo}} </h3>
+                    
+                    </div>
+    <!-- PANEL CENTRAL-->
+            <img src="assets/bootstrap/image/ico/bottle_plus-32.ico" alt="Nuevo Producto" style="float:left"  [routerLink]="['/producto-add']" href="#" class="btn btn-sm" value="Nuevo Producto" /> 
 
-        <!-- FIN PANEL CENTRAL-->
+            <br><br><br>
+
+            <div *ngIf="productos">
+                <div class="col-lg-3" *ngFor="let producto of productos">
+                        
+                    <div class="Caption">
+                        <img src="assets/bootstrap/image/ico/soda-bottle-16.ico"/>
+                            <p>{{producto.descripcion}} </p>
+                            <p *ngIf="true == producto.retornable">Retornable </p>  
+                            <p *ngIf="!producto.retornable">NO Retornable </p> 
+                            
+                            <div class="botones" *ngIf="confirmado != producto.productoId">
+                                
+                                <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/productos',producto.productoId]" href="#" class="btn btn-sm" value="Ver" /> 
+
+                                <img src="assets/bootstrap/image/ico/edit-9-16.ico" alt="Editar" style="float:left"  [routerLink]="['/producto-edit',producto.productoId]" href="#" class="btn btn-sm" value="Editar" /> 
+
+                                <img src="assets/bootstrap/image/ico/delete-16.ico" alt="Borrar" style="float:left"  (click)="borrarConfirm(producto.productoId)" href="#" class="btn btn-sm" value="Borrar" /> 
+                            
+                            </div>
+
+                            <div clas="seguro" *ngIf="confirmado == producto.productoId">
+                                <p  class="text-danger">¿Esta seguro de borrar el producto?</p>
+                                
+                                <img src="assets/bootstrap/image/ico/check-mark-3-16.ico" alt="Borrar" style="float:left"  (click)="onDeleteProducto(producto.productoId)" href="#" class="btn btn-sm" value="Borrar" /> 
+
+                                <img src="assets/bootstrap/image/ico/x-mark-16.ico" alt="Borrar" style="float:left"  (click)="cancelarConfirm()" href="#" class="btn btn-sm" value="Borrar" /> 
+
+                            </div>
+                        </div>
+                <br><br><br>
+                </div>
+            </div>
+            <!-- FIN PANEL CENTRAL-->
+        </div>
+            <!-- FIN PANEL CENTRAL Titulo-->
     </div>
-    <!-- FIN PANEL CENTRAL Titulo-->
+    <!-- /.row -->
+    </div>
+    <!-- /#wrapper -->
 </div>
-<!-- /.row -->
-</div>
-<!-- /#wrapper -->
-</div>
+    <!--FIN Table response --!
 
     <!-- jQuery -->
     <script src="../../assets/bootstrap/vendor/jquery/jquery.min.js"></script>

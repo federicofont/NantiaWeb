@@ -62,6 +62,7 @@ envase: Envase = {
 	};
 
 	guardar(envaseAdd:NgForm){
+		this.envase.id= this.id;
 		this.updateEnvase();
 	}
 

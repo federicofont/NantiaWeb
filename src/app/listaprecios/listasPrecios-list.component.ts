@@ -12,7 +12,7 @@ export class ListaPreciosListComponent{
 	public titulo: string;
 	public listaprecio:ListaPrecio;
 	public listaprecios: ListaPrecio[];
-
+	public confirmado;
 	public id:number;
 
 	
@@ -63,17 +63,16 @@ export class ListaPreciosListComponent{
 					if(result.status == 200){
 						 this.listaprecio = result.json();
 					}else{
-						//console.log("ID:",this.id," Result Controler:",result.status);
+						console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					//console.log(<any>error);
+					console.log(<any>error);
 				}
 			);
 		}
 
-		public confirmado;
 
 		borrarConfirm(id){
 			this.confirmado=id;

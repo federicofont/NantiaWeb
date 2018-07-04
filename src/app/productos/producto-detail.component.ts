@@ -6,13 +6,13 @@ import { Producto } from './producto.model';
 
 @Component ({
 	selector: 'producto-detail',
-	templateUrl: '../productos/producto-detail.html',
+	templateUrl: './producto-detail.html',
 	providers: [ProductoService]
 })
 
 export class ProductoDetailComponent{
 	public titulo: string;
-	public producto:Producto;
+	producto: Producto = new Producto();
 	public id:number;
 
 	constructor(private _productoService: ProductoService,
@@ -37,12 +37,12 @@ export class ProductoDetailComponent{
 						//console.log("Result:",result.json());
 						 this.producto = result.json();
 					}else{
-						//console.log("ID:",this.id," Result Controler:",result.status);
+						console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					//console.log(<any>error);
+					console.log(<any>error);
 				}
 			)
 		};

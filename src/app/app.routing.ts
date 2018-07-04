@@ -15,7 +15,6 @@ import { UsuarioAddComponent } from './usuarios/usuario-add.component';
 import { ProductosListComponent } from './productos/productos-list.component';
 import { ProductoAddComponent } from './productos/producto-add.component';
 import { ProductoDetailComponent } from './productos/producto-detail.component';
-import { ProductoEditComponent } from './productos/producto-edit.component';
 
 import { ClientesListComponent } from './clientes/clientes-list.component';
 import { ClienteAddComponent } from './clientes/cliente-add.component';
@@ -30,11 +29,7 @@ import { EnvaseEditComponent } from './envases/envase-edit.component';
 
 import { ListaPreciosListComponent } from './listaprecios/listasprecios-list.component';
 import { ListaPrecioAddComponent } from './listaprecios/listaprecio-add.component';
-//import { ListaPrecioDetailComponent } from './listasprecios/listaprecio-detail.component';
-
-import { ProductoListasListComponent } from './productolistas/productolistas-list.component';
-import { ProductoListaAddComponent } from './productolistas/productolista-add.component';
-//import { ProductoListaDetailComponent } from './productolistas/listaprecio-detail.component';
+import { ListaPrecioDetailComponent } from './listaprecios/listaprecio-detail.component';
 
 const appRoutes: Routes = [
 {path: '', component: HomeComponent},
@@ -49,7 +44,7 @@ const appRoutes: Routes = [
 
 {path: 'productos', component: ProductosListComponent},
 {path: 'productos/:id', component: ProductoDetailComponent},
-{path: 'producto-edit/:id', component: ProductoEditComponent},
+{path: 'producto-edit/:id', component: ProductoAddComponent},
 {path: 'producto-add', component: ProductoAddComponent},
 
 {path: 'clientes', component: ClientesListComponent},
@@ -63,14 +58,9 @@ const appRoutes: Routes = [
 {path: 'envase-edit/:id', component: EnvaseEditComponent},
 
 {path: 'listaprecios', component: ListaPreciosListComponent},
-//{path: 'listaprecios/:id', component: ListaPrecioDetailComponent},
+{path: 'listaprecios/:id', component: ListaPrecioDetailComponent},
 {path: 'listaprecio-edit/:id', component: ListaPrecioAddComponent},
 {path: 'listaprecio-add', component: ListaPrecioAddComponent},
-
-{path: 'productolistas', component: ProductoListasListComponent},
-//{path: 'productolistas/:id', component: ProductoListaDetailComponent},
-{path: 'productolista-edit/:id', component: ProductoListaAddComponent},
-{path: 'productolista-add', component: ProductoListaAddComponent},
 
 
 {path: 'mapa', component: MapaComponent},

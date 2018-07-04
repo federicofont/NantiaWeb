@@ -91,7 +91,6 @@ export class ClienteAddComponent{
 
 		if(this.id != null){
 			this.getCliente();
-
 		}
 
 		  
@@ -221,6 +220,7 @@ export class ClienteAddComponent{
 		
 		if(this.id != null){
 			//Llamo al servicio que actualiza el cliente
+			this.cliente.id=this.id;
 			this.updateCliente();
 		} 
 		else{

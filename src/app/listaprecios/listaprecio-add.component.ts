@@ -8,8 +8,8 @@ import { ListaPrecio } from './listaprecio.model';
 import { Producto } from '../productos/producto.model';
 import { ProductoService } from '../productos/producto.service';
 
-import { ProductoLista } from '../productolistas/productolista.model';
-import { ProductoListaService } from '../productolistas/productolista.service';
+import { ProductoLista } from './productolista.model';
+//import { ProductoListaService } from '../productolistas/productolista.service';
 
 @Component ({
 	selector: 'formListaPrecioAdd',
@@ -118,8 +118,9 @@ export class ListaPrecioAddComponent{
 	guardar(formlistaAdd:NgForm){
 
 		this.listaprecio.setProductoLista=this.productosLista;
-
+		console.log("this.listaprecio",this.listaprecio);
 		if(this.id != null){
+			this.listaprecio.id=this.id;
 			this.updateListaPrecio();
 		} 
 		else{
@@ -133,16 +134,16 @@ export class ListaPrecioAddComponent{
 		//console.log("update:",this.listaprecio);
 		this._listaprecioService.editListaPrecio(this.id, this.listaprecio)
 				.subscribe(result => {
-				//console.log("Result Controler",result.status);
  					if(result.status=200){
+ 						console.log("Result Controler",result.status);
  						this._router.navigate(['/listaprecios/'+result.json().id]);
  					}else{
  						//204 -- No Content
- 						//console.log("Result Controler",result.status);
+ 						console.log("Result Controler",result.status);
 					}
  				},
  				error => {
- 					//console.log(<any>error);
+ 					console.log(<any>error);
  				})
 	};
 
@@ -169,10 +170,10 @@ export class ListaPrecioAddComponent{
 		console.log("Conectado a addProductoLista");
 		var ind:number=0;
 		console.log(formproductosAdd);
-		var idProducto:number = formproductosAdd.controls['id'].value;
+		var idProducto:number = formproductosAdd.controls['productoId'].value;
 		//console.log("this.envases",this.envases);
     	for (var i = this.productos.length - 1; i >= 0; i--) {
-			if(this.productos[i].id == idProducto)
+			if(this.productos[i].productoId == idProducto)
 				ind = i;
 			else
 				console.log("i",i);

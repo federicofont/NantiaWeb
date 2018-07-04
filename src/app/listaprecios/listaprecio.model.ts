@@ -1,9 +1,9 @@
-import { ProductoLista } from '../productolistas/productolista.model';
+import { ProductoLista } from './productolista.model';
 
 export class ListaPrecio{
 	constructor(
 		public id:number=null,
-		public nombrelista:string=null,
+		public nombreLista:string=null,
 		public fechaAlta:Date=null,
 		public setProductoLista:ProductoLista[]=[]
 		){}
