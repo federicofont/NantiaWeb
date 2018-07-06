@@ -23,6 +23,10 @@ import { ErrorComponent } from './homePage/error.component';
 import { UsuariosListComponent } from './usuarios/usuarios-list.component';
 import { UsuarioAddComponent } from './usuarios/usuario-add.component';
 
+import { RolesListComponent } from './roles/roles-list.component';
+import { RolAddComponent } from './roles/rol-add.component';
+import { RolDetailComponent } from './roles/rol-detail.component';
+
 import { ProductosListComponent } from './productos/productos-list.component';
 import { ProductoAddComponent } from './productos/producto-add.component';
 import { ProductoDetailComponent } from './productos/producto-detail.component';
@@ -51,6 +55,10 @@ import { ListaPrecioDetailComponent } from './listaprecios/listaprecio-detail.co
     
     UsuariosListComponent,
     UsuarioAddComponent,
+
+    RolesListComponent,
+    RolAddComponent,
+    RolDetailComponent,
     
     ProductosListComponent,
     ProductoAddComponent,

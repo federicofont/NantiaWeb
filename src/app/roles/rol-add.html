@@ -37,7 +37,7 @@
 
                 <div class="panel-heading">
 
-                    <img src="assets/bootstrap/image/ico/arrow-91-16.ico" [routerLink]="['/productos']" href="#" value="Listado de Productos" /> 
+                    <img src="assets/bootstrap/image/ico/arrow-91-16.ico" [routerLink]="['/roles']" href="#" value="Listado de Rols" /> 
                     
                     <h3>{{titulo}} </h3>
                 
@@ -46,55 +46,28 @@
                 
                 <div class="panel-body">
 
-                    <form (ngSubmit)="guardar(productoAdd)" #productoAdd="ngForm" class="col-lg-6" id="formProductoAdd">
+                    <form (ngSubmit)="guardar(rolAdd)" #rolAdd="ngForm" class="col-lg-6" id="formRolAdd">
                         <div class="col-lg-6">                          
-                            <span *ngIf="!producto.valid && producto.touched " class="label label-danger" >El Producto es obligatorio</span>
+                            <span *ngIf="!rol.valid && rol.touched " class="label label-danger" >El Rol es obligatorio</span>
 
                             <div class="input-group input-group-sm">
-                                    <span class="input-group-addon"> Nombre </span>
+                                    <span class="input-group-addon"> Rol </span>
                             </div>
                             <div class="input-group input-group-sm mb-3"> <!--mb-3 deja espacio debajo -->
-                                <input type="text" #descripcion="ngModel" name="nombre" [(ngModel)]="producto.nombre" class="form-control" placeholder="Nombre" minlength="4" required />
-                                <div *ngIf="nombre.error?.required">
+                                <input type="text" #nombreRol="ngModel" name="nombreRol" [(ngModel)]="rol.nombreRol" class="form-control" placeholder="Nombre" minlength="4" required />
+                                <div *ngIf="nombreRol.error?.required">
                                     El campo es requerido.
                                 </div>
-                                <div *ngIf="nombre.error?.minlength">
-                                    Por lo menos {{ producto.errors.minglength.requiredLenght }} caracteres.
+                                <div *ngIf="nombreRol.error?.minlength">
+                                    Por lo menos {{ rol.errors.minglength.requiredLenght }} caracteres.
                                 </div>
                             </div>
 
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Descripcion</span>
-                            </div>
-                            <div class="input-group input-group-sm  mb-3">
-                                <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" />
-                            </div>
                         </div>
 <!--Pantalla central derecha -->
                         <div class="col-lg-6">
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Presentacion</span>
-                            </div>
 
-                            <div class="input-group input-group-sm mb-4">
- 
-                                <select class="input-group input-group-sm" 
-                                name="presentacion" [(ngModel)]="producto.presentacion">
-                                    <option>{{producto.presentacion}} </option>
 
-                                    <option *ngFor="let pres of presentaciones"
-                                            [value]="pres.presentacion">{{pres.presentacion}}
-                                    </option>
-                                </select>
-
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Retornable</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3" style="float:left">
-                                <input [(ngModel)]="producto.retornable" name="retornable" type="checkbox" class="form-check-input"> 
-                            </div>
                         </div>
 <!--FIN Pantalla central derecha -->
                         <br/>

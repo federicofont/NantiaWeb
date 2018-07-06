@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../assets/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../../assets/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="table-responsve">
+    <!-- /.wrapper -->
+    <div id="wrapper">
+    <!-- /.row -->
+    <div class="row">
+    <!-- PANEL CENTRAL Titulo-->
+        <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        
+                        <h3>{{titulo}} </h3>
+                    
+                    </div>
+    <!-- PANEL CENTRAL-->
+            <img src="assets/bootstrap/image/ico/group-32.ico" alt="Nuevo Rol" style="float:left"  [routerLink]="['/rol-add']" href="#" class="btn btn-sm" value="Nuevo Rol" /> 
+
+            <br><br><br>
+
+            <div *ngIf="roles">
+                <div class="col-lg-3" *ngFor="let rol of roles">
+                        
+                    <div class="Caption">
+                        <img src="assets/bootstrap/image/ico/group-16.ico"/>
+                            <p>{{rol.nombreRol}} </p>
+                            
+                            <div class="botones" *ngIf="confirmado != rol.id">
+                                
+                                <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/roles',rol.id]" href="#" class="btn btn-sm" value="Ver" /> 
+
+                                <img src="assets/bootstrap/image/ico/edit-9-16.ico" alt="Editar" style="float:left"  [routerLink]="['/rol-edit',rol.id]" href="#" class="btn btn-sm" value="Editar" /> 
+
+                                <img src="assets/bootstrap/image/ico/delete-16.ico" alt="Borrar" style="float:left"  (click)="borrarConfirm(rol.id)" href="#" class="btn btn-sm" value="Borrar" /> 
+                            
+                            </div>
+
+                            <div clas="seguro" *ngIf="confirmado == rol.id">
+                                <p  class="text-danger">¿Esta seguro de borrar el rol?</p>
+                                
+                                <img src="assets/bootstrap/image/ico/check-mark-3-16.ico" alt="Borrar" style="float:left"  (click)="onDeleteRol(rol.id)" href="#" class="btn btn-sm" value="Borrar" /> 
+
+                                <img src="assets/bootstrap/image/ico/x-mark-16.ico" alt="Borrar" style="float:left"  (click)="cancelarConfirm()" href="#" class="btn btn-sm" value="Borrar" /> 
+
+                            </div>
+                        </div>
+                <br><br><br>
+                </div>
+            </div>
+            <!-- FIN PANEL CENTRAL-->
+        </div>
+            <!-- FIN PANEL CENTRAL Titulo-->
+    </div>
+    <!-- /.row -->
+    </div>
+    <!-- /#wrapper -->
+</div>
+    <!--FIN Table response --!
+
+    <!-- jQuery -->
+    <script src="../../assets/bootstrap/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../../assets/bootstrap/dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

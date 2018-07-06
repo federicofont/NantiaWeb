@@ -27,8 +27,7 @@ export class UsuarioService{
 
 	addUsuario(usuario:Usuario){
 		let body = JSON.stringify(usuario);
-		let headers = new Headers({
-			'Content-Type':'application/json'});
+		let headers = new Headers({'Content-Type':'application/json'});
 
 		return this._http.post(this.url+'usuarios',body,{headers: headers});
 						 //.map(res =>{
@@ -38,7 +37,7 @@ export class UsuarioService{
 
 	}
 
-	updateUsuario(usuario:Usuario){
+	editUsuario(id, usuario:Usuario){
 		let body = JSON.stringify(usuario);
 		//console.log("body:",body);
 		let headers = new Headers({
@@ -50,6 +49,10 @@ export class UsuarioService{
 						// 	return res.json();
 						// });
 
+	}
+
+	deleteUsuario(id:number){
+		return this._http.delete(this.url+'usuarios/'+id); 
 	}
 	
 }

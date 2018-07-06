@@ -12,6 +12,10 @@ import { LoginErrorComponent } from './login/login-error.component';
 import { UsuariosListComponent } from './usuarios/usuarios-list.component';
 import { UsuarioAddComponent } from './usuarios/usuario-add.component';
 
+import { RolesListComponent } from './roles/roles-list.component';
+import { RolAddComponent } from './roles/rol-add.component';
+import { RolDetailComponent } from './roles/rol-detail.component';
+
 import { ProductosListComponent } from './productos/productos-list.component';
 import { ProductoAddComponent } from './productos/producto-add.component';
 import { ProductoDetailComponent } from './productos/producto-detail.component';
@@ -41,6 +45,11 @@ const appRoutes: Routes = [
 {path: 'usuarios/:id', component: UsuariosListComponent},
 {path: 'usuario-edit/:id', component: UsuarioAddComponent},
 {path: 'usuario-add', component: UsuarioAddComponent},
+
+{path: 'roles', component: RolesListComponent},
+{path: 'roles/:id', component: RolDetailComponent},
+{path: 'rol-edit/:id', component: RolAddComponent},
+{path: 'rol-add', component: RolAddComponent},
 
 {path: 'productos', component: ProductosListComponent},
 {path: 'productos/:id', component: ProductoDetailComponent},

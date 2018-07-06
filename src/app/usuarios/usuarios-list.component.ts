@@ -13,8 +13,8 @@ export class UsuariosListComponent{
 	public usuario:Usuario;
 	public usuarios: Usuario[];
 
+	public confirmado:number;
 	public id:number;
-	public status:number;
 
 	
 	constructor(
@@ -30,36 +30,74 @@ export class UsuariosListComponent{
 			})
 	}
 
-	ngOnInit(){
-		//console.log('Usuarios-list.compoent.ts cargado');
-		//alert(this._usuarioService.getUsuarios());
+ngOnInit(){
+
 		if (this.id==null) {
+
+			this.getUsuarios();
+
+		}else{
+
+			this.getUsuario();
+			
+		}
+
+	}
+
+
+		getUsuarios(){
 			this._usuarioService.getUsuarios().subscribe(
 	            result => {
 	                if(result.status == 200){
 	                	this.usuarios = result.json();
+	                	console.log("this.usuarios:",this.usuarios);
 	                }else{
-	                	//console.log("Result Controler",result.status);   
+	                	console.log("Result Controler",result.status);   
 	                }
 	            },
 	            error => {
-	                //console.log(<any>error);
+	                console.log(<any>error);
 	            }
 	        );
-		 }else{
-		 	this._usuarioService.getUsuario(this.id).subscribe(
-		 		result =>{
-		 			if(result.status == 200){
-		 				 this.usuario = result.json();
-		 			}else{
-						//console.log("ID:",this.id," Result Controler:",result.status);
-		 			}
-		 		},
-		 		error =>{
-		 			//console.log(<any>error);
-		 		}
-		 	);
-		 }
-	}
+		}
+
+		getUsuario(){
+			this._usuarioService.getUsuario(this.id).subscribe(
+				result =>{
+					if(result.status == 200){
+						 this.usuario = result.json();
+					}else{
+						console.log("ID:",this.id," Result Controler:",result.status);
+					}
+
+				},
+				error =>{
+					console.log(<any>error);
+				}
+			);
+		}
+
+		borrarConfirm(id){
+			this.confirmado=id;
+		}
+
+		cancelarConfirm(){
+			this.confirmado=null;
+		}
+
+		onDeleteUsuario(id){
+			this._usuarioService.deleteUsuario(id).subscribe(
+				result =>{
+					if(result.status == 200){
+						this.getUsuarios();
+					}else{
+						alert("Error al borrar Usuario")
+					}
+				},
+				error =>{
+					console.log(<any>error);
+				}
+			);
+		}
 
 }
