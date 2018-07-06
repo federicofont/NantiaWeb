@@ -129,13 +129,11 @@ export class UsuarioAddComponent{
     	for (var i = this.roles.length - 1; i >= 0; i--) {
 			if(this.roles[i].id == idRol)
 				ind = i;
-			else
+			//else
 				//console.log("i",i);
 		}
 
 		this.rol = this.roles[ind];
-		//const nuevo_rol = new Rol( 	this.roles[ ind ].id,
-		//							this.roles[ ind ].nombreRol, );
 
 	}
 
