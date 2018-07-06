@@ -17,8 +17,8 @@ import {routing, appRoutingProviders} from './app.routing';
 //Components
 import { LoginComponent } from './login/login.component';
 import { LoginErrorComponent } from './login/login-error.component';
-import { HomeComponent } from './components/home.component';
-import { ErrorComponent } from './components/error.component';
+import { HomeComponent } from './homePage/home.component';
+import { ErrorComponent } from './homePage/error.component';
 
 import { UsuariosListComponent } from './usuarios/usuarios-list.component';
 import { UsuarioAddComponent } from './usuarios/usuario-add.component';

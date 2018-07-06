@@ -4,7 +4,7 @@ import { NgForm} from '@angular/forms';
 
 import { ClienteService } from './cliente.service';
 import { Cliente } from './cliente.model';
-import { Marcador } from '../models/marcador.model';
+import { Marcador } from './marcador.model';
 import { Direccion } from './direccion.model';
 
 @Component ({

@@ -2,8 +2,8 @@ import { ModuleWithProviders} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 //Pagina principal y de error si no hay pagina.
-import { HomeComponent } from './components/home.component';
-import { ErrorComponent } from './components/error.component';
+import { HomeComponent } from './homePage/home.component';
+import { ErrorComponent } from './homePage/error.component';
 
 // Components
 import { LoginComponent } from './login/login.component';

@@ -92,7 +92,7 @@ export class ListaPreciosListComponent{
 					}
 				},
 				error =>{
-					//console.log(<any>error);
+					console.log(<any>error);
 				}
 			);
 		}

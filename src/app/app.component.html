@@ -39,7 +39,6 @@
 <!---------------------------------------------------- 
 Barra Superior derecha 
 ------------------------------------------------------->
-
         <ul class="nav navbar-top-links navbar-right">
 <!-- /.dropdown-user -->
             <li class="dropdown">
@@ -55,11 +54,16 @@ Barra Superior derecha
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="login.html"><img src="../assets/bootstrap/image/ico/logout-16.ico"> Logout</a>
+                        <a href="/login"><img src="../assets/bootstrap/image/ico/logout-16.ico"> Logout</a>
                     </li>
                 </ul>
 <!-- /.dropdown-user -->
             </li>      
+
+            <a class="" href="#">
+                <img src="../assets/bootstrap/image/ico/help-16.ico">
+            </a>
+        
         </ul>
     </nav>
 
@@ -79,10 +83,10 @@ Barra Superior derecha
                             </div>
                         </tr>
 
-                        <tr class="nav-item active">
+                        <!--tr class="nav-item active">
                             <a class="nav-link" href="#login" [routerLink]="['/login']" [routerLinkActive]="['activado']">
                                 <img src="../assets/bootstrap/image/ico/key-16.ico"> Login <span class="sr-only">(current)</span></a>
-                        </tr>
+                        </tr-->
 
                         <tr class="nav-item active">
                             <a class="nav-link" href="#home" [routerLink]="['/home']" [routerLinkActive]="['activado']">
@@ -101,8 +105,7 @@ Barra Superior derecha
 
                         <tr class="nav-item active">
                             <a class="nav-link" href="#verEnvases" [routerLink]="['/envases']" [routerLinkActive]="['activado']">
-                                <img src="../assets/bootstrap/image/ico/soda-bottle-16.ico">
-                                 Envases <span class="sr-only">(current)</span></a>
+                                <img src="../assets/bootstrap/image/ico/soda-bottle-16.ico"> Envases <span class="sr-only">(current)</span></a>
                         </tr>
 
                         <tr class="nav-item active">
@@ -111,24 +114,19 @@ Barra Superior derecha
                         </tr>
 
                         <tr class="nav-item active">
-                            <a class="nav-link" href="#mapa" [routerLink]="['/mapa']" [routerLinkActive]="['activado']">
-                                <img src="../assets/bootstrap/image/ico/map-5-16.ico"> Rutas <span class="sr-only">(current)</span></a>
-                        </tr>
-
-                        <tr class="nav-item active">
                             <a class="nav-link" href="#listaprecios" [routerLink]="['/listaprecios']" [routerLinkActive]="['activado']">
                                 <img src="../assets/bootstrap/image/ico/view-details-16.ico"> Listas de Precios <span class="sr-only">(current)</span></a>
                         </tr>
 
-                        <tr class="nav-item active">
-                            <a class="nav-link" href="#productolistas" [routerLink]="['/productolistas']" [routerLinkActive]="['activado']">
-                                <img src="../assets/bootstrap/image/ico/view-details-16.ico"> Productos en Lista <span class="sr-only">(current)</span></a>
-                        </tr>
+                        <!--tr class="nav-item active">
+                            <a class="nav-link" href="#mapa" [routerLink]="['/mapa']" [routerLinkActive]="['activado']">
+                                <img src="../assets/bootstrap/image/ico/map-5-16.ico"> Reparto <span class="sr-only">(current)</span></a>
+                        </tr-->
 
-                        <tr>
+                        <!--tr>
                             <a class="nav-link" href="#reportes" [routerLink]="['/reportes']" [routerLinkActive]="['activado']">
                                 <img src="../assets/bootstrap/image/ico/clipboard-2-16.ico"> Reportes <span class="sr-only">(current)</span></a>
-                        </tr>
+                        </tr-->
 
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import { Direccion } from './direccion.model';
-import { EnvaseEnPrestamo } from '../envasesEnprestamo/envaseEnprestamo.model';
+import { EnvaseEnPrestamo } from './envaseEnprestamo.model';
 
 export class Cliente {
 	constructor(

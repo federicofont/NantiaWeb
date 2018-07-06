@@ -5,10 +5,10 @@ import { NgForm} from '@angular/forms';
 import { ClienteService } from './cliente.service';
 import { Cliente } from './cliente.model';
 import { Direccion } from './direccion.model';
-import { Marcador } from '../models/marcador.model';
+import { Marcador } from './marcador.model';
 import { Documento } from './documento.model';
 
-import { EnvaseEnPrestamo } from '../envasesEnprestamo/envaseEnprestamo.model';
+import { EnvaseEnPrestamo } from './envaseEnprestamo.model';
 import { Envase } from '../envases/envase.model';
 import { EnvaseService } from '../envases/envase.service';
 //import { MarkerService } from '../mapa/mapa.marker.service';

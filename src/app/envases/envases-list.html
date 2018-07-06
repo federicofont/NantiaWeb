@@ -40,30 +40,43 @@
                 
                 </div>
 <!-- PANEL CENTRAL-->
-        <img src="assets/bootstrap/image/ico/new-badge-2-32.ico" [routerLink]="['/envase-add']" href="#" value="Nuevo Envase" /> 
+        <img src="assets/bootstrap/image/ico/bottle_plus-32.ico" [routerLink]="['/envase-add']" href="#" value="Nuevo Envase" /> 
 
         <br><br>
 
         <div *ngIf="envases">
             <div class="col-lg-3" *ngFor="let envase of envases">
 
-                    <img src="assets/bootstrap/image/ico/soda-bottle-16.ico"/>
+                    
                     
                     <div class="Caption">
-                        <p>{{envase.descripcion}} </p>
-                    </div>
-                        
+                        <img src="assets/bootstrap/image/ico/soda-bottle-16.ico"/>
+                        {{envase.descripcion}} 
+
                         <div class="botones" *ngIf="confirmado != envase.id">
-                            <a [routerLink]="['/envases',envase.id]" href="#" class="btn btn-sm btn-primary">Ver</a>
-                            <a [routerLink]="['/envase-edit',envase.id]" href="#" class="btn btn-sm btn-warning">Editar</a>
-                            <a (click)="borrarConfirm(envase.id)" class="btn btn-sm btn-danger">Borrar</a>
+
+                            <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/envases',envase.id]" href="#" class="btn btn-sm" value="Ver" /> 
+
+                            <img src="assets/bootstrap/image/ico/edit-9-16.ico" alt="Editar" style="float:left"  [routerLink]="['/envase-edit',envase.id]" href="#" class="btn btn-sm" value="Editar" /> 
+
+                            <img src="assets/bootstrap/image/ico/delete-16.ico" alt="Borrar" style="float:left"  
+                            (click)="borrarConfirm(envase.id)" href="#" class="btn btn-sm" value="Borrar" /> 
+
                         </div>
+
                         <div clas="seguro" *ngIf="confirmado == envase.id">
-                            <p class="text-danger">¿Esta seguro de borrar el envase?</p>
-                            <a (click)="onDeleteEnvase(envase.id)" class="btn-sm btn-danger">Confirmar</a>
-                            <a (click)="cancelarConfirm()" class="btn-sm btn-warning">Cancelar</a>
+                            <p  class="text-danger">¿Esta seguro de borrar el envase?</p>
+
+                            <img src="assets/bootstrap/image/ico/check-mark-3-16.ico" alt="Borrar" style="float:left"  (click)="onDeleteEnvase(envase.id)" href="#" class="btn btn-sm" 
+                              value="Borrar" />
+
+                            <img src="assets/bootstrap/image/ico/x-mark-16.ico" alt="Borrar" style="float:left"  (click)="cancelarConfirm()" href="#" class="btn btn-sm" value="Borrar" /> 
+
                         </div>
-            <br>
+
+                    </div>
+
+                <br><br>
             </div>
         </div>
 
