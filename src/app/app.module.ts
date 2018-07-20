@@ -22,6 +22,7 @@ import { ErrorComponent } from './homePage/error.component';
 
 import { UsuariosListComponent } from './usuarios/usuarios-list.component';
 import { UsuarioAddComponent } from './usuarios/usuario-add.component';
+import { UsuarioDetailComponent } from './usuarios/usuario-detail.component';
 
 import { RolesListComponent } from './roles/roles-list.component';
 import { RolAddComponent } from './roles/rol-add.component';
@@ -55,6 +56,7 @@ import { ListaPrecioDetailComponent } from './listaprecios/listaprecio-detail.co
     
     UsuariosListComponent,
     UsuarioAddComponent,
+    UsuarioDetailComponent,
 
     RolesListComponent,
     RolAddComponent,

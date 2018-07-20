@@ -24,6 +24,8 @@ import { ProductoLista } from './productolista.model';
 export class ListaPrecioAddComponent{
 	
 	public titulo: string;
+	public fechaActual :Date = new Date();
+
 	nuevo:boolean=false;
 	id:number;
 	
@@ -80,8 +82,8 @@ export class ListaPrecioAddComponent{
 						 this.listaprecio = result.json();
 						 this.productosLista = this.listaprecio.setProductoLista;						 
 						
-						console.log("listaprecio:",this.listaprecio);
-						console.log("productosLista:",this.productosLista);
+						//console.log("listaprecio:",this.listaprecio);
+						//console.log("productosLista:",this.productosLista);
 
 					}else{
 						console.log("ID:",this.id," Result Controler:",result.status);
@@ -118,7 +120,8 @@ export class ListaPrecioAddComponent{
 	guardar(formlistaAdd:NgForm){
 
 		this.listaprecio.setProductoLista=this.productosLista;
-		console.log("this.listaprecio",this.listaprecio);
+		this.listaprecio.fechaAlta = this.fechaActual;
+		//console.log("this.listaprecio",this.listaprecio);
 		if(this.id != null){
 			this.listaprecio.id=this.id;
 			this.updateListaPrecio();
@@ -149,11 +152,11 @@ export class ListaPrecioAddComponent{
 
 	addListaPrecio(){
 		//Llamo al servicio que creara el nuevo listaprecio
-		console.log("this.listaprecio",this.listaprecio);
+		//console.log("this.listaprecio",this.listaprecio);
 		this._listaprecioService.addListaPrecio(this.listaprecio)
 			.subscribe(result => {
 					if(result.status==201){
-						//console.log("Result Controler",result.status);
+						console.log("Result Controler",result.status);
 						this._router.navigate(['/listaprecios/'+result.json().id]);
 					}else{
 						console.log("Result Controler",result.status);
@@ -167,16 +170,16 @@ export class ListaPrecioAddComponent{
 
 	addProductoLista(formproductosAdd:NgForm){	
 		//Cargo el objeto envase y el arreglo envases
-		console.log("Conectado a addProductoLista");
+		//console.log("Conectado a addProductoLista");
 		var ind:number=0;
-		console.log(formproductosAdd);
+		//console.log(formproductosAdd);
 		var idProducto:number = formproductosAdd.controls['productoId'].value;
 		//console.log("this.envases",this.envases);
     	for (var i = this.productos.length - 1; i >= 0; i--) {
 			if(this.productos[i].productoId == idProducto)
 				ind = i;
-			else
-				console.log("i",i);
+			//else
+				//console.log("i",i);
 		}
 
 		const nuevo_productoLista = new ProductoLista( null,

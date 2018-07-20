@@ -11,23 +11,19 @@ import { Documento } from './documento.model';
 import { EnvaseEnPrestamo } from './envaseEnprestamo.model';
 import { Envase } from '../envases/envase.model';
 import { EnvaseService } from '../envases/envase.service';
-//import { MarkerService } from '../mapa/mapa.marker.service';
 
 @Component ({
 	selector: 'formClienteAdd',
 	templateUrl: './cliente-add.html',
 	providers: [ClienteService, EnvaseService],
 	styleUrls: ['./mapa.style.css']
-//	styles: [`
-//		.ng-invalid.ng-touched:not(form){
-//		border:1px solid red;
-//		}`]
 })
 
 export class ClienteAddComponent{
 	
 	public titulo: string;
-	nuevo:boolean=false;
+	public fechaActual :Date = new Date();
+	
 	id:number;
 	marcadores:Marcador[]=[];
 	documentos:Documento[]=[];
@@ -46,8 +42,8 @@ export class ClienteAddComponent{
 	  documento1 : Documento = new Documento(1,"Rut");
 	  documento2 : Documento = new Documento(2,"NA");
 
-	  marcador : Marcador = new Marcador("Nantia",this.lat, this.lng,false);
-		
+	  //marcador : Marcador = new Marcador("Nantia",this.lat, this.lng,false);
+
 	/*Creo los objetos que voy a referenciar y editar en el HTML*/
 	direccion : Direccion = new Direccion();
 	cliente : Cliente = new Cliente();
@@ -71,12 +67,6 @@ export class ClienteAddComponent{
 			this.titulo = 'Nuevo Cliente';	
 		} 
 		
-		//Cargo el local storage
-		//if ( localStorage.getItem('marcadores') ) {
-      		//El localStorage solo recive strings, por eso hago JSON.parse
-      	//	this.marcadores = JSON.parse(localStorage.getItem('marcadores') ); 
-    	//}
-
 	}
 	 
 
@@ -87,7 +77,8 @@ export class ClienteAddComponent{
 		  this.documentos[2] = this.documento2;
 		  ////console.log("Documentos:",this.documentos);
 
-		   this.envasesEnprestamo=[];
+		  this.envasesEnprestamo=[];
+		  this.marcadores=[];
 
 		if(this.id != null){
 			this.getCliente();
@@ -113,59 +104,65 @@ export class ClienteAddComponent{
     const nuevoMarcador = new Marcador( "Direccion",coords.lat, coords.lng,true);
     //publico
     this.marcadores.push(nuevoMarcador);
+    //console.log("agregarMarcador", this.marcadores);
+
+    this.actualizarMarcador(/*actuaMarcador,*/ coords.lat, coords.lng, 0);	
     //guardo cambios
-    this.guardarStorage(this.marcadores);
+    //this.guardarStorage(this.marcadores);
     ////console.log(evento);
     //////console.log(evento.coords.lat);
   }
 
-  guardarStorage(marcadoresAux:Marcador[]){
+  //guardarStorage(marcadoresAux:Marcador[]){
   	//console.log("guardarStorage");
   	//borro el local storage de "marcadores"
-  	localStorage.removeItem('marcadores');
+  	//localStorage.removeItem('marcadores');
   	//guardo el nuevo item
-    localStorage.setItem('marcadores',JSON.stringify( marcadoresAux ) );
+    //localStorage.setItem('marcadores',JSON.stringify( marcadoresAux ) );
     ////console.log("Marcadores: ", marcadoresAux);
-  }
+  //}
 
-  borrarMarcador(i: number){
+  //borrarMarcador(i: number){
   	//borro elementos de un arreglo
-    this.marcadores.splice(i,1);
+  //  this.marcadores.splice(i,1);
     //guardo el nuevo localStorage sin el eleento.
-    this.guardarStorage(this.marcadores);
-  }
+    //this.guardarStorage(this.marcadores);
+  //}
 
   posicionFinalMarcador(marcador:any, $event:any, posicion:number){
   	//console.log("Posicion Final:",marcador,$event);
 
-  	var actuaMarcador ={
-  		Nombre: marcador.nombre,
-  		Lat: parseFloat(marcador.lat) ,
-  		Long:parseFloat(marcador.lng),
-  		Movil: true
-  	}
+ // 	var actuaMarcador ={
+ // 		Nombre: marcador.nombre,
+ // 		Lat: parseFloat(marcador.lat) ,
+ // 		Long:parseFloat(marcador.lng),
+ // 		Movil: true
+ // 	}
 
   	var nuevaLat = $event.coords.lat;
   	var nuevaLong = $event.coords.lng;
 
-    ////console.log('actuaMarcador: ', actuaMarcador);
+    console.log('nuevaLat: ', nuevaLat,"nuevaLong",nuevaLong);
 
-    this.actualizarMarcador(actuaMarcador, nuevaLat, nuevaLong, posicion);	
+    this.actualizarMarcador(/*actuaMarcador,*/ nuevaLat, nuevaLong, posicion);	
   }
 
 
-  actualizarMarcador(marker_aux,nuevaLatAux,nuevaLongAux, posicion){
+  actualizarMarcador(/*marker_aux,*/nuevaLatAux,nuevaLongAux, posicion){
 		//Obtener marcadores
 		//console.log("actualizarMarcador")
-		var marcadoresLS =JSON.parse(localStorage.getItem('marcadores'));
+		//var marcadoresLS =JSON.parse(localStorage.getItem('marcadores'));
 		
-		marcadoresLS[posicion].lat = nuevaLatAux;
-		marcadoresLS[posicion].lng = nuevaLongAux;
+		//marcadoresLS[posicion].lat = nuevaLatAux;
+		//marcadoresLS[posicion].lng = nuevaLongAux;
 
-		this.cliente.direccion.coordLat=nuevaLatAux;
-		this.cliente.direccion.coordLon=nuevaLongAux;
+		this.direccion.coordLat=nuevaLatAux;
+		this.direccion.coordLon=nuevaLongAux;
 
-		this.guardarStorage(marcadoresLS);
+		//this.marcadores[posicion].lat = nuevaLatAux;
+		//this.marcadores[posicion].lng = nuevaLongAux;
+		console.log("this.direccion",this.direccion);
+		//this.guardarStorage(marcadoresLS);
 	}
 
 	getCliente(){
@@ -181,17 +178,17 @@ export class ClienteAddComponent{
 						//console.log("Get envasesEnprestamo",this.envasesEnprestamo);
 						//Cargo marcador del mapa
 						this.marcadores[0] = new Marcador("Nantia",
-														  this.cliente.direccion.coordLat, 
-														  this.cliente.direccion.coordLon,
+														  parseFloat(this.cliente.direccion.coordLat), 
+														  parseFloat(this.cliente.direccion.coordLon),
 														  true
 														  );
 						////console.log("marcadores:",this.marcadores);
-						console.log("cliente:",this.cliente);
-						this.actualizarMarcador( this.marcadores,
-												 this.cliente.direccion.coordLat,
-												 this.cliente.direccion.coordLon, 
-												 0
-										   		);
+						console.log("cliente:",this.cliente.direccion);
+						//this.actualizarMarcador( this.marcadores,
+						//						 this.cliente.direccion.coordLat,
+						//						 this.cliente.direccion.coordLon, 
+						//						 0
+						//				   		);
 						//this.marcadores[0].lat=this.cliente.direccion.coordLat;
 						//this.marcadores[0].lng=this.cliente.direccion.coordLon;
 						//this.guardarStorage(this.marcadores);
@@ -210,12 +207,13 @@ export class ClienteAddComponent{
 	guardar(clienteAdd:NgForm){
 
 		//Cargo las cordenadas del mapa en el objeto direccion
-		//console.log("Guardar",this.cliente);
-		this.direccion.coordLat=this.marcadores[0].lat;
-		this.direccion.coordLon=this.marcadores[0].lng;
+		console.log("Guardar",this.cliente);
+		//this.direccion.coordLat=this.marcadores[0].lat;
+		//this.direccion.coordLon=this.marcadores[0].lng;
 		//Asigno el objeto direccion dentro del objeto cliente
 		this.cliente.direccion = this.direccion;
 		this.cliente.setEnvasesEnPrestamo=this.envasesEnprestamo;
+		this.cliente.fechaAlta=this.fechaActual;
 		//console.log("Cliente",this.cliente)
 		
 		if(this.id != null){
@@ -271,8 +269,8 @@ export class ClienteAddComponent{
     	for (var i = this.envases.length - 1; i >= 0; i--) {
 			if(this.envases[i].id == idEnvase)
 				ind = i;
-			else
-				console.log("i",i);
+			//else
+			//	console.log("i",i);
 		}
 
 		const nuevo_envaseEnprestamo = new EnvaseEnPrestamo( null,
@@ -281,13 +279,13 @@ export class ClienteAddComponent{
 
 		//console.log("nuevo_envaseEnprestamo",nuevo_envaseEnprestamo);
 		this.envasesEnprestamo.push(nuevo_envaseEnprestamo);
-		this.getEnvasesEnprestamo();
+		//this.getEnvasesEnprestamo();
 	}
 
-	getEnvasesEnprestamo(){
-		this.envasesEnprestamo;
+//	getEnvasesEnprestamo(){
+//		this.envasesEnprestamo;
 		//console.log(this.envasesEnprestamo);
-	}
+//	}
 
 	updateCliente(){
 		////console.log("update:",this.cliente);
@@ -295,7 +293,7 @@ export class ClienteAddComponent{
 				.subscribe(result => {
 				////console.log("Result Controler",result.status);
  					if(result.status=200){
- 						this._router.navigate(['/clientes']);
+ 						//this._router.navigate(['/clientes']);
  					}else{
  						//204 -- No Content
  						console.log("Result Controler",result.status);
@@ -313,7 +311,7 @@ export class ClienteAddComponent{
 			.subscribe(result => {
 					if(result.status==201){
 						//console.log("Result Controler:",result.status);
-						this._router.navigate(['/clientes']);
+						//this._router.navigate(['/clientes']);
 					}else{
 						console.log("Result Controler:",result.status);
 				}

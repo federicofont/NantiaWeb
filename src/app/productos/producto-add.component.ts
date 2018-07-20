@@ -21,7 +21,7 @@ export class ProductoAddComponent{
 	public titulo: string;
 	
 	producto: Producto = new Producto();
-	presentaciones:Presentacion[]=[];
+	/*presentaciones:Presentacion[]=[];
 
 	  presentacion0 : Presentacion = new Presentacion(0,"1 Litro");
 	  presentacion1 : Presentacion = new Presentacion(1,"2 Litro");
@@ -30,7 +30,7 @@ export class ProductoAddComponent{
 	  presentacion4 : Presentacion = new Presentacion(4,"10 Litros");
 	  presentacion5 : Presentacion = new Presentacion(5,"12 Litros");
 	  presentacion6 : Presentacion = new Presentacion(6,"20 Litros");
-
+	*/
 	nuevo:boolean=false;
 	id:number;
 
@@ -56,13 +56,13 @@ export class ProductoAddComponent{
 
 	ngOnInit(){
 		//console.log('producto-add.component.ts cargado');
-		this.presentaciones[0] = this.presentacion0;
+		/*this.presentaciones[0] = this.presentacion0;
 		this.presentaciones[1] = this.presentacion1;
 		this.presentaciones[2] = this.presentacion2;
 		this.presentaciones[3] = this.presentacion3;
 		this.presentaciones[4] = this.presentacion4;
 		this.presentaciones[5] = this.presentacion5;
-		this.presentaciones[6] = this.presentacion6;
+		this.presentaciones[6] = this.presentacion6;*/
 
 		if(this.id != null){
 			this.getProducto();
@@ -76,7 +76,7 @@ export class ProductoAddComponent{
 		this._productoService.getProducto(this.id).subscribe(
 			result =>{
 				if(result.status == 200){
-					//console.log("Result:",result.json());
+					console.log("Result:",result.json());
 					 this.producto = result.json();
 				}else{
 					console.log("ID:",this.id," Result Controler:",result.status);

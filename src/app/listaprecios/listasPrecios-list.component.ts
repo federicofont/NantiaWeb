@@ -35,11 +35,11 @@ export class ListaPreciosListComponent{
 		if (this.id==null) {
 			//console.log("pase el if");
 			this.getListaPrecios();
-			console.log("lista Precio: ",this.listaprecio)
+			//console.log("lista Precio: ",this.listaprecio)
 		}else{
 			//console.log("Entre al else")
 			this.getListaPrecio()
-			console.log("listaprecios: ",this.listaprecios)
+			//console.log("listaprecios: ",this.listaprecios)
 		}
 }
 		getListaPrecios(){

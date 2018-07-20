@@ -55,12 +55,12 @@
                             </div>
                             <div class="input-group input-group-sm mb-3"> <!--mb-3 deja espacio debajo -->
                                 <input type="text" #descripcion="ngModel" name="nombre" [(ngModel)]="producto.nombre" class="form-control" placeholder="Nombre" minlength="4" required />
-                                <div *ngIf="nombre.error?.required">
+                                <!--div *ngIf="nombre.error?.required">
                                     El campo es requerido.
                                 </div>
                                 <div *ngIf="nombre.error?.minlength">
                                     Por lo menos {{ producto.errors.minglength.requiredLenght }} caracteres.
-                                </div>
+                                </div-->
                             </div>
 
                             <div class="input-group input-group-sm">
@@ -76,16 +76,17 @@
                                 <span class="input-group-addon">Presentacion</span>
                             </div>
 
-                            <div class="input-group input-group-sm mb-4">
+                            <div class="input-group input-group-sm mb-3">
  
-                                <select class="input-group input-group-sm" 
+                                <input type="text" #descripcion="ngModel" name="presentacion" [(ngModel)]="producto.presentacion" class="form-control" />
+                                <!--select class="input-group input-group-sm" 
                                 name="presentacion" [(ngModel)]="producto.presentacion">
                                     <option>{{producto.presentacion}} </option>
 
                                     <option *ngFor="let pres of presentaciones"
                                             [value]="pres.presentacion">{{pres.presentacion}}
                                     </option>
-                                </select>
+                                </select-->
 
                             </div>
 

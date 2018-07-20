@@ -94,7 +94,7 @@ export class EnvasesListComponent{
 					}
 				},
 				error =>{
-					//console.log(<any>error);
+					console.log(<any>error);
 				}
 			);
 		}

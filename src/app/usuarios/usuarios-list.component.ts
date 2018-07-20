@@ -46,13 +46,16 @@ ngOnInit(){
 
 
 		getUsuarios(){
+			console.log("GetUsuarios");
 			this._usuarioService.getUsuarios().subscribe(
 	            result => {
+	                console.log("result.json():",result.json());
 	                if(result.status == 200){
 	                	this.usuarios = result.json();
 	                	console.log("this.usuarios:",this.usuarios);
 	                }else{
 	                	console.log("Result Controler",result.status);   
+	                	console.log("result.json():",result.json());
 	                }
 	            },
 	            error => {

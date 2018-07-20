@@ -40,15 +40,16 @@
                     
                     </div>
     <!-- PANEL CENTRAL-->
-            <img src="assets/bootstrap/image/ico/group-32.ico" alt="Nuevo Rol" style="float:left"  [routerLink]="['/rol-add']" href="#" class="btn btn-sm" value="Nuevo Rol" /> 
+            <img src="assets/bootstrap/image/ico/access-32.ico" alt="Nuevo Rol" style="float:left"  [routerLink]="['/rol-add']" href="#" class="btn btn-sm" value="Nuevo Rol" /> 
 
             <br><br><br>
 
             <div *ngIf="roles">
                 <div class="col-lg-3" *ngFor="let rol of roles">
                         
+                        <img src="assets/bootstrap/image/ico/access-16.ico"/>
+                        
                     <div class="Caption">
-                        <img src="assets/bootstrap/image/ico/group-16.ico"/>
                             <p>{{rol.nombreRol}} </p>
                             
                             <div class="botones" *ngIf="confirmado != rol.id">
