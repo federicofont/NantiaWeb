@@ -91,13 +91,13 @@ export class ListaPrecioAddComponent{
 
 				},
 				error =>{
-					console.log(<any>error);
+					console.log(error);
 				}
 			)
 	}
 
 	getProductosLista(){
-		this.productosLista;
+		//this.productosLista;
 		console.log("productosLista:",this.productosLista);
 	}
 
@@ -112,7 +112,7 @@ export class ListaPrecioAddComponent{
 				}
 			},
 			error =>{
-				console.log(<any>error);
+				console.log(error);
 			}
 		);
 	}
@@ -137,7 +137,7 @@ export class ListaPrecioAddComponent{
 		//console.log("update:",this.listaprecio);
 		this._listaprecioService.editListaPrecio(this.id, this.listaprecio)
 				.subscribe(result => {
- 					if(result.status=200){
+ 					if(result.status == 200){
  						console.log("Result Controler",result.status);
  						this._router.navigate(['/listaprecios/'+result.json().id]);
  					}else{
@@ -146,7 +146,7 @@ export class ListaPrecioAddComponent{
 					}
  				},
  				error => {
- 					console.log(<any>error);
+ 					console.log(error);
  				})
 	};
 
@@ -163,7 +163,7 @@ export class ListaPrecioAddComponent{
 				}
 				},
 				error => {
-					console.log(<any>error);
+					console.log(error);
 				})
 	};
 
