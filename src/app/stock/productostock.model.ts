@@ -5,6 +5,6 @@ export class ProductoStock{
 		public id: number = null,
 		public cantidad: number = null,
 		public fecha: Date = null,
-		public producto: Producto = null
+		public producto: Producto =  null
 		){}
 }

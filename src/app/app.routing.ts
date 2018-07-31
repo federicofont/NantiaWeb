@@ -36,6 +36,10 @@ import { ListaPreciosListComponent } from './listaprecios/listasprecios-list.com
 import { ListaPrecioAddComponent } from './listaprecios/listaprecio-add.component';
 import { ListaPrecioDetailComponent } from './listaprecios/listaprecio-detail.component';
 
+import { StockListComponent } from './stock/stock-list.component';
+import { StockAddComponent } from './stock/stock-add.component';
+import { StockDetailComponent } from './stock/stock-detail.component';
+
 const appRoutes: Routes = [
 {path: '', component: HomeComponent},
 {path: 'login', component: LoginComponent},
@@ -72,6 +76,10 @@ const appRoutes: Routes = [
 {path: 'listaprecio-edit/:id', component: ListaPrecioAddComponent},
 {path: 'listaprecio-add', component: ListaPrecioAddComponent},
 
+{path: 'stock', component: StockListComponent},
+{path: 'stock/:id', component: StockDetailComponent},
+{path: 'stock-edit/:id', component: StockAddComponent},
+{path: 'stock-add', component: StockAddComponent},
 
 {path: 'mapa', component: MapaComponent},
 {path: '**', component: ErrorComponent}

@@ -45,6 +45,10 @@ import { ListaPreciosListComponent } from './listaprecios/listasprecios-list.com
 import { ListaPrecioAddComponent } from './listaprecios/listaprecio-add.component';
 import { ListaPrecioDetailComponent } from './listaprecios/listaprecio-detail.component';
 
+import { StockListComponent } from './stock/stock-list.component';
+import { StockAddComponent } from './stock/stock-add.component';
+import { StockDetailComponent } from './stock/stock-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +83,11 @@ import { ListaPrecioDetailComponent } from './listaprecios/listaprecio-detail.co
     
     ListaPreciosListComponent,
     ListaPrecioAddComponent,
-    ListaPrecioDetailComponent
+    ListaPrecioDetailComponent,
+
+    StockListComponent,
+    StockAddComponent,
+    StockDetailComponent
     
   ],
   imports: [
