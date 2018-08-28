@@ -11,7 +11,7 @@ import { Direccion } from './direccion.model';
 	selector: 'cliente-detail',
 	templateUrl: './cliente-detail.html',
 	providers: [ClienteService],
-	styleUrls: ['./mapa.style.css']
+	styleUrls: ['./cliente.style.css']
 })
 
 export class ClienteDetailComponent{

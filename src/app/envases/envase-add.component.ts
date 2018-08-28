@@ -9,10 +9,7 @@ import { Envase } from './envase.model';
 	selector: 'formEnvaseAdd',
 	templateUrl: '../envases/envase-add.html',
 	providers: [EnvaseService],
-	styles: [`
-		.ng-invalid.ng-touched:not(form){
-		border:1px solid red;
-		}`]
+	styleUrls: ['./envase.style.css']
 })
 
 export class EnvaseAddComponent{

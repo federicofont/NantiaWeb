@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 //import { MaterialModule } from './material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //Maps
 import { AgmCoreModule } from '@agm/core';
@@ -49,6 +50,22 @@ import { StockListComponent } from './stock/stock-list.component';
 import { StockAddComponent } from './stock/stock-add.component';
 import { StockDetailComponent } from './stock/stock-detail.component';
 
+import { FabricaListComponent } from './fabrica/fabrica-list.component';
+import { FabricaAddComponent } from './fabrica/fabrica-add.component';
+//import { FabricaDetailComponent } from './fabrica/fabrica-detail.component';
+
+import { RutaListComponent } from './ruta/ruta-list.component';
+import { RutaAddComponent } from './ruta/ruta-add.component';
+//import { RutaDetailComponent } from './ruta/ruta-detail.component';
+
+import { RepartoListComponent } from './reparto/reparto-list.component';
+import { RepartoAddComponent } from './reparto/reparto-add.component';
+//import { RepartoDetailComponent } from './reparto/reparto-detail.component';
+
+import { VehiculoListComponent } from './vehiculo/vehiculo-list.component';
+import { VehiculoAddComponent } from './vehiculo/vehiculo-add.component';
+//import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,12 +104,29 @@ import { StockDetailComponent } from './stock/stock-detail.component';
 
     StockListComponent,
     StockAddComponent,
-    StockDetailComponent
+    StockDetailComponent,
+
+    FabricaListComponent,
+    FabricaAddComponent,
+  //  FabricaDetailComponent,
+
+    RutaListComponent,
+    RutaAddComponent,
+//  RutaDetailComponent,
+
+    RepartoListComponent,
+    RepartoAddComponent,
+//  RepartoDetailComponent,
+
+    VehiculoListComponent,
+    VehiculoAddComponent
+//  VehiculoDetailComponent,
     
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,

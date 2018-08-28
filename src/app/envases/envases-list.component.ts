@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { EnvaseService } from './envase.service';
 import { Envase} from './envase.model';
+import {CarouselModule} from 'primeng/carousel';
 
 @Component({
 	selector: 'envases-list',
 	templateUrl: '../envases/envases-list.html',
-	providers: [EnvaseService]
+	providers: [EnvaseService],
+	styleUrls: ['./envase.style.css']
 })
 export class EnvasesListComponent{
 	public titulo: string;

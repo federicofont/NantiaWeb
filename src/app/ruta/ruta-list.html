@@ -1,0 +1,47 @@
+<body>
+
+    <div class="card"> 
+      <div class="card-header">
+        
+         {{titulo}}
+      
+      </div>
+    </div>
+  
+
+    <div class="container">
+        <div class="row">
+            <div class="botones">
+                <img src="assets/bootstrap/image/ico/add-32.ico" alt="Nuevo Cliente" style="float:left"  [routerLink]="['/ruta-add']" href="#" class="btn btn-sm" value="Nuevo Cliente" /> 
+            </div>
+            
+            <div *ngFor="let ruta of rutas"class="card card-body col-sm-2 py-2">
+                <div class="botones">
+                    <img src="assets/bootstrap/image/ico/truck-16.ico" style="float:left"/> 
+                </div>
+                    <a>{{ruta.nombre}} </a> 
+
+                <div class="botones" *ngIf="confirmado != ruta.id">
+
+                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/rutas',ruta.id]" href="#" class="btn btn-sm" value="Ver" /> 
+
+                    <img src="assets/bootstrap/image/ico/edit-9-16.ico" alt="Editar" style="float:left"  [routerLink]="['/ruta-edit',ruta.id]" href="#" class="btn btn-sm" value="Editar" /> 
+
+                    <img src="assets/bootstrap/image/ico/delete-16.ico" alt="Borrar" style="float:left"  
+                    (click)="borrarConfirm(ruta.id)" href="#" class="btn btn-sm" value="Borrar" /> 
+
+                </div>
+
+                <div clas="seguro" *ngIf="confirmado == ruta.id">
+                <p class="text-danger">¿Esta seguro de borrar la ruta?</p>
+
+                <img src="assets/bootstrap/image/ico/check-mark-3-16.ico" alt="Borrar" style="float:left"  (click)="onDeleteEnvase(ruta.id)" href="#" class="btn btn-sm" value="Borrar"/>
+
+                <img src="assets/bootstrap/image/ico/x-mark-16.ico" alt="Borrar" style="float:left"  (click)="cancelarConfirm()" href="#" class="btn btn-sm" value="Borrar" /> 
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

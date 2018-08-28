@@ -6,7 +6,8 @@ import { Cliente} from './cliente.model';
 @Component({
 	selector: 'clientes-list',
 	templateUrl: './clientes-list.html',
-	providers: [ClienteService]
+	providers: [ClienteService],
+	styleUrls: ['./cliente.style.css']
 })
 export class ClientesListComponent{
 	public titulo: string;
@@ -48,7 +49,7 @@ export class ClientesListComponent{
 				result =>{
 					if(result.status == 200){
 						 this.clientes = result.json();
-						 //console.log("Clientes:",result.json());
+						 console.log("Clientes:",result.json());
 					}else{
 						console.log("Result Controler",result.status); 
 					}

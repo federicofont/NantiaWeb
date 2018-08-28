@@ -1,0 +1,51 @@
+<body>
+
+    <div class="card col-xl-12"> 
+      <div class="card-header">
+        
+         {{titulo}}
+      
+      </div>
+    </div>
+
+    <div class="card-body">
+  
+
+    <div class="container col-sm-12">
+        <div class="row">
+            <div class="botones">
+                <img src="assets/bootstrap/image/ico/add-32.ico" alt="Nuevo Cliente" style="float:left"  [routerLink]="['/fabrica-add']" href="#" class="btn btn-sm" value="Nuevo Cliente" /> 
+            </div>
+            
+            <div *ngFor="let fabrica of fabricas"class="card card-body col-sm-2 py-2">
+                <div class="botones">
+                    <img src="assets/bootstrap/image/ico/businessman-16.ico" style="float:left"/> 
+                </div>
+                    <a>{{fabrica.nombre}} </a> 
+
+                <div class="botones" *ngIf="confirmado != fabrica.id">
+
+                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/fabricas',fabrica.id]" href="#" class="btn btn-sm" value="Ver" /> 
+
+                    <img src="assets/bootstrap/image/ico/edit-9-16.ico" alt="Editar" style="float:left"  [routerLink]="['/fabrica-edit',fabrica.id]" href="#" class="btn btn-sm" value="Editar" /> 
+
+                    <img src="assets/bootstrap/image/ico/delete-16.ico" alt="Borrar" style="float:left"  
+                    (click)="borrarConfirm(fabrica.id)" href="#" class="btn btn-sm" value="Borrar" /> 
+
+                </div>
+
+                <div clas="seguro" *ngIf="confirmado == fabrica.id">
+                <p class="text-danger">¿Esta seguro de borrar la fabrica?</p>
+
+                <img src="assets/bootstrap/image/ico/check-mark-3-16.ico" alt="Borrar" style="float:left"  (click)="onDeleteEnvase(fabrica.id)" href="#" class="btn btn-sm" value="Borrar"/>
+
+                <img src="assets/bootstrap/image/ico/x-mark-16.ico" alt="Borrar" style="float:left"  (click)="cancelarConfirm()" href="#" class="btn btn-sm" value="Borrar" /> 
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+</body>

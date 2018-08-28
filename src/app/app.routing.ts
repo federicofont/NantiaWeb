@@ -40,6 +40,23 @@ import { StockListComponent } from './stock/stock-list.component';
 import { StockAddComponent } from './stock/stock-add.component';
 import { StockDetailComponent } from './stock/stock-detail.component';
 
+import { FabricaListComponent } from './fabrica/fabrica-list.component';
+import { FabricaAddComponent } from './fabrica/fabrica-add.component';
+//import { FabricaDetailComponent } from './fabrica/fabrica-detail.component';
+
+import { RutaListComponent } from './ruta/ruta-list.component';
+import { RutaAddComponent } from './ruta/ruta-add.component';
+//import { RutaDetailComponent } from './ruta/ruta-detail.component';
+
+import { RepartoListComponent } from './reparto/reparto-list.component';
+import { RepartoAddComponent } from './reparto/reparto-add.component';
+//import { RepartoDetailComponent } from './reparto/reparto-detail.component';
+
+import { VehiculoListComponent } from './vehiculo/vehiculo-list.component';
+import { VehiculoAddComponent } from './vehiculo/vehiculo-add.component';
+//import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
+
+
 const appRoutes: Routes = [
 {path: '', component: HomeComponent},
 {path: 'login', component: LoginComponent},
@@ -80,6 +97,26 @@ const appRoutes: Routes = [
 {path: 'stock/:id', component: StockDetailComponent},
 {path: 'stock-edit/:id', component: StockAddComponent},
 {path: 'stock-add', component: StockAddComponent},
+
+{path: 'fabrica', component: FabricaListComponent},
+//{path: 'fabrica/:id', component: FabricaDetailComponent},
+{path: 'fabrica-edit/:id', component: FabricaAddComponent},
+{path: 'fabrica-add', component: FabricaAddComponent},
+
+{path: 'ruta', component: RutaListComponent},
+//{path: 'ruta/:id', component: RutaDetailComponent},
+{path: 'ruta-edit/:id', component: RutaAddComponent},
+{path: 'ruta-add', component: RutaAddComponent},
+
+{path: 'reparto', component: RepartoListComponent},
+//{path: 'reparto/:id', component: RepartoDetailComponent},
+{path: 'reparto-edit/:id', component: RepartoAddComponent},
+{path: 'reparto-add', component: RepartoAddComponent},
+
+{path: 'vehiculo', component: VehiculoListComponent},
+//{path: 'vehiculo/:id', component: VehiculoDetailComponent},
+{path: 'vehiculo-edit/:id', component: VehiculoAddComponent},
+{path: 'vehiculo-add', component: VehiculoAddComponent},
 
 {path: 'mapa', component: MapaComponent},
 {path: '**', component: ErrorComponent}

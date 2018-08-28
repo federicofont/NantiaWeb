@@ -11,12 +11,14 @@ import { Documento } from './documento.model';
 import { EnvaseEnPrestamo } from './envaseEnprestamo.model';
 import { Envase } from '../envases/envase.model';
 import { EnvaseService } from '../envases/envase.service';
+import { ListaPrecio} from '../listaprecios/listaprecio.model';
+import { ListaPrecioService } from '../listaprecios/listaprecio.service';
 
 @Component ({
 	selector: 'formClienteAdd',
 	templateUrl: './cliente-add.html',
-	providers: [ClienteService, EnvaseService],
-	styleUrls: ['./mapa.style.css']
+	providers: [ClienteService, EnvaseService,ListaPrecioService],
+	styleUrls: ['./cliente.style.css']
 })
 
 export class ClienteAddComponent{
@@ -32,6 +34,10 @@ export class ClienteAddComponent{
 	envases : Envase [] = [];
 	envaseEnprestamo: EnvaseEnPrestamo = new EnvaseEnPrestamo();
 	envasesEnprestamo:EnvaseEnPrestamo[] = [];
+	listaPrecio: ListaPrecio = new ListaPrecio();
+	listaPrecios : ListaPrecio[]=[];
+	semana : boolean[]=[];
+	dias : string[]=[];
 
 	  //Posicion de referencia de mapa
 	  lat: number =  -34.4549810;
@@ -51,7 +57,8 @@ export class ClienteAddComponent{
 	constructor(private _clienteService: ClienteService,
 				private _router:Router,
 				private _activatedRoute:ActivatedRoute,
-				private _envaseService: EnvaseService
+				private _envaseService: EnvaseService,
+				private _listaPrecioService:ListaPrecioService
 				){
 
 		this._activatedRoute.params
@@ -86,6 +93,8 @@ export class ClienteAddComponent{
 
 		  
 		  this.getEnvases();
+		  this.getListaPrecios();
+		  this.getSemana();
 
 	}
 
@@ -214,6 +223,8 @@ export class ClienteAddComponent{
 		this.cliente.direccion = this.direccion;
 		this.cliente.setEnvasesEnPrestamo=this.envasesEnprestamo;
 		this.cliente.fechaAlta=this.fechaActual;
+		this.cliente.idLista=this.listaPrecio.id;
+		//this.cliente.dias= this.dias;
 		//console.log("Cliente",this.cliente)
 		
 		if(this.id != null){
@@ -282,6 +293,22 @@ export class ClienteAddComponent{
 		//this.getEnvasesEnprestamo();
 	}
 
+	getListaPrecios(){
+		this._listaPrecioService.getListaPrecios().subscribe(
+			result =>{
+				if(result.status == 200){
+					 this.listaPrecios = result.json();
+					 //console.log(result.json());
+				}else{
+					console.log("Result Controler",result.status); 
+				}
+			},
+			error =>{
+				console.log(<any>error);
+			}
+		);
+	}
+
 //	getEnvasesEnprestamo(){
 //		this.envasesEnprestamo;
 		//console.log(this.envasesEnprestamo);
@@ -293,7 +320,7 @@ export class ClienteAddComponent{
 				.subscribe(result => {
 				////console.log("Result Controler",result.status);
  					if(result.status=200){
- 						//this._router.navigate(['/clientes']);
+ 						this._router.navigate(['/clientes']);
  					}else{
  						//204 -- No Content
  						console.log("Result Controler",result.status);
@@ -311,7 +338,7 @@ export class ClienteAddComponent{
 			.subscribe(result => {
 					if(result.status==201){
 						//console.log("Result Controler:",result.status);
-						//this._router.navigate(['/clientes']);
+						this._router.navigate(['/clientes']);
 					}else{
 						console.log("Result Controler:",result.status);
 				}
@@ -319,6 +346,17 @@ export class ClienteAddComponent{
 				error => {
 					console.log(<any>error);
 				})
+	}
+
+	getSemana(){
+		this.semana[0]=false;
+		this.semana[1]=false;
+		this.semana[2]=false;
+		this.semana[3]=false;
+		this.semana[4]=false;
+		this.semana[5]=false;
+		this.semana[6]=false;
+
 	}
 
 
