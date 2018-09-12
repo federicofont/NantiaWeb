@@ -6,7 +6,8 @@ import { Usuario} from './usuario.model';
 @Component({
 	selector: 'usuarios-list',
 	templateUrl: '../usuarios/usuarios-list.html',
-	providers: [UsuarioService]
+	providers: [UsuarioService],
+	styleUrls: ['./usuario.style.css']
 })
 export class UsuariosListComponent{
 	public titulo: string;

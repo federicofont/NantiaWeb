@@ -10,10 +10,7 @@ import { Rol } from './rol.model';
 	selector: 'formRolAdd',
 	templateUrl: '../roles/rol-add.html',
 	providers: [RolService],
-	styles: [`
-		.ng-invalid.ng-touched:not(form){
-		border:1px solid red;
-		}`]
+	styleUrls: ['./roles.style.css']
 })
 
 export class RolAddComponent{

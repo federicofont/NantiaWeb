@@ -82,8 +82,8 @@ export class FabricaAddComponent{
 			this.getFabrica(this.id);
 
 		}else{
-			//this.fabrica.stock = this.stock;
-			//this.fabrica.stock.setProductoStock=this.setProductoStock;
+		  //this.fabrica.stock = this.stock;
+		  //this.fabrica.stock.setProductoStock=this.setProductoStock;
 		  this.getProductos();
 		  this.getEnvases();
 		}
@@ -96,8 +96,10 @@ export class FabricaAddComponent{
 				result =>{
 					if(result.status == 200){
 						 this.fabrica = result.json();
+						 this.setEnvaseStock=this.fabrica.stock.setEnvaseStock;
+						 this.setProductoStock= this.fabrica.stock.setProductoStock;
 						 console.log("Result fabrica:",this.fabrica);
-						 console.log("Result fabrica:",result.json());
+						 console.log("json fabrica:",result.json());
 
 					}else{
 						console.log("ID:",id," Result Controler:",result.status);
@@ -169,8 +171,12 @@ export class FabricaAddComponent{
 		);
 	}
 
-	guardar(formAdd:NgForm){
+	guardar(formAdd:NgForm, formProductoAdd:NgForm,productoStock:ProductoStock){
+		console.log("formAdd",formAdd.value);
+		console.log("formProductoAdd",formProductoAdd.value);
+		console.log("productoStock",productoStock);
 
+		/*
 		this.stock.fecha=this.fechaActual;
 		this.stock.setEnvaseStock=this.setEnvaseStock;
 		this.stock.setProductoStock=this.setProductoStock;
@@ -183,6 +189,7 @@ export class FabricaAddComponent{
 		else{
 			this.addFabrica();
  		}
+ 		*/
 
 	}
 
@@ -207,7 +214,7 @@ export class FabricaAddComponent{
 			.subscribe(result => {
 					if(result.status==201){
 						console.log("Result Controler",result.status);
-						//this._router.navigate(['/fabrica/'+result.json().id]);
+						this._router.navigate(['/fabrica/']);
 					}else{
 						console.log("Result Controler",result.status);
 				}

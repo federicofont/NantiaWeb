@@ -1,84 +1,46 @@
-<head>
-
-    <!-- Bootstrap Core CSS -->
-    <!--link href="../../assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"-->
-
-</head>
-
 <body>
 
-	<div class="container-fluid">
-	<br>
+      <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/add-user-3-32.ico" alt="Nuevo Usuario" style="float:left"  [routerLink]="['/usuario-add']" href="#" class="btn btn-sm" value="Nuevo Usuario" /> 
+        
+         <h5 id="titulo"> {{titulo}} </h5>
+      
+      </div>
+  
 
-		<!-- Breadcrumbs-->
-		<!--ol class="breadcrumb">
-			<li class="breadcrumb-item">
-				<a href="#">{{titulo}}</a>
-			</li>
-		</ol-->
+    <div class="container bg-light">
+        <div class="row">
+        	
+            <div *ngFor="let usuario of usuarios"class="card card-body col-sm-2 py-2">
+            	<div class="botones">
+                    <img src="assets/bootstrap/image/ico/user-16.ico" style="float:left"/> 
+                </div>
+                    <a>{{usuario.nombre}} {{usuario.apellido}} </a> 
+			        <p>{{usuario.rol.nombreRol}} </p>
 
-		<!-- Informacion -->
-	    <div class="card">
-	        
-	        <div class="card-header">
-	          {{titulo}}
-	      	</div>
+                <div class="botones" *ngIf="confirmado != usuario.id">
 
-	        <div class="card-body">
-	        
-				<img src="assets/bootstrap/image/ico/add-user-3-32.ico" alt="Nuevo Usuario" style="float:left"  [routerLink]="['/usuario-add']" href="#" class="btn btn-sm" value="Nuevo Usuario" /> 
+                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/usuarios',usuario.id]" href="#" class="btn btn-sm" value="Ver" /> 
 
-		        <br><br><br>
+                    <img src="assets/bootstrap/image/ico/edit-9-16.ico" alt="Editar" style="float:left"  [routerLink]="['/usuario-edit',usuario.id]" href="#" class="btn btn-sm" value="Editar" /> 
 
-				<div *ngIf="usuarios">
-				    <div class="col-lg-3" *ngFor="let usuario of usuarios">
-				            
-				        <img src="assets/bootstrap/image/ico/user-16.ico"/>
+                    <img src="assets/bootstrap/image/ico/delete-16.ico" alt="Borrar" style="float:left"  
+                    (click)="borrarConfirm(usuario.id)" href="#" class="btn btn-sm" value="Borrar" /> 
 
-				    	<div class="Caption">
-				    		
-			                <a>{{usuario.nombre}} {{usuario.apellido}} </a> 
-			                <p>{{usuario.rol.nombreRol}} </p>
-			                <!--p>{{usuario.direccion.direccion}}</p-->  
+                </div>
 
-			               	<div class="botones" *ngIf="confirmado != usuario.id">
+                <div clas="seguro" *ngIf="confirmado == usuario.id">
+                <p class="text-danger">¿Esta seguro de borrar el usuario?</p>
 
-			                	<img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/usuarios',usuario.id]" href="#" class="btn btn-sm" value="Ver" /> 
+                <img src="assets/bootstrap/image/ico/check-mark-3-16.ico" alt="Borrar" style="float:left"  (click)="onDeleteEnvase(usuario.id)" href="#" class="btn btn-sm" value="Borrar"/>
 
-			                    <img src="assets/bootstrap/image/ico/edit-9-16.ico" alt="Editar" style="float:left"  [routerLink]="['/usuario-edit',usuario.id]" href="#" class="btn btn-sm" value="Editar" /> 
+                <img src="assets/bootstrap/image/ico/x-mark-16.ico" alt="Borrar" style="float:left"  (click)="cancelarConfirm()" href="#" class="btn btn-sm" value="Borrar" /> 
 
-			                    <img src="assets/bootstrap/image/ico/delete-16.ico" alt="Borrar" style="float:left"  
-			                    (click)="borrarConfirm(usuario.id)" href="#" class="btn btn-sm" value="Borrar" /> 
+                </div>
+            </div>
 
-			                </div>
-
-			                <div clas="seguro" *ngIf="confirmado == usuario.id">
-			                    <p  class="text-danger">¿Esta seguro de borrar el usuario?</p>
-
-			                    <img src="assets/bootstrap/image/ico/check-mark-3-16.ico" alt="Borrar" style="float:left"  (click)="onDeleteUsuario(usuario.id)" href="#" class="btn btn-sm" 
-			                      value="Borrar" />
-
-			                    <img src="assets/bootstrap/image/ico/x-mark-16.ico" alt="Borrar" style="float:left"  
-			                    (click)="cancelarConfirm()" href="#" class="btn btn-sm" value="Borrar" /> 
-
-			                </div>
-
-				    	</div>
-					<br>
-					</div>
-				</div>
-
-	        <!--END Card -->
-	        </div>
-
-	        <!--Page Footer -->
-	        <div class="card-footer small text-muted">
-
-	        </div>
-
-	    </div>
-
-	<!-- END container-fluid -->
-	</div>
-
+        </div>
+    </div>
 </body>
+
+

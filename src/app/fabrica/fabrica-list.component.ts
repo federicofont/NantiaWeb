@@ -6,7 +6,8 @@ import { Fabrica} from './fabrica.model';
 @Component({
 	selector: 'fabricas-list',
 	templateUrl: '../fabrica/fabrica-list.html',
-	providers: [FabricaService]
+	providers: [FabricaService],
+	styleUrls: ['./fabrica.style.css']
 })
 export class FabricaListComponent{
 	public titulo: string;
@@ -86,7 +87,7 @@ export class FabricaListComponent{
 	onDeleteFabrica(id){
 		this._fabricaService.deleteFabrica(id).subscribe(
 			result =>{
-				if(result.status == 200){
+				if(result.status == 204){
 					this.getFabricas();
 				}else{
 					alert("Error al borrar fabrica")

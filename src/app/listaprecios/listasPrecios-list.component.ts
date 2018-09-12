@@ -6,7 +6,8 @@ import { ListaPrecio} from './listaprecio.model';
 @Component({
 	selector: 'listaprecios-list',
 	templateUrl: '../listaprecios/listaprecios-list.html',
-	providers: [ListaPrecioService]
+	providers: [ListaPrecioService],
+	styleUrls: ['./listaprecio.style.css']
 })
 export class ListaPreciosListComponent{
 	public titulo: string;
@@ -21,7 +22,7 @@ export class ListaPreciosListComponent{
 		private _router: Router,
 		private _listaprecioService: ListaPrecioService
 	){
-		this.titulo = 'Listado de precios';
+		this.titulo = 'Listas de precios';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
 			//console.log("id",parametros.id);

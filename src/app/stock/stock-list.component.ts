@@ -7,7 +7,8 @@ import { StockService } from './stock.service';
 @Component({
 	selector: 'stocks-list',
 	templateUrl: '../stock/stock-list.html',
-	providers: [StockService]
+	providers: [StockService],
+	styleUrls: ['./stock.style.css']
 })
 export class StockListComponent{
 	public titulo: string;

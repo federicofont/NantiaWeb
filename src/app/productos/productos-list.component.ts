@@ -6,7 +6,8 @@ import { Producto} from './producto.model';
 @Component({
 	selector: 'productos-list',
 	templateUrl: './productos-list.html',
-	providers: [ProductoService]
+	providers: [ProductoService],
+	styleUrls: ['./producto.style.css']
 })
 export class ProductosListComponent{
 	public titulo: string;

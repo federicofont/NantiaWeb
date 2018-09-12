@@ -6,7 +6,8 @@ import { Rol} from './rol.model';
 @Component({
 	selector: 'roles-list',
 	templateUrl: './roles-list.html',
-	providers: [RolService]
+	providers: [RolService],
+	styleUrls: ['./roles.style.css']
 })
 export class RolesListComponent{
 	public titulo: string;

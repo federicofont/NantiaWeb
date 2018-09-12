@@ -15,7 +15,7 @@
   
     <!--h5 class="card-title">Special title treatment</h5-->
     <!--p class="card-text">With supporting text below as a natural lead-in to additional content.</p-->
-    <form (ngSubmit)="guardar(formAdd)" #FabricaAdd="ngForm" class="col-lg-12" id="formAdd" 
+    <form (ngSubmit)="guardar(formAdd, formProductoAdd,productoStock)" #formAdd="ngForm" class="col-lg-12" id="formAdd" 
         style="margin:0 auto;width:75%;text-align:left">
 
         <div class="row">
@@ -29,7 +29,7 @@
         </div>
 
         <div class="row">
-        <form (ngSubmit)="addProducto(formProductoAdd)" #formProductoAdd="ngForm" class="col-lg-5" id="addProducto">
+        <form (ngSubmit)="addProducto(formProductoAdd)" #formProductoAdd="ngForm" class="col-lg-5" id="formProductoAdd">
 
                 
 
@@ -72,7 +72,7 @@
                                         {{productoStock.producto.descripcion}} 
                                     </td>
                                     <td>
-                                        <input class="form-control input-number" type="number" min="0" step="0.50" max="100000" data-number-to-fixed="2" 
+                                        <input class="form-control input-number" type="number" min="0" step="1" max="100000" data-number-to-fixed="2" 
                                         data-number-stepfactor="100" #descripcion="ngModel" 
                                         [(ngModel)]="productoStock.cantidad" 
                                         [ngModelOptions]="{standalone: true}" contenteditable="false">
@@ -87,7 +87,7 @@
             </form>
 
 
-        <form (ngSubmit)="addEnvase(formEnvaseAdd)" #formEnvaseAdd="ngForm" class="col-lg-5" id="addEnvase">
+        <form (ngSubmit)="addEnvase(formEnvaseAdd)" #formEnvaseAdd="ngForm" class="col-lg-5" id="formEnvaseAdd">
 
                 <!--div class="row">
 
@@ -130,7 +130,7 @@
                                         {{envaseStock.envasesTipos.descripcion}} 
                                     </td>
                                     <td>
-                                        <input class="form-control input-number" type="number" min="0" step="0.50" max="100000" data-number-to-fixed="2" 
+                                        <input class="form-control input-number" type="number" min="0" step="1" max="100000" data-number-to-fixed="2" 
                                         data-number-stepfactor="100" #descripcion="ngModel" 
                                         [(ngModel)]="envaseStock.cantidad" 
                                         [ngModelOptions]="{standalone: true}" contenteditable="false">
