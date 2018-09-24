@@ -5,6 +5,6 @@ export class Ruta{
 		public id: number = null,
 		public nombre: string = null,
 		public dia: string = null,
-		public rutaCliente: RutaCliente = null
+		public rutaCliente: RutaCliente = new RutaCliente()
 		){}
 }

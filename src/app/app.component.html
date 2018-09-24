@@ -7,40 +7,40 @@
 
 <body>
 
-<!---------------------------------------------------- 
+    <!---------------------------------------------------- 
 Barra Superior
 ------------------------------------------------------->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <img src="../assets/bootstrap/image/logo2.png" class="img-rounded" width="130" href="index.html">
-            
+
             <img src="../assets/bootstrap/image/ico/line-width-16.ico" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <!--a class="navbar-brand" href="index.html">Soda Nanatia</a-->
         </div>
 
-        <div class="btn-group"  id="userDropdown">
+        <div class="btn-group" id="userDropdown">
             <img data-toggle="dropdown" src="../assets/bootstrap/image/ico/user-16.ico">
 
             <div class="dropdown-menu" id="userDropdownN2">
-              <a href="#"><img src="../assets/bootstrap/image/ico/user-16.ico"> Usuario</a><br>
-              <a href="#"><img src="../assets/bootstrap/image/ico/settings-5-16.ico"> Configuración</a>
-              <div class="dropdown-divider"></div>
-              <a href="/login"><img src="../assets/bootstrap/image/ico/logout-16.ico"> Logout</a>
-            </div>  
+                <a href="#"><img src="../assets/bootstrap/image/ico/user-16.ico"> Usuario</a><br>
+                <a href="#"><img src="../assets/bootstrap/image/ico/settings-5-16.ico"> Configuración</a>
+                <div class="dropdown-divider"></div>
+                <a href="/login"><img src="../assets/bootstrap/image/ico/logout-16.ico"> Logout</a>
+            </div>
 
             <a style="margin-left: 10px"> <img src="../assets/bootstrap/image/ico/help-16.ico"> </a>
         </div>
 
     </nav>
- 
-  
-  <div class="container-fluid">
-    <!-- Control the column width, and how they should appear on different devices -->
-    <div class="row">
-      <div class="col-sm-2 bg-light">
-          <div class="navbar-default sidebar" role="navigation" >
-                <div class="sidebar-nav navbar-collapse">
-<!-- /Serch-->                        
+
+
+    <div class="container-fluid">
+        <!-- Control the column width, and how they should appear on different devices -->
+        <div class="row">
+            <div class="col-sm-2 bg-light">
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <!-- /Serch-->
                         <!--tr class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Search...">
@@ -59,7 +59,7 @@ Barra Superior
 
                         <tr class="nav-item active">
                             <a class="nav-link" href="#home" [routerLink]="['/home']" [routerLinkActive]="['activado']">
-                                <img src="../assets/bootstrap/image/ico/home-16.ico"> Inicio 
+                                <img src="../assets/bootstrap/image/ico/home-16.ico"> Inicio
                                 <span class="sr-only">(current)</span></a>
                         </tr>
 
@@ -99,10 +99,14 @@ Barra Superior
                         </tr>
 
                         <tr class="nav-item active">
-                            <a class="nav-link" href="#stock" [routerLink]="['/fabrica']" [routerLinkActive]="['activado']">
+                            <a class="nav-link" href="#fabrica" [routerLink]="['/fabrica']" [routerLinkActive]="['activado']">
                                 <img src="../assets/bootstrap/image/ico/factory-16.ico"> Fabrica <span class="sr-only">(current)</span></a>
                         </tr>
 
+                        <tr class="nav-item active">
+                            <a class="nav-link" href="#ventas" [routerLink]="['/venta-add']" [routerLinkActive]="['activado']">
+                                <img src="../assets/bootstrap/image/ico/cart-74-16.ico"> Nueva Venta <span class="sr-only">(current)</span></a>
+                        </tr>
                         <!--tr class="nav-item active">
                             <a class="nav-link" href="#mapa" [routerLink]="['/mapa']" [routerLinkActive]="['activado']">
                                 <img src="../assets/bootstrap/image/ico/map-5-16.ico"> Reparto <span class="sr-only">(current)</span></a>
@@ -113,23 +117,23 @@ Barra Superior
                                 <img src="../assets/bootstrap/image/ico/clipboard-2-16.ico"> Reportes <span class="sr-only">(current)</span></a>
                         </tr-->
 
+                    </div>
                 </div>
-            </div>
-<!---------------------------------------------------- /FIN Barra Izquierda 
+                <!---------------------------------------------------- /FIN Barra Izquierda 
 ------------------------------------------------------->
 
-      </div>
+            </div>
 
-      <div class="container-fluid col-sm-10 bg-light"> 
+            <div class="container-fluid col-sm-10 bg-light">
 
-        <router-outlet> </router-outlet>
+                <router-outlet> </router-outlet>
 
-      </div>
-    
+            </div>
+
+        </div>
+        <br>
+
     </div>
-    <br>
-    
-  </div>
 
 
 </body>

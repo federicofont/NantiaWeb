@@ -176,7 +176,7 @@ export class FabricaAddComponent{
 		console.log("formProductoAdd",formProductoAdd.value);
 		console.log("productoStock",productoStock);
 
-		/*
+		
 		this.stock.fecha=this.fechaActual;
 		this.stock.setEnvaseStock=this.setEnvaseStock;
 		this.stock.setProductoStock=this.setProductoStock;
@@ -189,7 +189,7 @@ export class FabricaAddComponent{
 		else{
 			this.addFabrica();
  		}
- 		*/
+ 		
 
 	}
 

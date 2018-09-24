@@ -6,10 +6,10 @@ export class Reparto{
 	constructor(
 		public id: number = null,
 		public descripcion: string = null,
-		public vendedor1: Usuario = null,
-		public vendedor2: Usuario = null,
-		public vehiculo: Vehiculo = null,
-		public fecha: Date = null,
-		public ruta: Ruta = null
+		public vendedor1: Usuario = new Usuario(),
+		public vendedor2: Usuario = new Usuario(),
+		public vehiculo: Vehiculo = new Vehiculo(),
+		public fecha: Date = new Date(),
+		public ruta: Ruta = new Ruta()
 		){}
 }

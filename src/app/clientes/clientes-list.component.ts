@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ClienteService } from './cliente.service';
-import { Cliente} from './cliente.model';
+import { Cliente } from './cliente.model';
 
 @Component({
 	selector: 'clientes-list',

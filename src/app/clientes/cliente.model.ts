@@ -1,7 +1,7 @@
 import { Direccion } from './direccion.model';
 import { EnvaseEnPrestamo } from './envaseEnprestamo.model';
 
-export class Cliente {
+export class Cliente{
 	constructor(
 		public id : number=null,
 		public direccion : Direccion=null,
@@ -10,8 +10,8 @@ export class Cliente {
 		public nombre1: string=null, 
 		public nombre2: string=null, 
 		public saldo : number=null, 
-		public fechaNacimiento : Date=null, 
-		public fechaAlta : Date=null, 
+		public fechaNacimiento : Date= new Date(),
+		public fechaAlta : Date= new Date(), 
 		public celular : string=null, 
 		public mail : string=null, 
 		public idLista : number=null, 

@@ -66,6 +66,10 @@ import { VehiculoListComponent } from './vehiculo/vehiculo-list.component';
 import { VehiculoAddComponent } from './vehiculo/vehiculo-add.component';
 //import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
 
+//import { VehiculoListComponent } from './vehiculo/vehiculo-list.component';
+import { VentaAddComponent } from './venta/venta-add.component';
+//import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -119,8 +123,12 @@ import { VehiculoAddComponent } from './vehiculo/vehiculo-add.component';
 //  RepartoDetailComponent,
 
     VehiculoListComponent,
-    VehiculoAddComponent
+    VehiculoAddComponent,
 //  VehiculoDetailComponent,
+
+//    VentaListComponent,
+    VentaAddComponent
+//  VentaDetailComponent,
     
   ],
   imports: [
