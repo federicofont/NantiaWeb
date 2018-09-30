@@ -9,7 +9,7 @@ export class Reparto{
 		public vendedor1: Usuario = new Usuario(),
 		public vendedor2: Usuario = new Usuario(),
 		public vehiculo: Vehiculo = new Vehiculo(),
-		public fecha: Date = new Date(),
+		public fecha: string = null,
 		public ruta: Ruta = new Ruta()
 		){}
 }

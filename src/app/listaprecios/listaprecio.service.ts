@@ -27,7 +27,7 @@ export class ListaPrecioService{
 	addListaPrecio(listaprecio:ListaPrecio){
 		let body = JSON.stringify(listaprecio);
 		let headers = new Headers({'Content-Type':'application/json'});
-		console.log("body",body);
+		//console.log("body",body);
 
 		return this._http.post(this.url+'listaprecio',body,{headers: headers});
 	}

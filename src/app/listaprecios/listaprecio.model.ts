@@ -4,7 +4,7 @@ export class ListaPrecio{
 	constructor(
 		public id:number=null,
 		public nombreLista:string=null,
-		public fechaAlta:Date = new Date(),
+		public fechaAlta:string = null,//new Date(),
 		public setProductoLista:ProductoLista[]=[]
 		){}
 }

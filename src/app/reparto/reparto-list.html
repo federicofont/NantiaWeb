@@ -1,19 +1,14 @@
 <body>
 
-    <div class="card"> 
-      <div class="card-header">
-        
-         {{titulo}}
-      
+      <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/add-32.ico" alt="Nuevo" style="float:left"  
+        [routerLink]="['/reparto-add']" href="#" class="btn btn-sm" value="Nuevo" />
+         <h5 id="titulo"> {{titulo}} </h5>
       </div>
-    </div>
   
 
     <div class="container">
         <div class="row">
-            <div class="botones">
-                <img src="assets/bootstrap/image/ico/add-32.ico" alt="Nuevo Cliente" style="float:left"  [routerLink]="['/reparto-add']" href="#" class="btn btn-sm" value="Nuevo Cliente" /> 
-            </div>
             
             <div *ngFor="let reparto of repartos"class="card card-body col-sm-2 py-2">
                 <div class="botones">

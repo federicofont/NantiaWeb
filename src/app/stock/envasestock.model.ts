@@ -4,7 +4,7 @@ export class EnvaseStock{
 	constructor(
 		public id: number = null,
 		public cantidad: number = null,
-		public fecha: Date = new Date(),
+		public fecha: string = null,
 		public envasesTipos: Envase = new Envase()
 
 		){}

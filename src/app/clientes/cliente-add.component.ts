@@ -14,17 +14,18 @@ import { EnvaseService } from '../envases/envase.service';
 import { ListaPrecio} from '../listaprecios/listaprecio.model';
 import { ListaPrecioService } from '../listaprecios/listaprecio.service';
 
+import { Fecha } from '../fecha';
+
 @Component ({
 	selector: 'formClienteAdd',
 	templateUrl: './cliente-add.html',
-	providers: [ClienteService, EnvaseService,ListaPrecioService],
+	providers: [ClienteService, EnvaseService,ListaPrecioService, Fecha],
 	styleUrls: ['./cliente.style.css']
 })
 
 export class ClienteAddComponent{
 	
 	public titulo: string;
-	public fechaActual :Date = new Date();
 	
 	id:number;
 	marcadores:Marcador[]=[];
@@ -58,7 +59,8 @@ export class ClienteAddComponent{
 				private _router:Router,
 				private _activatedRoute:ActivatedRoute,
 				private _envaseService: EnvaseService,
-				private _listaPrecioService:ListaPrecioService
+				private _listaPrecioService:ListaPrecioService,
+				private _fecha:Fecha
 				){
 
 		this._activatedRoute.params
@@ -222,7 +224,9 @@ export class ClienteAddComponent{
 		//Asigno el objeto direccion dentro del objeto cliente
 		this.cliente.direccion = this.direccion;
 		this.cliente.setEnvasesEnPrestamo=this.envasesEnprestamo;
-		this.cliente.fechaAlta=this.fechaActual;
+		this.cliente.fechaAlta= this._fecha.getDate();
+		//console.log("fechaNacimiento",clienteAdd.value.fechaNacimiento);
+		this.cliente.fechaNacimiento=this._fecha.getDateStrStr(clienteAdd.value.fechaNacimiento);
 		this.cliente.idLista=this.listaPrecio.id;
 		//this.cliente.dias= this.dias;
 		//console.log("Cliente",this.cliente)

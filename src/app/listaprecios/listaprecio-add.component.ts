@@ -11,10 +11,12 @@ import { ProductoService } from '../productos/producto.service';
 import { ProductoLista } from './productolista.model';
 //import { ProductoListaService } from '../productolistas/productolista.service';
 
+import { Fecha } from '../fecha';
+
 @Component ({
 	selector: 'formListaPrecioAdd',
 	templateUrl: './listaprecio-add.html',
-	providers: [ListaPrecioService,ProductoService],
+	providers: [ListaPrecioService,ProductoService, Fecha],
 	styles: [`
 		.ng-invalid.ng-touched:not(form){
 		border:1px solid red;
@@ -39,7 +41,8 @@ export class ListaPrecioAddComponent{
 	constructor(private _listaprecioService: ListaPrecioService,
 				private _router:Router,
 				private _activatedRoute:ActivatedRoute,
-				private _productoService: ProductoService
+				private _productoService: ProductoService,
+				private _Fecha:Fecha
 				){
 
 		this._activatedRoute.params
@@ -98,7 +101,7 @@ export class ListaPrecioAddComponent{
 
 	getProductosLista(){
 		//this.productosLista;
-		console.log("productosLista:",this.productosLista);
+		//console.log("productosLista:",this.productosLista);
 	}
 
 	getProductos(){
@@ -120,7 +123,8 @@ export class ListaPrecioAddComponent{
 	guardar(formlistaAdd:NgForm){
 
 		this.listaprecio.setProductoLista=this.productosLista;
-		this.listaprecio.fechaAlta = this.fechaActual;
+		this.listaprecio.fechaAlta = this._Fecha.getDate();
+		//console.log(this.listaprecio.fechaAlta);
 		//console.log("this.listaprecio",this.listaprecio);
 		if(this.id != null){
 			this.listaprecio.id=this.id;
@@ -184,12 +188,12 @@ export class ListaPrecioAddComponent{
 
 		const nuevo_productoLista = new ProductoLista( null,
 											formproductosAdd.controls['precio'].value,
-											null,
+											this._Fecha.getDate(),
 											this.productos[ ind ]);
 
 		//console.log("nuevo_envaseEnprestamo",nuevo_envaseEnprestamo);
 		this.productosLista.push(nuevo_productoLista);
-		this.getProductosLista();
+		//this.getProductosLista();
 	}
 
 

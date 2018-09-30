@@ -27,7 +27,7 @@ export class FabricaService{
 	addFabrica(fabrica:Fabrica){
 		let body = JSON.stringify(fabrica);
 		let headers = new Headers({'Content-Type':'application/json'});
-		console.log("Fabrica(body):", body);
+		//console.log("Fabrica(body):", body);
 
 		return this._http.post(this.url+'fabrica',body,{headers: headers});
 	}

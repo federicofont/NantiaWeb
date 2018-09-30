@@ -5,9 +5,8 @@ import { ProductoVenta } from './productoVenta.model';
 export class Venta{
 	constructor(
 		public id:number = null,
-		public fecha:Date = null,//new Date(),
+		public fecha:string = null,
 		public usuario:Usuario = new Usuario(),
-		//public cliente:Cliente = new Cliente(),
 		public cliente:Cliente = new Cliente(),
 		public setProductoVenta:ProductoVenta[] = [],
 		public descuento:number = 0,

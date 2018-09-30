@@ -1,27 +1,22 @@
 <body>
 
-    <div class="card"> 
-      <div class="card-header">
+      <div class="card-header border bg-light">
         <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/vehiculo']" href="#" value="Listado de Vehiculos" style="float:left" />
-         <p class="col-sm-3">{{titulo}}</p>
+         <h5 id="titulo"> {{titulo}} </h5>
       
       </div>
-    </div>
-  
 
-<div class="container-fluid bg-light py-3" >
-    <!--form id="contact-form" method="post" action="contact.php" role="form"-->
-    <form (ngSubmit)="guardar(vehiculoAdd)" #vehiculoAdd="ngForm" class="col-lg-9" id="formVehiculoAdd" 
-        style="margin:0 auto;width:75%;text-align:left">
-        
-    <!-- Datos Personales-->    
-        <div class="botones">
-            <img src="assets/bootstrap/image/ico/guest-16.ico" style="float:left"/> 
-        </div>
+<div class="bg-light">
+    <form (ngSubmit)="guardar(vehiculoAdd)" #vehiculoAdd="ngForm" id="formVehiculoAdd">
 
-        <div class="card-header">
+        <div class="card bg-light">
+
+            <div class="botones"  id='margen'>
+                <img src="assets/bootstrap/image/ico/truck-16.ico" style="float:left"/> 
+            </div>
             
-            <div class="row">
+            <div class="row" id='margen'>
+
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="form_phone">Matricula</label>
@@ -44,11 +39,11 @@
                         <input type="text" #descripcion="ngModel" name="modelo" [(ngModel)]="vehiculo.modelo" class="form-control" />
                     </div>
                 </div>
-            
+
             </div>
 
-            <div class="row">
-            
+            <div class="row" id='margen'>
+
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="form_email">Descripcion</label>
@@ -63,96 +58,13 @@
                         <input type="checkbox"  #descripcion="ngModel" name="activo" [(ngModel)]="vehiculo.activo" class="form-control" />
                     </div>
                 </div>
-            
-            </div>
-
-        </div>
-
-   <!-- Envases en prestamo-->    
-        <div class="botones">
-            <img src="assets/bootstrap/image/ico/soda-bottle-16.ico" style="float:left"/> 
-        </div>
-
-        <div class="card-header">
-
-            <form (ngSubmit)="addEnvaseEnPrestamo(envaseAdd)" #envaseAdd="ngForm" class="col-lg-6" id="addEnvaseEnPrestamo">       
-
-            <div class="row">
-
-                <div class="col-sm-6">
-
-                    <table class="table table-bordered table-responsive-md table-striped text-center">
-                        <thead>
-                            <tr>
-                                <th class="text-center" scope="col col-sm-6">Producto</th>
-                                <th class="text-center" scope="col col-sm-3">Precio</th>
-                            </tr>
-
-                            <tr>                                                      
-                                <td>
-                                    <select [(ngModel)]="producto.productoId" name="productoId" 
-                                            class="custom-select mb-3">
-                                        <option *ngFor="let producto of productos; let ind = index" 
-                                        [ngValue]="producto.productoId">{{producto.descripcion}}
-                                        </option>
-                                    </select>
-                                </td>
-                                
-                                <td>
-                                    <div >
-                                        <input  class="form-control input-number" type="number" min="0" 
-                                                max="100000" step="1" #descripcion="ngModel" 
-                                                name="cantidad" ng-value="productoStock.cantidad"
-                                                [(ngModel)]="productoStock.cantidad">
-                                    </div>
-                                </td>
-                                <td>                    
-                                    <button type="ngSubmitmit" value="Add Producto" class="btn btn-link" >
-                                        <img src="assets/bootstrap/image/ico/plus-5-16.ico" /> 
-                                    </button>
-                                </td>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr *ngFor="let productoLista of productosLista; trackBy:indexTracker">
-                                <td>
-                                    {{productoLista.productos.descripcion}} 
-                                </td>
-                                <td>
-                                    <input class="form-control input-number" type="number" min="0" step="0.50" max="100000" data-number-to-fixed="2" 
-                                    data-number-stepfactor="100" #descripcion="ngModel" 
-                                    [(ngModel)]="productoLista.precio" [ngModelOptions]="{standalone: true}" contenteditable="false">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-
 
             </div>
-            </form>  
 
-            
         </div>
-
-        <div class="card-header">
-
+            <br/>
             <input type="submit" value="{{titulo}}" class="btn btn-success" />  
-        </div>
-
     </form>
 </div>
 
 </body>
-
-
-
-
-
-
-
-
-
-

@@ -6,7 +6,8 @@ import { Vehiculo} from './vehiculo.model';
 @Component({
     selector: 'vehiculos-list',
     templateUrl: '../vehiculo/vehiculo-list.html',
-    providers: [VehiculoService]
+    providers: [VehiculoService],
+    styleUrls: ['./vehiculo.style.css']
 })
 export class VehiculoListComponent{
     public titulo: string;

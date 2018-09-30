@@ -136,7 +136,7 @@
                     <table class="table table-responsive-md table-striped">
                         <thead>                            
                             <tr>
-                                <th class="text-left"><h6>{{fechaActual | date}}</h6></th>
+                                <th class="text-left"><h6>{{venta.fecha | date}}</h6></th>
                                 <th class="text-right"><h6>Fabrica: <small> {{venta.fabricaid}} </small></h6></th>
                             </tr>
                             <tr>
@@ -187,7 +187,7 @@
                                 <th>{{venta.totalVenta | currency}} </th>
                             </tr>
                             <tr>
-                                <th class="text-right" scope="col col-sm-3">IVA(22%)</th>
+                                <th class="text-right" scope="col col-sm-3">IVA</th>
                                 <th>{{venta.ivaTotal | currency}} </th>
                             </tr>
                             <tr>

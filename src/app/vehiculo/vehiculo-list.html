@@ -1,25 +1,20 @@
 <body>
 
-    <div class="card"> 
-      <div class="card-header">
-        
-         {{titulo}}
-      
+      <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/add-32.ico" alt="Nuevo Cliente" style="float:left"  [routerLink]="['/vehiculo-add']" href="#" class="btn btn-sm" value="Nuevo Cliente" />
+         <h5 id="titulo"> {{titulo}} </h5>
       </div>
-    </div>
   
 
     <div class="container">
         <div class="row">
-            <div class="botones">
-                <img src="assets/bootstrap/image/ico/add-32.ico" alt="Nuevo Cliente" style="float:left"  [routerLink]="['/vehiculo-add']" href="#" class="btn btn-sm" value="Nuevo Cliente" /> 
-            </div>
-            
+
             <div *ngFor="let vehiculo of vehiculos"class="card card-body col-sm-2 py-2">
                 <div class="botones">
                     <img src="assets/bootstrap/image/ico/truck-16.ico" style="float:left"/> 
                 </div>
-                    <a>{{vehiculo.nombre}} </a> 
+                    <a>{{vehiculo.descripcion}} </a> 
+                    <a>{{vehiculo.matricula}} </a> 
 
                 <div class="botones" *ngIf="confirmado != vehiculo.id">
 

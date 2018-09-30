@@ -19,11 +19,12 @@ import { ProductoLista } from '../listaprecios/productolista.model';
 import { Producto } from '../productos/producto.model';
 import { ListaPrecioService } from '../listaprecios/listaprecio.service';
 
+import { Fecha } from '../fecha';
 
 @Component ({
 	selector: 'formVentaAdd',
 	templateUrl: '../venta/venta-add.html',
-	providers: [VentaService, ListaPrecioService, ClienteService, UsuarioService, FabricaService],
+	providers: [VentaService, ListaPrecioService, ClienteService, UsuarioService, FabricaService, Fecha],
 	styleUrls: ['./venta.style.css']
 })
 
@@ -33,6 +34,7 @@ export class VentaAddComponent{
 	usuario: Usuario = new Usuario();
 	cliente: Cliente = new Cliente();
 	fabrica: Fabrica = new Fabrica();
+
 	clientes: Cliente[] =[];
 	producto:Producto = new Producto();
 	listaPrecio: ListaPrecio = new ListaPrecio();
@@ -73,7 +75,8 @@ export class VentaAddComponent{
 				private _listaprecioService:ListaPrecioService,
 				private _clienteService:ClienteService,
 				private _usuarioService:UsuarioService,
-				private _fabricaService:FabricaService
+				private _fabricaService:FabricaService,
+				private _fecha:Fecha
 				){
 		
 		this.titulo = 'Nuevo Venta';
@@ -91,6 +94,15 @@ export class VentaAddComponent{
 		this.getListaPrecio();
 		this.getUsuario();
 		this.getFabricaDeUsuario(45 /*this.usuario.fabrica.id*/)
+		//yyyy-MM-dd HH:mm:ss
+		//console.log(this.fechaActual.getFullYear);
+		/*console.log(this.fechaActual.getFullYear());
+		console.log(this.fechaActual.getMonth());
+		console.log(this.fechaActual.getDate());
+		console.log(this.fechaActual.getHours());
+		console.log(this.fechaActual.getMinutes());
+		console.log(this.fechaActual.getSeconds());
+		*/
 
 	}
 
@@ -182,7 +194,7 @@ export class VentaAddComponent{
 		//console.log("formproductosAdd.value.formCliente",formCliente);
 		this.getCliente(formCliente);
 
-		//this.venta.fecha = new Date();
+		this.venta.fecha = this._fecha.getDate();
 		 //yyyy-MM-dd HH:mm:ss
 		var ind:number=0;
 		//var idProducto:number = formproductosAdd.controls['productoId'].value;
@@ -240,7 +252,7 @@ export class VentaAddComponent{
 		
 			//Creo el venta desde el formulario
 			//this.venta=ventaAdd.value;
-			//console.log("Venta:",this.venta);
+			console.log("Venta:",this.venta);
 		
 			this._ventaService.addVenta(this.venta)
 				.subscribe(result => {

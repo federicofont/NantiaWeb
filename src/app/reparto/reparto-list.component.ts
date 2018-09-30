@@ -6,7 +6,8 @@ import { Reparto} from './reparto.model';
 @Component({
     selector: 'repartos-list',
     templateUrl: '../reparto/reparto-list.html',
-    providers: [RepartoService]
+    providers: [RepartoService],
+    styleUrls: ['./reparto.style.css']
 })
 export class RepartoListComponent{
     public titulo: string;

@@ -40,7 +40,6 @@ export class ListaPreciosListComponent{
 		}else{
 			//console.log("Entre al else")
 			this.getListaPrecio()
-			//console.log("listaprecios: ",this.listaprecios)
 		}
 }
 		getListaPrecios(){
@@ -48,6 +47,7 @@ export class ListaPreciosListComponent{
 				result =>{
 					if(result.status == 200){
 						 this.listaprecios = result.json();
+						 console.log("listaprecios: ",this.listaprecios)
 					}else{
 						//console.log("Result Controler",result.status); 
 					}

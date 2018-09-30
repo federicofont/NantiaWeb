@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
+//Texto en español
+import { LOCALE_ID } from '@angular/core';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
@@ -145,7 +148,9 @@ import { VentaAddComponent } from './venta/venta-add.component';
     })
   ],
   providers: [
-  	appRoutingProviders
+  	//{provide: LOCALE_ID, useValue: 'es' },
+      appRoutingProviders,
+    
   	],
   bootstrap: [AppComponent]
 })

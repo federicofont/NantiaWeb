@@ -17,12 +17,14 @@ import { ProductoService } from '../productos/producto.service';
 import { Envase } from '../envases/envase.model';
 import { EnvaseService } from '../envases/envase.service';
 
+import { Fecha } from '../fecha';
+
 //import { ProductoListaService } from '../productolistas/productolista.service';
 
 @Component ({
 	selector: 'formFabricaAdd',
 	templateUrl: './fabrica-add.html',
-	providers: [FabricaService,StockService,ProductoService,EnvaseService],
+	providers: [FabricaService,StockService,ProductoService,EnvaseService, Fecha],
 	styles: [`
 		.ng-invalid.ng-touched:not(form){
 		//border:1px solid red;
@@ -57,7 +59,8 @@ export class FabricaAddComponent{
 				private _router:Router,
 				private _activatedRoute:ActivatedRoute,
 				private _productoService: ProductoService,
-				private _envaseService: EnvaseService
+				private _envaseService: EnvaseService,
+				private _fecha:Fecha
 				){
 
 		this._activatedRoute.params
@@ -124,7 +127,7 @@ export class FabricaAddComponent{
 					 	var productoStock = new ProductoStock();
 					 		
 					 		productoStock.cantidad=0;
-					 		productoStock.fecha=this.fechaActual;
+					 		productoStock.fecha=this._fecha.getDate();
 					 		//productoStock.id=i;
 					 		productoStock.producto=this.productos[i];
 
@@ -152,7 +155,7 @@ export class FabricaAddComponent{
 					 	var envaseStock = new EnvaseStock();
 					 		
 					 		envaseStock.cantidad=0;
-					 		envaseStock.fecha=this.fechaActual;
+					 		envaseStock.fecha=this._fecha.getDate();;
 					 		//envaseStock.id=i;
 					 		envaseStock.envasesTipos=this.envases[i];
 
@@ -177,7 +180,7 @@ export class FabricaAddComponent{
 		console.log("productoStock",productoStock);
 
 		
-		this.stock.fecha=this.fechaActual;
+		this.stock.fecha=this._fecha.getDate();
 		this.stock.setEnvaseStock=this.setEnvaseStock;
 		this.stock.setProductoStock=this.setProductoStock;
 
@@ -214,6 +217,7 @@ export class FabricaAddComponent{
 			.subscribe(result => {
 					if(result.status==201){
 						console.log("Result Controler",result.status);
+						console.log("this.Fabrica",this.fabrica);
 						this._router.navigate(['/fabrica/']);
 					}else{
 						console.log("Result Controler",result.status);
@@ -241,7 +245,7 @@ export class FabricaAddComponent{
 
 		const nuevo_productoStock = new ProductoStock( null,
 											formProductoAdd.controls['cantidad'].value,
-											this.fechaActual,
+											this._fecha.getDate();,
 											this.setProductoStock[ ind ].producto);
 
 		//console.log("nuevo_productoStock",nuevo_productoStock);
@@ -264,7 +268,7 @@ export class FabricaAddComponent{
 
 		const nuevo_envaseStock = new EnvaseStock( null,
 											formEnvaseAdd.controls['cantidad'].value,
-											this.fechaActual,
+											this._fecha.getDate(),
 											this.setEnvaseStock[ ind ].envasesTipos);
 
 		console.log("nuevo_productoStock",nuevo_envaseStock);

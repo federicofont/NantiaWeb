@@ -14,12 +14,14 @@ import { ProductoService } from '../productos/producto.service';
 import { Envase } from '../envases/envase.model';
 import { EnvaseService } from '../envases/envase.service';
 
+import { Fecha } from '../fecha';
+
 //import { ProductoListaService } from '../productolistas/productolista.service';
 
 @Component ({
 	selector: 'formStockAdd',
 	templateUrl: './stock-add.html',
-	providers: [StockService,ProductoService,EnvaseService],
+	providers: [StockService,ProductoService,EnvaseService, Fecha],
 	styles: [`
 		.ng-invalid.ng-touched:not(form){
 		border:1px solid red;
@@ -29,7 +31,6 @@ import { EnvaseService } from '../envases/envase.service';
 export class StockAddComponent{
 	
 	public titulo: string;
-	public fechaActual :Date = new Date();
 
 	nuevo:boolean=false;
 	id:number;
@@ -51,7 +52,8 @@ export class StockAddComponent{
 				private _router:Router,
 				private _activatedRoute:ActivatedRoute,
 				private _productoService: ProductoService,
-				private _envaseService: EnvaseService
+				private _envaseService: EnvaseService,
+				private _fecha:Fecha
 				){
 
 		this._activatedRoute.params
@@ -115,7 +117,7 @@ export class StockAddComponent{
 					 	var productoStock = new ProductoStock();
 					 		
 					 		productoStock.cantidad=0;
-					 		productoStock.fecha=this.fechaActual;
+					 		productoStock.fecha= this._fecha.getDate();;
 					 		//productoStock.id=i;
 					 		productoStock.producto=this.productos[i];
 
@@ -144,7 +146,7 @@ export class StockAddComponent{
 					 	var envaseStock = new EnvaseStock();
 					 		
 					 		envaseStock.cantidad=0;
-					 		envaseStock.fecha=this.fechaActual;
+					 		envaseStock.fecha=this._fecha.getDate();;
 					 		//envaseStock.id=i;
 					 		envaseStock.envasesTipos=this.envases[i];
 
@@ -166,7 +168,7 @@ export class StockAddComponent{
 	guardar(formAdd:NgForm){
 
 		console.log("Stock:", this.stock);
-		this.stock.fecha = this.fechaActual;
+		this.stock.fecha = this._fecha.getDate();
 		//console.log("this.stock",this.stock);
 		if(this.id != null){
 			this.stock.id=this.id;
