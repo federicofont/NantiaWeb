@@ -31,12 +31,15 @@ import { Fecha } from '../fecha';
 export class VentaAddComponent{
 	public titulo: string;
 
+	usuarios: Usuario[] = [];
+	fabricas: Fabrica[] = [];
 	usuario: Usuario = new Usuario();
 	cliente: Cliente = new Cliente();
 	fabrica: Fabrica = new Fabrica();
 
 	clientes: Cliente[] =[];
 	producto:Producto = new Producto();
+	listaPrecios:ListaPrecio[] = [];
 	listaPrecio: ListaPrecio = new ListaPrecio();
 	productoLista: ProductoLista = new ProductoLista();
 	setProductoLista:ProductoLista[] = [];
@@ -91,9 +94,11 @@ export class VentaAddComponent{
 
 	ngOnInit(){
 		this.getClientes();
-		this.getListaPrecio();
-		this.getUsuario();
-		this.getFabricaDeUsuario(45 /*this.usuario.fabrica.id*/)
+		this.getListaPrecios();
+		this.getUsuarios();
+		this.getFabricas();
+		//this.getUsuario(this.usuarios[1].id);
+		//this.getFabricaDeUsuario(this.fabricas[1].id)
 		//yyyy-MM-dd HH:mm:ss
 		//console.log(this.fechaActual.getFullYear);
 		/*console.log(this.fechaActual.getFullYear());
@@ -137,13 +142,14 @@ export class VentaAddComponent{
 		);
 	}
 
-	getListaPrecio(){
-	this._listaprecioService.getListaPrecio(170/*this.id*/).subscribe(
+	getListaPrecios(){
+	this._listaprecioService.getListaPrecios().subscribe(
 				result =>{
 					if(result.status == 200){
-						 this.listaPrecio = result.json();
+						 this.listaPrecios = result.json();
+						 this.getListaPrecio(this.listaPrecios[1].id);
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						console.log("Result Controler:",result.status);
 					}
 
 				},
@@ -153,11 +159,64 @@ export class VentaAddComponent{
 			)
 	}
 
-	getUsuario(){
-		this._usuarioService.getUsuario(10/*this.id*/).subscribe(
+
+	getListaPrecio(idLista: number){
+	this._listaprecioService.getListaPrecio(idLista).subscribe(
+				result =>{
+					if(result.status == 200){
+						 this.listaPrecio = result.json();
+					}else{
+						console.log("Result Controler:",result.status);
+					}
+
+				},
+				error =>{
+					console.log(error);
+				}
+			)
+	}
+
+	getUsuarios(){
+		this._usuarioService.getUsuarios().subscribe(
+			result =>{
+				if(result.status == 200){
+					 this.usuarios = result.json();
+					 //console.log("usuarios:",this.usuarios);
+					 this.getUsuario(this.usuarios[1].id);
+				}else{
+					console.log("Result Controler:",result.status);
+				}
+
+			},
+			error =>{
+				console.log(error);
+			}
+		)
+	}
+
+	getUsuario(idUsuario:number){
+		this._usuarioService.getUsuario(idUsuario).subscribe(
 			result =>{
 				if(result.status == 200){
 					 this.venta.usuario = result.json();
+				}else{
+					console.log("ID:",this.id," Result Controler:",result.status);
+				}
+
+			},
+			error =>{
+				console.log(error);
+			}
+		)
+	}
+
+	getFabricas(){
+		this._fabricaService.getFabricas().subscribe(
+			result =>{
+				if(result.status == 200){
+					 this.fabricas = result.json();
+					 //console.log("Fabricas",this.fabricas);
+					 this.getFabricaDeUsuario(this.fabricas[1].id);
 				}else{
 					console.log("ID:",this.id," Result Controler:",result.status);
 				}

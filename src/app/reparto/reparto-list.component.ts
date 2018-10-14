@@ -84,7 +84,7 @@ export class RepartoListComponent{
         this.confirmado=null;
     }
 
-    onDeleteReparto(id){
+    onDelete(id){
         this._repartoService.deleteReparto(id).subscribe(
             result =>{
                 if(result.status == 200){

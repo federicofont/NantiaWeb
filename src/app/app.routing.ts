@@ -62,7 +62,7 @@ import { VentaAddComponent } from './venta/venta-add.component';
 
 
 const appRoutes: Routes = [
-{path: '', component: HomeComponent},
+{path: '', component: LoginComponent},
 {path: 'login', component: LoginComponent},
 {path: 'login_error', component: LoginErrorComponent},
 {path: 'home', component: HomeComponent},

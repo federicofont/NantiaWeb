@@ -4,7 +4,10 @@ import { NgForm} from '@angular/forms';
 
 import { LoginService } from './login.service';
 import { Login} from './login.model';
+import { GLOBAL} from '../services/global';
+
 import { Usuario } from '../usuarios/usuario.model';
+import { UsuarioService } from '../usuarios/usuario.service';
 
 @Component ({
 	selector: 'form-login',
@@ -27,7 +30,8 @@ export class LoginComponent{
 
 	constructor(private _loginService: LoginService,
 				private _router:Router,
-				private _activatedRoute:ActivatedRoute){
+				private _activatedRoute:ActivatedRoute
+				){
 
 	}
 	 
@@ -46,6 +50,7 @@ export class LoginComponent{
 				.subscribe(result => {
  					if(result.status == 200){
  						this._router.navigate(['/home']);
+ 						console.log(GLOBAL.login);
  					}else{
  						//401 Unauthorized
  						//console.log("Login Status:",result.status);
@@ -58,4 +63,6 @@ export class LoginComponent{
  					this._router.navigate(['/login_error']);
  				})
 	}
+
+
 }

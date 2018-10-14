@@ -45,7 +45,6 @@ export class VehiculoListComponent{
             result =>{
                 if(result.status == 200){
                      this.vehiculos = result.json();
-                     console.log(result.json());
                 }else{
                     console.log("Result Controler",result.status); 
                 }

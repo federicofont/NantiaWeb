@@ -101,9 +101,6 @@ export class FabricaAddComponent{
 						 this.fabrica = result.json();
 						 this.setEnvaseStock=this.fabrica.stock.setEnvaseStock;
 						 this.setProductoStock= this.fabrica.stock.setProductoStock;
-						 console.log("Result fabrica:",this.fabrica);
-						 console.log("json fabrica:",result.json());
-
 					}else{
 						console.log("ID:",id," Result Controler:",result.status);
 					}
@@ -245,7 +242,7 @@ export class FabricaAddComponent{
 
 		const nuevo_productoStock = new ProductoStock( null,
 											formProductoAdd.controls['cantidad'].value,
-											this._fecha.getDate();,
+											this._fecha.getDate(),
 											this.setProductoStock[ ind ].producto);
 
 		//console.log("nuevo_productoStock",nuevo_productoStock);

@@ -1,25 +1,21 @@
 <body>
 
-    <div class="card"> 
-      <div class="card-header">
-        
-         {{titulo}}
+      <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/add-32.ico" alt="Nuevo Cliente" style="float:left"  [routerLink]="['/ruta-add']" href="#" class="btn btn-sm" value="Nuevo Cliente" />
+         <h5 id="titulo"> {{titulo}} </h5>
       
       </div>
-    </div>
   
 
-    <div class="container">
+    <div class="container bg-light">
         <div class="row">
-            <div class="botones">
-                <img src="assets/bootstrap/image/ico/add-32.ico" alt="Nuevo Cliente" style="float:left"  [routerLink]="['/ruta-add']" href="#" class="btn btn-sm" value="Nuevo Cliente" /> 
-            </div>
             
             <div *ngFor="let ruta of rutas"class="card card-body col-sm-2 py-2">
                 <div class="botones">
-                    <img src="assets/bootstrap/image/ico/truck-16.ico" style="float:left"/> 
+                    <img src="assets/bootstrap/image/ico/road-2-32.ico" style="float:left"/> 
                 </div>
-                    <a>{{ruta.nombre}} </a> 
+                    <a>Nombre: {{ruta.nombre}}</a> 
+                    <p>Dia: {{ruta.dia}} </p>
 
                 <div class="botones" *ngIf="confirmado != ruta.id">
 
@@ -33,7 +29,7 @@
                 </div>
 
                 <div clas="seguro" *ngIf="confirmado == ruta.id">
-                <p class="text-danger">¿Esta seguro de borrar la ruta?</p>
+                <p class="text-danger">¿Esta seguro de borrar el ruta?</p>
 
                 <img src="assets/bootstrap/image/ico/check-mark-3-16.ico" alt="Borrar" style="float:left"  (click)="onDeleteEnvase(ruta.id)" href="#" class="btn btn-sm" value="Borrar"/>
 
@@ -45,3 +41,5 @@
         </div>
     </div>
 </body>
+
+

@@ -49,8 +49,6 @@ export class ProductosListComponent{
 				result =>{
 					if(result.status == 200){
 						 this.productos = result.json();
-						 console.log("result.status:", result.status);
-						 console.log("this.producto",this.productos);
 					}else{
 						console.log("Result Controler",result.status); 
 					}

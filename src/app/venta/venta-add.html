@@ -62,7 +62,7 @@
                                 <tr>
                                     
                                     <th class="text-center" scope="col col-sm-2"> % Descuento</th>
-                                    <th class="text-center" scope="col col-sm-2"> % IVA</th>
+                                    <!--th class="text-center" scope="col col-sm-2"> % IVA</th-->
                                     <th class="text-center" scope="col col-sm-6">Producto</th>
                                     <th class="text-center" scope="col col-sm-3">Cantidad</th>
                                 </tr>
@@ -74,13 +74,13 @@
                                             ng-value="formDescuento" value="0" 
                                             [(ngModel)]="formDescuento">                                        
                                     </td>
-                                    <td>
+                                    <!--td>
                                         <select class="form-control py-1"
                                         name="formIVA_Variable" [(ngModel)]="formIVA_Variable">
                                             <option value="{{iva0}}">{{iva0}} </option>
                                             <option value="{{iva1}}">{{iva1}} </option>
                                         </select>
-                                    </td>
+                                    </td-->
                                     <td>
                                         <select [(ngModel)]="producto.productoId" name="productoId" 
                                                 class="custom-select mb-3">

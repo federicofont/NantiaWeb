@@ -14,4 +14,9 @@ export class AppComponent {
 //  	this.header_color=GLOBAL.header_color;
   }
 
+  	ngOnInit(){
+		//console.log('login.component.ts cargado');
+		console.log(GLOBAL.login);
+	}
+
 }

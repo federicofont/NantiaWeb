@@ -15,7 +15,6 @@ export class UsuarioService{
 		this.url = GLOBAL.url;
 	}
 
-
 	getUsuarios(): Observable<any>{
 		//return this._http.get(this.url+'usuarios').map(res => res.json()); 
 	    return this._http.get(this.url+'usuarios');

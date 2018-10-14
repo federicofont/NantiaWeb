@@ -6,8 +6,10 @@ import { Ruta} from './ruta.model';
 @Component({
     selector: 'rutas-list',
     templateUrl: '../ruta/ruta-list.html',
-    providers: [RutaService]
+    providers: [RutaService],
+    styleUrls: ['./ruta.style.css']
 })
+
 export class RutaListComponent{
     public titulo: string;
     public ruta:Ruta;
@@ -44,7 +46,7 @@ export class RutaListComponent{
             result =>{
                 if(result.status == 200){
                      this.rutas = result.json();
-                     console.log(result.json());
+                     console.log("Rutas.Json:",result.json());
                 }else{
                     console.log("Result Controler",result.status); 
                 }

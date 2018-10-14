@@ -39,7 +39,7 @@ ngOnInit(){
 
 		}else{
 
-			this.getUsuario();
+			this.getUsuario(this.id);
 			
 		}
 
@@ -47,16 +47,12 @@ ngOnInit(){
 
 
 		getUsuarios(){
-			console.log("GetUsuarios");
 			this._usuarioService.getUsuarios().subscribe(
 	            result => {
-	                console.log("result.json():",result.json());
 	                if(result.status == 200){
 	                	this.usuarios = result.json();
-	                	console.log("this.usuarios:",this.usuarios);
 	                }else{
 	                	console.log("Result Controler",result.status);   
-	                	console.log("result.json():",result.json());
 	                }
 	            },
 	            error => {
@@ -65,13 +61,13 @@ ngOnInit(){
 	        );
 		}
 
-		getUsuario(){
-			this._usuarioService.getUsuario(this.id).subscribe(
+		getUsuario(id){
+			this._usuarioService.getUsuario(id).subscribe(
 				result =>{
 					if(result.status == 200){
 						 this.usuario = result.json();
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						console.log("ID:",id," Result Controler:",result.status);
 					}
 
 				},

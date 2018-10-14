@@ -27,7 +27,7 @@ export class RutaService{
 	addRuta(ruta:Ruta){
 		let body = JSON.stringify(ruta);
 		let headers = new Headers({'Content-Type':'application/json'});
-
+		//console.log('json_ruta',body);
 		return this._http.post(this.url+'ruta',body,{headers: headers});
 	}
 

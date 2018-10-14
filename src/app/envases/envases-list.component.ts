@@ -47,13 +47,12 @@ export class EnvasesListComponent{
 				result =>{
 					if(result.status == 200){
 						 this.envases = result.json();
-						 console.log(result.json());
 					}else{
-						//console.log("Result Controler",result.status); 
+						console.log("Result Controler",result.status); 
 					}
 				},
 				error =>{
-					//console.log(<any>error);
+					console.log(<any>error);
 				}
 			);
 		}

@@ -26,4 +26,16 @@ export class LoginService{
 
 	}
 
+	signup(loginUsuario, getToken = null){
+		if(getToken != null){
+			loginUsuario.getToken = getToken;
+		}
+
+		let body = JSON.stringify(loginUsuario);
+		let headers = new Headers({'Content-Type':'application/json'});
+
+		return this._http.post(this.url+'login',body, {headers:headers})
+						 .map( res => res.json() );	
+	}
+
 }

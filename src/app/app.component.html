@@ -33,6 +33,7 @@ Barra Superior
 
     </nav>
 
+<ul>
 
     <div class="container-fluid">
         <!-- Control the column width, and how they should appear on different devices -->
@@ -105,12 +106,17 @@ Barra Superior
 
                         <tr class="nav-item active">
                             <a class="nav-link" href="#ventas" [routerLink]="['/venta-add']" [routerLinkActive]="['activado']">
-                                <img src="../assets/bootstrap/image/ico/cart-74-16.ico"> Nueva Venta <span class="sr-only">(current)</span></a>
+                                <img src="../assets/bootstrap/image/ico/cart-74-16.ico"> Venta <span class="sr-only">(current)</span></a>
                         </tr>
 
                         <tr class="nav-item active">
                             <a class="nav-link" href="#vehiculo" [routerLink]="['/vehiculo']" [routerLinkActive]="['activado']">
                                 <img src="../assets/bootstrap/image/ico/truck-16.ico"> Vehiculos <span class="sr-only">(current)</span></a>
+                        </tr>
+
+                        <tr class="nav-item active">
+                            <a class="nav-link" href="#ruta" [routerLink]="['/ruta']" [routerLinkActive]="['activado']">
+                                <img src="../assets/bootstrap/image/ico/road-2-16.ico"> Ruta <span class="sr-only">(current)</span></a>
                         </tr>
 
                         <tr class="nav-item active">
@@ -141,6 +147,7 @@ Barra Superior
 
     </div>
 
+</ul>
 
 </body>
 

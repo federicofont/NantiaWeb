@@ -28,14 +28,14 @@ export class RepartoService{
 		let body = JSON.stringify(reparto);
 		let headers = new Headers({'Content-Type':'application/json'});
 
-		return this._http.post(this.url+'reparto',body,{headers: headers});
+		return this._http.post(this.url+'datareparto',body,{headers: headers});
 	}
 
 	editReparto(id, reparto:Reparto){
 		let body = JSON.stringify(reparto);
 		let headers = new Headers({'Content-Type':'application/json'});
 
-		return this._http.put(this.url+'reparto/'+reparto.id,body,{headers: headers});
+		return this._http.put(this.url+'datareparto/'+reparto.id,body,{headers: headers});
 	}
 
 	deleteReparto(id:number){

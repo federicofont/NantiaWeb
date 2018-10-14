@@ -1,4 +1,5 @@
 import{ Component } from '@angular/core';
+import { GLOBAL} from '../services/global';
 
 @Component({
 	selector: 'home',
@@ -12,6 +13,7 @@ export class HomeComponent{
 	}
 
 	ngOnInit(){
+		console.log(GLOBAL.login);
 		//console.log('Se ha cargado el componente home.component.ts');
 	}
 }

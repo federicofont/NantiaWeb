@@ -73,10 +73,10 @@
                                             <tr *ngFor="let productoStock of stock.setProductoStock; let i = index">
                                                 <td>{{productoStock.producto.descripcion}} </td>
                                                 <td>
-                                                    <input  class="form-control input-number" type="number" min="0" max="100000" 
-                                                            step="1" #descripcion="ngModel" name="cantidad" 
-                                                            ng-value="productoStock.cantidad"
-                                                            [(ngModel)]="productoStock.cantidad">
+                                                     <input class="form-control input-number" type="number" 
+                                                            min="0" step="1" max="100000" #descripcion="ngModel" 
+                                                            [(ngModel)]="productoStock.cantidad" 
+                                                            [ngModelOptions]="{standalone: true}" contenteditable="false">
                                                 </td>
 
                                             </tr>
@@ -101,10 +101,10 @@
                                             <tr *ngFor="let envaseStock of stock.setEnvaseStock; let i = index">
                                                 <td>{{envaseStock.envasesTipos.descripcion}} </td>
                                                 <td>
-                                                    <input  class="form-control input-number" type="number" min="0" max="100000" 
-                                                            step="1" #descripcion="ngModel" name="cantidad" 
-                                                            ng-value="envaseStock.cantidad"
-                                                            [(ngModel)]="envaseStock.cantidad">
+                                                     <input class="form-control input-number" type="number" 
+                                                            min="0" step="1" max="100000" #descripcion="ngModel" 
+                                                            [(ngModel)]="envaseStock.cantidad" 
+                                                            [ngModelOptions]="{standalone: true}" contenteditable="false">
                                                 </td>
 
                                             </tr>

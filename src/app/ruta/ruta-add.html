@@ -1,351 +1,134 @@
 <body>
 
-    <div class="card"> 
-      <div class="card-header">
-        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/repartos']" href="#" value="Listado de Repartos" style="float:left" />
-         <p class="col-sm-3">{{titulo}}</p>
+      <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/ruta']" href="#" value="Listado de Rutas" style="float:left" />
+         <h5 id="titulo"> {{titulo}} </h5>
       
       </div>
-    </div>
-  
 
-<div class="container-fluid bg-light py-3" >
-    <!--form id="contact-form" method="post" action="contact.php" role="form"-->
-    <form (ngSubmit)="guardar(repartoAdd)" #repartoAdd="ngForm" class="col-lg-9" id="formrepartoAdd" 
-        style="margin:0 auto;width:75%;text-align:left">
-        
-    <!-- Datos Personales-->    
-        <div class="botones">
-            <img src="assets/bootstrap/image/ico/guest-16.ico" style="float:left"/> 
-        </div>
+<div class="bg-light">
+    <form (ngSubmit)="guardar(rutaAdd)" #rutaAdd="ngForm" id="formRutaAdd">
 
-        <div class="card-header">
-            
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="form_phone">Nombre 1</label>
-                        <input type="text" #descripcion="ngModel" name="nombre2" [(ngModel)]="reparto.nombre2" class="form-control" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </div>
+        <div class="card bg-light">
 
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="form_phone">Nombre 2</label>
-                        <input type="text" #descripcion="ngModel" name="nombre1" [(ngModel)]="reparto.nombre1" class="form-control" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="form_phone">Fecha de Nacimiento</label>
-                        <input type="date" #descripcion="ngModel" name="fechaNacimiento" [(ngModel)]="reparto.fechaNacimiento" class="form-control" />
-                    </div>
-                </div>
-            
+            <div class="botones"  id='margen'>
+                <img src="assets/bootstrap/image/ico/road-2-32.ico" style="float:left"/> 
             </div>
-
-            <div class="row">
             
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="form_email">Nro. Documento</label>
-                        <input type="text" #descripcion="ngModel" name="nroDocumento" [(ngModel)]="reparto.nroDocumento" class="form-control" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </div>
-
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label for="form_name">Tpo. Documento</label>
-                        <select class="input-group input-group-sm"
-                        name="tipoDocumento" [(ngModel)]="reparto.tipoDocumento">
-                            <option>{{reparto.tipoDocumento}} </option>
-
-                            <option *ngFor="let doc of documentos"
-                                    [value]="doc.id">{{doc.tipo}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-sm-3" style="text-align:center;">
-                    <div class="form-group">
-                        <label for="form_phone">Activo</label>
-                        <input type="checkbox"  #descripcion="ngModel" name="activo" [(ngModel)]="reparto.activo" class="form-control" />
-                    </div>
-                </div>
-            
-            </div>
-
-        </div>
-    <!-- Datos de contacto-->    
-        <div class="botones">
-            <img src="assets/bootstrap/image/ico/business-contact-16.ico" style="float:left"/> 
-        </div>
-
-        <div class="card-header">
-            
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="form_phone">Telefono</label>
-                        <input type="text" #descripcion="ngModel" name="telefono" [(ngModel)]="direccion.telefono" class="form-control" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </div>
+            <div class="row" id='margen'>
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="form_phone">Celular</label>
-                        <input type="text" #descripcion="ngModel" name="celular" [(ngModel)]="reparto.celular" class="form-control" />
+                        <label for="form_phone">Ruta</label>
+                        <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="ruta.nombre" class="form-control" />
                         <div class="help-block with-errors"></div>
-                    </div>
-                </div>
-            
-            </div>
-
-            <div class="row">
-            
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="form_phone">Direccion de correo electronico</label>
-                        <input type="email" #descripcion="ngModel" name="mail" [(ngModel)]="reparto.mail" class="form-control" />
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    <!-- Direccion-->    
-        <div class="botones">
-            <img src="assets/bootstrap/image/ico/home-16.ico" style="float:left"/> 
-        </div>
-
-        <div class="card-header">
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group  col-lg-6">
-                        <label for="form_phone">Departamento</label>
-                        <input type="text" #descripcion="ngModel" name="departamento" [(ngModel)]="direccion.departamento" 
-                        class="form-control" />                      
-                        <div class="help-block with-errors"></div>
-                    </div>
-
-                    <div class="form-group  col-lg-6">
-                        <label for="form_phone">Ciudad</label>
-                        <input type="text" #descripcion="ngModel" name="ciudad" [(ngModel)]="direccion.ciudad" class="form-control" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-
-                    <div class="form-group  col-lg-6">
-                        <label for="form_phone">Codigo Postal</label>
-                        <input type="number" #descripcion="ngModel" name="codPostal" [(ngModel)]="direccion.codPostal" class="form-control" />                        
-                    </div>
-
-                    <div class="form-group  col-lg-12">
-                        <label for="form_phone">Direccion</label>
-                        <input type="text" #descripcion="ngModel" name="direccion" [(ngModel)]="direccion.direccion" class="form-control" />                        
-                    </div>
-
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="map">
-                        <agm-map 
-                            [latitude]="lat"
-                            [longitude]="lng"   
-                            [zoom]="zoom"
-                            [disableDefaultUI]="false"
-                            [zoomControl]="false"
-                            (mapClick)="agregarMarcador($event)" 
-                        >
-
-                            <agm-marker 
-                            *ngFor="let marcador of marcadores; let i = index"
-                            (markerclick)="marcadorCliqueado(marcador,i)"
-                            [latitude]="marcador.lat" 
-                            [longitude]="marcador.lng"
-                            [markerDraggable]="marcador.movil"
-                            (dragEnd)="posicionFinalMarcador(marcador,$event,i)"
-                            >
-
-                                <agm-info-window> 
-                                    <strong>{{marcador.nombre}}</strong>
-                                    <button (click)="borrarMarcador(i)" class="btn-alert">Borrar</button>
-                                </agm-info-window>
-
-                            </agm-marker>
-                        </agm-map>          
                     </div>
                 </div>
     
-            </div>
-        </div>
-    <!-- Datos de venta-->    
-        <div class="botones">
-            <img src="assets/bootstrap/image/ico/business-contact-16.ico" style="float:left"/> 
-        </div>
-
-        <div class="card-header">
-            <div class="row">
-            
-                <div class="col-sm-6">
-                    <div class="form-group  col-lg-6">
-                        <label for="form_phone">Saldo</label>
-                        <input type="number" #descripcion="ngModel" name="saldo" [(ngModel)]="reparto.saldo" class="form-control" />
-                        <div class="help-block with-errors"></div>
-                    </div>
-            
-                    <div class="form-group  col-lg-6">
-                        <label for="form_phone">Lista de Precio</label>
-                        <select class="input-group input-group-sm"
-                                name="tipoDocumento" [(ngModel)]="reparto.idLista">
-                            <option>{{reparto.idLista}} </option>
-
-                            <option *ngFor="let listaPrecio of listaPrecios"
-                                    [value]="listaPrecio.id">{{listaPrecio.nombreLista}}
-                            </option>
-                        </select>
-                    </div>
+                <div class="col-sm-2">
+                    <input [(ngModel)]="dias[0]" name="domingo" type="checkbox" class="form-check-input">
+                    <p class="font-weight-light">Domingo</p>
+                    <input [(ngModel)]="dias[1]"   name="lunes" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Lunes</p>
+                    <input [(ngModel)]="dias[2]"  name="martes" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Martes</p>
                 </div>
 
-                <!--div class="col-sm-6">
+                <div class="col-sm-2">
+                    <input [(ngModel)]="dias[3]" name="miercoles" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Miercoles</p>  
+                    <input [(ngModel)]="dias[4]" name="jueves" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Jueves</p>                                            
+                </div>
 
-                    <div class="form-group  col-lg-3">
-                        <input [(ngModel)]="reparto.dias.domingo" name="domingo" type="checkbox" class="form-check-input">
-                        <p class="font-weight-light">Domingo</p>
-                        <input [(ngModel)]="reparto.dias.lunes" style="text-align: right;" name="lunes" type="checkbox" class="form-check-input"> 
-                        <p class="font-weight-light">Lunes</p>
-                        <input [(ngModel)]="reparto.dias.martes" name="martes" type="checkbox" class="form-check-input"> 
-                        <p class="font-weight-light">Martes</p>
-                        <input [(ngModel)]="reparto.dias.miercoles" name="miercoles" type="checkbox" class="form-check-input"> 
-                        <p class="font-weight-light">Miercoles</p>                        
-                    </div>
-
-                    <div class="form-group  col-lg-3">
-                        <input [(ngModel)]="reparto.dias.jueves" name="jueves" type="checkbox" class="form-check-input"> 
-                        <p class="font-weight-light">Jueves</p>   
-                        <input [(ngModel)]="reparto.dias.viernes" name="viernes" type="checkbox" class="form-check-input"> 
-                        <p class="font-weight-light">Viernes</p>                           
-                        <input [(ngModel)]="reparto.dias.sabado" name="sabado" type="checkbox" class="form-check-input"> 
-                        <p class="font-weight-light">Sabado</p>                           
-                    </div>
-
-                </div-->
+                <div class="col-sm-2">
+                    <input [(ngModel)]="dias[5]" name="viernes" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Viernes</p>  
+                    <input [(ngModel)]="dias[6]" name="sabado" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Sabado</p>                           
+                </div>
 
             </div>
+
+            <!--select [ngModel]="semana">
+                <option value="{{semana.LUNES}}">Extra Large</option>
+                <option value="{{semana.MARTES}}">Large</option>
+                <option value="{{semana.MIERCOLES}}">Medium</option>
+                <option value="{{semana.JUEVES}}">Small</option>
+            </select--> 
+
         </div>
-   <!-- Envases en prestamo-->    
-        <div class="botones">
-            <img src="assets/bootstrap/image/ico/soda-bottle-16.ico" style="float:left"/> 
-        </div>
 
-        <div class="card-header">
+   <!-- Cliente en ruta-->    
+        <div class="card bg-light">
 
-            <form (ngSubmit)="addEnvaseEnPrestamo(envaseAdd)" #envaseAdd="ngForm" class="col-lg-6" id="addEnvaseEnPrestamo">       
+            <div class="botones" id="margen2">
+                <img src="assets/bootstrap/image/ico/group-16.ico" style="float:left"/> 
+            </div>
+            
+           <form (ngSubmit)="addClienteLista(formclienteAdd)" #formclienteAdd="ngForm" class="col-lg-12" id="addClienteLista">
 
-            <div class="row">
+                <div class="row">
 
-                <div class="col-sm-6">
-                    <div class="input-group input-group-sm">
-                        <table class="table table-striped">
-                          <thead>
-                            <tr>
-                                <th scope="col">Envase</th>
-                                <th scope="col">Cantidad</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let ep of envasesEnprestamo">
-                                <td>{{ep.envasetipos.descripcion}} </td>
-                                <td>{{ep.cantidad}} </td>
-                                <!--input class="form-control input-number" type="number" value="0" min="0" max="100" step="1" #descripcion="ngModel" name="cantidad"  [(ngModel)]="envaseEnprestamo.cantidad"-->
-                            </tr>
-                          </tbody>
+                    <div class="col-sm-12">
+
+                        <table class="table table-bordered table-responsive-md table-striped text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" scope="col col-sm-4">Direccion / Cliente</th>
+                                    <th class="text-center" scope="col col-sm-3">Orden</th>
+                                </tr>
+
+                                <tr>                                                      
+                                    <td>
+                                        <select [(ngModel)]="cliente.id" name="clienteId" 
+                                                class="custom-select mb-3">
+                                            <option *ngFor="let cliente of clientes; let ind = index" 
+                                            [ngValue]="cliente.id"> Direccion: {{cliente.direccion.direccion}} 
+                                                                    / Nombre:  {{cliente.nombre1}} {{cliente.nombre2}}
+                                            </option>
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <div >
+                                            <input class="form-control input-number" type="number" value="100" min="0" step="1" max="100" data-number-to-fixed="0" data-number-stepfactor="100" #descripcion="ngModel" name="ordenVisita" [(ngModel)]="rutaCliente.ordenVisita">
+                                        </div>
+                                    </td>
+                                    <td>                    
+                                        <button type="ngSubmitmit" value="Add Cliente" class="btn btn-link" >
+                                            <img src="assets/bootstrap/image/ico/plus-5-16.ico" /> 
+                                        </button>
+                                    </td>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let rutaCliente of ruta.setRutaCliente; trackBy:indexTracker">
+                                    <td>
+                                        Direccion: {{rutaCliente.cliente.direccion.direccion}} 
+                                        /  Nombre: {{rutaCliente.cliente.nombre1}} {{rutaCliente.cliente.nombre2}}
+                                    </td>
+                                    <td>
+                                        <input class="form-control input-number" type="number" min="0" step="1" max="100" data-number-to-fixed="2" 
+                                        data-number-stepfactor="100" #descripcion="ngModel" 
+                                        [(ngModel)]="rutaCliente.ordenVisita" [ngModelOptions]="{standalone: true}" contenteditable="false">
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
-                    </div>    
-                </div>
 
-                <div class="col-sm-6">
-
-                    <div class="input-group input-group-sm">
-                    <tr>
-                        <td>
-                            <span class="input-group-addon"> Agregar Envase </span>
-                        </td>
-                        <td>
-                            <span class="input-group-addon"> # </span>    
-                        </td>
-                    </tr>
-                    </div>
-
-
-                    <div class="input-group-sm mb-3">
-                    <tr>
-                        <td>   
-                            <select [(ngModel)]="envase.id" name="id" class="custom-select">
-                                <option *ngFor="let tipo of envases; let ind = index" 
-                                    [ngValue]="tipo.id">{{tipo.descripcion}}
-                                </option>
-                            </select>
-                        </td>
-                        <td>
-                            <input class="form-control input-number" type="number" value="0" min="0" max="100" step="1" #descripcion="ngModel" name="cantidad"  [(ngModel)]="envaseEnprestamo.cantidad">
-                        </td>
-                    </tr>
-                        <button type="ngSubmitmit" value="Add Envase" class="btn btn-sm">
-                                <img src="assets/bootstrap/image/ico/plus-5-16.ico" 
-                                 style="float:center"/> <p> Envases en Prestamo </p>
-                        </button>
                     </div>
 
                 </div>
-
-
-
-            </div>
-            </form>  
-
-            
+            </form>
+             
         </div>
 
-        <div class="card-header">
-
-            <input type="submit" value="{{titulo}}" class="btn btn-success" />  
-        </div>
+            <input type="submit" value="{{titulo}}" class="btn btn-success" style="text-align:center;" />  
 
     </form>
 </div>
 
-
-
-
-
-
-
-                <div class="input-group input-group-sm">
-
-
-                </div>
-
-
-
-
-
-            <!--/div-->
-
 </body>
-
-
-
-
-
-
-
-
-
 
