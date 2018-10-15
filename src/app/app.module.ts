@@ -69,7 +69,7 @@ import { VehiculoListComponent } from './vehiculo/vehiculo-list.component';
 import { VehiculoAddComponent } from './vehiculo/vehiculo-add.component';
 //import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
 
-//import { VehiculoListComponent } from './vehiculo/vehiculo-list.component';
+import { VentaListComponent } from './venta/ventas-list.component';
 import { VentaAddComponent } from './venta/venta-add.component';
 //import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
 
@@ -129,7 +129,7 @@ import { VentaAddComponent } from './venta/venta-add.component';
     VehiculoAddComponent,
 //  VehiculoDetailComponent,
 
-//    VentaListComponent,
+    VentaListComponent,
     VentaAddComponent
 //  VentaDetailComponent,
     

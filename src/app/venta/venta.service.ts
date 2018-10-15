@@ -17,11 +17,11 @@ export class VentaService{
 
 	getVentas(): Observable<any>{
 	//return this._http.get(this.url+'venta').map(res => res.json()); 
-    	return this._http.get(this.url+'venta');
+    	return this._http.get(this.url+'ventas');
 	}
 
 	getVenta(id:number): Observable<any>{
-		return this._http.get(this.url+'venta/'+id); 
+		return this._http.get(this.url+'ventas/'+id); 
 	}
 
 	addVenta(venta:Venta){

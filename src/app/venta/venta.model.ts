@@ -1,5 +1,6 @@
 import { Usuario } from '../usuarios/usuario.model';
 import { Cliente } from '../clientes/cliente.model';
+import { Pago } from './pago.model';
 import { ProductoVenta } from './productoVenta.model';
 
 export class Venta{
@@ -10,11 +11,12 @@ export class Venta{
 		public cliente:Cliente = new Cliente(),
 		public setProductoVenta:ProductoVenta[] = [],
 		public descuento:number = 0,
-		public totalVenta:number = 0,
-		public ivaTotal:number = 0,
-		public pagoTotal:number = 0,
+		public totalventa:number = 0,
+		public ivatotal:number = 0,
+		public pagototal:number = 0,
 		public fabricaid:number = null,
-		public repartoid:number = null
+		public repartoid:number = null,
+		public datapago:Pago = new Pago()
 		//observaciones
 		){}
 }

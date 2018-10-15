@@ -4,6 +4,7 @@ import { NgForm} from '@angular/forms';
 
 import { VentaService } from './venta.service';
 import { Venta } from './venta.model';
+import { Pago } from './pago.model';
 
 import { Usuario } from '../usuarios/usuario.model';
 import { UsuarioService } from '../usuarios/usuario.service';
@@ -47,6 +48,7 @@ export class VentaAddComponent{
 	setProductoVenta: ProductoVenta[] = [];
 
 	montoDescuento: number=0;
+	subtotal: number = 0;
 	porcentDescuento = 0;
 	
 	ivaVariable: number=0;
@@ -246,61 +248,48 @@ export class VentaAddComponent{
 	}
 
 	addProductoVenta(formproductosAdd:NgForm, formDescuento:number, formIVA_Variable:number, formCliente:number){	
-		//console.log(formproductosAdd.value);
-		//console.log("listaPrecio.",this.listaPrecio);
 
-		//Cargo el objeto envase y el arreglo envases
-		//console.log("formproductosAdd.value.formCliente",formCliente);
 		this.getCliente(formCliente);
-
-		this.venta.fecha = this._fecha.getDate();
-		 //yyyy-MM-dd HH:mm:ss
+		this.venta.fecha = this._fecha.getDate(); //yyyy-MM-dd HH:mm:ss
+		this.venta.descuento = formDescuento;
 		var ind:number=0;
-		//var idProducto:number = formproductosAdd.controls['productoId'].value;
-		//console.log("this.envases",this.envases); */
+		const nuevo_productoVenta = new ProductoVenta();
+		/*Asocio el producto seleccionado con el de la lista de precios*/
     	for (var i = this.listaPrecio.setProductoLista.length - 1; i >= 0; i--) {
 			if(this.listaPrecio.setProductoLista[i].productos.productoId == formproductosAdd.value.productoId)
 				ind = i;
-			//else
-			//	console.log("i",i);
 		}
-		const nuevo_productoVenta = new ProductoVenta();
-		//this.productoVenta.producto
+		
+		/*Genero el productoVenta y lo agrego a la coleccion setProductoVenta*/
 		nuevo_productoVenta.producto =this.listaPrecio.setProductoLista[ind].productos;
 		nuevo_productoVenta.cantidad = formproductosAdd.value.formCantidad
 		nuevo_productoVenta.precioUnitario = this.listaPrecio.setProductoLista[ind].precio;
 		nuevo_productoVenta.total = this.listaPrecio.setProductoLista[ind].precio * nuevo_productoVenta.cantidad;
-
+		//console.log("nuevo_productoVenta",nuevo_productoVenta);
 		this.venta.setProductoVenta.push(nuevo_productoVenta);
-		//console.log("ProductoVenta",nuevo_productoVenta);
-		//console.log("setProductoVenta",this.setProductoVenta);
-		//this.getProductoVenta();
-		//console.log("totalVenta",this.venta.totalVenta);
-		//console.log(nuevo_productoVenta.total);
-		//console.log("totalVenta",this.venta.totalVenta + nuevo_productoVenta.total);
 
-		//if(formproductosAdd.value.descuento > 0)
-		//	this.porcentDescuento = formproductosAdd.value.descuento
-		//else
-		//	this.porcentDescuento = 0
-		
-		this.venta.totalVenta = this.venta.totalVenta + nuevo_productoVenta.total;
-		//console.log("totalVenta",this.venta.totalVenta );
-		//console.log("formDescuento",formDescuento);
-		if(formDescuento > 0){
-			this.montoDescuento = (this.venta.totalVenta * formDescuento)/100;
-			this.venta.descuento = this.montoDescuento;
+		/*Calculo el subtotal neto*/
+		this.subtotal=0;
+	    for (var i = this.venta.setProductoVenta.length - 1; i >= 0; i--) {
+			this.subtotal = this.subtotal + this.venta.setProductoVenta[i].total;
 		}
-		//console.log("montoDescuento",this.montoDescuento );
-		this.venta.totalVenta = this.venta.totalVenta - this.montoDescuento;
-		//console.log("totalVenta",this.venta.totalVenta );
-		//console.log("formIVA_Variable",formIVA_Variable);
-		this.venta.ivaTotal =  (this.venta.totalVenta * formIVA_Variable)/100;
-		//console.log("ivaTotal",this.venta.ivaTotal );
-		this.venta.pagoTotal = this.venta.totalVenta + this.venta.ivaTotal
-		//console.log("pagoTotal",this.venta.pagoTotal );
+		//console.log("subtotal", this.subtotal);
+	
+		/*Calculo el iva sobre el Subtotal - Descuento*/
+		this.venta.ivatotal =  ( (this.subtotal - formDescuento) * this.iva0)/100;
+		
+		/*Calculo (Subtotal - Descuento) + Iva*/
+		this.venta.totalventa = ( (this.subtotal - formDescuento) + this.venta.ivatotal );
+		//console.log("venta",this.venta);
 
-		//console.log("VEnta",this.venta);
+		/*Total Pago*/
+		this.venta.pagototal = this.venta.totalventa
+
+		/*Cargo DataPago*/
+		this.venta.datapago.clienteid = this.venta.cliente.id;
+		this.venta.datapago.fechapago = this._fecha.getDate();
+		this.venta.datapago.monto = this.venta.pagototal;
+
 	}
 
 

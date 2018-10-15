@@ -12,10 +12,7 @@ import { Rol } from '../roles/rol.model';
 	selector: 'formUsuarioAdd',
 	templateUrl: '../usuarios/usuario-add.html',
 	providers: [UsuarioService, RolService],
-	styles: [`
-		.ng-invalid.ng-touched:not(form){
-		border:1px solid red;
-		}`]
+	styleUrls: ['./usuario.style.css']
 })
 
 export class UsuarioAddComponent{
@@ -142,7 +139,7 @@ export class UsuarioAddComponent{
 		this._usuarioService.addUsuario(this.usuario)
 			.subscribe(result => {
 					if(result.status==201){
-						this._router.navigate(['/usuarios/'+result.json().id]);
+						this._router.navigate(['/usuarios'/*/'+result.json().id*/]);
 					}else{
 						console.log("Result Controler",result.status);
 				}

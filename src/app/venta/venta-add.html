@@ -1,7 +1,7 @@
 <body>
 
     <div class="card-header border bg-light">
-        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/venta']" href="#" value="Listado de venta" style="float:left" />
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/ventas']" href="#" value="Listado de venta" style="float:left" />
         <h5 id="titulo"> {{titulo}} </h5>
 
     </div>
@@ -61,7 +61,7 @@
                             <thead>
                                 <tr>
                                     
-                                    <th class="text-center" scope="col col-sm-2"> % Descuento</th>
+                                    <th class="text-center" scope="col col-sm-2"> $ Descuento</th>
                                     <!--th class="text-center" scope="col col-sm-2"> % IVA</th-->
                                     <th class="text-center" scope="col col-sm-6">Producto</th>
                                     <th class="text-center" scope="col col-sm-3">Cantidad</th>
@@ -69,8 +69,8 @@
 
                                 <tr>                                                      
                                     <td>
-                                        <input  class="form-control input-number" type="number" min="0" max="100" 
-                                            step="5" #descripcion="ngModel" name="formDescuento" 
+                                        <input  class="form-control input-number" type="number" min="0" max="10000" 
+                                            step="1" #descripcion="ngModel" name="formDescuento" 
                                             ng-value="formDescuento" value="0" 
                                             [(ngModel)]="formDescuento">                                        
                                     </td>
@@ -142,7 +142,7 @@
                             <tr>
                                 <th class="text-left">
                                     <h6>Cliente:
-                                        <select [(ngModel)]="formCliente" name="formCliente" 
+                                        <select required="Seleccione el cliente" [(ngModel)]="formCliente" name="formCliente"
                                             class="custom-select custom-select-sm col-sm-6">
                                                 <option *ngFor="let cliente of clientes; let ind = index" 
                                                         [ngValue]="cliente.id">{{cliente.nombre1}} {{cliente.nombre2}}
@@ -179,20 +179,20 @@
                     <table class="table table-responsive-md table-striped text-center">
                         <thead>
                             <tr>
-                                <th class="text-right" scope="col col-sm-3">Descuento</th>
-                                <th>{{montoDescuento | currency}} </th>
+                                <th class="text-right" scope="col col-sm-3">Subtotal</th>
+                                <th>{{subtotal | currency}} </th>
                             </tr>
                             <tr>
-                                <th class="text-right" scope="col col-sm-3">Subtotal</th>
-                                <th>{{venta.totalVenta | currency}} </th>
-                            </tr>
+                                <th class="text-right" scope="col col-sm-3">Descuento</th>
+                                <th>{{venta.descuento | currency}} </th>
+                            </tr>                            
                             <tr>
                                 <th class="text-right" scope="col col-sm-3">IVA</th>
-                                <th>{{venta.ivaTotal | currency}} </th>
+                                <th>{{venta.ivatotal | currency}} </th>
                             </tr>
                             <tr>
-                                <th class="text-right" scope="col col-sm-3">Total a Pagar</th>
-                                <th>{{venta.pagoTotal | currency}} </th>
+                                <th class="text-right" scope="col col-sm-3">Total Pagó</th>
+                                <th>{{venta.pagototal | currency}} </th>
                             </tr>
                         </thead>
 

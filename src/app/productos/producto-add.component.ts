@@ -11,10 +11,7 @@ import { Presentacion } from './presentacion.model';
 	selector: 'formProductoAdd',
 	templateUrl: '../productos/producto-add.html',
 	providers: [ProductoService],
-	styles: [`
-		.ng-invalid.ng-touched:not(form){
-		border:1px solid red;
-		}`]
+	styleUrls: ['./producto.style.css']
 })
 
 export class ProductoAddComponent{
@@ -129,8 +126,8 @@ export class ProductoAddComponent{
 		this._productoService.addProducto(this.producto).subscribe(
 			result => {
 				if(result.status==201){
-					this._router.navigate(['/productos/'+result.json().productoId]);
-						console.log("Result Controler",result.status);
+					this._router.navigate(['/productos'/*/'+result.json().productoId*/]);
+						//console.log("Result Controler",result.status);
 				}else{
 						console.log("Result Controler",result.status);
 				}

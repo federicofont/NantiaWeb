@@ -56,7 +56,7 @@ import { VehiculoListComponent } from './vehiculo/vehiculo-list.component';
 import { VehiculoAddComponent } from './vehiculo/vehiculo-add.component';
 //import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
 
-//import { VehiculoListComponent } from './vehiculo/vehiculo-list.component';
+import { VentaListComponent } from './venta/ventas-list.component';
 import { VentaAddComponent } from './venta/venta-add.component';
 //import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
 
@@ -122,8 +122,8 @@ const appRoutes: Routes = [
 {path: 'vehiculo-edit/:id', component: VehiculoAddComponent},
 {path: 'vehiculo-add', component: VehiculoAddComponent},
 
-//{path: 'vehiculo', component: VehiculoListComponent},
-//{path: 'vehiculo/:id', component: VehiculoDetailComponent},
+{path: 'ventas', component: VentaListComponent},
+//{path: 'venta/:id', component: VehiculoDetailComponent},
 {path: 'venta-edit/:id', component: VentaAddComponent},
 {path: 'venta-add', component: VentaAddComponent},
 

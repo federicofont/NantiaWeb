@@ -1,13 +1,13 @@
 <body>
 
       <div class="card-header border bg-light">
-        <img src="assets/bootstrap/image/ico/bottle_plus-32.ico" style="float:left"  [routerLink]="['/envase-add']" href="#" class="btn btn-sm" value="Nuevo Envase" />
+        <img src="assets/bootstrap/image/ico/add-32.ico" style="float:left"  [routerLink]="['/envase-add']" href="#" class="btn btn-sm" value="Nuevo Envase" />
          <h5 id="titulo"> {{titulo}} </h5>
       
       </div>
   
 
-    <div class="container bg-light">
+    <div class="card-header">
         <div class="row">
             
             <div *ngFor="let envase of envases"class="card card-body col-sm-2 py-2">

@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { RutaService } from './ruta.service';
-import { Ruta} from './ruta.model';
+import { VentaService } from './venta.service';
+import { Venta} from './venta.model';
 
 @Component({
-    selector: 'rutas-list',
-    templateUrl: '../ruta/ruta-list.html',
-    providers: [RutaService],
-    styleUrls: ['./ruta.style.css']
+    selector: 'ventas-list',
+    templateUrl: '../venta/ventas-list.html',
+    providers: [VentaService],
+    styleUrls: ['./venta.style.css']
 })
-
-export class RutaListComponent{
+export class VentaListComponent{
     public titulo: string;
-    public ruta:Ruta;
-    public rutas: Ruta[];
+    public venta:Venta;
+    public ventas: Venta[];
 
     public id:number;
 
@@ -21,9 +20,9 @@ export class RutaListComponent{
     constructor(
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
-        private _rutaService: RutaService
+        private _ventaService: VentaService
     ){
-        this.titulo = 'Listado de rutas';
+        this.titulo = 'Listado de ventas';
         this._activatedRoute.params
             .subscribe( parametros=>{
             this.id = parametros['id'];
@@ -33,20 +32,20 @@ export class RutaListComponent{
     ngOnInit(){
 
         if (this.id==null) {
-            this.getRutas();
+            this.getVentas();
         }else{
-            this.getRuta(this.id);
+            this.getVenta(this.id);
         }
 
     }
     
 
-    getRutas(){
-        this._rutaService.getRutas().subscribe(
+    getVentas(){
+        this._ventaService.getVentas().subscribe(
             result =>{
                 if(result.status == 200){
-                     this.rutas = result.json();
-                     console.log("Rutas.Json:",result.json());
+                     this.ventas = result.json();
+                     console.log("Ventas",this.ventas); 
                 }else{
                     console.log("Result Controler",result.status); 
                 }
@@ -57,12 +56,11 @@ export class RutaListComponent{
         );
     }
 
-    getRuta(id){
-        this._rutaService.getRuta(id).subscribe(
+    getVenta(id){
+        this._ventaService.getVenta(id).subscribe(
             result =>{
                 if(result.status == 200){
-                     this.ruta = result.json();
-                     console.log("GetRuta",result.json());
+                     this.venta = result.json();
                 }else{
                     console.log("ID:",this.id," Result Controler:",result.status);
                 }
@@ -86,12 +84,12 @@ export class RutaListComponent{
     }
 
     onDelete(id){
-        this._rutaService.deleteRuta(id).subscribe(
+        this._ventaService.deleteVenta(id).subscribe(
             result =>{
                 if(result.status == 200){
-                    this.getRutas();
+                    this.getVentas();
                 }else{
-                    alert("Error al borrar ruta")
+                    alert("Error al borrar venta")
                 }
             },
             error =>{
