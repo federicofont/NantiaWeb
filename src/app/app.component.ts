@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { GLOBAL } from './services/global';
+import {AuthenticationService} from "./login/shared/authentication.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ AuthenticationService ]
 })
 export class AppComponent {
   public title = 'Nantia Web';
@@ -18,5 +20,4 @@ export class AppComponent {
 		//console.log('login.component.ts cargado');
 		console.log(GLOBAL.login);
 	}
-
 }

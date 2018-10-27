@@ -131,12 +131,13 @@ export class VentaAddComponent{
 
 	getCliente(formCliente:number){
 		this._clienteService.getCliente(formCliente).subscribe(
-			result =>{
-				if(result.status == 200){
+			(result:Cliente) =>{
+				this.venta.cliente = result;
+				/*if(result.status == 200){
 					 this.venta.cliente = result.json();
 				}else{
 					console.log("Result Controler",result.status); 
-				}
+				}*/
 			},
 			error =>{
 				console.log(<any>error);

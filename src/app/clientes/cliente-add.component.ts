@@ -63,7 +63,7 @@ export class ClienteAddComponent{
 				private _fecha:Fecha
 				){
 
-		this._activatedRoute.params
+		/*this._activatedRoute.params
 			.subscribe( parametros=>{
 			////console.log("id",parametros.id);
 			this.id = parametros['id'];
@@ -74,7 +74,7 @@ export class ClienteAddComponent{
 			this.titulo = 'Editar Cliente'
 		}else{
 			this.titulo = 'Nuevo Cliente';	
-		} 
+		} */
 		
 	}
 	 
@@ -133,12 +133,12 @@ export class ClienteAddComponent{
     ////console.log("Marcadores: ", marcadoresAux);
   //}
 
-  //borrarMarcador(i: number){
+  borrarMarcador(i: number){
   	//borro elementos de un arreglo
-  //  this.marcadores.splice(i,1);
+    this.marcadores.splice(i,1);
     //guardo el nuevo localStorage sin el eleento.
-    //this.guardarStorage(this.marcadores);
-  //}
+   // this.guardarStorage(this.marcadores);
+  }
 
   posicionFinalMarcador(marcador:any, $event:any, posicion:number){
   	//console.log("Posicion Final:",marcador,$event);
@@ -179,9 +179,10 @@ export class ClienteAddComponent{
 	getCliente(){
 	////console.log("entre al getcliente");
 	this._clienteService.getCliente(this.id).subscribe(
-				result =>{
+				(result:Cliente) =>{
 					////console.log("status:",result.status);
-					if(result.status == 200){
+					this.cliente = result;
+					/*if(result.status == 200){
 						 this.cliente = result.json();
 						 //console.log("cliente:",this.cliente);
 						 this.direccion = this.cliente.direccion;
@@ -206,7 +207,7 @@ export class ClienteAddComponent{
 
 					}else{
 						////console.log("ID:",this.id," Result Controler:",result.status);
-					}
+					}*/
 
 				},
 				error =>{
@@ -322,13 +323,14 @@ export class ClienteAddComponent{
 		////console.log("update:",this.cliente);
 		this._clienteService.editCliente(this.id, this.cliente)
 				.subscribe(result => {
+					this._router.navigate(['/clientes']);
 				////console.log("Result Controler",result.status);
- 					if(result.status=200){
+ 					/*if(result.status=200){
  						this._router.navigate(['/clientes']);
  					}else{
  						//204 -- No Content
  						console.log("Result Controler",result.status);
-					}
+					}*/
  				},
  				error => {
  					console.log(<any>error);
@@ -340,12 +342,13 @@ export class ClienteAddComponent{
 		//console.log("Cliente ADD",this.cliente)
 		this._clienteService.addCliente(this.cliente)
 			.subscribe(result => {
-					if(result.status==201){
+				this._router.navigate(['/clientes']);
+					/*if(result.status==201){
 						//console.log("Result Controler:",result.status);
 						this._router.navigate(['/clientes']);
 					}else{
 						console.log("Result Controler:",result.status);
-				}
+				}*/
 				},
 				error => {
 					console.log(<any>error);

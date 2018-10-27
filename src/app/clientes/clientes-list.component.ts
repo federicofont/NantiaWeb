@@ -45,14 +45,16 @@ export class ClientesListComponent{
 
 
 		getClientes(){
+
 			this._clienteService.getClientes().subscribe(
 				result =>{
-					if(result.status == 200){
-						 this.clientes = result.json();
-						 console.log("Clientes:",result.json());
-					}else{
-						console.log("Result Controler",result.status); 
-					}
+				//	console.log(result);
+				//	if(result.status == 200){
+						 this.clientes = result;//.json();
+						// console.log("Clientes:",result.json());
+				//	}else{
+				//		console.log("Result Controler",result.status); 
+				//	}*/
 				},
 				error =>{
 					console.log(<any>error);
@@ -62,13 +64,14 @@ export class ClientesListComponent{
 
 		getCliente(){
 			this._clienteService.getCliente(this.id).subscribe(
-		 		result =>{
-		 			if(result.status == 200){
+		 		(result:Cliente) =>{
+					this.cliente = result;
+		 			/*if(result.status == 200){
 		 				 ////console.log('Cliente:',this.cliente = result.json())
 		 				 this.cliente = result.json();
 		 			}else{
 						console.log("ID:",this.id," Result Controler:",result.status);
-		 			}
+		 			}*/
 		 		},
 		 		error =>{
 		 			console.log(<any>error);
@@ -86,12 +89,13 @@ export class ClientesListComponent{
 
 		onDeleteCliente(id){
 			this._clienteService.deleteCliente(id).subscribe(
-				result =>{
+				result =>{/*
 					if(result.status == 200){
 						this.getClientes();
 					}else{
 						alert("Error al borrar producto")
-					}
+					}*/
+					this.getClientes();
 				},
 				error =>{
 					console.log(<any>error);

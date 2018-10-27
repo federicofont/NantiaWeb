@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { EnvaseService } from './envase.service';
 import { Envase} from './envase.model';
-import {CarouselModule} from 'primeng/carousel';
+//import {CarouselModule} from 'primeng/carousel';
 
 @Component({
 	selector: 'envases-list',

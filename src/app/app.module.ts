@@ -1,14 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ApplicationRef } from '@angular/core';
-//Texto en español
-import { LOCALE_ID } from '@angular/core';
+import { NgModule } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+//import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CoreModule} from "./core/core.module";
+//import {Routing} from "./app.routing";
+import {HomeComponent} from "./home/home.component";
+import {LoginComponent} from "./login/login.component";
+import {CalendarModule} from "angular-calendar";
+import {
+  MatInputModule,
+  MatButtonModule,
+  MatCardModule
+} from '@angular/material';
+import {environment} from '../environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
-//import { MaterialModule } from './material.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
+import {LoginSessionService} from './login/login.sessionService'
 
 //Maps
 import { AgmCoreModule } from '@agm/core';
@@ -19,10 +32,10 @@ import { MapaComponent } from './mapa/mapa.component';
 import {routing, appRoutingProviders} from './app.routing';
 
 //Components
-import { LoginComponent } from './login/login.component';
-import { LoginErrorComponent } from './login/login-error.component';
-import { HomeComponent } from './homePage/home.component';
-import { ErrorComponent } from './homePage/error.component';
+//import { LoginComponent } from './login/login.component';
+//import { LoginErrorComponent } from './login/login-error.component';
+//import { HomeComponent } from './homePage/home.component';
+//import { ErrorComponent } from './homePage/error.component';
 
 import { UsuariosListComponent } from './usuarios/usuarios-list.component';
 import { UsuarioAddComponent } from './usuarios/usuario-add.component';
@@ -68,20 +81,21 @@ import { RepartoAddComponent } from './reparto/reparto-add.component';
 import { VehiculoListComponent } from './vehiculo/vehiculo-list.component';
 import { VehiculoAddComponent } from './vehiculo/vehiculo-add.component';
 //import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
+import { AuthGuard } from './login/guardas/AuthGuard';
 
 import { VentaListComponent } from './venta/ventas-list.component';
 import { VentaAddComponent } from './venta/venta-add.component';
+import { LoginService } from './login/login.service';
 //import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    LoginErrorComponent,
-    
     HomeComponent,
-    ErrorComponent,
-    
+
+
     UsuariosListComponent,
     UsuarioAddComponent,
     UsuarioDetailComponent,
@@ -136,22 +150,35 @@ import { VentaAddComponent } from './venta/venta-add.component';
   ],
   imports: [
     BrowserModule,
-    CommonModule,
-    BrowserAnimationsModule,
     FormsModule,
-    HttpModule,
-    ReactiveFormsModule,
+    HttpClientModule,
+    //Routing,
     routing,
-   // MaterialModule,
+    BrowserAnimationsModule,
+    CoreModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    CalendarModule.forRoot(),
+   // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+
+
+
+    CommonModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCc3YdY2qpqHP9V7rY4WEyuzi7UxS5gE14'
     })
   ],
+  //providers: [],
   providers: [
-  	//{provide: LOCALE_ID, useValue: 'es' },
+    //{provide: LOCALE_ID, useValue: 'es' },
       appRoutingProviders,
+      LoginSessionService,
+      AuthGuard,
+      LoginService
     
-  	],
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

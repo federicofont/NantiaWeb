@@ -44,13 +44,14 @@ export class ClienteDetailComponent{
 	ngOnInit(){
 
 		this._clienteService.getCliente(this.id).subscribe(
-				result =>{
-					if(result.status = 200){
+				(result:Cliente) =>{
+					this.cliente = result;
+					/*if(result.status = 200){
 						 this.cliente = result.json();
 						 console.log("this.cliente",this.cliente);
 					}else{
 						////console.log("ID:",this.id," Result Controler:",result.status);
-					}
+					}*/
 
 				},
 				error =>{
