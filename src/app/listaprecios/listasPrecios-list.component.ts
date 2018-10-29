@@ -25,51 +25,52 @@ export class ListaPreciosListComponent{
 		this.titulo = 'Listas de precios';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
 
 	ngOnInit(){
-		//console.log('ListaPrecios-list.compoent.ts cargado');
+		////console.log(('ListaPrecios-list.compoent.ts cargado');
 		//alert(this._listaprecioService.getListaPrecios());
 		if (this.id==null) {
-			//console.log("pase el if");
+			////console.log(("pase el if");
 			this.getListaPrecios();
-			//console.log("lista Precio: ",this.listaprecio)
+			////console.log(("lista Precio: ",this.listaprecio)
 		}else{
-			//console.log("Entre al else")
-			this.getListaPrecio()
+			////console.log(("Entre al else")
+			this.getListaPrecio(this.id);
 		}
 }
 		getListaPrecios(){
 			this._listaprecioService.getListaPrecios().subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.listaprecios = result.json();
-						 console.log("listaprecios: ",this.listaprecios)
+				(result : any) =>{
+					if (result.length > 0) {
+						 this.listaprecios = result;
+						 //console.log("listaprecios: ",this.listaprecios)
 					}else{
-						//console.log("Result Controler",result.status); 
+						////console.log(("Result Controler",result.status); 
 					}
 				},
 				error =>{
-					//console.log(<any>error);
+					////console.log((<any>error);
 				}
 			);
 		}
 
-		getListaPrecio(){
-			this._listaprecioService.getListaPrecio(this.id).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.listaprecio = result.json();
+		getListaPrecio(id:number){
+			this._listaprecioService.getListaPrecio(id).subscribe(
+				(result:ListaPrecio) =>{
+					//if (result.length > 0) {
+					if(result.id>0){	
+						 this.listaprecio = result;//.json();
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+					//	//console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -83,17 +84,18 @@ export class ListaPreciosListComponent{
 			this.confirmado=null;
 		}
 
-		onDeleteListaPrecio(id){
+		onDelete(id){
 			this._listaprecioService.deleteListaPrecio(id).subscribe(
-				result =>{
-					if(result.status == 200){
+				(result : any) =>{
+					//if (result.length > 0) {
+					if(result==null){
 						this.getListaPrecios();
 					}else{
 						alert("Error al borrar listaprecio")
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}

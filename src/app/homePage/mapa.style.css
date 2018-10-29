@@ -1,0 +1,18 @@
+agm-map { 
+  height: 300px;
+  /*width: 700px*/
+}
+
+#titulo{
+  /*display:inline-block; 
+   margin-left: 40px;*/
+   text-align: center; 
+}
+
+#margen {
+margin: 5px;
+}
+
+#margen2 {
+margin: 17px;
+}

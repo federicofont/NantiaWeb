@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'; //para injectar servicios
-import { Http, Response, Headers, RequestOptions } from '@angular/http'; //tipos de peticiones y cabeceras
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map'; //mapear respuestas y conseguir objetos de la respuesta
 import { Observable} from 'rxjs/Observable';
 import { Ruta } from './ruta.model';
@@ -10,7 +10,7 @@ export class RutaService{
 	public url:string;
 
 	constructor(
-		public _http: Http
+		public _http: HttpClient
 	){
 		this.url = GLOBAL.url;
 	}
@@ -26,14 +26,14 @@ export class RutaService{
 
 	addRuta(ruta:Ruta){
 		let body = JSON.stringify(ruta);
-		let headers = new Headers({'Content-Type':'application/json'});
-		//console.log('json_ruta',body);
+		let headers = new HttpHeaders({'Content-Type':'application/json'});
+		////console.log(('json_ruta',body);
 		return this._http.post(this.url+'ruta',body,{headers: headers});
 	}
 
-	editRuta(id, ruta:Ruta){
+	editRuta(ruta:Ruta){
 		let body = JSON.stringify(ruta);
-		let headers = new Headers({'Content-Type':'application/json'});
+		let headers = new HttpHeaders({'Content-Type':'application/json'});
 
 		return this._http.put(this.url+'ruta/'+ruta.id,body,{headers: headers});
 	}

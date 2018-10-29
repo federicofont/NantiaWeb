@@ -88,7 +88,7 @@ export class VentaAddComponent{
 
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
@@ -102,13 +102,13 @@ export class VentaAddComponent{
 		//this.getUsuario(this.usuarios[1].id);
 		//this.getFabricaDeUsuario(this.fabricas[1].id)
 		//yyyy-MM-dd HH:mm:ss
-		//console.log(this.fechaActual.getFullYear);
-		/*console.log(this.fechaActual.getFullYear());
-		console.log(this.fechaActual.getMonth());
-		console.log(this.fechaActual.getDate());
-		console.log(this.fechaActual.getHours());
-		console.log(this.fechaActual.getMinutes());
-		console.log(this.fechaActual.getSeconds());
+		////console.logthis.fechaActual.getFullYear);
+		/*//console.logthis.fechaActual.getFullYear());
+		//console.logthis.fechaActual.getMonth());
+		//console.logthis.fechaActual.getDate());
+		//console.logthis.fechaActual.getHours());
+		//console.logthis.fechaActual.getMinutes());
+		//console.logthis.fechaActual.getSeconds());
 		*/
 
 	}
@@ -116,15 +116,15 @@ export class VentaAddComponent{
 
 	getClientes(){
 		this._clienteService.getClientes().subscribe(
-			result =>{
-				if(result.status == 200){
-					 this.clientes = result.json();
+			(result : any) =>{
+				if (result.length > 0) {
+					 this.clientes = result;
 				}else{
-					console.log("Result Controler",result.status); 
+					//console.log("Result Controler",result.status); 
 				}
 			},
 			error =>{
-				console.log(<any>error);
+				//console.log(<any>error);
 			}
 		);
 	}
@@ -133,31 +133,31 @@ export class VentaAddComponent{
 		this._clienteService.getCliente(formCliente).subscribe(
 			(result:Cliente) =>{
 				this.venta.cliente = result;
-				/*if(result.status == 200){
-					 this.venta.cliente = result.json();
+				/*if (result.length > 0) {
+					 this.venta.cliente = result;
 				}else{
-					console.log("Result Controler",result.status); 
+					//console.log("Result Controler",result.status); 
 				}*/
 			},
 			error =>{
-				console.log(<any>error);
+				//console.log(<any>error);
 			}
 		);
 	}
 
 	getListaPrecios(){
 	this._listaprecioService.getListaPrecios().subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.listaPrecios = result.json();
+				(result : any) =>{
+					if (result.length > 0) {
+						 this.listaPrecios = result;
 						 this.getListaPrecio(this.listaPrecios[1].id);
 					}else{
-						console.log("Result Controler:",result.status);
+						//console.log("Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(error);
+					//console.logerror);
 				}
 			)
 	}
@@ -165,85 +165,85 @@ export class VentaAddComponent{
 
 	getListaPrecio(idLista: number){
 	this._listaprecioService.getListaPrecio(idLista).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.listaPrecio = result.json();
+				(result : any) =>{
+					if (result.length > 0) {
+						 this.listaPrecio = result;
 					}else{
-						console.log("Result Controler:",result.status);
+						//console.log("Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(error);
+					//console.logerror);
 				}
 			)
 	}
 
 	getUsuarios(){
 		this._usuarioService.getUsuarios().subscribe(
-			result =>{
-				if(result.status == 200){
-					 this.usuarios = result.json();
-					 //console.log("usuarios:",this.usuarios);
+			(result : any) =>{
+				if (result.length > 0) {
+					 this.usuarios = result;
+					 ////console.log(("usuarios:",this.usuarios);
 					 this.getUsuario(this.usuarios[1].id);
 				}else{
-					console.log("Result Controler:",result.status);
+					//console.log("Result Controler:",result.status);
 				}
 
 			},
 			error =>{
-				console.log(error);
+				//console.logerror);
 			}
 		)
 	}
 
 	getUsuario(idUsuario:number){
 		this._usuarioService.getUsuario(idUsuario).subscribe(
-			result =>{
-				if(result.status == 200){
-					 this.venta.usuario = result.json();
+			(result : any) =>{
+				if (result.length > 0) {
+					 this.venta.usuario = result;
 				}else{
-					console.log("ID:",this.id," Result Controler:",result.status);
+					//console.log("ID:",this.id," Result Controler:",result.status);
 				}
 
 			},
 			error =>{
-				console.log(error);
+				//console.logerror);
 			}
 		)
 	}
 
 	getFabricas(){
 		this._fabricaService.getFabricas().subscribe(
-			result =>{
-				if(result.status == 200){
-					 this.fabricas = result.json();
-					 //console.log("Fabricas",this.fabricas);
+			(result : any) =>{
+				if (result.length > 0) {
+					 this.fabricas = result;
+					 ////console.log(("Fabricas",this.fabricas);
 					 this.getFabricaDeUsuario(this.fabricas[1].id);
 				}else{
-					console.log("ID:",this.id," Result Controler:",result.status);
+					//console.log("ID:",this.id," Result Controler:",result.status);
 				}
 
 			},
 			error =>{
-				console.log(error);
+				//console.logerror);
 			}
 		)
 	}
 
 	getFabricaDeUsuario(idFabrica:number){
 		this._fabricaService.getFabrica(idFabrica).subscribe(
-			result =>{
-				if(result.status == 200){
-					 this.fabrica = result.json();
+			(result : any) =>{
+				if (result.length > 0) {
+					 this.fabrica = result;
 					 this.venta.fabricaid=this.fabrica.id;
 				}else{
-					console.log("ID:",this.id," Result Controler:",result.status);
+					//console.log("ID:",this.id," Result Controler:",result.status);
 				}
 
 			},
 			error =>{
-				console.log(error);
+				//console.logerror);
 			}
 		)
 	}
@@ -266,7 +266,7 @@ export class VentaAddComponent{
 		nuevo_productoVenta.cantidad = formproductosAdd.value.formCantidad
 		nuevo_productoVenta.precioUnitario = this.listaPrecio.setProductoLista[ind].precio;
 		nuevo_productoVenta.total = this.listaPrecio.setProductoLista[ind].precio * nuevo_productoVenta.cantidad;
-		//console.log("nuevo_productoVenta",nuevo_productoVenta);
+		////console.log(("nuevo_productoVenta",nuevo_productoVenta);
 		this.venta.setProductoVenta.push(nuevo_productoVenta);
 
 		/*Calculo el subtotal neto*/
@@ -274,14 +274,14 @@ export class VentaAddComponent{
 	    for (var i = this.venta.setProductoVenta.length - 1; i >= 0; i--) {
 			this.subtotal = this.subtotal + this.venta.setProductoVenta[i].total;
 		}
-		//console.log("subtotal", this.subtotal);
+		////console.log(("subtotal", this.subtotal);
 	
 		/*Calculo el iva sobre el Subtotal - Descuento*/
 		this.venta.ivatotal =  ( (this.subtotal - formDescuento) * this.iva0)/100;
 		
 		/*Calculo (Subtotal - Descuento) + Iva*/
 		this.venta.totalventa = ( (this.subtotal - formDescuento) + this.venta.ivatotal );
-		//console.log("venta",this.venta);
+		////console.log(("venta",this.venta);
 
 		/*Total Pago*/
 		this.venta.pagototal = this.venta.totalventa
@@ -295,25 +295,25 @@ export class VentaAddComponent{
 
 
 	guardar(ventaAdd:NgForm){
-		//console.log("venta ADD/Update ID:", this.id);
+		////console.log(("venta ADD/Update ID:", this.id);
 		//if (this.id==null) {
 			// Add user
 		
 			//Creo el venta desde el formulario
 			//this.venta=ventaAdd.value;
-			console.log("Venta:",this.venta);
+			//console.log("Venta:",this.venta);
 		
 			this._ventaService.addVenta(this.venta)
-				.subscribe(result => {
+				.subscribe((result : any) => {
  					if(result.status==201){
- 						//this._router.navigate(['/ventas/'+result.json().id]);
- 						console.log("Result Controler",result.status);
- 					}else{
+ 						//this._router.navigate(['/ventas']);
  						//console.log("Result Controler",result.status);
+ 					}else{
+ 						////console.log(("Result Controler",result.status);
 					}
  				},
  				error => {
- 					//console.log(<any>error);
+ 					////console.log((<any>error);
  				})
  		//}else{
  			// Update user
@@ -321,20 +321,20 @@ export class VentaAddComponent{
 			//Actualizo el venta desde el formulario
 			// this.venta=ventaAdd.value;
 			// this.venta.id=this.id;
-			// //console.log("venta:",this.venta);
+			// ////console.log(("venta:",this.venta);
 		
 			// this._ventaService.updateVenta(this.venta)
-			// 	.subscribe(result => {
-			// 	//console.log("Result Controler",result.status);
+			// 	.subscribe((result : any) => {
+			// 	////console.log(("Result Controler",result.status);
  		// 			if(result.status==200){
- 		// 				this._router.navigate(['/ventas/'+result.json().id]);
+ 		// 				this._router.navigate(['/ventas']);
  		// 			}else{
  		// 				//204 -- No Content
- 		// 				//console.log("Result Controler",result.status);
+ 		// 				////console.log(("Result Controler",result.status);
 			// 		}
  		// 		},
  		// 		error => {
- 		// 			//console.log(<any>error);
+ 		// 			////console.log((<any>error);
  		// 		})
  		// }
 

@@ -42,33 +42,33 @@ export class FabricaListComponent{
 
 	getFabricas(){
 		this._fabricaService.getFabricas().subscribe(
-			result =>{
-				if(result.status == 200){
-					 this.fabricas = result.json();
-					 console.log(result.json());
+			(result : any) =>{
+				if (result.length > 0) {
+					 this.fabricas = result;
+					// //console.logresult.json());
 				}else{
-					console.log("Result Controler",result.status); 
+				//	//console.log("Result Controler",result.status); 
 				}
 			},
 			error =>{
-				console.log(<any>error);
+				//console.log(<any>error);
 			}
 		);
 	}
 
 	getFabrica(id){
 		this._fabricaService.getFabrica(id).subscribe(
-			result =>{
-				if(result.status == 200){
-					 this.fabrica = result.json();
-					 console.log("GetFabrica",result.json());
+			(result : any) =>{
+				if (result.length > 0) {
+					 this.fabrica = result;
+				//	 //console.log("GetFabrica",result.json());
 				}else{
-					console.log("ID:",this.id," Result Controler:",result.status);
+				//	//console.log("ID:",this.id," Result Controler:",result.status);
 				}
 
 			},
 			error =>{
-				console.log(<any>error);
+				//console.log(<any>error);
 			}
 		);
 	}
@@ -84,17 +84,17 @@ export class FabricaListComponent{
 		this.confirmado=null;
 	}
 
-	onDeleteFabrica(id){
+	onDelete(id){
 		this._fabricaService.deleteFabrica(id).subscribe(
-			result =>{
-				if(result.status == 204){
+			(result : any) =>{
+				if (result == null) {
 					this.getFabricas();
 				}else{
 					alert("Error al borrar fabrica")
 				}
 			},
 			error =>{
-				console.log(<any>error);
+				//console.log(<any>error);
 			}
 		);
 	}

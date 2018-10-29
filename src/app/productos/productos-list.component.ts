@@ -25,19 +25,19 @@ export class ProductosListComponent{
 		this.titulo = 'Listado de productos';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
 
 	ngOnInit(){
-		//console.log('Productos-list.compoent.ts cargado');
+		////console.log(('Productos-list.compoent.ts cargado');
 		//alert(this._productoService.getProductos());
 		if (this.id==null) {
-			//console.log("pase el if");
+			////console.log(("pase el if");
 			this.getProductos();
 		}else{
-			//console.log("Entre al else")
+			////console.log(("Entre al else")
 			this.getProducto();
 			
 		}
@@ -46,31 +46,31 @@ export class ProductosListComponent{
 
 		getProductos(){
 			this._productoService.getProductos().subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.productos = result.json();
+				(result : any) =>{
+					if (result.length > 0) {
+						 this.productos = result;
 					}else{
-						console.log("Result Controler",result.status); 
+				//		//console.log("Result Controler",result.status); 
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
 
 		getProducto(){
 			this._productoService.getProducto(this.id).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.producto = result.json();
+				(result:any) =>{
+					if(result.productoId){
+						 this.producto = result;
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						////console.log(("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -83,17 +83,17 @@ export class ProductosListComponent{
 			this.confirmado=null;
 		}
 
-		onDeleteProducto(id){
+		onDelete(id){
 			this._productoService.deleteProducto(id).subscribe(
-				result =>{
-					if(result.status == 200){
+				(result:any) =>{
+					if (result==null) {
 						this.getProductos();
 					}else{
 						alert("Error al borrar producto")
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}

@@ -14,7 +14,8 @@ Barra Superior
         <div class="navbar-header">
             <img src="../assets/bootstrap/image/logo2.png" class="img-rounded" width="130" href="index.html">
 
-            <img src="../assets/bootstrap/image/ico/line-width-16.ico" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <img src="../assets/bootstrap/image/ico/line-width-16.ico" class="navbar-toggle" data-toggle="collapse"
+                data-target=".navbar-collapse">
             <!--a class="navbar-brand" href="index.html">Soda Nanatia</a-->
         </div>
 
@@ -22,13 +23,13 @@ Barra Superior
             <img data-toggle="dropdown" src="../assets/bootstrap/image/ico/user-16.ico">
 
             <div class="dropdown-menu" id="userDropdownN2">
-                <a href="/roles"><img src="../assets/bootstrap/image/ico/user-16.ico"> Usuario</a><br>
-                <a href="#"><img src="../assets/bootstrap/image/ico/settings-5-16.ico"> Configuración</a>
+                <!--a href="/roles"><img src="../assets/bootstrap/image/ico/user-16.ico"> Usuario</a><br-->
+                <!--a href="#"><img src="../assets/bootstrap/image/ico/settings-5-16.ico"> Configuración</a-->
                 <div class="dropdown-divider"></div>
-                <a href="/login"><img src="../assets/bootstrap/image/ico/logout-16.ico"> Logout</a>
+                <a (click)="logout()" href="/login"><img src="../assets/bootstrap/image/ico/logout-16.ico"> Logout</a>
             </div>
 
-            <a style="margin-left: 10px"> <img src="../assets/bootstrap/image/ico/help-16.ico"> </a>
+            <!--a style="margin-left: 10px"> <img src="../assets/bootstrap/image/ico/help-16.ico"> </a-->
         </div>
 
     </nav>
@@ -59,7 +60,7 @@ Barra Superior
                         </tr-->
 
                             <tr class="nav-item active">
-                                <a class="nav-link" href="#home" [routerLink]="['/home']" [routerLinkActive]="['activado']">
+                                <a class="nav-link" href="#home" [routerLink]="['/mapaCli']" [routerLinkActive]="['activado']">
                                     <img src="../assets/bootstrap/image/ico/home-16.ico"> Inicio
                                     <span class="sr-only">(current)</span></a>
                             </tr>
@@ -85,13 +86,16 @@ Barra Superior
                             </tr>
 
                             <tr class="nav-item active">
-                                <a class="nav-link" href="#verProductos" [routerLink]="['/productos']" [routerLinkActive]="['activado']">
+                                <a class="nav-link" href="#verProductos" [routerLink]="['/productos']"
+                                    [routerLinkActive]="['activado']">
                                     <img src="../assets/bootstrap/image/ico/box-5-16.ico"> Productos <span class="sr-only">(current)</span></a>
                             </tr>
 
                             <tr class="nav-item active">
-                                <a class="nav-link" href="#listaprecios" [routerLink]="['/listaprecios']" [routerLinkActive]="['activado']">
-                                    <img src="../assets/bootstrap/image/ico/view-details-16.ico"> Listas de Precios <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="#listaprecios" [routerLink]="['/listaprecios']"
+                                    [routerLinkActive]="['activado']">
+                                    <img src="../assets/bootstrap/image/ico/view-details-16.ico"> Listas de Precios
+                                    <span class="sr-only">(current)</span></a>
                             </tr>
 
                             <tr class="nav-item active">
@@ -152,6 +156,3 @@ Barra Superior
 </body>
 
 </html>
-
-<h1>Hi {{user?.name}}</h1>
-<button mat-raised-button type="button" (click)="logout()">Log Out</button>

@@ -46,19 +46,19 @@ export class StockDetailComponent{
 
 	getStock(id:number){
 		this._stockService.getStock(id).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.stock = result.json();
+				(result : any) =>{
+					if (result.length > 0) {
+						 this.stock = result;
 						// this.setProductoStock=this.stock.setProductoStock;
 						// this.setEnvaseStock=this.stock.setEnvaseStock;
-						 console.log(this.stock);
+						 //console.logthis.stock);
 					}else{
-						console.log("ID:",id," Result Controler:",result.status);
+						//console.log("ID:",id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			)
 	}

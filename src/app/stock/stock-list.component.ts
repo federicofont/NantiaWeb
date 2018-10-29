@@ -41,32 +41,32 @@ export class StockListComponent{
 
 		getStocks(){
 			this._stockService.getStocks().subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.stocks = result.json();
-						 console.log("STOCK",this.stock);
+				(result : any) =>{
+					if (result.length > 0) {
+						 this.stocks = result;
+						 //console.log("STOCK",this.stock);
 					}else{
-						console.log("Result Controler",result.status); 
+						//console.log("Result Controler",result.status); 
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
 
 		getStock(id:number){
 			this._stockService.getStock(id).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.stock = result.json();
+				(result : any) =>{
+					if (result.id > 0) {
+						 this.stock = result;
 					}else{
-						console.log("ID:",id," Result Controler:",result.status);
+						//console.log("ID:",id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -80,17 +80,17 @@ export class StockListComponent{
 			this.confirmado = null;
 		}
 
-		onDeleteStock(id){
+		onDelete(id){
 			this._stockService.deleteStock(id).subscribe(
-				result =>{
-					if(result.status == 200){
+				(result : any) =>{
+					if (result==null) {
 						this.getStocks();
 					}else{
 						alert("Error al borrar stock")
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}

@@ -1,41 +1,41 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {CoreModule} from "./core/core.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CoreModule } from "./core/core.module";
 //import {Routing} from "./app.routing";
-import {HomeComponent} from "./home/home.component";
-import {LoginComponent} from "./login/login.component";
-import {CalendarModule} from "angular-calendar";
+import { HomeComponent } from "./home/home.component";
+import { LoginComponent } from "./login/login.component";
+import { CalendarModule } from "angular-calendar";
 import {
   MatInputModule,
   MatButtonModule,
   MatCardModule
 } from '@angular/material';
-import {environment} from '../environments/environment';
-import { ServiceWorkerModule } from '@angular/service-worker';
+//import {environment} from '../environments/environment';
+//import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 
-import {LoginSessionService} from './login/login.sessionService'
+import { LoginSessionService } from './login/login.sessionService'
 
 //Maps
 import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
-import { MapaComponent } from './mapa/mapa.component';
+import { MapaCliComponent } from './homePage/mapaCli.component';
 
 //Rutas
-import {routing, appRoutingProviders} from './app.routing';
+import { routing, appRoutingProviders } from './app.routing';
 
 //Components
 //import { LoginComponent } from './login/login.component';
 //import { LoginErrorComponent } from './login/login-error.component';
 //import { HomeComponent } from './homePage/home.component';
-//import { ErrorComponent } from './homePage/error.component';
+import { ErrorComponent } from './home/error.component';
 
 import { UsuariosListComponent } from './usuarios/usuarios-list.component';
 import { UsuarioAddComponent } from './usuarios/usuario-add.component';
@@ -94,7 +94,7 @@ import { LoginService } from './login/login.service';
     AppComponent,
     LoginComponent,
     HomeComponent,
-
+    ErrorComponent,
 
     UsuariosListComponent,
     UsuarioAddComponent,
@@ -103,22 +103,22 @@ import { LoginService } from './login/login.service';
     RolesListComponent,
     RolAddComponent,
     RolDetailComponent,
-    
+
     ProductosListComponent,
     ProductoAddComponent,
     ProductoDetailComponent,
-    
+
     ClientesListComponent,
     ClienteAddComponent,
     ClienteDetailComponent,
-    
-    MapaComponent,
-    
+
+    MapaCliComponent,
+
     EnvasesListComponent,
     EnvaseAddComponent,
     EnvaseDetailComponent,
     EnvaseEditComponent,
-    
+
     ListaPreciosListComponent,
     ListaPrecioAddComponent,
     ListaPrecioDetailComponent,
@@ -129,24 +129,24 @@ import { LoginService } from './login/login.service';
 
     FabricaListComponent,
     FabricaAddComponent,
-  //  FabricaDetailComponent,
+    //  FabricaDetailComponent,
 
     RutaListComponent,
     RutaAddComponent,
-//  RutaDetailComponent,
+    //  RutaDetailComponent,
 
     RepartoListComponent,
     RepartoAddComponent,
-//  RepartoDetailComponent,
+    //  RepartoDetailComponent,
 
     VehiculoListComponent,
     VehiculoAddComponent,
-//  VehiculoDetailComponent,
+    //  VehiculoDetailComponent,
 
     VentaListComponent,
     VentaAddComponent
-//  VentaDetailComponent,
-    
+    //  VentaDetailComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -161,7 +161,7 @@ import { LoginService } from './login/login.service';
     MatButtonModule,
     MatCardModule,
     CalendarModule.forRoot(),
-   // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 
 
 
@@ -173,12 +173,12 @@ import { LoginService } from './login/login.service';
   //providers: [],
   providers: [
     //{provide: LOCALE_ID, useValue: 'es' },
-      appRoutingProviders,
-      LoginSessionService,
-      AuthGuard,
-      LoginService
-    
-    ],
+    appRoutingProviders,
+    LoginSessionService,
+    AuthGuard,
+    LoginService
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

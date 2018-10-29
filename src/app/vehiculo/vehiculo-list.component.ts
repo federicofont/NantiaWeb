@@ -42,32 +42,32 @@ export class VehiculoListComponent{
 
     getVehiculos(){
         this._vehiculoService.getVehiculos().subscribe(
-            result =>{
-                if(result.status == 200){
-                     this.vehiculos = result.json();
+            (result : any) =>{
+                if (result.length > 0) {
+                     this.vehiculos = result;
                 }else{
-                    console.log("Result Controler",result.status); 
+                    //console.log("Result Controler",result.status); 
                 }
             },
             error =>{
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
     }
 
     getVehiculo(id){
         this._vehiculoService.getVehiculo(id).subscribe(
-            result =>{
-                if(result.status == 200){
-                     this.vehiculo = result.json();
-                     console.log("GetVehiculo",result.json());
+            (result : any) =>{
+                if (result.id > 0) {
+                     this.vehiculo = result;
+                     //console.log("GetVehiculo",result.json());
                 }else{
-                    console.log("ID:",this.id," Result Controler:",result.status);
+                    //console.log("ID:",this.id," Result Controler:",result.status);
                 }
 
             },
             error =>{
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
     }
@@ -83,17 +83,17 @@ export class VehiculoListComponent{
         this.confirmado=null;
     }
 
-    onDeleteVehiculo(id){
+    onDelete(id){
         this._vehiculoService.deleteVehiculo(id).subscribe(
-            result =>{
-                if(result.status == 200){
+            (result : any) =>{
+                if (result == null) {
                     this.getVehiculos();
                 }else{
                     alert("Error al borrar vehiculo")
                 }
             },
             error =>{
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
     }

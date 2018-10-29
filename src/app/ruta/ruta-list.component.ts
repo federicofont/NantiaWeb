@@ -43,33 +43,33 @@ export class RutaListComponent{
 
     getRutas(){
         this._rutaService.getRutas().subscribe(
-            result =>{
-                if(result.status == 200){
-                     this.rutas = result.json();
-                     console.log("Rutas.Json:",result.json());
+            (result : any) =>{
+                if (result.length > 0) {
+                     this.rutas = result;
+                     //console.log("Rutas.Json:",result.json());
                 }else{
-                    console.log("Result Controler",result.status); 
+                    //console.log("Result Controler",result.status); 
                 }
             },
             error =>{
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
     }
 
     getRuta(id){
         this._rutaService.getRuta(id).subscribe(
-            result =>{
-                if(result.status == 200){
-                     this.ruta = result.json();
-                     console.log("GetRuta",result.json());
+            (result : any) =>{
+                if (result.id > 0) {
+                     this.ruta = result;
+                     //console.log("GetRuta",result.json());
                 }else{
-                    console.log("ID:",this.id," Result Controler:",result.status);
+                    //console.log("ID:",this.id," Result Controler:",result.status);
                 }
 
             },
             error =>{
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
     }
@@ -87,15 +87,15 @@ export class RutaListComponent{
 
     onDelete(id){
         this._rutaService.deleteRuta(id).subscribe(
-            result =>{
-                if(result.status == 200){
+            (result : any) =>{
+                if (result == null) {
                     this.getRutas();
                 }else{
                     alert("Error al borrar ruta")
                 }
             },
             error =>{
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
     }

@@ -79,29 +79,29 @@ export class StockAddComponent{
 		}else{
 		  this.getProductos();
 		  this.getEnvases();
-		  console.log("Stock:", this.stock);
+		  //console.log("Stock:", this.stock);
 		}
 
 	}
 
 
 	getStock(id:number){
-		//console.log("entre al getstock");
+		////console.log(("entre al getstock");
 		this._stockService.getStock(id).subscribe(
-				result =>{
-					//console.log("status:",result.status);
-					if(result.status == 200){
-						 this.stock = result.json();
-						 console.log("Result stock:",this.stock);
-						 console.log("result.json():",result.json());
+				(result : any) =>{
+					////console.log(("status:",result.status);
+					if (result.id > 0) {
+						 this.stock = result;
+						 //console.log("Result stock:",this.stock);
+						 //console.log("result.json():",result.json());
 
 					}else{
-						console.log("ID:",id," Result Controler:",result.status);
+						//console.log("ID:",id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(error);
+					//console.logerror);
 				}
 			)
 	}
@@ -109,9 +109,9 @@ export class StockAddComponent{
 
 	getProductos(){
 		this._productoService.getProductos().subscribe(
-			result =>{
-				if(result.status == 200){
-					 this.productos=result.json();
+			(result : any) =>{
+				if (result.length > 0) {
+					 this.productos=result;
 
 					 for (var i = this.productos.length - 1; i >= 0; i--) {
 					 	var productoStock = new ProductoStock();
@@ -127,20 +127,20 @@ export class StockAddComponent{
 					 this.stock.setProductoStock = this.setProductoStock;
 					 
 				}else{
-					console.log("Result Controler",result.status); 
+					//console.log("Result Controler",result.status); 
 				}
 			},
 			error =>{
-				console.log(error);
+				//console.logerror);
 			}
 		);
 	}
 
 	getEnvases(){
 		this._envaseService.getEnvases().subscribe(
-			result =>{
-				if(result.status == 200){
-					this.envases=result.json();
+			(result : any) =>{
+				if (result.length > 0) {
+					this.envases=result;
 
 					for (var i = this.envases.length - 1; i >= 0; i--) {
 					 	var envaseStock = new EnvaseStock();
@@ -156,20 +156,20 @@ export class StockAddComponent{
 					 this.stock.setEnvaseStock = this.setEnvaseStock;
 
 				}else{
-					console.log("Result Controler",result.status); 
+					//console.log("Result Controler",result.status); 
 				}
 			},
 			error =>{
-				console.log(error);
+				//console.logerror);
 			}
 		);
 	}
 
 	guardar(formAdd:NgForm){
 
-		console.log("Stock:", this.stock);
+		//console.log("Stock:", this.stock);
 		this.stock.fecha = this._fecha.getDate();
-		//console.log("this.stock",this.stock);
+		////console.log(("this.stock",this.stock);
 		if(this.id != null){
 			this.stock.id=this.id;
 			this.updateStock();
@@ -181,52 +181,52 @@ export class StockAddComponent{
 	}
 
 	updateStock(){
-		//console.log("update:",this.stock);
+		////console.log(("update:",this.stock);
 		this._stockService.editStock(this.id, this.stock)
-				.subscribe(result => {
- 					if(result.status == 200){
- 						console.log("Result Controler",result.status);
- 						this._router.navigate(['/stock/'+result.json().id]);
+				.subscribe((result : any) => {
+ 					if (result.id > 0) {
+ 						//console.log("Result Controler",result.status);
+ 						this._router.navigate(['/stock']);
  					}else{
  						//204 -- No Content
- 						console.log("Result Controler",result.status);
+ 						//console.log("Result Controler",result.status);
 					}
  				},
  				error => {
- 					console.log(error);
+ 					//console.logerror);
  				})
 	};
 
 	addStock(){
 		//Llamo al servicio que creara el nuevo stock
-		//console.log("this.stock",this.stock);
+		////console.log(("this.stock",this.stock);
 		this._stockService.addStock(this.stock)
-			.subscribe(result => {
-					if(result.status==201){
-						console.log("Result Controler",result.status);
-						this._router.navigate(['/stock/'+result.json().id]);
+			.subscribe((result : any) => {
+					if(result.id > 0){
+						//console.log("Result Controler",result.status);
+						this._router.navigate(['/stock']);
 					}else{
-						console.log("Result Controler",result.status);
+						//console.log("Result Controler",result.status);
 				}
 				},
 				error => {
-					console.log(error);
+					//console.logerror);
 				})
 	};
 
 /*
 	addProductoLista(formproductosAdd:NgForm){	
 		//Cargo el objeto envase y el arreglo envases
-		//console.log("Conectado a addProductoLista");
+		////console.log(("Conectado a addProductoLista");
 		var ind:number=0;
-		//console.log(formproductosAdd);
+		////console.logformproductosAdd);
 		var idProducto:number = formproductosAdd.controls['productoId'].value;
-		//console.log("this.envases",this.envases);
+		////console.log(("this.envases",this.envases);
     	for (var i = this.productos.length - 1; i >= 0; i--) {
 			if(this.productos[i].productoId == idProducto)
 				ind = i;
 			//else
-				//console.log("i",i);
+				////console.log(("i",i);
 		}
 
 		const nuevo_productoLista = new ProductoLista( null,
@@ -234,7 +234,7 @@ export class StockAddComponent{
 											null,
 											this.productos[ ind ]);
 
-		//console.log("nuevo_envaseEnprestamo",nuevo_envaseEnprestamo);
+		////console.log(("nuevo_envaseEnprestamo",nuevo_envaseEnprestamo);
 		this.productosLista.push(nuevo_productoLista);
 		this.getProductosLista();
 	}

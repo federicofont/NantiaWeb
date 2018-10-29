@@ -21,14 +21,11 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="Nombre">Nombre</label>
-                        <input  type="text" #descripcion="ngModel" name="nombre" [(ngModel)]="producto.nombre" 
+                        <input  type="text" #nombre="ngModel" name="nombre" [(ngModel)]="producto.nombre" 
                                 class="form-control" placeholder="Nombre producto" minlength="4" required />
-                        <div *ngIf="producto.error?.required">
-                            El campo es requerido.
-                        </div>
-                        <div *ngIf="producto.error?.minlength">
-                            Por lo menos {{ producto.errors.minglength.requiredLenght }} caracteres.
-                        </div>
+                        <span *ngIf="nombre.touched && !nombre.valid" class="label label-success" >
+                                El nombre de la lista no es valido.
+                        </span>
                     </div>
                 </div>
 

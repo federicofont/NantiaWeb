@@ -23,26 +23,26 @@ export class EnvaseDetailComponent{
 
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 		}
 	
 	ngOnInit(){
-		//console.log('envase-detail.component.ts cargado');
+		////console.log(('envase-detail.component.ts cargado');
 
 		this._envaseService.getEnvase(this.id).subscribe(
-				result =>{
-					if(result.status == 200){
-						//console.log("Result:",result.json());
-						 this.envase = result.json();
+				(result : any) =>{
+					if (result.length > 0) {
+						////console.log(("Result:",result.json());
+						 this.envase = result;
 					}else{
-						//console.log("ID:",this.id," Result Controler:",result.status);
+						////console.log(("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					//console.log(<any>error);
+					////console.log((<any>error);
 				}
 			)
 		};

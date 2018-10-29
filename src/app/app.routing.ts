@@ -5,7 +5,7 @@ import { LoginComponent } from "./login/login.component";
 import { ModuleWithProviders } from "@angular/core";
 //Pagina principal y de error si no hay pagina.
 //import { HomeComponent } from './homePage/home.component';
-//import { ErrorComponent } from './homePage/error.component';
+import { ErrorComponent } from './home/error.component';
 
 // Components
 //import { LoginComponent } from './login/login.component';
@@ -27,7 +27,7 @@ import { ClientesListComponent } from "./clientes/clientes-list.component";
 import { ClienteAddComponent } from "./clientes/cliente-add.component";
 import { ClienteDetailComponent } from "./clientes/cliente-detail.component";
 
-import { MapaComponent } from "./mapa/mapa.component";
+import { MapaCliComponent } from "./homePage/mapaCli.component";
 
 import { EnvasesListComponent } from "./envases/envases-list.component";
 import { EnvaseAddComponent } from "./envases/envase-add.component";
@@ -57,7 +57,7 @@ import { RepartoAddComponent } from "./reparto/reparto-add.component";
 import { VehiculoListComponent } from "./vehiculo/vehiculo-list.component";
 import { VehiculoAddComponent } from "./vehiculo/vehiculo-add.component";
 //import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
-import { AuthGuard } from './login/guardas/AuthGuard';
+import { AuthGuard } from "./login/guardas/AuthGuard";
 
 import { VentaListComponent } from "./venta/ventas-list.component";
 import { VentaAddComponent } from "./venta/venta-add.component";
@@ -66,12 +66,11 @@ import { VentaAddComponent } from "./venta/venta-add.component";
 const appRoutes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
-    path: "",
-  component: HomeComponent,
-  canActivate:[AuthGuard],
-	canActivateChild:[AuthGuard],
+    path: "", component: HomeComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
-      //{path: '', component: HomeComponent },
+      {path: '', component: MapaCliComponent },
       { path: "usuarios", component: UsuariosListComponent },
       { path: "usuarios/:id", component: UsuarioDetailComponent },
       { path: "usuario-edit/:id", component: UsuarioAddComponent },
@@ -132,8 +131,8 @@ const appRoutes: Routes = [
       { path: "venta-edit/:id", component: VentaAddComponent },
       { path: "venta-add", component: VentaAddComponent },
 
-      { path: "mapa", component: MapaComponent }
-      //,{path: '**', component: ErrorComponent}
+      { path: "mapaCli", component: MapaCliComponent },
+      { path: '**', component: ErrorComponent }
     ]
   },
   { path: "login", component: LoginComponent }

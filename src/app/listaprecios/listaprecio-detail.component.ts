@@ -28,13 +28,13 @@ export class ListaPrecioDetailComponent{
 
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 		}
 	
 	ngOnInit(){
-		//console.log('listaprecio-detail.component.ts cargado');
+		////console.log(('listaprecio-detail.component.ts cargado');
 
 		this.getListaPrecio();
 
@@ -43,26 +43,27 @@ export class ListaPrecioDetailComponent{
 
 	getListaPrecio(){
 		this._listaprecioService.getListaPrecio(this.id).subscribe(
-				result =>{
-					if(result.status == 200){
-						//console.log("Result:",result.json());
-						 this.listaprecio = result.json();
-						 console.log(this.listaprecio);
+				(result:ListaPrecio) =>{
+					//if (result.length > 0) {
+					if(result){
+						////console.log(("Result:",result.json());
+						 this.listaprecio = result;//.json();
+						 //console.logthis.listaprecio);
 						 this.getProductosLista();
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						////console.log(("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			)
 	}
 
 	getProductosLista(){
 		this.productosLista=this.listaprecio.setProductoLista;
-		console.log("productosLista:",this.productosLista);
+		//console.log("productosLista:",this.productosLista);
 	}
 
 

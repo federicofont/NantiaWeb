@@ -80,7 +80,7 @@ export class RepartoAddComponent{
 
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
@@ -108,32 +108,32 @@ export class RepartoAddComponent{
 
 	getReparto(id:number){
 		this._repartoService.getReparto(id).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.reparto = result.json();
+				(result : any) =>{
+					if (result.id > 0) {
+						 this.reparto = result;
 						 this.getStock(this.reparto.stock.id);
 					}else{
-						console.log("ID:",id," Result Controler:",result.status);
+						//console.log("ID:",id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(error);
+					//console.logerror);
 				}
 			)
 	}
 
 	getUsuarios(){
 		this._usuarioService.getUsuarios().subscribe(
-            result => {
-                if(result.status == 200){
-                	this.usuarios = result.json();
+            (result : any) =>{
+                if (result.length > 0) {
+                	this.usuarios = result;
                 }else{
-                	console.log("Result Controler",result.status);   
+                	//console.log("Result Controler",result.status);   
                 }
         	 },
             error => {
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
 
@@ -141,54 +141,54 @@ export class RepartoAddComponent{
 
     getVehiculos(){
         this._vehiculoService.getVehiculos().subscribe(
-            result =>{
-                if(result.status == 200){
-                     this.vehiculos = result.json();
+            (result : any) =>{
+                if (result.length > 0) {
+                     this.vehiculos = result;
                 }else{
-                    console.log("Result Controler",result.status); 
+                    //console.log("Result Controler",result.status); 
                 }
             },
             error =>{
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
     }
 
 	getFabricas(){
 		this._fabricaService.getFabricas().subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.fabricas = result.json();
+				(result : any) =>{
+					if (result.length > 0) {
+						 this.fabricas = result;
 					}else{
-						console.log("Result Controler:",result.status);
+						//console.log("Result Controler:",result.status);
 					}
 				},
 				error =>{
-					console.log(error);
+					//console.logerror);
 				}
 			)
 	}
 
     getRutas(){
         this._rutaService.getRutas().subscribe(
-            result =>{
-                if(result.status == 200){
-                     this.rutas = result.json();
+            (result : any) =>{
+                if (result.length > 0) {
+                     this.rutas = result;
                 }else{
-                    console.log("Result Controler",result.status); 
+                    //console.log("Result Controler",result.status); 
                 }
             },
             error =>{
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
     }
 
 	getProductos(){
 		this._productoService.getProductos().subscribe(
-			result =>{
-				if(result.status == 200){
-					 this.productos=result.json();
+			(result : any) =>{
+				if (result.length > 0) {
+					 this.productos=result;
 
 					 for (var i = this.productos.length - 1; i >= 0; i--) {
 					 	var productoStock = new ProductoStock();
@@ -204,20 +204,20 @@ export class RepartoAddComponent{
 					 this.reparto.stock.setProductoStock = this.setProductoStock;
 					 
 				}else{
-					console.log("Result Controler",result.status); 
+					//console.log("Result Controler",result.status); 
 				}
 			},
 			error =>{
-				console.log(error);
+				//console.logerror);
 			}
 		);
 	}
 
 	getEnvases(){
 		this._envaseService.getEnvases().subscribe(
-			result =>{
-				if(result.status == 200){
-					this.envases=result.json();
+			(result : any) =>{
+				if (result.length > 0) {
+					this.envases=result;
 
 					for (var i = this.envases.length - 1; i >= 0; i--) {
 					 	var envaseStock = new EnvaseStock();
@@ -233,11 +233,11 @@ export class RepartoAddComponent{
 					 this.reparto.stock.setEnvaseStock = this.setEnvaseStock;
 
 				}else{
-					console.log("Result Controler",result.status); 
+					//console.log("Result Controler",result.status); 
 				}
 			},
 			error =>{
-				console.log(error);
+				//console.logerror);
 			}
 		);
 	}
@@ -249,18 +249,18 @@ export class RepartoAddComponent{
 			this.reparto.estado = 'CREADO';
 			this.reparto.fabricaid = this.fabricas[1].id;
 			this.reparto.stock.fecha = this._fecha.getDate();
-			console.log("Create Reparto:",this.reparto);
+			//console.log("Create Reparto:",this.reparto);
 		
 			this._repartoService.addReparto(this.reparto)
-				.subscribe(result => {
- 					if(result.status==201){
- 						this._router.navigate(['/repartos/'+result.json().id]);
+				.subscribe((result : any) => {
+ 					if(result.id > 0){
+ 						this._router.navigate(['/reparto']);
  					}else{
- 						console.log("Result Controler",result.status);
+ 						//console.log("Result Controler",result.status);
 					}
  				},
  				error => {
- 					console.log(<any>error);
+ 					//console.log(<any>error);
  				})
  		}else{
  			// Update user
@@ -269,18 +269,18 @@ export class RepartoAddComponent{
 			this.reparto.estado = 'CREADO';
 			this.reparto.fabricaid = this.fabricas[1].id;
 			this.reparto.stock.fecha = this._fecha.getDate();
-			console.log("Update Reparto:",this.reparto);
+			//console.log("Update Reparto:",this.reparto);
 		
 			this._repartoService.editReparto(this.reparto.id, this.reparto)
-			 	.subscribe(result => {
-					if(result.status==200){
- 		 				this._router.navigate(['/repartos/'+result.json().id]);
+			 	.subscribe((result : any) => {
+					if(result.id > 0){
+ 		 				this._router.navigate(['/reparto']);
  		 			}else{
- 		 				console.log("Result Controler",result.status);
+ 		 				//console.log("Result Controler",result.status);
 			 		}
  		 		},
  		 		error => {
- 		 			console.log(<any>error);
+ 		 			//console.log(<any>error);
  		 		})
  		 }
 
@@ -288,16 +288,16 @@ export class RepartoAddComponent{
 
 	getStock(id:number){
 		this._stockService.getStock(id).subscribe(
-				result =>{
-					if(result.status == 200){
-						this.reparto.stock = result.json();
-						console.log("reparto", this.reparto);
+				(result:any) =>{
+					if(result.id > 0){
+						this.reparto.stock = result;
+						//console.log("reparto", this.reparto);
 					}else{
-						console.log("ID:",id," Result Controler:",result.status);
+						////console.log(("ID:",id," Result Controler:",result.status);
 					}
 				},
 				error =>{
-					console.log(error);
+					//console.logerror);
 				}
 			)
 	}

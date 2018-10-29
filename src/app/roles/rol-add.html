@@ -19,27 +19,22 @@
             </div>
             
             <div class="row" id='margen'>
-                <div class="col-sm-3"  id='margen'>
+                <div class="col-sm-5"  id='margen'>
                     
-                    <span *ngIf="!rol.valid && rol.touched " class="label label-danger" >El Envase es obligatorio</span>
-
                     <div class="form-group">
                         <label for="Nombre">Rol</label>
-                        <input type="text" #nombreRol="ngModel" name="nombreRol" [(ngModel)]="rol.nombreRol" class="form-control" placeholder="Nombre" minlength="4" required />
-                        <div *ngIf="nombreRol.error?.required">
-                            El campo es requerido.
-                        </div>
-                        <div *ngIf="nombreRol.error?.minlength">
-                            Por lo menos {{ nombreRol.errors.minglength.requiredLenght }} caracteres.
-                        </div>
-                        <div class="help-block with-errors"></div>
+                        <input type="text" #nombreRol="ngModel" name="nombreRol" [(ngModel)]="rol.nombreRol" 
+                        class="form-control" placeholder="Nombre" minlength="4" required />
+                        <span *ngIf="nombreRol.touched && !nombreRol.valid" class="label label-success" >
+                                El nombre del Rol no es valido.
+                        </span>
                     </div>
                 </div>
             </div>
 
         </div>
             <br/>
-            <input type="submit" value="{{titulo}}" class="btn btn-success" />  
+            <input type="submit" value="{{titulo}}" class="btn btn-success" [disabled]="!rolAdd.form.valid"/>  
     </form>
 </div>
 

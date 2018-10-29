@@ -25,33 +25,37 @@ export class RolesListComponent{
 		this.titulo = 'Listado de roles';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
 
 	ngOnInit(){
-		//console.log('Rols-list.compoent.ts cargado');
+		////console.log(('Rols-list.compoent.ts cargado');
 		//alert(this._rolService.getRols());
 		if (this.id==null) {
-			//console.log("pase el if");
+			////console.log(("pase el if");
 			this.getRols();
 		}else{
-			//console.log("Entre al else")
+			////console.log(("Entre al else")
 			this.getRol();
 			
 		}
 
 	}
 
+
+
 		getRols(){
 			this._rolService.getRoles().subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.roles = result.json();
-						 console.log("result.status:", result.status);
+				(result : any) =>{
+					//console.log(result.headers.keys());
+					//console.log(result.body);
+					if (result.body.length > 0) {
+						 this.roles = result.body;
+						 //console.log("result.status:", result.status);
 					}else{
-						console.log("Result Controler",result.status); 
+						//console.log("Result Controler",result.status); 
 					}
 				},
 				error =>{
@@ -62,16 +66,16 @@ export class RolesListComponent{
 
 		getRol(){
 			this._rolService.getRol(this.id).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.rol = result.json();
+				(result : any) =>{
+					if (result.lengh>0) {
+						 this.rol = result;
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						//console.log("ID:",this.id," Result Controler:",result);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -84,10 +88,11 @@ export class RolesListComponent{
 			this.confirmado=null;
 		}
 
-		onDeleteRol(id){
+		onDelete(id){
 			this._rolService.deleteRol(id).subscribe(
 				result =>{
-					if(result.status == 200){
+					//console.log(result);
+					if (result == null) {
 						this.getRols();
 					}else{
 						alert("Error al borrar rol")

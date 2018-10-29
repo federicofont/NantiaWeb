@@ -26,7 +26,7 @@ export class UsuariosListComponent{
 		this.titulo = 'Listado de usuarios';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
@@ -48,31 +48,31 @@ ngOnInit(){
 
 		getUsuarios(){
 			this._usuarioService.getUsuarios().subscribe(
-	            result => {
-	                if(result.status == 200){
-	                	this.usuarios = result.json();
+	            (result : any) =>{
+	                if (result.length > 0) {
+	                	this.usuarios = result;//.json();
 	                }else{
-	                	console.log("Result Controler",result.status);   
+	                //	//console.log("Result Controler",result.status);   
 	                }
 	            },
 	            error => {
-	                console.log(<any>error);
+	                //console.log(<any>error);
 	            }
 	        );
 		}
 
 		getUsuario(id){
 			this._usuarioService.getUsuario(id).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.usuario = result.json();
+				(result : any) =>{
+					if (result.length > 0) {
+						 this.usuario = result;
 					}else{
-						console.log("ID:",id," Result Controler:",result.status);
+						//console.log("ID:",id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -85,17 +85,17 @@ ngOnInit(){
 			this.confirmado=null;
 		}
 
-		onDeleteUsuario(id){
+		onDelete(id){
 			this._usuarioService.deleteUsuario(id).subscribe(
-				result =>{
-					if(result.status == 200){
+				(result : any) =>{
+					if (result==null) {
 						this.getUsuarios();
 					}else{
 						alert("Error al borrar Usuario")
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}

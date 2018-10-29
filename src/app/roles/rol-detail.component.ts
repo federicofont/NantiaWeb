@@ -23,26 +23,26 @@ export class RolDetailComponent{
 
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 		}
 	
 	ngOnInit(){
-		//console.log('rol-detail.component.ts cargado');
+		////console.log(('rol-detail.component.ts cargado');
 
 		this._rolService.getRol(this.id).subscribe(
-				result =>{
-					if(result.status == 200){
-						//console.log("Result:",result.json());
-						 this.rol = result.json();
+				(result : any) =>{
+					if(result){
+						////console.log(("Result:",result.json());
+						 this.rol = result;
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						//console.log("ID:",this.id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			)
 		};

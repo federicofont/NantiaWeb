@@ -1,12 +1,15 @@
-import {Component} from "@angular/core";
+import { Component } from "@angular/core";
 import { GLOBAL } from '../services/global';
-import {StorageService} from "../core/services/storage.service";
-import {User} from "../core/models/user.model";
-import {AuthenticationService} from "../login/shared/authentication.service";
+import { StorageService } from "../core/services/storage.service";
+import { User } from "../core/models/user.model";
+//import {AuthenticationService} from "../login/shared/authentication.service";
+import { LoginSessionService } from "../login/login.sessionService"
+
 @Component({
   selector: 'home',
   templateUrl: 'home.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [LoginSessionService]
 })
 
 export class HomeComponent {
@@ -14,17 +17,20 @@ export class HomeComponent {
 
   constructor(
     private storageService: StorageService,
-    private authenticationService: AuthenticationService
+    private _loginSessionService: LoginSessionService
+    //  private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
     this.user = this.storageService.getCurrentUser();
   }
 
-  public logout(): void{
-    this.authenticationService.logout().subscribe(
-        response => {if(response) {this.storageService.logout();}}
-    );
+  public logout(): void {
+    console.log("entre al logout");
+    this._loginSessionService.removeToken();
+    // this.authenticationService.logout().subscribe(
+    //     response => {if(response) {this.storageService.logout();}}
+    // );
   }
 
 }

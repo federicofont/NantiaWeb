@@ -42,33 +42,33 @@ export class RepartoListComponent{
 
     getRepartos(){
         this._repartoService.getRepartos().subscribe(
-            result =>{
-                if(result.status == 200){
-                     this.repartos = result.json();
-                     console.log(result.json());
+            (result : any) =>{
+                if (result.length > 0) {
+                     this.repartos = result;
+                     //console.logresult.json());
                 }else{
-                    console.log("Result Controler",result.status); 
+                    //console.log("Result Controler",result.status); 
                 }
             },
             error =>{
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
     }
 
     getReparto(id){
         this._repartoService.getReparto(id).subscribe(
-            result =>{
-                if(result.status == 200){
-                     this.reparto = result.json();
-                     console.log("GetReparto",result.json());
+            (result : any) =>{
+                if (result.id > 0) {
+                     this.reparto = result;
+                     //console.log("GetReparto",result.json());
                 }else{
-                    console.log("ID:",this.id," Result Controler:",result.status);
+                    //console.log("ID:",this.id," Result Controler:",result.status);
                 }
 
             },
             error =>{
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
     }
@@ -86,15 +86,15 @@ export class RepartoListComponent{
 
     onDelete(id){
         this._repartoService.deleteReparto(id).subscribe(
-            result =>{
-                if(result.status == 200){
+            (result:any) =>{
+                if(result==null){
                     this.getRepartos();
                 }else{
                     alert("Error al borrar reparto")
                 }
             },
             error =>{
-                console.log(<any>error);
+                //console.log(<any>error);
             }
         );
     }

@@ -1,48 +1,42 @@
 <body>
 
-      <div class="card-header border bg-light">
-        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/envases']" href="#" value="Listado de envases" style="float:left" />
-         <h5 id="titulo"> {{titulo}} </h5>
-      
-      </div>
-  
+    <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/envases']" href="#" value="Listado de envases"
+            style="float:left" />
+        <h5 id="titulo"> {{titulo}} </h5>
 
-<div class="bg-light">
-    <!--form id="contact-form" method="post" action="contact.php" role="form"-->
-    <form (ngSubmit)="guardar(envaseAdd)" #envaseAdd="ngForm" id="formEnvaseAdd">
-        
-    <!-- Datos Personales-->    
-        <div class="card bg-light">
+    </div>
 
-            <div class="botones"  id='margen'>
-                <img src="assets/bootstrap/image/ico/soda-bottle-16.ico" style="float:left"/> 
-            </div>
-            
-            <div class="row" id='margen'>
-                <div class="col-sm-3"  id='margen'>
-                    
-                    <span *ngIf="!envase.valid && envase.touched " class="label label-danger" >El Envase es obligatorio</span>
 
-                    <div class="form-group">
-                        <label for="Nombre">Envase</label>
-                        <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="envase.descripcion" class="form-control" placeholder="Tipo de envase" minlength="4" required />
-                        <div *ngIf="descripcion.error?.required">
-                            El campo es requerido.
+    <div class="bg-light">
+        <!--form id="contact-form" method="post" action="contact.php" role="form"-->
+        <form (ngSubmit)="guardar(envaseAdd)" #envaseAdd="ngForm" id="formEnvaseAdd">
+
+            <!-- Datos Personales-->
+            <div class="card bg-light">
+
+                <div class="botones" id='margen'>
+                    <img src="assets/bootstrap/image/ico/soda-bottle-16.ico" style="float:left" />
+                </div>
+
+                <div class="row" id='margen'>
+                    <div class="col-sm-5" id='margen'>
+
+                        <div class="form-group">
+                            <label for="Nombre">Envase</label>
+                            <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="envase.descripcion"
+                                class="form-control" placeholder="Tipo de envase" minlength="4" required />
+                            <span *ngIf="descripcion.touched && !descripcion.valid" class="label label-success">
+                                La descripcion del envase no es valida.
+                            </span>
                         </div>
-                        <div *ngIf="envase.error?.minlength">
-                            Por lo menos {{ envase.errors.minglength.requiredLenght }} caracteres.
-                        </div>
-                        <div class="help-block with-errors"></div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-            <br/>
-            <input type="submit" value="{{titulo}}" class="btn btn-success" />  
-    </form>
-</div>
+            </div>
+            <br />
+            <input type="submit" value="{{titulo}}" class="btn btn-success" />
+        </form>
+    </div>
 
 </body>
-
-

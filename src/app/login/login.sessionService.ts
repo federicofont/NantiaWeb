@@ -25,6 +25,7 @@ export class LoginSessionService {
 
    removeToken(): void {
        // this.currentToken = undefined;
+       console.log("entre al removeToken");
        localStorage.removeItem('token');
    }
 

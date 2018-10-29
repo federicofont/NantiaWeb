@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map'; //mapear respuestas y conseguir objetos de la respuesta
 import { Observable} from 'rxjs/Observable';
 import { Cliente} from './cliente.model';
-import { Direccion } from './direccion.model';
+//import { Direccion } from './direccion.model';
 import { GLOBAL} from '../services/global';
 
 @Injectable()

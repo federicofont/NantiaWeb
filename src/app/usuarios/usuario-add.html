@@ -22,22 +22,19 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="Nombre">Usuario</label>
-                        <input  type="text" #descripcion="ngModel" name="usuario" [(ngModel)]="usuario.usuario" 
-                                class="form-control" placeholder="usuario" minlength="4" required />
-                        <div *ngIf="usuario.error?.required">
-                            El campo es requerido.
-                        </div>
-                        <div *ngIf="usuario.error?.minlength">
-                            Por lo menos {{ usuario.errors.minglength.requiredLenght }} caracteres.
-                        </div>
+                        <input  type="text" #user="ngModel" name="usuario" [(ngModel)]="usuario.usuario" 
+                                class="form-control" placeholder="usuario" minlength="3" required />
+                        <span *ngIf="user.touched && !user.valid" class="label label-success" >
+                            El usuario no es valido.
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="Nombre">Nombre</label>
-                        <input  type="text" #descripcion="ngModel" name="nombre" [(ngModel)]="usuario.nombre" 
-                                class="form-control" />
+                        <input  type="text" #Nombre="ngModel" name="nombre" [(ngModel)]="usuario.nombre"
+                                class="form-control"  minlength="3" required />
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
@@ -45,8 +42,8 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="Nombre">Apellido</label>
-                        <input  type="text" #descripcion="ngModel" name="apellido" [(ngModel)]="usuario.apellido" 
-                                class="form-control" />
+                        <input  type="text" #Apellido="ngModel" name="apellido" [(ngModel)]="usuario.apellido" 
+                                class="form-control" minlength="3" required />
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
@@ -58,7 +55,7 @@
                 <div class="col-sm-3"  id='margen2'>
                     <div class="form-group">
                         <label for="Documento">Contraseña</label>
-                        <input  type="password" #descripcion="ngModel" name="contrasenia" [(ngModel)]="usuario.contrasenia" 
+                        <input  type="password" #contrasenia="ngModel" name="contrasenia" [(ngModel)]="usuario.contrasenia" 
                                 class="form-control" />
                         <div class="help-block with-errors"></div>
                     </div>
@@ -82,7 +79,7 @@
 
                 <div class="col-sm-3"  id='margen2'>
                     <label for="Saldo">Saldo Caja $</label>
-                    <input  type="number" #descripcion="ngModel" name="saldoCaja" [(ngModel)]="usuario.saldoCaja" 
+                    <input  type="number" #saldoCaja="ngModel" name="saldoCaja" [(ngModel)]="usuario.saldoCaja" 
                             class="form-control"  /> 
                     <div class="help-block with-errors"></div>
                 </div>
@@ -90,8 +87,8 @@
                 <div class="col-sm-3 py-3" style="text-align:center;">
                     <div class="form-group">
                         <label for="Activo"> Es Vendedor?</label>
-                        <input  type="checkbox"  #descripcion="ngModel" name="activo" [(ngModel)]="usuario.esVendedor" 
-                                class="form-control" />
+                        <input  type="checkbox"  #activo="ngModel" name="activo" [(ngModel)]="usuario.esVendedor" 
+                                class="form-control" checked="true" />
                     </div>
                 </div>
             
@@ -99,7 +96,8 @@
 
         </div>
 
-        <input type="submit" value="{{titulo}}" class="btn btn-success" style="text-align:center;" />  
+        <input type="submit" value="{{titulo}}" class="btn btn-success" style="text-align:center;" 
+                [disabled]="!usuarioAdd.form.valid" />  
     </form>  
             
 </div>
