@@ -103,7 +103,7 @@ export class MapaCliComponent {
 		var nuevaLat = $event.coords.lat;
 		var nuevaLong = $event.coords.lng;
 
-		console.log('nuevaLat: ', nuevaLat, "nuevaLong", nuevaLong);
+		//console.log('nuevaLat: ', nuevaLat, "nuevaLong", nuevaLong);
 
 		this.actualizarMarcador(/*actuaMarcador,*/ nuevaLat, nuevaLong, posicion);
 	}
@@ -122,17 +122,17 @@ export class MapaCliComponent {
 
 		//this.marcadores[posicion].lat = nuevaLatAux;
 		//this.marcadores[posicion].lng = nuevaLongAux;
-		console.log("this.direccion", this.direccion);
+		//console.log("this.direccion", this.direccion);
 		//this.guardarStorage(marcadoresLS);
 	}
 
 	getClientes() {
 		this._clienteService.getClientes().subscribe(
 			(result: any) => {
-				console.log(result);
+				//console.log(result);
 				if (result.length > 0) {
 					this.clientes = result;
-					console.log("clientes:", this.clientes);
+					//console.log("clientes:", this.clientes);
 					//Cargo marcador del mapa
 					for (var i = this.clientes.length - 1; i >= 0; i--) {
 						this.marcadores[i] = 
@@ -142,7 +142,7 @@ export class MapaCliComponent {
 										false
 										);
 					}
-					console.log("Marcadores", this.marcadores);
+					//console.log("Marcadores", this.marcadores);
 					//this.actualizarMarcador( this.marcadores,
 					//						 this.cliente.direccion.coordLat,
 					//						 this.cliente.direccion.coordLon, 

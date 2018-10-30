@@ -70,7 +70,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
     children: [
-      {path: '', component: MapaCliComponent },
+      { path: "", component: MapaCliComponent },
       { path: "usuarios", component: UsuariosListComponent },
       { path: "usuarios/:id", component: UsuarioDetailComponent },
       { path: "usuario-edit/:id", component: UsuarioAddComponent },
@@ -131,8 +131,8 @@ const appRoutes: Routes = [
       { path: "venta-edit/:id", component: VentaAddComponent },
       { path: "venta-add", component: VentaAddComponent },
 
-      { path: "mapaCli", component: MapaCliComponent },
-      { path: '**', component: ErrorComponent }
+      { path: "mapaCli", component: MapaCliComponent }
+      //,{ path: '**', component: ErrorComponent }
     ]
   },
   { path: "login", component: LoginComponent }
