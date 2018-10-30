@@ -9,7 +9,8 @@ import { ProductoLista } from './productolista.model';
 @Component ({
 	selector: 'listaprecio-detail',
 	templateUrl: './listaprecio-detail.html',
-	providers: [ListaPrecioService]
+	providers: [ListaPrecioService],
+	styleUrls: ['./listaprecio.style.css']
 })
 
 export class ListaPrecioDetailComponent{

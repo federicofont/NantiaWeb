@@ -7,7 +7,8 @@ import { Producto } from './producto.model';
 @Component ({
 	selector: 'producto-detail',
 	templateUrl: './producto-detail.html',
-	providers: [ProductoService]
+	providers: [ProductoService],
+	styleUrls: ['./producto.style.css']
 })
 
 export class ProductoDetailComponent{

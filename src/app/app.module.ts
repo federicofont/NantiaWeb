@@ -68,25 +68,26 @@ import { StockDetailComponent } from './stock/stock-detail.component';
 
 import { FabricaListComponent } from './fabrica/fabrica-list.component';
 import { FabricaAddComponent } from './fabrica/fabrica-add.component';
-//import { FabricaDetailComponent } from './fabrica/fabrica-detail.component';
+import { FabricaDetailComponent } from './fabrica/fabrica-detail.component';
 
 import { RutaListComponent } from './ruta/ruta-list.component';
 import { RutaAddComponent } from './ruta/ruta-add.component';
-//import { RutaDetailComponent } from './ruta/ruta-detail.component';
+import { RutaDetailComponent } from './ruta/ruta-detail.component';
 
 import { RepartoListComponent } from './reparto/reparto-list.component';
 import { RepartoAddComponent } from './reparto/reparto-add.component';
-//import { RepartoDetailComponent } from './reparto/reparto-detail.component';
+import { RepartoDetailComponent } from './reparto/reparto-detail.component';
 
 import { VehiculoListComponent } from './vehiculo/vehiculo-list.component';
 import { VehiculoAddComponent } from './vehiculo/vehiculo-add.component';
-//import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
+import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
 import { AuthGuard } from './login/guardas/AuthGuard';
 
 import { VentaListComponent } from './venta/ventas-list.component';
 import { VentaAddComponent } from './venta/venta-add.component';
+import { VentaDetailComponent } from './venta/venta-detail.component';
+
 import { LoginService } from './login/login.service';
-//import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
 
 
 @NgModule({
@@ -129,23 +130,23 @@ import { LoginService } from './login/login.service';
 
     FabricaListComponent,
     FabricaAddComponent,
-    //  FabricaDetailComponent,
+    FabricaDetailComponent,
 
     RutaListComponent,
     RutaAddComponent,
-    //  RutaDetailComponent,
+    RutaDetailComponent,
 
     RepartoListComponent,
     RepartoAddComponent,
-    //  RepartoDetailComponent,
+    RepartoDetailComponent,
 
     VehiculoListComponent,
     VehiculoAddComponent,
-    //  VehiculoDetailComponent,
+    VehiculoDetailComponent,
 
     VentaListComponent,
-    VentaAddComponent
-    //  VentaDetailComponent,
+    VentaAddComponent,
+    VentaDetailComponent
 
   ],
   imports: [

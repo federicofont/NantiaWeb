@@ -1,280 +1,298 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title> {{titulo}} </title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../../assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../../assets/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../../assets/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-</head>
-
 <body>
-<div class="table-responsve">
-<!-- /.wrapper -->
-<div id="wrapper">
-<!-- /.row -->
-<div class="row">
 
-<!-- PANEL CENTRAL Titulo-->
-            <div class="panel panel-default">
+    <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/clientes']" href="#" value="Listado de Clientes" style="float:left" />
+        <h5 id="titulo"> {{titulo}} </h5>
 
-                <div class="panel-heading">
-                    <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/clientes']" href="#" value="Listado de Clientes" style="float:left" />
-                    <h3> </h3>
-                    <h4> {{titulo}} </h4>
+    </div>
+
+
+    <div class="bg-light">
+    <fieldset disabled>  
+        <!--form id="contact-form" method="post" action="contact.php" role="form"-->
+        <form (ngSubmit)="guardar(clienteAdd)" #clienteAdd="ngForm" id="formclienteAdd">
+
+            <!-- Datos Personales-->
+            <div class="card bg-light">
+
+                <div class="botones" id='margen'>
+                    <img src="assets/bootstrap/image/ico/guest-16.ico" style="float:left" />
+                </div>
+
+                <div class="row" id='margen'>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="Nombre">Nombre 1</label>
+                            <input type="text" #descripcion="ngModel" name="nombre2" [(ngModel)]="cliente.nombre2" class="form-control" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="Nombre">Nombre 2</label>
+                            <input type="text" #descripcion="ngModel" name="nombre1" [(ngModel)]="cliente.nombre1" class="form-control" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="fecha">Fecha de Nacimiento</label>
+                            <input type="date" #descripcion="ngModel" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" class="form-control" />
+                        </div>
+                    </div>
 
                 </div>
-<!-- PANEL CENTRAL-->
 
-                <div class="panel-body">
-                    
-                    <!--form  #cliente-detail="ngForm" class="col-lg-6" id="cliente-detail"-->
-                    <div class="row" *ngIf="cliente">
-                    <div class="col-lg-6" *ngIf="cliente.id">
+                <div class="row">
 
-                        <div class="col-lg-6">   
-                         <fieldset disabled>   
-                        
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon"> Tipo Documento </span>
-                            </div>
-                            
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="tipoDocumento" 
-                                [(ngModel)]="cliente.tipoDocumento" class="form-control" />
-                            </div>
-                              
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Nombre 1</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="nombre1" 
-                                [(ngModel)]="cliente.nombre1" class="form-control" />
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Fecha de Nacimiento</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" class="form-control" />
-                            </div>
-                        
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Celular</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="celular" 
-                                [(ngModel)]="cliente.celular" class="form-control" />
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Mail</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="mail" 
-                                [(ngModel)]="cliente.mail" class="form-control" />
-                            </div>                        
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Saldo</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="saldo" 
-                                [(ngModel)]="cliente.saldo" class="form-control" />
-                            </div>  
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Direccion</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="direccion" 
-                                [(ngModel)]="cliente.direccion.direccion" class="form-control" />
-                            </div>  
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Ciudad</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #ciudad="ngModel" name="ciudad" 
-                                [(ngModel)]="cliente.direccion.ciudad" class="form-control" />
-                            </div> 
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Activo</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="activo" 
-                                [(ngModel)]="cliente.activo" class="form-control" />
-                            </div> 
-                        </fieldset>
+                    <div class="col-sm-3" id='margen2'>
+                        <div class="form-group">
+                            <label for="Documento">Nro. Documento</label>
+                            <input type="text" #descripcion="ngModel" name="nroDocumento" [(ngModel)]="cliente.nroDocumento" class="form-control" />
+                            <div class="help-block with-errors"></div>
                         </div>
-<!--Pantalla central derecha -->
-                        <div class="col-lg-6">
-                        <fieldset disabled>
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Nro Documento</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="nroDocumento" 
-                                [(ngModel)]="cliente.nroDocumento" class="form-control" />
-                            </div>
+                    </div>
 
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Nombre 2</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="nombre2" 
-                                [(ngModel)]="cliente.nombre2" class="form-control" />
-                            </div>
+                    <div class="col-sm-2  py-3">
+                        <div class="form-group">
+                            <label for="Tpo">Tpo. Documento</label>
+                            <select class="form-control py-1" name="tipoDocumento" [(ngModel)]="cliente.tipoDocumento">
+                            <option>{{cliente.tipoDocumento}} </option>
 
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Fecha Alta</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="fechaAlta" 
-                                [(ngModel)]="cliente.fechaAlta" class="form-control" />
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Telefono</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="telefono" 
-                                [(ngModel)]="cliente.direccion.telefono" class="form-control" />
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Lista de Precios</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="idLista" 
-                                [(ngModel)]="cliente.idLista" class="form-control" />
-                            </div>  
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Departamento</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="departamento" 
-                                [(ngModel)]="cliente.direccion.departamento" class="form-control" />
-                            </div>         
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Codigo Postal</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="codPostal" 
-                                [(ngModel)]="cliente.direccion.codPostal" class="form-control" />
-                            </div> 
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Observaciones</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="observaciones" 
-                                [(ngModel)]="cliente.observaciones" class="form-control" />
-                            </div> 
-                        </fieldset>
+                            <option *ngFor="let doc of documentos"
+                                    [value]="doc.id">{{doc.tipo}}
+                            </option>
+                        </select>
                         </div>
-<!--FIN Pantalla central derecha -->
-                        <div class="conainer">
-                        <div class="row">
-                        <div class="col-md-12">
-                        <fieldset disabled>
-                            <div class="mapa">
-                             <agm-map 
-                              [latitude]="lat"
-                              [longitude]="lng"   
-                              [zoom]="zoom"
-                              [disableDefaultUI]="false"
-                              [zoomControl]="false"
-                              (mapClick)="agregarMarcador($event)" 
-                              >
-                              
-                              <agm-marker 
-                              [latitude]="cliente.direccion.coordLat" 
-                              [longitude]="cliente.direccion.coordLon"
-                              >
-                               <agm-info-window> 
-                                <strong>{{marcador.nombre}}</strong>
+                    </div>
 
-                               </agm-info-window>
-                              
-                              </agm-marker>
-                            </agm-map>
-                            </div>
-                        </fieldset>
+                    <div class="col-sm-3 py-3" style="text-align:center;">
+                        <div class="form-group">
+                            <label for="Activo">Activo</label>
+                            <input type="checkbox" #descripcion="ngModel" name="activo" [(ngModel)]="cliente.activo" class="form-control" />
                         </div>
-                        </div>
-                        </div>
+                    </div>
 
-
-                    <br><br>
-
-                    <div class="input-group input-group-sm">
-
-                            <table class="table table-bordered">
-                              <thead>
-                                <tr class="bg-success">
-                                    <th scope="col">Envase</th>
-                                    <th scope="col">Cantidad</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr *ngFor="let ep of cliente.setEnvasesEnPrestamo">
-                                    <td>{{ep.envasetipos.descripcion}} </td>
-                                    <td>{{ep.cantidad}} </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                    </div>    
-
-<!--FIN Pantalla central derecha Mapa -->
-                    <br/>
-
-                <!--/form-->
                 </div>
+
+            </div>
+
+            <!-- Datos de contacto-->
+            <div class="card bg-light">
+
+                <div class="botones" id="margen">
+                    <img src="assets/bootstrap/image/ico/business-contact-16.ico" style="float:left" />
+                </div>
+
+                <div class="row" id="margen">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="form_phone">Telefono</label>
+                            <input type="text" #descripcion="ngModel" name="telefono" [(ngModel)]="direccion.telefono" class="form-control" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="form_phone">Celular</label>
+                            <input type="text" #descripcion="ngModel" name="celular" [(ngModel)]="cliente.celular" class="form-control" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-6" id="margen2">
+                        <div class="form-group">
+                            <label for="form_phone">Direccion de correo electronico</label>
+                            <input type="email" #descripcion="ngModel" name="mail" [(ngModel)]="cliente.mail" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Direccion-->
+            <div class="card bg-light">
+
+                <div class="botones" id="margen">
+                    <img src="assets/bootstrap/image/ico/home-16.ico" style="float:left" />
+                </div>
+
+                <div class="row" id="margen">
+                    <!--div class="col-sm-6"-->
+                    <div class="form-group  col-sm-3">
+                        <label for="form_phone">Departamento</label>
+                        <input type="text" #descripcion="ngModel" name="departamento" [(ngModel)]="direccion.departamento" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group  col-sm-3">
+                        <label for="form_phone">Ciudad</label>
+                        <input type="text" #descripcion="ngModel" name="ciudad" [(ngModel)]="direccion.ciudad" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group  col-sm-3">
+                        <label for="form_phone">Codigo Postal</label>
+                        <input type="number" #descripcion="ngModel" name="codPostal" [(ngModel)]="direccion.codPostal" class="form-control" />
+                    </div>
+
+                    <div class="form-group  col-sm-6">
+                        <label for="form_phone">Direccion</label>
+                        <input type="text" #descripcion="ngModel" name="direccion" [(ngModel)]="direccion.direccion" class="form-control" />
+                    </div>
+
+                    <div class="map container col-sm-12">
+                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+
+                            <agm-marker *ngFor="let marcador of marcadores; let i = index" [latitude]="marcador.lat" [longitude]="marcador.lng" >
+
+                                <agm-info-window>
+                                    <strong>{{marcador.nombre}}</strong>
+                                    <!--button (click)="borrarMarcador(i)" class="btn-alert">Borrar</button-->
+                                </agm-info-window>
+
+                            </agm-marker>
+                        </agm-map>
+                    </div>
+
+
                 </div>
             </div>
-            <!-- FIN PANEL CENTRAL-->
-        </div>
-        <!-- FIN PANEL CENTRAL Titulo-->
-</div>
-<!-- /.row -->
-</div>
-<!-- /#wrapper -->
-</div>
 
-    <!-- jQuery -->
-    <script src="../../assets/bootstrap/vendor/jquery/jquery.min.js"></script>
+            <!-- Datos de venta-->
+            <div class="card bg-light">
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../../assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
+                <div class="botones" id="margen">
+                    <img src="assets/bootstrap/image/ico/business-contact-16.ico" style="float:left" />
+                </div>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
+                <span class="input-group-addon" id="margen"> Dias de Visita </span>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="../../assets/bootstrap/dist/js/sb-admin-2.js"></script>
+                <div class="row" id="margen2">
+
+                    <div class="col-sm-2">
+                        <input [(ngModel)]="dias[0]" name="domingo" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Domingo</p>
+                        <input [(ngModel)]="dias[1]" name="lunes" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Lunes</p>
+                        <input [(ngModel)]="dias[2]" name="martes" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Martes</p>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <input [(ngModel)]="dias[3]" name="miercoles" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Miercoles</p>
+                        <input [(ngModel)]="dias[4]" name="jueves" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Jueves</p>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <input [(ngModel)]="dias[5]" name="viernes" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Viernes</p>
+                        <input [(ngModel)]="dias[6]" name="sabado" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Sabado</p>
+                    </div>
+
+
+                    <div class="col-sm-2">
+                        <label for="Saldo">Saldo</label>
+                        <input type="number" #descripcion="ngModel" name="saldo" [(ngModel)]="cliente.saldo" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="form_name">Lista de Precio</label>
+                            <select class="form-control py-1" name="listaPrecio" [(ngModel)]="cliente.idLista">
+                            <option> {{cliente.idLista}} </option>
+
+                            <option *ngFor="let listaPrecio of listaPrecios"
+                                [value]="listaPrecio.id">{{listaPrecio.nombreLista}}
+                            </option>
+                        </select>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Envases en prestamo-->
+            <div class="card bg-light">
+
+                <div class="botones" id="margen">
+                    <img src="assets/bootstrap/image/ico/soda-bottle-16.ico" style="float:left" />
+                </div>
+
+                <form (ngSubmit)="addEnvaseEnPrestamo(envaseAdd)" #envaseAdd="ngForm" id="addEnvaseEnPrestamo">
+                    <div class="row" id="margen">
+
+                        <div class="col-sm-4">
+                            <span class="input-group-addon"> Envases en Prestamo </span>
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Envase</th>
+                                        <th scope="col">Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ep of envasesEnprestamo">
+                                        <td>{{ep.envasetipos.descripcion}} </td>
+                                        <td>{{ep.cantidad}} </td>
+                                        <!--input class="form-control input-number" type="number" value="0" min="0" max="100" step="1" #descripcion="ngModel" name="cantidad"  [(ngModel)]="envaseEnprestamo.cantidad"-->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-sm-4">
+
+                            <tr>
+                                <td>
+                                    <span class="input-group-addon"> Agregar Envase </span>
+                                </td>
+                                <td>
+                                    <span class="input-group-addon"> # </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <select [(ngModel)]="envase.id" name="id" class="custom-select">
+                                <option *ngFor="let tipo of envases; let ind = index" 
+                                    [ngValue]="tipo.id">{{tipo.descripcion}}
+                                </option>
+                            </select>
+                                </td>
+                                <td>
+                                    <input class="form-control input-number" type="number" value="0" min="0" max="100" step="1" #descripcion="ngModel" name="cantidad" [(ngModel)]="envaseEnprestamo.cantidad">
+                                </td>
+                            </tr>
+                            <button type="ngSubmitmit" value="Add Envase" class="btn btn-link">
+                            <img src="assets/bootstrap/image/ico/plus-5-16.ico" 
+                             style="float:center"/>
+                    </button>
+
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+
+
+        </form>
+    </fieldset>
+    </div>
 
 </body>
-
-</html>
-

@@ -59,7 +59,7 @@ export class VentaListComponent{
     getVenta(id){
         this._ventaService.getVenta(id).subscribe(
             (result : any) =>{
-                if (result.length > 0) {
+                if (result.id > 0) {
                      this.venta = result;
                 }else{
                     //console.log("ID:",this.id," Result Controler:",result.status);

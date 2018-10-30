@@ -26,14 +26,14 @@
 </head>
 
 <body>
-<div class="table-responsve">
-<!-- /.wrapper -->
-<div id="wrapper">
-<!-- /.row -->
-<div class="row">
+    <div class="table-responsve">
+        <!-- /.wrapper -->
+        <div id="wrapper">
+            <!-- /.row -->
+            <div class="row">
 
-<!-- PANEL CENTRAL Titulo-->
-    <div class="panel panel-default">
+                <!-- PANEL CENTRAL Titulo-->
+                <div class="panel panel-default">
 
                 <div class="card-header text-center font-weight-bold text-uppercase py-3">
                     <img src="assets/bootstrap/image/ico/arrow-112-24.ico" 
@@ -42,84 +42,95 @@
                     {{titulo}}                    
 
                 </div>
+                    <!-- PANEL CENTRAL-->
 
-        <div class="panel-body">                      
-        <!-- PANEL CENTRAL-->
-            <div class="row" *ngIf="stock">
-                <div class="col-lg-6" *ngIf="stock.id">              
+                    <div class="panel-body">
 
-                    <div class="input-group input-group-sm">
-                        <h5 class="card-header text-center font-weight-bold text-uppercase py-2">Stock N°: {{stock.id}}</h5>
-                        <h6 class="card-header text-center font-weight-bold text-uppercase py-1">{{stock.fecha}}</h6>
+                        <form (ngSubmit)="guardar(formStockAdd)" #Add="ngForm" class="col-lg-6" id="formStockAdd">
+                            <div class="col-lg-12">
+
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon">Stock</span>
+                                </div>
+                                <div class="input-group input-group-sm mb-3">
+                                    <input type="text" class="form-control" name="">
+                                    <!--input type="text" #descripcion="ngModel" name="nombreStock" [(ngModel)]="stock.nombreStock" class="form-control" /-->
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                            <!-- PANEL IZQUIERDA-->
+                                <div class="input-group input-group-sm">
+
+                                    <table class="table table-bordered table-responsive-md table-striped text-center">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" scope="col">Producto</th>
+                                                <th class="text-center" scope="col">Cantidad</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let productoStock of stock.setProductoStock; let i = index">
+                                                <td>{{productoStock.producto.descripcion}} </td>
+                                                <td>
+                                                     <input class="form-control input-number" type="number" 
+                                                            min="0" step="1" max="100000" #descripcion="ngModel" 
+                                                            [(ngModel)]="productoStock.cantidad" 
+                                                            [ngModelOptions]="{standalone: true}" contenteditable="false">
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>                                
+                            <!-- PANEL IZQUIERDA-->
+                            </div>
+
+                            <div class="col-lg-6">
+                            <!--Pantalla central derecha -->
+                                <div class="input-group input-group-sm">
+
+                                    <table class="table table-bordered table-responsive-md table-striped text-center">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" scope="col">Envase</th>
+                                                <th class="text-center" scope="col">Cantidad</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let envaseStock of stock.setEnvaseStock; let i = index">
+                                                <td>{{envaseStock.envasesTipos.descripcion}} </td>
+                                                <td>
+                                                     <input class="form-control input-number" type="number" 
+                                                            min="0" step="1" max="100000" #descripcion="ngModel" 
+                                                            [(ngModel)]="envaseStock.cantidad" 
+                                                            [ngModelOptions]="{standalone: true}" contenteditable="false">
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                
+                                </div>  
+
+                            <!--FIN Pantalla central derecha -->
+                            </div>
+
+
+                            <!--FIN Pantalla central derecha  -->
+                            <br/>
+                            <input type="submit" value="{{titulo}}" class="btn btn-success" />
+                        </form>
+
                     </div>
-
+                    <!-- FIN PANEL CENTRAL-->
                 </div>
+                <!-- FIN PANEL CENTRAL Titulo-->
             </div>
-
-            <div class="col-lg-4">
-            <!-- PANEL IZQUIERDA-->
-
-                <div class="input-group input-group-sm">
-
-                        <h5 class="card-header text-center font-weight-bold text-uppercase py-2">Productos</h5>
-                        <table class="table table-bordered table-responsive-md table-striped text-center">
-                          <thead>
-                            <tr>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Descripcion</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let envaseStock of stock.setEnvaseStock">
-                                <td> {{envaseStock.cantidad}}</td>
-                                <td> {{envaseStock.envasesTipos.descripcion}}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                </div>  
-            <!--FIN Panel IZQUIERDA -->
-            </div>
-
-            <div class="col-lg-6">
-            <!--FIN Panel derecha -->
-
-                <div class="input-group input-group-sm">
-                        <h5 class="card-header text-center font-weight-bold text-uppercase py-2">Envases</h5>
-                        <table class="table table-bordered table-responsive-md table-striped text-center">
-                          <thead>
-                            <tr>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Presentacion</th>
-                                <th scope="col">Descripcion</th>
-                                <th scope="col">Retornable</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let productoStock of stock.setProductoStock">
-                                <td> {{productoStock.cantidad}}</td>
-                                <td> {{productoStock.producto.nombre}}</td>
-                                <td> {{productoStock.producto.presentacion}}</td>
-                                <td> {{productoStock.producto.descripcion}}</td>
-                                <td> {{productoStock.producto.retornable}}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                </div>  
-            <!--FIN Panel derecha -->
-            </div>
-
-
-            </div>
-            <!-- FIN PANEL CENTRAL-->
+            <!-- /.row -->
         </div>
-    <!-- FIN PANEL CENTRAL Titulo-->
+        <!-- /#wrapper -->
     </div>
-<!-- /.row -->
-</div>
-<!-- /#wrapper -->
-</div>
-
 
     <!-- jQuery -->
     <script src="../../assets/bootstrap/vendor/jquery/jquery.min.js"></script>
@@ -136,4 +147,3 @@
 </body>
 
 </html>
-

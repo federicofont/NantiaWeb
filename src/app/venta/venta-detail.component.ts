@@ -23,13 +23,13 @@ import { ListaPrecioService } from '../listaprecios/listaprecio.service';
 import { Fecha } from '../fecha';
 
 @Component ({
-	selector: 'formVentaAdd',
-	templateUrl: '../venta/venta-add.html',
+	selector: 'formVentaDetail',
+	templateUrl: '../venta/venta-detail.html',
 	providers: [VentaService, ListaPrecioService, ClienteService, UsuarioService, FabricaService, Fecha],
 	styleUrls: ['./venta.style.css']
 })
 
-export class VentaAddComponent{
+export class VentaDetailComponent{
 	public titulo: string;
 
 	usuarios: Usuario[] = [];
@@ -95,10 +95,12 @@ export class VentaAddComponent{
 	 
 
 	ngOnInit(){
+		this.getVenta(this.id);
 		this.getClientes();
 		this.getListaPrecios();
 		this.getUsuarios();
 		this.getFabricas();
+
 		//this.getUsuario(this.usuarios[1].id);
 		//this.getFabricaDeUsuario(this.fabricas[1].id)
 		//yyyy-MM-dd HH:mm:ss
@@ -114,6 +116,21 @@ export class VentaAddComponent{
 	}
 
 
+    getVenta(id){
+        this._ventaService.getVenta(id).subscribe(
+            (result : any) =>{
+                if (result.id > 0) {
+                     this.venta = result;
+                }else{
+                    //console.log("ID:",this.id," Result Controler:",result.status);
+                }
+
+            },
+            error =>{
+                //console.log(<any>error);
+            }
+        );
+    }
 	getClientes(){
 		this._clienteService.getClientes().subscribe(
 			(result : any) =>{
@@ -248,95 +265,6 @@ export class VentaAddComponent{
 		)
 	}
 
-	addProductoVenta(formproductosAdd:NgForm, formDescuento:number, formIVA_Variable:number, formCliente:number){	
-
-		this.getCliente(formCliente);
-		this.venta.fecha = this._fecha.getDate(); //yyyy-MM-dd HH:mm:ss
-		this.venta.descuento = formDescuento;
-		var ind:number=0;
-		const nuevo_productoVenta = new ProductoVenta();
-		/*Asocio el producto seleccionado con el de la lista de precios*/
-    	for (var i = this.listaPrecio.setProductoLista.length - 1; i >= 0; i--) {
-			if(this.listaPrecio.setProductoLista[i].productos.productoId == formproductosAdd.value.productoId)
-				ind = i;
-		}
-		
-		/*Genero el productoVenta y lo agrego a la coleccion setProductoVenta*/
-		nuevo_productoVenta.producto =this.listaPrecio.setProductoLista[ind].productos;
-		nuevo_productoVenta.cantidad = formproductosAdd.value.formCantidad
-		nuevo_productoVenta.precioUnitario = this.listaPrecio.setProductoLista[ind].precio;
-		nuevo_productoVenta.total = this.listaPrecio.setProductoLista[ind].precio * nuevo_productoVenta.cantidad;
-		////console.log(("nuevo_productoVenta",nuevo_productoVenta);
-		this.venta.setProductoVenta.push(nuevo_productoVenta);
-
-		/*Calculo el subtotal neto*/
-		this.subtotal=0;
-	    for (var i = this.venta.setProductoVenta.length - 1; i >= 0; i--) {
-			this.subtotal = this.subtotal + this.venta.setProductoVenta[i].total;
-		}
-		////console.log(("subtotal", this.subtotal);
-	
-		/*Calculo el iva sobre el Subtotal - Descuento*/
-		this.venta.ivatotal =  ( (this.subtotal - formDescuento) * this.iva0)/100;
-		
-		/*Calculo (Subtotal - Descuento) + Iva*/
-		this.venta.totalventa = ( (this.subtotal - formDescuento) + this.venta.ivatotal );
-		////console.log(("venta",this.venta);
-
-		/*Total Pago*/
-		this.venta.pagototal = this.venta.totalventa
-
-		/*Cargo DataPago*/
-		this.venta.datapago.clienteid = this.venta.cliente.id;
-		this.venta.datapago.fechapago = this._fecha.getDate();
-		this.venta.datapago.monto = this.venta.pagototal;
-
-	}
 
 
-	guardar(ventaAdd:NgForm){
-		////console.log(("venta ADD/Update ID:", this.id);
-		//if (this.id==null) {
-			// Add user
-		
-			//Creo el venta desde el formulario
-			//this.venta=ventaAdd.value;
-			//console.log("Venta:",this.venta);
-		
-			this._ventaService.addVenta(this.venta)
-				.subscribe((result : Venta) => {
- 					if(result.id>0){
- 						this._router.navigate(['/ventas']);
- 						//console.log("Result Controler",result.status);
- 					}else{
- 						////console.log(("Result Controler",result.status);
-					}
- 				},
- 				error => {
- 					////console.log((<any>error);
- 				})
- 		//}else{
- 			// Update user
-			
-			//Actualizo el venta desde el formulario
-			// this.venta=ventaAdd.value;
-			// this.venta.id=this.id;
-			// ////console.log(("venta:",this.venta);
-		
-			// this._ventaService.updateVenta(this.venta)
-			// 	.subscribe((result : any) => {
-			// 	////console.log(("Result Controler",result.status);
- 		// 			if(result.status==200){
- 		// 				this._router.navigate(['/ventas']);
- 		// 			}else{
- 		// 				//204 -- No Content
- 		// 				////console.log(("Result Controler",result.status);
-			// 		}
- 		// 		},
- 		// 		error => {
- 		// 			////console.log((<any>error);
- 		// 		})
- 		// }
-
-	}
-}
+};

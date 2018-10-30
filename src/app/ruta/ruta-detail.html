@@ -1,0 +1,112 @@
+<body>
+
+      <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/ruta']" href="#" value="Listado de Rutas" style="float:left" />
+         <h5 id="titulo"> {{titulo}} </h5>
+      
+      </div>
+
+<div class="bg-light">
+<fieldset disabled>
+    <form (ngSubmit)="guardar(rutaAdd)" #rutaAdd="ngForm" id="formRutaAdd">
+
+        <div class="card bg-light">
+
+            <div class="botones"  id='margen'>
+                <img src="assets/bootstrap/image/ico/road-2-32.ico" style="float:left"/> 
+            </div>
+            
+            <div class="row" id='margen'>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="form_phone">Ruta</label>
+                        <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="ruta.nombre" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+    
+                <div class="col-sm-2">
+                    <input [(ngModel)]="dias[0]" name="domingo" type="checkbox" class="form-check-input">
+                    <p class="font-weight-light">Domingo</p>
+                    <input [(ngModel)]="dias[1]"   name="lunes" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Lunes</p>
+                    <input [(ngModel)]="dias[2]"  name="martes" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Martes</p>
+                </div>
+
+                <div class="col-sm-2">
+                    <input [(ngModel)]="dias[3]" name="miercoles" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Miercoles</p>  
+                    <input [(ngModel)]="dias[4]" name="jueves" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Jueves</p>                                            
+                </div>
+
+                <div class="col-sm-2">
+                    <input [(ngModel)]="dias[5]" name="viernes" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Viernes</p>  
+                    <input [(ngModel)]="dias[6]" name="sabado" type="checkbox" class="form-check-input"> 
+                    <p class="font-weight-light">Sabado</p>                           
+                </div>
+
+            </div>
+
+            <!--select [ngModel]="semana">
+                <option value="{{semana.LUNES}}">Extra Large</option>
+                <option value="{{semana.MARTES}}">Large</option>
+                <option value="{{semana.MIERCOLES}}">Medium</option>
+                <option value="{{semana.JUEVES}}">Small</option>
+            </select--> 
+
+        </div>
+
+   <!-- Cliente en ruta-->    
+        <div class="card bg-light">
+
+            <div class="botones" id="margen2">
+                <img src="assets/bootstrap/image/ico/group-16.ico" style="float:left"/> 
+            </div>
+            
+           <form (ngSubmit)="addClienteLista(formclienteAdd)" #formclienteAdd="ngForm" class="col-lg-12" id="addClienteLista">
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+
+                        <table class="table table-bordered table-responsive-md table-striped text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" scope="col col-sm-4">Direccion / Cliente</th>
+                                    <th class="text-center" scope="col col-sm-3">Orden</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let rutaCliente of ruta.setRutaCliente; trackBy:indexTracker">
+                                    <td>
+                                        Direccion: {{rutaCliente.cliente.direccion.direccion}} 
+                                        /  Nombre: {{rutaCliente.cliente.nombre1}} {{rutaCliente.cliente.nombre2}}
+                                    </td>
+                                    <td>
+                                        <input class="form-control input-number" type="number" min="0" step="1" max="100" data-number-to-fixed="2" 
+                                        data-number-stepfactor="100" #descripcion="ngModel" 
+                                        [(ngModel)]="rutaCliente.ordenVisita" [ngModelOptions]="{standalone: true}" contenteditable="false">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </form>
+             
+        </div>
+
+    </form>
+</fieldset>
+</div>
+
+</body>
+

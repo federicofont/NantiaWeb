@@ -64,7 +64,7 @@ export class UsuarioAddComponent {
 				//console.log(result.status);
 				if (result.body.length > 0) {
 					this.roles = result.body;
-					console.log(this.roles);
+				//	console.log(this.roles);
 				} else {
 					//console.log("Result Controler",result.status); 
 				}

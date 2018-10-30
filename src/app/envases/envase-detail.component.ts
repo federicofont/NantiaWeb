@@ -7,7 +7,8 @@ import { Envase } from './envase.model';
 @Component ({
 	selector: 'envase-detail',
 	templateUrl: '../envases/envase-detail.html',
-	providers: [EnvaseService]
+	providers: [EnvaseService],
+	styleUrls: ['./envase.style.css']
 })
 
 export class EnvaseDetailComponent{
@@ -23,29 +24,25 @@ export class EnvaseDetailComponent{
 
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 		}
 	
-	ngOnInit(){
-		////console.log(('envase-detail.component.ts cargado');
-
-		this._envaseService.getEnvase(this.id).subscribe(
-				(result : any) =>{
-					if (result.length > 0) {
-						////console.log(("Result:",result.json());
-						 this.envase = result;
-					}else{
-						////console.log(("ID:",this.id," Result Controler:",result.status);
-					}
-
-				},
-				error =>{
-					////console.log((<any>error);
-				}
-			)
-		};
-
-
+		ngOnInit(){
+			
+		this.getEnvase(this.id);
 	}
+
+	getEnvase(id:number){
+		this._envaseService.getEnvase(id)
+			.subscribe((result : Envase) => {
+				if(result.id > 0){	 
+					this.envase=result; 
+			 	}
+			},
+		error => {
+					////console.log((<any>error);
+				})
+	}
+
+};

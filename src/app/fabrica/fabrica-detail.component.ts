@@ -22,13 +22,13 @@ import { Fecha } from '../fecha';
 //import { ProductoListaService } from '../productolistas/productolista.service';
 
 @Component ({
-	selector: 'formFabricaAdd',
-	templateUrl: './fabrica-add.html',
+	selector: 'formFabricaDetail',
+	templateUrl: './fabrica-detail.html',
 	providers: [FabricaService,StockService,ProductoService,EnvaseService, Fecha],
 	styles: ['fabrica.style.css']
 })
 
-export class FabricaAddComponent{
+export class FabricaDetailComponent{
 	
 	public titulo: string;
 	public fechaActual :Date = new Date();
@@ -168,106 +168,6 @@ export class FabricaAddComponent{
 		);
 	}
 
-	guardar(formAdd:NgForm, formProductoAdd:NgForm,productoStock:ProductoStock){
-		//console.log("formAdd",formAdd.value);
-		//console.log("formProductoAdd",formProductoAdd.value);
-		//console.log("productoStock",productoStock);
-
-		
-		this.stock.fecha=this._fecha.getDate();
-		this.stock.setEnvaseStock=this.setEnvaseStock;
-		this.stock.setProductoStock=this.setProductoStock;
-
-		this.fabrica.stock = this.stock;
-		if(this.id != null){
-			this.fabrica.id=this.id;
-			this.updateFabrica();
-		} 
-		else{
-			this.addFabrica();
- 		}
- 		
-
-	}
-
-	updateFabrica(){
-		this._fabricaService.editFabrica(this.id, this.fabrica)
-				.subscribe((result : any) => {
- 					if(result.id > 0){
- 					//	//console.log("Result Controler",result.status);
- 						//this._router.navigate(['/fabrica']);
- 					}else{
- 						//204 -- No Content
- 					//	//console.log("Result Controler",result.status);
-					}
- 				},
- 				error => {
- 					//console.logerror);
- 				})
-	};
-
-	addFabrica(){
-		this._fabricaService.addFabrica(this.fabrica)
-			.subscribe((result : any) => {
-					if(result.id > 0){
-						////console.log(("Result Controler",result.status);
-						////console.log(("this.Fabrica",this.fabrica);
-						this._router.navigate(['/fabrica/']);
-					}else{
-						////console.log(("Result Controler",result.status);
-				}
-				},
-				error => {
-					//console.logerror);
-				})
-	};
-
-
-	addProducto(formProductoAdd:NgForm){	
-		//Cargo el objeto envase y el arreglo envases
-		////console.log(("Conectado a addProductoLista");
-		var ind:number=0;
-		//console.log("formProductoAdd:",formProductoAdd);
-		var idProducto:number = formProductoAdd.controls['productoId'].value;
-		////console.log(("this.envases",this.envases);
-    	for (var i = this.setProductoStock.length - 1; i >= 0; i--) {
-			if(this.setProductoStock[i].producto.productoId == idProducto)
-				ind = i;
-			//else
-				////console.log(("i",i);
-		}
-
-		const nuevo_productoStock = new ProductoStock( null,
-											formProductoAdd.controls['cantidad'].value,
-											this._fecha.getDate(),
-											this.setProductoStock[ ind ].producto);
-
-		////console.log(("nuevo_productoStock",nuevo_productoStock);
-		this.fabrica.stock.setProductoStock.push(nuevo_productoStock);
-	}
-
-	addEnvase(formEnvaseAdd:NgForm){	
-		//Cargo el objeto envase y el arreglo envases
-		////console.log(("Conectado a addProductoLista");
-		var ind:number=0;
-		//console.log("formEnvaseAdd:",formEnvaseAdd);
-		var idEnvase:number = formEnvaseAdd.controls['envaseId'].value;
-		////console.log(("this.envases",this.envases);
-    	for (var i = this.setEnvaseStock.length - 1; i >= 0; i--) {
-			if(this.setEnvaseStock[i].envasesTipos.id == idEnvase)
-				ind = i;
-			//else
-				////console.log(("i",i);
-		}
-
-		const nuevo_envaseStock = new EnvaseStock( null,
-											formEnvaseAdd.controls['cantidad'].value,
-											this._fecha.getDate(),
-											this.setEnvaseStock[ ind ].envasesTipos);
-
-		//console.log("nuevo_productoStock",nuevo_envaseStock);
-		this.fabrica.stock.setEnvaseStock.push(nuevo_envaseStock);
-	}
 
 
 

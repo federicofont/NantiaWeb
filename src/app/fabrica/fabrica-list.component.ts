@@ -58,8 +58,8 @@ export class FabricaListComponent{
 
 	getFabrica(id){
 		this._fabricaService.getFabrica(id).subscribe(
-			(result : any) =>{
-				if (result.length > 0) {
+			(result : Fabrica) =>{
+				if (result.id > 0) {
 					 this.fabrica = result;
 				//	 //console.log("GetFabrica",result.json());
 				}else{
