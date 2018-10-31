@@ -1,0 +1,71 @@
+<body>
+
+      <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/vehiculo']" href="#" value="Listado de Vehiculos" style="float:left" />
+         <h5 id="titulo"> {{titulo}} </h5>
+      
+      </div>
+
+<div class="bg-light">
+<fieldset disabled>
+    <form (ngSubmit)="guardar(vehiculoAdd)" #vehiculoAdd="ngForm" id="formVehiculoAdd">
+
+        <div class="card bg-light">
+
+            <div class="botones"  id='margen'>
+                <img src="assets/bootstrap/image/ico/truck-16.ico" style="float:left"/> 
+            </div>
+            
+            <div class="row" id='margen'>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="form_phone">Matricula</label>
+                        <input type="text" #descripcion="ngModel" name="matricula" [(ngModel)]="vehiculo.matricula" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="form_phone">Marca</label>
+                        <input type="text" #descripcion="ngModel" name="marca" [(ngModel)]="vehiculo.marca" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="form_phone">Modelo</label>
+                        <input type="text" #descripcion="ngModel" name="modelo" [(ngModel)]="vehiculo.modelo" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" id='margen'>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="form_email">Descripcion</label>
+                        <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="vehiculo.descripcion" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3" style="text-align:center;">
+                    <div class="form-group">
+                        <label for="form_phone">Activo</label>
+                        <input type="checkbox"  #descripcion="ngModel" name="activo" [(ngModel)]="vehiculo.activo" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+
+</fieldset>
+</div>
+
+</body>

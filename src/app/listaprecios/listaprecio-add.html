@@ -1,168 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title> {{titulo}} </title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../../assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../../assets/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../../assets/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-</head>
-
 <body>
-<div class="table-responsve">
-<!-- /.wrapper -->
-<div id="wrapper">
-<!-- /.row -->
-<div class="row">
 
-<!-- PANEL CENTRAL Titulo-->
-            <div class="panel panel-default">
+    <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/listaprecios']" href="#" value="Listado de Precios"
+            style="float:left" />
+        <h5 id="titulo"> {{titulo}} </h5>
 
-                <div class="panel-heading">
-                    <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/listaprecios']" href="#" value="Listads de Precios" style="float:left" />
-                    <h3> </h3>
-                    <h4> {{titulo}} </h4>
+    </div>
 
+
+
+    <div class="bg-light">
+
+        <form (ngSubmit)="guardar(addListaPrecio)" #addListaPrecio="ngForm" id="formlistaAdd">
+
+            <!-- Datos-->
+            <div class="card bg-light">
+
+                <div class="botones" id='margen'>
+                    <img src="assets/bootstrap/image/ico/list-ingredients-16.ico" style="float:left" />
                 </div>
-<!-- PANEL CENTRAL-->
 
-                <div class="panel-body">
-                    
-                    <form (ngSubmit)="guardar(formlistaAdd)" #clienteAdd="ngForm" class="col-lg-6" id="formlistaAdd">
-                        <div class="col-lg-12">     
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Nombre Lista</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="nombreLista" 
-                                [(ngModel)]="listaprecio.nombreLista" class="form-control" />
-                            </div>
-
+                <div class="row" id='margen'>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="form_phone">Nombre Lista</label>
+                            <input type="text" #nombreLista="ngModel" name="nombreLista" [(ngModel)]="listaprecio.nombreLista"
+                                class="form-control" />
+                            <span *ngIf="nombreLista.touched && !nombreLista.valid" class="label label-success">
+                                El nombre de la lista no es valido.
+                            </span>
                         </div>
-<!--Pantalla central derecha -->
-                        <div class="col-lg-6">
-
- 
-                       </div>
-<!--FIN Pantalla central derecha -->
-                        <div class="conainer">
-                        <div class="row">
-                        <div class="col-md-12">
-
-                            
-                        </div>
-                        </div>
-                        </div>
-
-
-                <div class="input-group input-group-sm">
-
-                <form (ngSubmit)="addProductoLista(formproductosAdd)" #formproductosAdd="ngForm" 
-                class="col-lg-12" id="addProductoLista">       
-
-                    <div class="input-group input-group-sm">
-                    <tr>
-                        <td>
-                            <span class="input-group-addon"> Agregar Producto </span>
-                        </td>
-                    </tr>
                     </div>
+                </div>
+            </div>
+            <!-- Agregar producto-->
+            <div class="card bg-light">
 
+                <div class="botones" id='margen'>
+                    <img src="assets/bootstrap/image/ico/soda-bottle-16.ico" style="float:left" />
+                </div>
 
-                    <div class="input-group input-group-sm">
-                        <tr>
-                            <td>   
-                                <select [(ngModel)]="producto.productoId" name="productoId" class="custom-select mb-3">
-                                    <option *ngFor="let producto of productos; let ind = index" 
-                                        [ngValue]="producto.productoId">{{producto.descripcion}}
-                                    </option>
-                                </select>
-                            </td>
-                            <td>
-                                <div class="input-group-prepend mb-3">
-                                <span class="input-group-addon">$</span>
-                                <input class="form-control input-number" type="number" value="100" min="0" step="0.50" max="100000" data-number-to-fixed="2" data-number-stepfactor="100" #descripcion="ngModel" name="precio"  
-                                 [(ngModel)]="productoLista.precio">
-                                </div>
-                            </td>
-                        </tr>
-
-                            <button type="ngSubmitmit" value="Add Producto" class="btn btn-outline-light btn-sm">
-                                    <img src="assets/bootstrap/image/ico/plus-5-16.ico" 
-                                     style="float:center"/> <p> Producto en Lista </p>
-                            </button>
-                    </div>
-
-
-                    <div class="input-group input-group-sm">
+                <form (ngSubmit)="addProductoLista(formproductosAdd)" #formproductosAdd="ngForm" class="col-lg-12" id="addProductoLista">
+                    <div class="row">
+                        <div class="col-sm-6">
 
                             <table class="table table-bordered table-responsive-md table-striped text-center">
-                              <thead>
-                                <tr>
-                                    <th class="text-center" scope="col">Producto</th>
-                                    <th class="text-center" scope="col">Precio</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr *ngFor="let productoLista of productosLista">
-                                    <td>{{productoLista.productos.descripcion}} </td>
-                                    <td class="form-control input-number" type="number" 
-                                    value="100" min="0" step="0.50" max="9999" data-number-to-fixed="2" data-number-stepfactor="100" contenteditable="false">{{productoLista.precio}} </td>
-                                </tr>
-                              </tbody>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" scope="col col-sm-4">Producto</th>
+                                        <th class="text-center" scope="col col-sm-2">Precio</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <select [(ngModel)]="producto.productoId" name="productoId" class="custom-select mb-3">
+                                                <option *ngFor="let producto of productos; let ind = index" [ngValue]="producto.productoId">{{producto.descripcion}}
+                                                </option>
+                                            </select>
+                                        </td>
+
+                                        <td>
+                                            <div>
+                                                <input class="form-control input-number" type="number" value="100" min="0"
+                                                    step="0.50" max="100000" data-number-to-fixed="2"
+                                                    data-number-stepfactor="100" #descripcion="ngModel" name="precio"
+                                                    [(ngModel)]="productoLista.precio">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button type="ngSubmitmit" value="Add Producto" class="btn btn-link">
+                                                <img src="assets/bootstrap/image/ico/plus-5-16.ico" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor="let productoLista of productosLista;let ind = index">
+                                        <td>
+                                            {{productoLista.productos.descripcion}}
+                                        </td>
+                                        <td>
+                                            <input class="form-control input-number" type="number" min="0" step="0.50"
+                                                max="100000" data-number-to-fixed="2" data-number-stepfactor="100"
+                                                #descripcion="ngModel" [(ngModel)]="productoLista.precio"
+                                                [ngModelOptions]="{standalone: true}" contenteditable="false">
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
-                    </div>    
 
-                </form>  
-                </div>
-
-
-<!--FIN Pantalla central derecha Mapa -->
-                    <br/>
-                    <input type="submit" value="{{titulo}}" class="btn btn-success" />    
+                        </div>
+                    </div>
                 </form>
 
+
             </div>
-            <!-- FIN PANEL CENTRAL-->
-        </div>
-        <!-- FIN PANEL CENTRAL Titulo-->
-</div>
-<!-- /.row -->
-</div>
-<!-- /#wrapper -->
-</div>
 
-    <!-- jQuery -->
-    <script src="../../assets/bootstrap/vendor/jquery/jquery.min.js"></script>
+            <input type="submit" value="{{titulo}}" class="btn btn-success" />
+        </form>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../../assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../../assets/bootstrap/dist/js/sb-admin-2.js"></script>
+    </div>
 
 </body>
-
-</html>
-

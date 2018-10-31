@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ClienteService } from './cliente.service';
-import { Cliente} from './cliente.model';
+import { Cliente } from './cliente.model';
 
 @Component({
 	selector: 'clientes-list',
 	templateUrl: './clientes-list.html',
-	providers: [ClienteService]
+	providers: [ClienteService],
+	styleUrls: ['./cliente.style.css']
 })
 export class ClientesListComponent{
 	public titulo: string;
@@ -44,14 +45,16 @@ export class ClientesListComponent{
 
 
 		getClientes(){
+
 			this._clienteService.getClientes().subscribe(
 				result =>{
-					if(result.status == 200){
-						 this.clientes = result.json();
-						 //console.log("Clientes:",result.json());
-					}else{
-						console.log("Result Controler",result.status); 
-					}
+				//	console.log(result);
+				//	if(result.status == 200){
+						 this.clientes = result;//.json();
+						// console.log("Clientes:",result.json());
+				//	}else{
+				//		console.log("Result Controler",result.status); 
+				//	}*/
 				},
 				error =>{
 					console.log(<any>error);
@@ -61,13 +64,14 @@ export class ClientesListComponent{
 
 		getCliente(){
 			this._clienteService.getCliente(this.id).subscribe(
-		 		result =>{
-		 			if(result.status == 200){
+		 		(result:Cliente) =>{
+					this.cliente = result;
+		 			/*if(result.status == 200){
 		 				 ////console.log('Cliente:',this.cliente = result.json())
 		 				 this.cliente = result.json();
 		 			}else{
 						console.log("ID:",this.id," Result Controler:",result.status);
-		 			}
+		 			}*/
 		 		},
 		 		error =>{
 		 			console.log(<any>error);
@@ -85,12 +89,13 @@ export class ClientesListComponent{
 
 		onDeleteCliente(id){
 			this._clienteService.deleteCliente(id).subscribe(
-				result =>{
+				result =>{/*
 					if(result.status == 200){
 						this.getClientes();
 					}else{
 						alert("Error al borrar producto")
-					}
+					}*/
+					this.getClientes();
 				},
 				error =>{
 					console.log(<any>error);

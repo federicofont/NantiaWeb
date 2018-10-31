@@ -1,96 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../../assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../../assets/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../../assets/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-</head>
-
 <body>
-<div class="table-responsve">
-<!-- /.wrapper -->
-<div id="wrapper">
-<!-- /.row -->
-<div class="row">
 
-<!-- PANEL CENTRAL Titulo-->
-            <div class="panel panel-default">
+    <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/envases']" href="#" value="Listado de envases"
+            style="float:left" />
+        <h5 id="titulo"> {{titulo}} </h5>
 
-                <div class="panel-heading">
-                    <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/envases']" href="#" value="Listado de Envases" style="float:left" />
-                    <h3> </h3>
-                    <h4> {{titulo}} </h4>
+    </div>
 
+
+    <div class="bg-light">
+        <!--form id="contact-form" method="post" action="contact.php" role="form"-->
+        <form (ngSubmit)="guardar(envaseAdd)" #envaseAdd="ngForm" id="formEnvaseAdd">
+
+            <!-- Datos Personales-->
+            <div class="card bg-light">
+
+                <div class="botones" id='margen'>
+                    <img src="assets/bootstrap/image/ico/soda-bottle-16.ico" style="float:left" />
                 </div>
-<!-- PANEL CENTRAL-->
-                
-                <div class="panel-body">
 
-                    <form (ngSubmit)="guardar(envaseAdd)" #envaseAdd="ngForm" class="col-lg-6" id="formEnvaseAdd">
-                        <div class="col-lg-6">                          
-                            <span *ngIf="!envase.valid && envase.touched " class="label label-danger" >El Envase es obligatorio</span>
+                <div class="row" id='margen'>
+                    <div class="col-sm-5" id='margen'>
 
-                            <div class="input-group input-group-sm">
-                                    <span class="input-group-addon"> Descripcion </span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3"> <!--mb-3 deja espacio debajo -->
-                                <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="envase.descripcion" class="form-control" placeholder="Tipo de envase" minlength="4" required />
-                                <div *ngIf="descripcion.error?.required">
-                                    El campo es requerido.
-                                </div>
-                                <div *ngIf="envase.error?.minlength">
-                                    Por lo menos {{ envase.errors.minglength.requiredLenght }} caracteres.
-                                </div>
-                            </div>
-
+                        <div class="form-group">
+                            <label for="Nombre">Envase</label>
+                            <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="envase.descripcion"
+                                class="form-control" placeholder="Tipo de envase" minlength="4" required />
+                            <span *ngIf="descripcion.touched && !descripcion.valid" class="label label-success">
+                                La descripcion del envase no es valida.
+                            </span>
                         </div>
-<!--Pantalla central derecha -->
-                        <div class="col-lg-6">
+                    </div>
+                </div>
 
-                        </div>
-<!--FIN Pantalla central derecha -->
-                        <br/>
-                        <input type="submit" value="{{titulo}}" class="btn btn-success" />    
-                </form>
             </div>
-            <!-- FIN PANEL CENTRAL-->
-        </div>
-        <!-- FIN PANEL CENTRAL Titulo-->
-</div>
-<!-- /.row -->
-</div>
-<!-- /#wrapper -->
-</div>
-
-    <!-- jQuery -->
-    <script src="../../assets/bootstrap/vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../../assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../../assets/bootstrap/dist/js/sb-admin-2.js"></script>
+            <br />
+            <input type="submit" value="{{titulo}}" class="btn btn-success" />
+        </form>
+    </div>
 
 </body>
-
-</html>

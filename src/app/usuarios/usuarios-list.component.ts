@@ -6,7 +6,8 @@ import { Usuario} from './usuario.model';
 @Component({
 	selector: 'usuarios-list',
 	templateUrl: '../usuarios/usuarios-list.html',
-	providers: [UsuarioService]
+	providers: [UsuarioService],
+	styleUrls: ['./usuario.style.css']
 })
 export class UsuariosListComponent{
 	public titulo: string;
@@ -25,7 +26,7 @@ export class UsuariosListComponent{
 		this.titulo = 'Listado de usuarios';
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 	}
@@ -38,7 +39,7 @@ ngOnInit(){
 
 		}else{
 
-			this.getUsuario();
+			this.getUsuario(this.id);
 			
 		}
 
@@ -46,36 +47,32 @@ ngOnInit(){
 
 
 		getUsuarios(){
-			console.log("GetUsuarios");
 			this._usuarioService.getUsuarios().subscribe(
-	            result => {
-	                console.log("result.json():",result.json());
-	                if(result.status == 200){
-	                	this.usuarios = result.json();
-	                	console.log("this.usuarios:",this.usuarios);
+	            (result : any) =>{
+	                if (result.length > 0) {
+	                	this.usuarios = result;//.json();
 	                }else{
-	                	console.log("Result Controler",result.status);   
-	                	console.log("result.json():",result.json());
+	                //	//console.log("Result Controler",result.status);   
 	                }
 	            },
 	            error => {
-	                console.log(<any>error);
+	                //console.log(<any>error);
 	            }
 	        );
 		}
 
-		getUsuario(){
-			this._usuarioService.getUsuario(this.id).subscribe(
-				result =>{
-					if(result.status == 200){
-						 this.usuario = result.json();
+		getUsuario(id){
+			this._usuarioService.getUsuario(id).subscribe(
+				(result : any) =>{
+					if (result.length > 0) {
+						 this.usuario = result;
 					}else{
-						console.log("ID:",this.id," Result Controler:",result.status);
+						//console.log("ID:",id," Result Controler:",result.status);
 					}
 
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}
@@ -88,17 +85,17 @@ ngOnInit(){
 			this.confirmado=null;
 		}
 
-		onDeleteUsuario(id){
+		onDelete(id){
 			this._usuarioService.deleteUsuario(id).subscribe(
-				result =>{
-					if(result.status == 200){
+				(result : any) =>{
+					if (result==null) {
 						this.getUsuarios();
 					}else{
 						alert("Error al borrar Usuario")
 					}
 				},
 				error =>{
-					console.log(<any>error);
+					//console.log(<any>error);
 				}
 			);
 		}

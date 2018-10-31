@@ -1,14 +1,14 @@
-import { AppPage } from './app.po';
+import { AngularLoginPage } from './app.po';
 
-describe('nantia-web App', () => {
-  let page: AppPage;
+describe('angular-login App', () => {
+  let page: AngularLoginPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new AngularLoginPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('app works!');
   });
 });

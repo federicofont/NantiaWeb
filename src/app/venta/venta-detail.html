@@ -1,0 +1,128 @@
+<body>
+
+    <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/ventas']" href="#" value="Listado de venta" style="float:left" />
+        <h5 id="titulo"> {{titulo}} </h5>
+
+    </div>
+
+<form (ngSubmit)="guardar(ventaAdd)" #ventaAdd="ngForm" id="formVentaAdd"  *ngIf="venta">
+<!-- ************************ Cabecera ************************************************************* -->
+    <!--div class="bg-light">
+
+            <div class="card bg-light">
+
+                <div class="botones" id='margen'>
+                    <img src="assets/bootstrap/image/ico/cart-74-16.ico" style="float:left" />
+                </div>
+
+                <div class="row" id='margen'>
+                    <div class="col-sm-12">
+
+                    </div>
+                    
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="Nombre">Descuento</label>
+                            <input  class="form-control input-number" type="number" min="0" max="100" 
+                                step="5" #descripcion="ngModel" name="formDescuento" 
+                                ng-value="formDescuento" value="0" 
+                                [(ngModel)]="formDescuento">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+    </div-->
+
+<!-- ************************ Boleta ************************************************************* -->
+    <div class="bg-light">
+<fieldset disabled>
+        <div class="card bg-light">
+
+            <div class="botones" id='margen'>
+                <img src="assets/bootstrap/image/ico/clipboard-2-16.ico" style="float:left" />
+            </div>
+
+            <div class="row" id='margen'>
+                <div class="col-sm-10" id='margen'>
+
+                <div class="form-group">
+                    <table class="table table-responsive-md table-striped">
+                        <thead>                            
+                            <tr>
+                                <th class="text-left"><h6>{{venta.fecha | date}}</h6></th>
+                                <th class="text-right"><h6>Fabrica: <small> {{venta.fabricaid}} </small></h6></th>
+                            </tr>
+                            <tr>
+                                <th class="text-left">
+                                    <h6>Cliente: <small> {{venta.cliente.nombre1}} {{venta.cliente.nombre2}} </small></h6>
+                                </th>     
+                                <th class="text-right"><h6>Vendedor: <small> {{venta.usuario.nombre}} </small></h6></th>                          
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <table class="table table-bordered table-responsive-md table-striped text-center">
+                        <thead>                            
+                            <tr>
+                                <th class="text-center" scope="col col-sm-3">Cantidad</th>
+                                <th class="text-center" scope="col col-sm-6">Producto</th>
+                                <th class="text-center" scope="col col-sm-3">Precio Unitario</th>
+                                <th class="text-center" scope="col col-sm-3">Valor Total</th>
+
+                            </tr>
+
+                            <tr *ngFor="let productoVenta of venta.setProductoVenta; let i = index">
+                                <td>{{productoVenta.cantidad}} </td>
+                                <td>{{productoVenta.producto.nombre}} </td>
+                                <td>{{productoVenta.precioUnitario | currency}} </td>
+                                <td>{{productoVenta.total | currency}} </td>
+
+                            </tr>
+                        </thead>
+
+                    </table>
+
+                    <table class="table table-responsive-md table-striped text-center">
+                        <thead>
+                            <!--tr>
+                                <th class="text-right" scope="col col-sm-3">Subtotal</th>
+                                <th>{{subtotal | currency}} </th>
+                            </tr-->
+                            <tr>
+                                <th class="text-right" scope="col col-sm-3">Descuento</th>
+                                <th>{{venta.descuento | currency}} </th>
+                            </tr>                            
+                            <tr>
+                                <th class="text-right" scope="col col-sm-3">IVA</th>
+                                <th>{{venta.ivatotal | currency}} </th>
+                            </tr>
+                            <tr>
+                                <th class="text-right" scope="col col-sm-3">Total Pagó</th>
+                                <th>{{venta.pagototal | currency}} </th>
+                            </tr>
+                        </thead>
+
+                    </table>
+                </div>
+
+                </div>
+            </div>
+
+        </div>
+
+</fieldset>
+    </div>
+</form>
+
+
+</body>

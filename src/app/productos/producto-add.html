@@ -1,128 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../../assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../../assets/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../../assets/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-</head>
-
 <body>
-<div class="table-responsve">
-<!-- /.wrapper -->
-<div id="wrapper">
-<!-- /.row -->
-<div class="row">
 
-<!-- PANEL CENTRAL Titulo-->
-            <div class="panel panel-default">
+      <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/productos']" href="#"
+             style="float:left" />
+         <h5 id="titulo"> {{titulo}} </h5>
+      </div>
 
-                <div class="panel-heading">
+<div class="bg-light">
 
-                    <img src="assets/bootstrap/image/ico/arrow-91-16.ico" [routerLink]="['/productos']" href="#" value="Listado de Productos" /> 
-                    
-                    <h3>{{titulo}} </h3>
-                
-                </div>
-<!-- PANEL CENTRAL-->
-                
-                <div class="panel-body">
+    <form (ngSubmit)="guardar(productoAdd)" #productoAdd="ngForm" id="formProductoAdd">
+        
+    <!-- Datos Personales-->    
+        <div class="card bg-light">
 
-                    <form (ngSubmit)="guardar(productoAdd)" #productoAdd="ngForm" class="col-lg-6" id="formProductoAdd">
-                        <div class="col-lg-6">                          
-                            <span *ngIf="!producto.valid && producto.touched " class="label label-danger" >El Producto es obligatorio</span>
-
-                            <div class="input-group input-group-sm">
-                                    <span class="input-group-addon"> Nombre </span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3"> <!--mb-3 deja espacio debajo -->
-                                <input type="text" #descripcion="ngModel" name="nombre" [(ngModel)]="producto.nombre" class="form-control" placeholder="Nombre" minlength="4" required />
-                                <!--div *ngIf="nombre.error?.required">
-                                    El campo es requerido.
-                                </div>
-                                <div *ngIf="nombre.error?.minlength">
-                                    Por lo menos {{ producto.errors.minglength.requiredLenght }} caracteres.
-                                </div-->
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Descripcion</span>
-                            </div>
-                            <div class="input-group input-group-sm  mb-3">
-                                <input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" class="form-control" />
-                            </div>
-                        </div>
-<!--Pantalla central derecha -->
-                        <div class="col-lg-6">
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Presentacion</span>
-                            </div>
-
-                            <div class="input-group input-group-sm mb-3">
- 
-                                <input type="text" #descripcion="ngModel" name="presentacion" [(ngModel)]="producto.presentacion" class="form-control" />
-                                <!--select class="input-group input-group-sm" 
-                                name="presentacion" [(ngModel)]="producto.presentacion">
-                                    <option>{{producto.presentacion}} </option>
-
-                                    <option *ngFor="let pres of presentaciones"
-                                            [value]="pres.presentacion">{{pres.presentacion}}
-                                    </option>
-                                </select-->
-
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Retornable</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3" style="float:left">
-                                <input [(ngModel)]="producto.retornable" name="retornable" type="checkbox" class="form-check-input"> 
-                            </div>
-                        </div>
-<!--FIN Pantalla central derecha -->
-                        <br/>
-                        <input type="submit" value="{{titulo}}" class="btn btn-success" />    
-                </form>
+            <div class="botones"  id='margen'>
+                <img src="assets/bootstrap/image/ico/soda-bottle-16.ico" style="float:left"/> 
             </div>
-            <!-- FIN PANEL CENTRAL-->
+            
+            <div class="row" id='margen'>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="Nombre">Nombre</label>
+                        <input  type="text" #nombre="ngModel" name="nombre" [(ngModel)]="producto.nombre" 
+                                class="form-control" placeholder="Nombre producto" minlength="4" required />
+                        <span *ngIf="nombre.touched && !nombre.valid" class="label label-success" >
+                                El nombre de la lista no es valido.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="Nombre">Descripcion</label>
+                        <input  type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" 
+                                class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="Nombre">Presentación</label>
+                        <input  type="text" #descripcion="ngModel" name="presentacion" [(ngModel)]="producto.presentacion" 
+                                class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-3 py-3" style="text-align:center;">
+                    <div class="form-group">
+                        <label for="Activo"> Es retornable?</label>
+                        <input  type="checkbox"  #descripcion="ngModel" name="retornable" [(ngModel)]="producto.retornable" 
+                                class="form-control" />
+                    </div>
+                </div>
+            
+            </div>
+
         </div>
-        <!-- FIN PANEL CENTRAL Titulo-->
+
+        <input type="submit" value="{{titulo}}" class="btn btn-success" style="text-align:center;" />  
+    </form>  
+            
 </div>
-<!-- /.row -->
-</div>
-<!-- /#wrapper -->
-</div>
-
-    <!-- jQuery -->
-    <script src="../../assets/bootstrap/vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../../assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../../assets/bootstrap/dist/js/sb-admin-2.js"></script>
 
 </body>
 
-</html>
+
+
+

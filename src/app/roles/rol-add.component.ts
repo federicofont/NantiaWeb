@@ -10,10 +10,7 @@ import { Rol } from './rol.model';
 	selector: 'formRolAdd',
 	templateUrl: '../roles/rol-add.html',
 	providers: [RolService],
-	styles: [`
-		.ng-invalid.ng-touched:not(form){
-		border:1px solid red;
-		}`]
+	styleUrls: ['./roles.style.css']
 })
 
 export class RolAddComponent{
@@ -30,7 +27,7 @@ export class RolAddComponent{
 		
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 
@@ -45,7 +42,7 @@ export class RolAddComponent{
 	 
 
 	ngOnInit(){
-		//console.log('rol-add.component.ts cargado');
+		////console.log(('rol-add.component.ts cargado');
 
 		if(this.id != null){
 			this.getRol();
@@ -57,17 +54,17 @@ export class RolAddComponent{
 
 	getRol(){
 		this._rolService.getRol(this.id).subscribe(
-			result =>{
-				if(result.status == 200){
-					//console.log("Result:",result.json());
-					 this.rol = result.json();
+			(result : any) =>{
+				if(result){
+					////console.log(("Result:",result.json());
+					 this.rol = result;
 				}else{
-					console.log("ID:",this.id," Result Controler:",result.status);
+					//console.log("ID:",this.id," Result Controler:",result.status);
 				}
 
 			},
 			error =>{
-				console.log(<any>error);
+				//console.log(<any>error);
 			}
 		)
 
@@ -76,7 +73,7 @@ export class RolAddComponent{
 	guardar(rolAdd:NgForm){
 		//Creo el rol desde el formulario
 		this.rol=rolAdd.value;
-		console.log("Rol:",this.rol);
+		//console.log("Rol:",this.rol);
 		
 		if(this.id != null){
 			//Llamo al servicio que actualiza el cliente
@@ -92,34 +89,34 @@ export class RolAddComponent{
 
 
 	updateRol(){
-		console.log("update:",this.rol);
+		//console.log("update:",this.rol);
 		this._rolService.editRol(this.id, this.rol)
-				.subscribe(result => {
-				////console.log("Result Controler",result.status);
- 					if(result.status=200){
+				.subscribe((result : any) => {
+				//////console.log("Result Controler",result.status);
+ 					if(result.id>0){
  						this._router.navigate(['/roles']);
  					}else{
  						//204 -- No Content
- 						console.log("Result Controler",result.status);
+ 						//console.log("Result Controler",result.status);
 					}
  				},
  				error => {
- 					console.log(<any>error);
+ 					//console.log(<any>error);
  				})
 	}
 
 	AddRol(){
 		this._rolService.addRol(this.rol).subscribe(
-			result => {
-				if(result.status==201){
-					this._router.navigate(['/roles/'+result.json().id]);
-						console.log("Result Controler",result.status);
+			(result : any) =>{
+				if(result.id>0){
+					this._router.navigate(['/roles']);
+						//console.log("Result Controler",result.status);
 				}else{
-						console.log("Result Controler",result.status);
+						//console.log("Result Controler",result.status);
 				}
 			},
 			error => {
-				console.log(<any>error);
+				//console.log(<any>error);
 				}
 		)
 	}

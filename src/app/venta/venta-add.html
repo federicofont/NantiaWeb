@@ -1,0 +1,214 @@
+<body>
+
+    <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/ventas']" href="#" value="Listado de venta" style="float:left" />
+        <h5 id="titulo"> {{titulo}} </h5>
+
+    </div>
+
+<form (ngSubmit)="guardar(ventaAdd)" #ventaAdd="ngForm" id="formVentaAdd"  *ngIf="venta">
+<!-- ************************ Cabecera ************************************************************* -->
+    <!--div class="bg-light">
+
+            <div class="card bg-light">
+
+                <div class="botones" id='margen'>
+                    <img src="assets/bootstrap/image/ico/cart-74-16.ico" style="float:left" />
+                </div>
+
+                <div class="row" id='margen'>
+                    <div class="col-sm-12">
+
+                    </div>
+                    
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="Nombre">Descuento</label>
+                            <input  class="form-control input-number" type="number" min="0" max="100" 
+                                step="5" #descripcion="ngModel" name="formDescuento" 
+                                ng-value="formDescuento" value="0" 
+                                [(ngModel)]="formDescuento">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+    </div-->
+
+<!-- ************************ Add Articulos ************************************************************* -->    
+    <div class="bg-light">
+        <form (ngSubmit)="addProductoVenta(formproductosAdd, formDescuento, formIVA_Variable, formCliente)" #formproductosAdd="ngForm" id="addProductoVenta">
+
+            <div class="card bg-light">
+
+                <div class="botones" id='margen'>
+                    <img src="assets/bootstrap/image/ico/cart-74-16.ico" style="float:left" />
+                </div>
+
+                <div class="row" id='margen'>
+                    <div class="col-sm-10" id='margen'>
+
+                    <div class="form-group">
+                        <table class="table table-bordered table-responsive-md table-striped text-center">
+                            <thead>
+                                <tr>
+                                    
+                                    <th class="text-center" scope="col col-sm-2"> $ Descuento</th>
+                                    <!--th class="text-center" scope="col col-sm-2"> % IVA</th-->
+                                    <th class="text-center" scope="col col-sm-6">Producto</th>
+                                    <th class="text-center" scope="col col-sm-3">Cantidad</th>
+                                </tr>
+
+                                <tr>                                                      
+                                    <td>
+                                        <input  class="form-control input-number" type="number" min="0" max="10000" 
+                                            step="1" #descripcion="ngModel" name="formDescuento" 
+                                            ng-value="formDescuento" value="0" 
+                                            [(ngModel)]="formDescuento">                                        
+                                    </td>
+                                    <!--td>
+                                        <select class="form-control py-1"
+                                        name="formIVA_Variable" [(ngModel)]="formIVA_Variable">
+                                            <option value="{{iva0}}">{{iva0}} </option>
+                                            <option value="{{iva1}}">{{iva1}} </option>
+                                        </select>
+                                    </td-->
+                                    <td>
+                                        <select [(ngModel)]="producto.productoId" name="productoId" 
+                                                class="custom-select mb-3">
+                                            <option *ngFor="let productoLista of listaPrecio.setProductoLista; let ind = index"
+                                            [ngValue]="productoLista.productos.productoId">
+                                                {{productoLista.productos.nombre}}
+                                                $u {{productoLista.precio}}
+
+                                            </option>
+                                        </select>
+                                    </td>
+                                    
+                                    <td>
+                                        <div >
+                                            <input  class="form-control input-number" type="number" min="0" max="100000" 
+                                                            step="1" #descripcion="ngModel" name="formCantidad" 
+                                                            ng-value="formCantidad"
+                                                            [(ngModel)]="formCantidad">
+                                        </div>
+                                    </td>
+                                    <td>                    
+                                        <button type="ngSubmitmit" value="Add Producto" class="btn btn-link" >
+                                            <img src="assets/bootstrap/image/ico/plus-5-16.ico" /> 
+                                        </button>
+                                    </td>
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+<!-- ************************ Boleta ************************************************************* -->
+    <div class="bg-light">
+        <div class="card bg-light">
+
+            <div class="botones" id='margen'>
+                <img src="assets/bootstrap/image/ico/clipboard-2-16.ico" style="float:left" />
+            </div>
+
+            <div class="row" id='margen'>
+                <div class="col-sm-10" id='margen'>
+
+                <div class="form-group">
+                    <table class="table table-responsive-md table-striped">
+                        <thead>                            
+                            <tr>
+                                <th class="text-left"><h6>{{venta.fecha | date}}</h6></th>
+                                <th class="text-right"><h6>Fabrica: <small> {{venta.fabricaid}} </small></h6></th>
+                            </tr>
+                            <tr>
+                                <th class="text-left">
+                                    <h6>Cliente:
+                                        <select required="Seleccione el cliente" [(ngModel)]="formCliente" name="formCliente"
+                                            class="custom-select custom-select-sm col-sm-6">
+                                                <option *ngFor="let cliente of clientes; let ind = index" 
+                                                        [ngValue]="cliente.id">{{cliente.nombre1}} {{cliente.nombre2}}
+                                                </option>
+                                        </select>
+                                    </h6>
+                                </th>     
+                                <th class="text-right"><h6>Vendedor: <small> {{venta.usuario.nombre}} </small></h6></th>                          
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <table class="table table-bordered table-responsive-md table-striped text-center">
+                        <thead>                            
+                            <tr>
+                                <th class="text-center" scope="col col-sm-3">Cantidad</th>
+                                <th class="text-center" scope="col col-sm-6">Producto</th>
+                                <th class="text-center" scope="col col-sm-3">Precio Unitario</th>
+                                <th class="text-center" scope="col col-sm-3">Valor Total</th>
+
+                            </tr>
+
+                            <tr *ngFor="let productoVenta of venta.setProductoVenta; let i = index">
+                                <td>{{productoVenta.cantidad}} </td>
+                                <td>{{productoVenta.producto.nombre}} </td>
+                                <td>{{productoVenta.precioUnitario | currency}} </td>
+                                <td>{{productoVenta.total | currency}} </td>
+
+                            </tr>
+                        </thead>
+
+                    </table>
+
+                    <table class="table table-responsive-md table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th class="text-right" scope="col col-sm-3">Subtotal</th>
+                                <th>{{subtotal | currency}} </th>
+                            </tr>
+                            <tr>
+                                <th class="text-right" scope="col col-sm-3">Descuento</th>
+                                <th>{{venta.descuento | currency}} </th>
+                            </tr>                            
+                            <tr>
+                                <th class="text-right" scope="col col-sm-3">IVA</th>
+                                <th>{{venta.ivatotal | currency}} </th>
+                            </tr>
+                            <tr>
+                                <th class="text-right" scope="col col-sm-3">Total Pagó</th>
+                                <th>{{venta.pagototal | currency}} </th>
+                            </tr>
+                        </thead>
+
+                    </table>
+                </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <br/>
+    <input type="submit" value="{{titulo}}" class="btn btn-success" />
+</form>
+
+
+</body>

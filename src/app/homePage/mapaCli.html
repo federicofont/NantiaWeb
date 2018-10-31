@@ -1,0 +1,44 @@
+<body>
+
+    <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/clientes']" href="#" value="Listado de Clientes" style="float:left" />
+        <h5 id="titulo"> {{titulo}} </h5>
+
+    </div>
+
+
+    <div class="bg-light">
+            <!-- Direccion-->
+        <div class="card bg-light">
+
+            <div class="botones" id="margen">
+                <img src="assets/bootstrap/image/ico/home-16.ico" style="float:left" />
+            </div>
+
+            <div class="row" id="margen">
+               
+                <!--div class="form-group  col-sm-6">
+                    <label for="form_phone">Direccion</label>
+                    <input type="text" #descripcion="ngModel" name="direccion" [(ngModel)]="direccion.direccion" class="form-control" />
+                </div-->
+
+                <div class="map container col-sm-12">
+                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="agregarMarcador($event)">
+
+                        <agm-marker *ngFor="let marcador of marcadores; let i = index" (markerclick)="marcadorCliqueado(marcador,i)" [latitude]="marcador.lat" [longitude]="marcador.lng" [markerDraggable]="marcador.movil" (dragEnd)="posicionFinalMarcador(marcador,$event,i)">
+
+                            <agm-info-window>
+                                <strong>{{marcador.nombre}}</strong>
+                                <!--button (click)="borrarMarcador(i)" class="btn-alert">Borrar</button-->
+                            </agm-info-window>
+
+                        </agm-marker>
+                    </agm-map>
+                </div>
+
+
+            </div>
+        </div>  
+    </div>
+
+</body>

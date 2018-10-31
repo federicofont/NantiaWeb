@@ -1,204 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../../assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../../assets/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../../assets/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
 <body>
-<div class="table-responsve">
-<!-- /.wrapper -->
-<div id="wrapper">
-<!-- /.row -->
-<div class="row">
 
-<!-- PANEL CENTRAL Titulo-->
-            <div class="panel panel-default">
+      <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/usuarios']" href="#"
+             style="float:left" />
+         <h5 id="titulo"> {{titulo}} </h5>
+      
+      </div>
 
-                <div class="panel-heading">
+<div class="bg-light">
 
-                    <img src="assets/bootstrap/image/ico/arrow-91-16.ico" [routerLink]="['/usuarios']" href="#" value="Listado de Usuarios" /> 
-                    
-                    <h3>{{titulo}} </h3>
-                
-                </div>
-<!-- PANEL CENTRAL-->
-                
-                <div class="panel-body">
+    <form (ngSubmit)="guardar(usuarioAdd)" #usuarioAdd="ngForm" id="formUsuarioAdd">
+        
+    <!-- Datos Personales-->    
+        <div class="card bg-light">
 
-                    <form (ngSubmit)="guardar(usuarioAdd)" #usuarioAdd="ngForm" class="col-lg-6" id="formUsuarioAdd">
-                        <div class="col-lg-6">        
-
-                            <span *ngIf="!usuario.valid && usuario.touched " class="label label-danger" >El Usuario es obligatorio</span>
-
-
-                            <div class="input-group input-group-sm">
-                                    <span class="input-group-addon"> Usuario </span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3"> <!--mb-3 deja espacio debajo -->
-
-                                <input type="text" #descripcion="ngModel" name="usuario" [(ngModel)]="usuario.usuario" class="form-control" placeholder="usuario" minlength="4" required />
-                                <div *ngIf="usuario.error?.required">
-                                    El campo es requerido.
-                                </div>
-                                <div *ngIf="usuario.error?.minlength">
-                                    Por lo menos {{ usuario.errors.minglength.requiredLenght }} caracteres.
-                                </div>
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Nombre</span>
-                            </div>
-                            <div class="input-group input-group-sm  mb-3">
-                                <input type="text" #descripcion="ngModel" name="nombre" [(ngModel)]="usuario.nombre" class="form-control" />
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Contraseña</span>
-                            </div>
-                            <div class="input-group input-group-sm  mb-3">
-                                <input type="password" #descripcion="ngModel" name="contrasenia" [(ngModel)]="usuario.contrasenia" class="form-control" />
-                            </div>
-
-                        </div>
-<!--Pantalla central derecha -->
-                        <div class="col-lg-6">
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Rol</span>
-                            </div>
-                            
-                            <select [(ngModel)]="rol.id" name="rolId" class="custom-select mb-3">
-                                <option *ngFor="let rol of roles; let ind = index" 
-                                        [ngValue]="rol.id">{{rol.nombreRol}}
-                                </option>
-                            </select>
-                            <!--div class="input-group input-group-sm  mb-3">
-                                <input type="text" #rol="ngModel" name="rol" [(ngModel)]="rol.id" class="form-control" />
-                            </div-->
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Apellido</span>
-                            </div>
-                            <div class="input-group input-group-sm  mb-3">
-                                <input type="text" #descripcion="ngModel" name="apellido" [(ngModel)]="usuario.apellido" class="form-control" />
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Vendedor</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3" style="float:left">
-                                <input [(ngModel)]="usuario.esVendedor" name="esVendedor" type="checkbox" class="form-check-input"> 
-                            </div>
-
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon">Saldo Caja</span>
-                            </div>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" #descripcion="ngModel" name="saldoCaja" 
-                                [(ngModel)]="usuario.saldoCaja" class="form-control" />
-                            </div>  
-
-
-
-                        </div>
-<!--FIN Pantalla central derecha -->
-                        <br/>
-                        <input type="submit" value="{{titulo}}" class="btn btn-success" />    
-                </form>
+            <div class="botones"  id='margen'>
+                <img src="assets/bootstrap/image/ico/user-16.ico" style="float:left"/> 
             </div>
-            <!-- FIN PANEL CENTRAL-->
+            
+            <div class="row" id='margen'>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="Nombre">Usuario</label>
+                        <input  type="text" #user="ngModel" name="usuario" [(ngModel)]="usuario.usuario" 
+                                class="form-control" placeholder="usuario" minlength="3" required />
+                        <span *ngIf="user.touched && !user.valid" class="label label-success" >
+                            El usuario no es valido.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="Nombre">Nombre</label>
+                        <input  type="text" #Nombre="ngModel" name="nombre" [(ngModel)]="usuario.nombre"
+                                class="form-control"  minlength="3" required />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="Nombre">Apellido</label>
+                        <input  type="text" #Apellido="ngModel" name="apellido" [(ngModel)]="usuario.apellido" 
+                                class="form-control" minlength="3" required />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+            
+            </div>
+
+            <div class="row">
+            
+                <div class="col-sm-3"  id='margen2'>
+                    <div class="form-group">
+                        <label for="Documento">Contraseña</label>
+                        <input  type="password" #contrasenia="ngModel" name="contrasenia" [(ngModel)]="usuario.contrasenia" 
+                                class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3  py-3">
+                    <div class="form-group">
+                        <label for="Tpo">Rol</label>
+                        <select [(ngModel)]="rol.id" name="rolId" 
+                        class="custom-select">
+                            <option *ngFor="let rol of roles; let ind = index" 
+                            [ngValue]="rol.id">{{rol.nombreRol}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+                
+            <div class="row">
+
+                <div class="col-sm-3"  id='margen2'>
+                    <label for="Saldo">Saldo Caja $</label>
+                    <input  type="number" #saldoCaja="ngModel" name="saldoCaja" [(ngModel)]="usuario.saldoCaja" 
+                            class="form-control"  /> 
+                    <div class="help-block with-errors"></div>
+                </div>
+
+                <div class="col-sm-3 py-3" style="text-align:center;">
+                    <div class="form-group">
+                        <label for="Activo"> Es Vendedor?</label>
+                        <input  type="checkbox"  #activo="ngModel" name="activo" [(ngModel)]="usuario.esVendedor" 
+                                class="form-control" checked="true" />
+                    </div>
+                </div>
+            
+            </div>
+
         </div>
-        <!-- FIN PANEL CENTRAL Titulo-->
+
+        <input type="submit" value="{{titulo}}" class="btn btn-success" style="text-align:center;" 
+                [disabled]="!usuarioAdd.form.valid" />  
+    </form>  
+            
 </div>
-<!-- /.row -->
-</div>
-<!-- /#wrapper -->
-</div>
-
-    <!-- jQuery -->
-    <script src="../../assets/bootstrap/vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../../assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../../assets/bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../../assets/bootstrap/dist/js/sb-admin-2.js"></script>
 
 </body>
-
-</html>
-
-<!--
-<div class="col-lg-10 col-lg-offset-1">
-    <div class="jumbotron">
-        <h5>{{titulo}} </h5>
-
-        <form (ngSubmit)="guardar(usuarioAdd)" #usuarioAdd="ngForm" class="col-lg-6" id="form-usuario-add">
-
-            <label>
-			Usuario
-			<span *ngIf="!usuario.valid && usuario.touched " class="label label-danger" >El Usuario es obligatorio</span>
-		</label>
-            <input type="text" #usuario="ngModel" name="usuario" [(ngModel)]="usuario.usuario" class="form-control" minlength="4" required />
-            <div *ngIf="nombre.error?.required">
-                El campo es requerido.
-            </div>
-            <div *ngIf="nombre.error?.minlength">
-                Por lo menos {{ usuario.errors.minglength.requiredLenght }} caracteres.
-            </div>
-
-            <label>Nombre</label>
-            <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="usuario.nombre" class="form-control" />
-
-            <label>Apellido</label>
-            <input type="text" #apellido="ngModel" name="apellido" [(ngModel)]="usuario.apellido" class="form-control" />
-
-            <label>
-			Rol
-			<span *ngIf="!rol.valid && rol.touched " class="label label-danger">El rol no es correcto</span>
-		</label>
-            <input type="number" #rol="ngModel" name="rol" [(ngModel)]="usuario.rol" class="form-control" required pattern="[0-9]+" />
-
-            <label>Contraseña</label>
-            <input type="text" #contrasenia="ngModel" name="contrasenia" [(ngModel)]="usuario.contrasenia" class="form-control" />
-
-            <br/>
-            <input type="submit" value="{{titulo}}" class="btn btn-success" />
-
-        </form>
-
-    </div>
-</div>
-
--->

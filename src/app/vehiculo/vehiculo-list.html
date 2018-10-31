@@ -1,0 +1,42 @@
+<body>
+
+      <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/add-32.ico" alt="Nuevo Cliente" style="float:left"  [routerLink]="['/vehiculo-add']" href="#" class="btn btn-sm" value="Nuevo Cliente" />
+         <h5 id="titulo"> {{titulo}} </h5>
+      </div>
+  
+
+    <div class="card-header">
+        <div class="row">
+
+            <div *ngFor="let vehiculo of vehiculos"class="card card-body col-sm-2 py-2">
+                <div class="botones">
+                    <img src="assets/bootstrap/image/ico/truck-16.ico" style="float:left"/> 
+                </div>
+                    <a>{{vehiculo.descripcion}} </a> 
+                    <a>{{vehiculo.matricula}} </a> 
+
+                <div class="botones" *ngIf="confirmado != vehiculo.id">
+
+                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/vehiculo',vehiculo.id]" href="#" class="btn btn-sm" value="Ver" /> 
+
+                    <img src="assets/bootstrap/image/ico/edit-9-16.ico" alt="Editar" style="float:left"  [routerLink]="['/vehiculo-edit',vehiculo.id]" href="#" class="btn btn-sm" value="Editar" /> 
+
+                    <img src="assets/bootstrap/image/ico/delete-16.ico" alt="Borrar" style="float:left"  
+                    (click)="borrarConfirm(vehiculo.id)" href="#" class="btn btn-sm" value="Borrar" /> 
+
+                </div>
+
+                <div clas="seguro" *ngIf="confirmado == vehiculo.id">
+                <p class="text-danger">¿Esta seguro de borrar la vehiculo?</p>
+
+                <img src="assets/bootstrap/image/ico/check-mark-3-16.ico" alt="Borrar" style="float:left"  (click)="onDelete(vehiculo.id)" href="#" class="btn btn-sm" value="Borrar"/>
+
+                <img src="assets/bootstrap/image/ico/x-mark-16.ico" alt="Borrar" style="float:left"  (click)="cancelarConfirm()" href="#" class="btn btn-sm" value="Borrar" /> 
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

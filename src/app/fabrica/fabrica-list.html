@@ -1,0 +1,43 @@
+<body>
+
+      <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/add-32.ico" alt="Nuevo Cliente" style="float:left"  [routerLink]="['/fabrica-add']" href="#" class="btn btn-sm" value="Nuevo Cliente" />
+         <h5 id="titulo"> {{titulo}} </h5>
+      
+      </div>
+  
+
+    <div class="card-header">
+        <div class="row">
+            
+            <div *ngFor="let fabrica of fabricas"class="card card-body col-sm-2 py-2">
+                <div class="botones">
+                    <img src="assets/bootstrap/image/ico/factory-16.ico" style="float:left"/> 
+                </div>
+                   <a>{{fabrica.nombre}} </a> 
+
+                <div class="botones" *ngIf="confirmado != fabrica.id">
+
+                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/fabrica',fabrica.id]" href="#" class="btn btn-sm" value="Ver" /> 
+
+                    <img src="assets/bootstrap/image/ico/edit-9-16.ico" alt="Editar" style="float:left"  [routerLink]="['/fabrica-edit',fabrica.id]" href="#" class="btn btn-sm" value="Editar" /> 
+
+                    <!--img src="assets/bootstrap/image/ico/delete-16.ico" alt="Borrar" style="float:left"  
+                    (click)="borrarConfirm(fabrica.id)" href="#" class="btn btn-sm" value="Borrar" /--> 
+
+                </div>
+
+                <div clas="seguro" *ngIf="confirmado == fabrica.id">
+                <p class="text-danger">¿Esta seguro de borrar el fabrica?</p>
+
+                <img src="assets/bootstrap/image/ico/check-mark-3-16.ico" alt="Borrar" style="float:left"  (click)="onDelete(fabrica.id)" href="#" class="btn btn-sm" value="Borrar"/>
+
+                <img src="assets/bootstrap/image/ico/x-mark-16.ico" alt="Borrar" style="float:left"  (click)="cancelarConfirm()" href="#" class="btn btn-sm" value="Borrar" /> 
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+

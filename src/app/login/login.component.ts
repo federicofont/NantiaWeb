@@ -1,61 +1,69 @@
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { NgForm} from '@angular/forms';
-
+import { Component } from "@angular/core";
+import { Validators, FormGroup, FormBuilder } from "@angular/forms";
+//import { LoginObject } from "./shared/login-object.model";
+//import { AuthenticationService } from "./shared/authentication.service";
+//import { StorageService } from "../core/services/storage.service";
+import { Router } from "@angular/router";
+//import { Session } from "../core/models/session.model";
+import { LoginSessionService } from './login.sessionService';
 import { LoginService } from './login.service';
-import { Login} from './login.model';
-import { Usuario } from '../usuarios/usuario.model';
+import { LoginError, Login } from './login.model';
 
-@Component ({
-	selector: 'form-login',
-	templateUrl: './login.html',
-	providers: [LoginService],
-	styles: [`
-		.ng-invalid.ng-touched:not(form){
-		border:1px solid red;
-		}`]
+@Component({
+  selector: 'login',
+  templateUrl: 'login.component.html'
 })
 
-export class LoginComponent{
-	public titulo: string;
+export class LoginComponent {
+  public loginForm: FormGroup;
+  public submitted: Boolean = false;
+  public error: LoginError = new LoginError();
 
-	loginUsuario:Login = {
-			nombreUsuario : null,
-			contrasenia :null
-		}
-	usuarioConectado:Usuario;
+  constructor(private formBuilder: FormBuilder,
+    //   private authenticationService: AuthenticationService,
+    //   private storageService: StorageService,
+    private router: Router,
+    private loginSessionService: LoginSessionService,
+    private loginService: LoginService) { }
 
-	constructor(private _loginService: LoginService,
-				private _router:Router,
-				private _activatedRoute:ActivatedRoute){
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      nombreUsuario: ['', Validators.required],
+      contrasenia: ['', Validators.required],
+    })
+  }
 
-	}
-	 
+  public submitLogin(): void {
+    this.submitted = true;
+    if (this.loginForm.valid) {
+      this.loginService.login({
+        nombreUsuario: this.loginForm.get('nombreUsuario').value,
+        contrasenia: this.loginForm.get('contrasenia').value
+      }).subscribe(
+        response => {
+          //console.log("response:", response)
+          this.loginSessionService.setToken(this.loginForm.get('nombreUsuario').value)
+          this.router.navigate([this.loginSessionService.redirectUrl]);
+        },
+        error => {
+          this.error.code = error.status;
+          this.error.message = "Usuario o contraseña incorrecta";
+          //console.log(this.error);
 
-	ngOnInit(){
-		//console.log('login.component.ts cargado');
-	}
 
-	validar(loginUser:NgForm){
-		// Login user
-		
-			//Tomo usuario y Pass desde el formulario
-			this.loginUsuario=loginUser.value;
-		
-			this._loginService.login(this.loginUsuario)
-				.subscribe(result => {
- 					if(result.status == 200){
- 						this._router.navigate(['/home']);
- 					}else{
- 						//401 Unauthorized
- 						//console.log("Login Status:",result.status);
- 						this._router.navigate(['/login_error']);
-					}
- 				},
- 				error => {
- 					//console.log(<any>error);
- 					//console.log("Login Status:",error.status);
- 					this._router.navigate(['/login_error']);
- 				})
-	}
+        }
+      )
+      // this.loginSessionService.setToken(this.loginForm.get('username').value)
+      // this.router.navigate([this.loginSessionService.redirectUrl]);
+      // this.authenticationService.login(new LoginObject(this.loginForm.value)).subscribe(
+      //  data => this.correctLogin(data),
+      //  error => thi;s.error = JSON.parse(error._body)
+      //)
+    }
+  }
+
+  //private correctLogin(data: Session){
+  //  this.storageService.setCurrentSession(data);
+  //  this.router.navigate(['/home']);
+  // }
 }

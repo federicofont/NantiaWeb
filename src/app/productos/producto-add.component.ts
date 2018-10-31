@@ -11,10 +11,7 @@ import { Presentacion } from './presentacion.model';
 	selector: 'formProductoAdd',
 	templateUrl: '../productos/producto-add.html',
 	providers: [ProductoService],
-	styles: [`
-		.ng-invalid.ng-touched:not(form){
-		border:1px solid red;
-		}`]
+	styleUrls: ['./producto.style.css']
 })
 
 export class ProductoAddComponent{
@@ -40,7 +37,7 @@ export class ProductoAddComponent{
 		
 		this._activatedRoute.params
 			.subscribe( parametros=>{
-			//console.log("id",parametros.id);
+			////console.log(("id",parametros.id);
 			this.id = parametros['id'];
 			})
 
@@ -55,7 +52,7 @@ export class ProductoAddComponent{
 	 
 
 	ngOnInit(){
-		//console.log('producto-add.component.ts cargado');
+		////console.log(('producto-add.component.ts cargado');
 		/*this.presentaciones[0] = this.presentacion0;
 		this.presentaciones[1] = this.presentacion1;
 		this.presentaciones[2] = this.presentacion2;
@@ -74,17 +71,18 @@ export class ProductoAddComponent{
 
 	getProducto(){
 		this._productoService.getProducto(this.id).subscribe(
-			result =>{
-				if(result.status == 200){
-					console.log("Result:",result.json());
-					 this.producto = result.json();
+			(result:Producto) =>{
+				//if (result.length > 0) {
+				if(result){
+					////console.log(("Result:",result.json());
+					 this.producto = result;//.json();
 				}else{
-					console.log("ID:",this.id," Result Controler:",result.status);
+					////console.log(("ID:",this.id," Result Controler:",result.status);
 				}
 
 			},
 			error =>{
-				console.log(<any>error);
+				//console.log(<any>error);
 			}
 		)
 
@@ -93,7 +91,7 @@ export class ProductoAddComponent{
 	guardar(productoAdd:NgForm){
 		//Creo el producto desde el formulario
 		this.producto=productoAdd.value;
-		console.log("Producto:",this.producto);
+		//console.log("Producto:",this.producto);
 		
 		if(this.id != null){
 			//Llamo al servicio que actualiza el cliente
@@ -109,34 +107,34 @@ export class ProductoAddComponent{
 
 
 	updateProducto(){
-		console.log("update:",this.producto);
+		//console.log("update:",this.producto);
 		this._productoService.editProducto(this.id, this.producto)
-				.subscribe(result => {
-				////console.log("Result Controler",result.status);
- 					if(result.status=200){
+				.subscribe((result : any) => {
+				//////console.log("Result Controler",result.status);
+ 					if(result){
  						this._router.navigate(['/productos']);
  					}else{
  						//204 -- No Content
- 						console.log("Result Controler",result.status);
+ 						////console.log(("Result Controler",result.status);
 					}
  				},
  				error => {
- 					console.log(<any>error);
+ 					//console.log(<any>error);
  				})
 	}
 
 	AddProducto(){
 		this._productoService.addProducto(this.producto).subscribe(
-			result => {
-				if(result.status==201){
-					this._router.navigate(['/productos/'+result.json().productoId]);
-						console.log("Result Controler",result.status);
+			(result : any) =>{
+				if(result){
+					this._router.navigate(['/productos'/*/'+result.json().productoId*/]);
+						////console.log(("Result Controler",result.status);
 				}else{
-						console.log("Result Controler",result.status);
+					//	//console.log("Result Controler",result.status);
 				}
 			},
 			error => {
-				console.log(<any>error);
+				//console.log(<any>error);
 				}
 		)
 	}
