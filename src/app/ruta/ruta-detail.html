@@ -26,7 +26,7 @@
                     </div>
                 </div>
     
-                <div class="col-sm-2">
+                <!--div class="col-sm-2">
                     <input [(ngModel)]="dias[0]" name="domingo" type="checkbox" class="form-check-input">
                     <p class="font-weight-light">Domingo</p>
                     <input [(ngModel)]="dias[1]"   name="lunes" type="checkbox" class="form-check-input"> 
@@ -47,6 +47,32 @@
                     <p class="font-weight-light">Viernes</p>  
                     <input [(ngModel)]="dias[6]" name="sabado" type="checkbox" class="form-check-input"> 
                     <p class="font-weight-light">Sabado</p>                           
+                </div-->
+
+                <div class="col-sm-2"> 
+                    <input class="form-radio-input" type="radio" value="DOMINGO" #dias="ngModel" name="dias" [ngModel]="ruta.dias"/>
+                    <p class="font-weight-light">Domingo</p>  
+                    <input class="form-radio-input" type="radio" value="MIERCOLES" #dias="ngModel" name="dias" [ngModel]="ruta.dias"/>
+                    <p class="font-weight-light">Miercoles</p>  
+                </div>
+
+                <div class="col-sm-2">
+                    <input class="form-radio-input" type="radio" value="LUNES" #dias="ngModel" name="dias" [ngModel]="ruta.dias"/>
+                    <p class="font-weight-light">Lunes</p>                      
+                    <input class="form-radio-input" type="radio" value="JUEVES" #dias="ngModel" name="dias" [ngModel]="ruta.dias" checked/>
+                    <p class="font-weight-light">Jueves</p>  
+                </div>
+
+                <div class="col-sm-2">
+                    <input class="form-radio-input" type="radio" value="MARTES" #dias="ngModel" name="dias" [ngModel]="ruta.dias"/>
+                    <p class="font-weight-light">Martes</p>  
+                    <input class="form-radio-input" type="radio" value="VIERNES" #dias="ngModel" name="dias" [ngModel]="ruta.dias" checked/>
+                    <p class="font-weight-light">Viernes</p>    
+                </div>
+
+                <div class="col-sm-2">
+                    <input class="form-radio-input" type="radio" value="SABADO" #dias="ngModel" name="dias" [ngModel]="ruta.dias" checked/>
+                    <p class="font-weight-light">Sabado</p>
                 </div>
 
             </div>

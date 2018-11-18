@@ -67,12 +67,12 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-3 py-3" style="text-align:center;">
+                    <!--div class="col-sm-3 py-3" style="text-align:center;">
                         <div class="form-group">
                             <label for="Activo">Activo</label>
                             <input type="checkbox" #descripcion="ngModel" name="activo" [(ngModel)]="cliente.activo" class="form-control" />
                         </div>
-                    </div>
+                    </div-->
 
                 </div>
 
@@ -178,45 +178,54 @@
                 <div class="row" id="margen2">
 
                     <div class="col-sm-2">
-                        <input [(ngModel)]="dias[0]" name="domingo" type="checkbox" class="form-check-input">
+                        <input [(ngModel)]="dias[0]" name="DOMINGO" type="checkbox" class="form-check-input">
                         <p class="font-weight-light">Domingo</p>
-                        <input [(ngModel)]="dias[1]" name="lunes" type="checkbox" class="form-check-input">
+                        <input [(ngModel)]="dias[1]" name="LUNES" type="checkbox" class="form-check-input">
                         <p class="font-weight-light">Lunes</p>
-                        <input [(ngModel)]="dias[2]" name="martes" type="checkbox" class="form-check-input">
+                        <input [(ngModel)]="dias[2]" name="MARTES" type="checkbox" class="form-check-input">
                         <p class="font-weight-light">Martes</p>
                     </div>
 
                     <div class="col-sm-2">
-                        <input [(ngModel)]="dias[3]" name="miercoles" type="checkbox" class="form-check-input">
+                        <input [(ngModel)]="dias[3]" name="MIERCOLES" type="checkbox" class="form-check-input">
                         <p class="font-weight-light">Miercoles</p>
-                        <input [(ngModel)]="dias[4]" name="jueves" type="checkbox" class="form-check-input">
+                        <input [(ngModel)]="dias[4]" name="JUEVES" type="checkbox" class="form-check-input">
                         <p class="font-weight-light">Jueves</p>
                     </div>
 
                     <div class="col-sm-2">
-                        <input [(ngModel)]="dias[5]" name="viernes" type="checkbox" class="form-check-input">
+                        <input [(ngModel)]="dias[5]" name="VIERNES" type="checkbox" class="form-check-input">
                         <p class="font-weight-light">Viernes</p>
-                        <input [(ngModel)]="dias[6]" name="sabado" type="checkbox" class="form-check-input">
+                        <input [(ngModel)]="dias[6]" name="SABADO" type="checkbox" class="form-check-input">
                         <p class="font-weight-light">Sabado</p>
                     </div>
 
 
                     <div class="col-sm-2">
-                        <label for="Saldo">Saldo</label>
+                        <label for="Saldo">Saldo $u</label>
                         <input type="number" #descripcion="ngModel" name="saldo" [(ngModel)]="cliente.saldo" class="form-control" />
                         <div class="help-block with-errors"></div>
                     </div>
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label for="form_name">Lista de Precio</label>
-                            <select class="form-control py-1" name="listaPrecio" [(ngModel)]="cliente.idLista">
+
+                            <select [(ngModel)]="cliente.idLista" name="idLista" class="custom-select mb-3">
+                                <option *ngFor="let listaPrecio of listaPrecios; let ind = index"
+                                [ngValue]="listaPrecio.id">
+                                    {{listaPrecio.nombreLista}}
+                                </option>
+                            </select>
+                            
+                        <!--select class="form-control py-1" name="listaPrecio" [(ngModel)]="cliente.idLista">
                             <option> {{cliente.idLista}} </option>
 
                             <option *ngFor="let listaPrecio of listaPrecios"
                                 [value]="listaPrecio.id">{{listaPrecio.nombreLista}}
                             </option>
-                        </select>
+                        </select-->
+
                         </div>
                     </div>
 

@@ -184,6 +184,13 @@ export class ClienteAddComponent {
 				if (result.id) {
 					this.cliente = result;//.json();
 					//console.log("cliente:",this.cliente);
+
+					/*for (var i = this.dias.length - 1; i >= 0; i--) {
+						for (var j = this.cliente.dias.length - 1; j >= 0; j--) {
+							if (this.cliente.dias[j] == this.dias[i])
+								console.log(this.dias[i]);
+					}
+				*/
 					this.direccion = this.cliente.direccion;
 					this.envasesEnprestamo = this.cliente.setEnvasesEnPrestamo;
 					//console.log("Get envasesEnprestamo",this.envasesEnprestamo);
@@ -193,8 +200,8 @@ export class ClienteAddComponent {
 						parseFloat(this.cliente.direccion.coordLon),
 						true
 					);
-					////console.log("marcadores:",this.marcadores);
-					console.log("cliente:", this.cliente);
+					this.cliente.fechaNacimiento= this.cliente.fechaNacimiento.substr(0,10);
+					//this.cliente.fechaNacimiento
 					//this.actualizarMarcador( this.marcadores,
 					//						 this.cliente.direccion.coordLat,
 					//						 this.cliente.direccion.coordLon, 
@@ -228,8 +235,8 @@ export class ClienteAddComponent {
 		//console.log("fechaNacimiento",clienteAdd.value.fechaNacimiento);
 		this.cliente.fechaNacimiento = this._fecha.getDateStrStr(clienteAdd.value.fechaNacimiento);
 		console.log("ListaPrecio", this.listaPrecio.id);
-		this.cliente.idLista = this.listaPrecio.id;
-		//this.cliente.dias= this.dias;
+		//this.cliente.idLista = this.listaPrecio.id;
+		this.cliente.dias= this.dias;
 		//console.log("Cliente",this.cliente)
 
 		if (this.id != null) {

@@ -16,14 +16,15 @@ import { Rol } from '../roles/rol.model';
 })
 
 export class UsuarioAddComponent {
-	public titulo: string;
+
+	id: number;
 
 	usuario: Usuario = new Usuario();
 	rol: Rol = new Rol();
 	roles: Rol[] = [];
 
 	nuevo: boolean = false;
-	id: number;
+	titulo: string = null;
 
 	constructor(private _usuarioService: UsuarioService,
 		private _router: Router,
@@ -32,12 +33,17 @@ export class UsuarioAddComponent {
 	) {
 
 
+		this._activatedRoute.params
+			.subscribe(parametros => {
+				////console.log("id",parametros.id);
+				this.id = parametros['id'];
+			})
+
 		if (this.id != null) {
 			this.titulo = 'Editar Usuario'
 		} else {
 			this.titulo = 'Nuevo Usuario';
 		}
-
 
 		this._activatedRoute.params
 			.subscribe(parametros => {

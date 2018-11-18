@@ -3,7 +3,8 @@ export class Marcador{
 		public nombre:string = null,
 		public lat:number = null,
 		public lng:number = null,
-		public movil:boolean = null
+		public movil:boolean = null,
+		public icono: string =null
 
 		){}
 }

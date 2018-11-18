@@ -45,6 +45,7 @@ export class VehiculoListComponent{
             (result : any) =>{
                 if (result.length > 0) {
                      this.vehiculos = result;
+                     //console.log("this.vehiculos",this.vehiculos);
                 }else{
                     //console.log("Result Controler",result.status); 
                 }

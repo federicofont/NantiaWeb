@@ -20,6 +20,11 @@ export class VehiculoService{
     	return this._http.get(this.url+'vehiculo');
 	}
 
+	getVehiculosUbicacion(): Observable<any>{
+	//return this._http.get(this.url+'vehiculosTipo').map(res => res.json()); 
+    	return this._http.get(this.url+'vehiculoubicacion');
+	}
+
 	getVehiculo(id:number): Observable<any>{
 		return this._http.get(this.url+'vehiculo/'+id); 
 	}

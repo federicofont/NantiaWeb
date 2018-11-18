@@ -8,7 +8,9 @@ export class Vehiculo{
 		public modelo: string = null,
 		public descripcion: string = null,
 		public activo: boolean = true,
-		public stock: Stock = new Stock()
+		public coordLat: string = null,
+		public coordLon: string = null
+		//public stock: Stock = new Stock()
 
 		){}
 }

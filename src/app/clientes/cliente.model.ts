@@ -17,7 +17,7 @@ export class Cliente{
 		public idLista : number=null, 
 		public observaciones : string=null, 		
 		public activo : boolean=null,
-		//public dias: string[]=[],
+		public dias: string[]=[],
 		public setEnvasesEnPrestamo: EnvaseEnPrestamo[]=[]
 		){}
 

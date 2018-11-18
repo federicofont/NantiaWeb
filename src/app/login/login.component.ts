@@ -8,6 +8,8 @@ import { Router } from "@angular/router";
 import { LoginSessionService } from './login.sessionService';
 import { LoginService } from './login.service';
 import { LoginError, Login } from './login.model';
+import { Usuario } from '../usuarios/usuario.model';
+import { parse, stringify } from "querystring";
 
 @Component({
   selector: 'login',
@@ -18,6 +20,7 @@ export class LoginComponent {
   public loginForm: FormGroup;
   public submitted: Boolean = false;
   public error: LoginError = new LoginError();
+  public user:Usuario;
 
   constructor(private formBuilder: FormBuilder,
     //   private authenticationService: AuthenticationService,
@@ -40,10 +43,21 @@ export class LoginComponent {
         nombreUsuario: this.loginForm.get('nombreUsuario').value,
         contrasenia: this.loginForm.get('contrasenia').value
       }).subscribe(
-        response => {
-          //console.log("response:", response)
-          this.loginSessionService.setToken(this.loginForm.get('nombreUsuario').value)
-          this.router.navigate([this.loginSessionService.redirectUrl]);
+        result => {
+          /*Controlo si es Administrador o Vendedor*/     
+          let usuario = JSON.parse(JSON.stringify(result));
+          this.user = <Usuario>usuario;
+          //console.log("Rol",this.user.rol.nombreRol);
+          console.log("Rol",this.user.rol.nombreRol);
+          if(this.user.rol.nombreRol == 'Administrador'){    
+            console.log("If");   
+            this.loginSessionService.setToken(this.loginForm.get('nombreUsuario').value)
+            this.router.navigate([this.loginSessionService.redirectUrl]);
+          }else{
+            console.log("Else");
+            this.error.code = 401;
+            this.error.message = "Usuario no permitido";
+          }
         },
         error => {
           this.error.code = error.status;

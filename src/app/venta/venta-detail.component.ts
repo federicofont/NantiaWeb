@@ -96,10 +96,6 @@ export class VentaDetailComponent{
 
 	ngOnInit(){
 		this.getVenta(this.id);
-		this.getClientes();
-		this.getListaPrecios();
-		this.getUsuarios();
-		this.getFabricas();
 
 		//this.getUsuario(this.usuarios[1].id);
 		//this.getFabricaDeUsuario(this.fabricas[1].id)
@@ -121,6 +117,11 @@ export class VentaDetailComponent{
             (result : any) =>{
                 if (result.id > 0) {
                      this.venta = result;
+                     if(this.venta){
+                     	this.getCliente(this.venta.cliente.id);
+						this.getListaPrecio(this.venta.cliente.idLista);
+						//this.getFabrica();
+                     }
                 }else{
                     //console.log("ID:",this.id," Result Controler:",result.status);
                 }
@@ -131,20 +132,6 @@ export class VentaDetailComponent{
             }
         );
     }
-	getClientes(){
-		this._clienteService.getClientes().subscribe(
-			(result : any) =>{
-				if (result.length > 0) {
-					 this.clientes = result;
-				}else{
-					//console.log("Result Controler",result.status); 
-				}
-			},
-			error =>{
-				//console.log(<any>error);
-			}
-		);
-	}
 
 	getCliente(formCliente:number){
 		this._clienteService.getCliente(formCliente).subscribe(
@@ -162,24 +149,6 @@ export class VentaDetailComponent{
 		);
 	}
 
-	getListaPrecios(){
-	this._listaprecioService.getListaPrecios().subscribe(
-				(result : any) =>{
-					if (result.length > 0) {
-						 this.listaPrecios = result;
-						 this.getListaPrecio(this.listaPrecios[1].id);
-					}else{
-						//console.log("Result Controler:",result.status);
-					}
-
-				},
-				error =>{
-					//console.logerror);
-				}
-			)
-	}
-
-
 	getListaPrecio(idLista: number){
 	this._listaprecioService.getListaPrecio(idLista).subscribe(
 				(result : any) =>{
@@ -196,47 +165,12 @@ export class VentaDetailComponent{
 			)
 	}
 
-	getUsuarios(){
-		this._usuarioService.getUsuarios().subscribe(
-			(result : any) =>{
-				if (result.length > 0) {
-					 this.usuarios = result;
-					 ////console.log(("usuarios:",this.usuarios);
-					 this.getUsuario(this.usuarios[1].id);
-				}else{
-					//console.log("Result Controler:",result.status);
-				}
-
-			},
-			error =>{
-				//console.logerror);
-			}
-		)
-	}
 
 	getUsuario(idUsuario:number){
 		this._usuarioService.getUsuario(idUsuario).subscribe(
 			(result : any) =>{
 				if (result.id > 0) {
 					 this.venta.usuario = result;
-				}else{
-					//console.log("ID:",this.id," Result Controler:",result.status);
-				}
-
-			},
-			error =>{
-				//console.logerror);
-			}
-		)
-	}
-
-	getFabricas(){
-		this._fabricaService.getFabricas().subscribe(
-			(result : any) =>{
-				if (result.length > 0) {
-					 this.fabricas = result;
-					 ////console.log(("Fabricas",this.fabricas);
-					 this.getFabricaDeUsuario(this.fabricas[1].id);
 				}else{
 					//console.log("ID:",this.id," Result Controler:",result.status);
 				}

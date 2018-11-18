@@ -50,6 +50,63 @@
             <div class="card bg-light">
 
                 <div class="botones" id='margen'>
+                    <img src="assets/bootstrap/image/ico/user-16.ico" style="float:left" />
+                </div>
+
+                <div class="row" id='margen'>
+                    <div class="col-sm-10" id='margen'>
+
+                    <div class="form-group">
+                        <table class="table table-responsive-md table-striped text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" scope="col col-sm-3">Cliente</th>
+                                    <th class="text-center" scope="col col-sm-3">Descuento $</th>
+                                    <th class="text-center" scope="col col-sm-3">Entrega $</th>
+                                </tr>
+
+                                <tr>                                                      
+                                    <td>
+                                        <select required="Seleccione el cliente" [(ngModel)]="formCliente" name="formCliente"
+                                            class="custom-select custom-select-sm" 
+                                            (ngModelChange)="addCliente(formCliente)"
+                                            >
+                                            <option *ngFor="let cliente of clientes; let ind = index" 
+                                                    [ngValue]="cliente.id">{{cliente.nombre1}} {{cliente.nombre2}}
+                                            </option>
+                                        </select>
+                                    </td>
+                                    
+                                    <td>
+                                        <div >
+                                            <input  class="form-control input-number" type="number" min="0" max="10000" 
+                                            step="1" #descripcion="ngModel" name="formDescuento" 
+                                            ng-value="formDescuento" value="0" 
+                                            [(ngModel)]="formDescuento"
+                                            (ngModelChange)="addDescuento(formDescuento)">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div >
+                                            <input  class="form-control input-number" type="number" min="0" max="10000" 
+                                            step="1" #descripcion="ngModel" name="formEntrega" 
+                                            ng-value="formEntrega" value="0" 
+                                            [(ngModel)]="formEntrega"
+                                            (ngModelChange)="addEntrega(formEntrega)">
+                                        </div>
+                                    </td>                                    
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-light">
+
+                <div class="botones" id='margen'>
                     <img src="assets/bootstrap/image/ico/cart-74-16.ico" style="float:left" />
                 </div>
 
@@ -57,30 +114,14 @@
                     <div class="col-sm-10" id='margen'>
 
                     <div class="form-group">
-                        <table class="table table-bordered table-responsive-md table-striped text-center">
+                        <table class="table table-responsive-md table-striped text-center">
                             <thead>
                                 <tr>
-                                    
-                                    <th class="text-center" scope="col col-sm-2"> $ Descuento</th>
-                                    <!--th class="text-center" scope="col col-sm-2"> % IVA</th-->
                                     <th class="text-center" scope="col col-sm-6">Producto</th>
                                     <th class="text-center" scope="col col-sm-3">Cantidad</th>
                                 </tr>
 
                                 <tr>                                                      
-                                    <td>
-                                        <input  class="form-control input-number" type="number" min="0" max="10000" 
-                                            step="1" #descripcion="ngModel" name="formDescuento" 
-                                            ng-value="formDescuento" value="0" 
-                                            [(ngModel)]="formDescuento">                                        
-                                    </td>
-                                    <!--td>
-                                        <select class="form-control py-1"
-                                        name="formIVA_Variable" [(ngModel)]="formIVA_Variable">
-                                            <option value="{{iva0}}">{{iva0}} </option>
-                                            <option value="{{iva1}}">{{iva1}} </option>
-                                        </select>
-                                    </td-->
                                     <td>
                                         <select [(ngModel)]="producto.productoId" name="productoId" 
                                                 class="custom-select mb-3">
@@ -137,17 +178,12 @@
                         <thead>                            
                             <tr>
                                 <th class="text-left"><h6>{{venta.fecha | date}}</h6></th>
-                                <th class="text-right"><h6>Fabrica: <small> {{venta.fabricaid}} </small></h6></th>
+                                <!--th class="text-right"><h6>Fabrica: <small> {{venta.fabricaid}} </small></h6></th-->
                             </tr>
                             <tr>
                                 <th class="text-left">
                                     <h6>Cliente:
-                                        <select required="Seleccione el cliente" [(ngModel)]="formCliente" name="formCliente"
-                                            class="custom-select custom-select-sm col-sm-6">
-                                                <option *ngFor="let cliente of clientes; let ind = index" 
-                                                        [ngValue]="cliente.id">{{cliente.nombre1}} {{cliente.nombre2}}
-                                                </option>
-                                        </select>
+                                        {{venta.cliente.nombre1}} {{venta.cliente.nombre2}}
                                     </h6>
                                 </th>     
                                 <th class="text-right"><h6>Vendedor: <small> {{venta.usuario.nombre}} </small></h6></th>                          
@@ -178,10 +214,11 @@
 
                     <table class="table table-responsive-md table-striped text-center">
                         <thead>
-                            <tr>
+                            <!--tr>
                                 <th class="text-right" scope="col col-sm-3">Subtotal</th>
                                 <th>{{subtotal | currency}} </th>
-                            </tr>
+                            </tr-->
+
                             <tr>
                                 <th class="text-right" scope="col col-sm-3">Descuento</th>
                                 <th>{{venta.descuento | currency}} </th>
@@ -191,9 +228,14 @@
                                 <th>{{venta.ivatotal | currency}} </th>
                             </tr>
                             <tr>
-                                <th class="text-right" scope="col col-sm-3">Total Pagó</th>
+                                <th class="text-right" scope="col col-sm-3">Entrega</th>
                                 <th>{{venta.pagototal | currency}} </th>
                             </tr>
+                            <tr>
+                                <th class="text-right" scope="col col-sm-3">Total Venta</th>
+                                <th>{{venta.totalventa | currency}} </th>
+                            </tr> 
+
                         </thead>
 
                     </table>

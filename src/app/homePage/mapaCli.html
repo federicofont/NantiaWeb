@@ -23,9 +23,14 @@
                 </div-->
 
                 <div class="map container col-sm-12">
-                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="agregarMarcador($event)">
+                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
 
-                        <agm-marker *ngFor="let marcador of marcadores; let i = index" (markerclick)="marcadorCliqueado(marcador,i)" [latitude]="marcador.lat" [longitude]="marcador.lng" [markerDraggable]="marcador.movil" (dragEnd)="posicionFinalMarcador(marcador,$event,i)">
+                        <agm-marker *ngFor="let marcador of marcadores; let i = index" 
+                        [latitude]="marcador.lat" [longitude]="marcador.lng" 
+                        [markerDraggable]="marcador.movil" 
+                        (dragEnd)="posicionFinalMarcador(marcador,$event,i)"
+                        [iconUrl]="marcador.icono">
+                        >
 
                             <agm-info-window>
                                 <strong>{{marcador.nombre}}</strong>

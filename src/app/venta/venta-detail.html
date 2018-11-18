@@ -60,7 +60,7 @@
                         <thead>                            
                             <tr>
                                 <th class="text-left"><h6>{{venta.fecha | date}}</h6></th>
-                                <th class="text-right"><h6>Fabrica: <small> {{venta.fabricaid}} </small></h6></th>
+                                <!--th class="text-right"><h6>Fabrica: <small> {{venta.fabricaid}} </small></h6></th-->
                             </tr>
                             <tr>
                                 <th class="text-left">
@@ -107,9 +107,14 @@
                                 <th>{{venta.ivatotal | currency}} </th>
                             </tr>
                             <tr>
-                                <th class="text-right" scope="col col-sm-3">Total Pagó</th>
+                                <th class="text-right" scope="col col-sm-3">Entrega</th>
                                 <th>{{venta.pagototal | currency}} </th>
                             </tr>
+                            <tr>
+                                <th class="text-right" scope="col col-sm-3">Total Venta</th>
+                                <th>{{venta.totalventa | currency}} </th>
+                            </tr> 
+
                         </thead>
 
                     </table>

@@ -247,7 +247,7 @@ export class RepartoAddComponent{
 			// Add user
 			this.reparto.fecha = this._fecha.getDate();
 			this.reparto.estado = 'CREADO';
-			this.reparto.fabricaid = this.fabricas[1].id;
+			this.reparto.fabricaid = this.fabricas[0].id;
 			this.reparto.stock.fecha = this._fecha.getDate();
 			//console.log("Create Reparto:",this.reparto);
 		
@@ -267,7 +267,7 @@ export class RepartoAddComponent{
 			this.reparto.id=this.id;
 			this.reparto.fecha = this._fecha.getDate();
 			this.reparto.estado = 'CREADO';
-			this.reparto.fabricaid = this.fabricas[1].id;
+			this.reparto.fabricaid = this.fabricas[0].id;
 			this.reparto.stock.fecha = this._fecha.getDate();
 			//console.log("Update Reparto:",this.reparto);
 		

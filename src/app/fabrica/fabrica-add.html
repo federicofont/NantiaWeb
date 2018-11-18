@@ -23,7 +23,7 @@
                 <div class="form-group col-sm-4">
                     <h6>Fabrica</h6>
                     <fieldset disabled>
-                    <input type="text" #descripcion="ngModel" name="nombre" [(ngModel)]="fabrica.nombre" class="form-control" />
+                    <input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="fabrica.nombre" class="form-control" />
                     <div class="help-block with-errors"></div>
                     </fieldset>
                 </div>
@@ -31,7 +31,7 @@
         </div>
 
         <div class="row">
-        <form (ngSubmit)="addProducto(formProductoAdd)" #formProductoAdd="ngForm" class="col-lg-5" id="formProductoAdd">
+        <form (ngSubmit)="addProducto(formProductoAdd)" #formProductoAdd="ngForm" class="col-lg-6" id="formProductoAdd">
 
                 
 
@@ -45,13 +45,12 @@
                                     <th class="text-center" scope="col" style="width:30%">Cantidad</th>
                                 </tr>
 
-                                <tr>                                                      
+                                <!--tr>                                                      
                                     <th>
                                         <select [(ngModel)]="productoStock.producto.productoId" name="productoId" 
                                                 class="custom-select">
                                             <option *ngFor="let productoStock of fabrica.stock.setProductoStock; let ind = index" 
                                             [ngValue]="fabrica.stock.setProductoStock[ind].producto.productoId">{{productoStock.producto.descripcion}}
-                                            <!--{{productoStock.producto.productoId}}-->
                                             </option>
                                         </select>
                                     </th>
@@ -65,7 +64,7 @@
                                             <img src="assets/bootstrap/image/ico/plus-5-16.ico" /> 
                                         </button>
                                     </th>
-                                </tr>
+                                </tr-->
                             </thead>
 
                             <tbody>
@@ -89,7 +88,7 @@
             </form>
 
 
-        <form (ngSubmit)="addEnvase(formEnvaseAdd)" #formEnvaseAdd="ngForm" class="col-lg-5" id="formEnvaseAdd">
+        <form (ngSubmit)="addEnvase(formEnvaseAdd)" #formEnvaseAdd="ngForm" class="col-lg-6" id="formEnvaseAdd">
 
                 <!--div class="row">
 
@@ -103,7 +102,7 @@
                                     <th class="text-center" scope="col" style="width:30%">Cantidad</th>
                                 </tr>
 
-                                <tr>                                                      
+                                <!--tr>                                                      
                                     <th>
                                         <select [(ngModel)]="envaseStock.envasesTipos.id" name="envaseId" 
                                                 class="custom-select">
@@ -123,7 +122,7 @@
                                             <img src="assets/bootstrap/image/ico/plus-5-16.ico" /> 
                                         </button>
                                     </th>
-                                </tr>
+                                </tr-->
                             </thead>
 
                             <tbody>

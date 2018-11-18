@@ -96,7 +96,6 @@ export class VentaAddComponent{
 
 	ngOnInit(){
 		this.getClientes();
-		this.getListaPrecios();
 		this.getUsuarios();
 		this.getFabricas();
 		//this.getUsuario(this.usuarios[1].id);
@@ -129,10 +128,11 @@ export class VentaAddComponent{
 		);
 	}
 
-	getCliente(formCliente:number){
-		this._clienteService.getCliente(formCliente).subscribe(
+	getCliente(id:number){
+		this._clienteService.getCliente(id).subscribe(
 			(result:Cliente) =>{
 				this.venta.cliente = result;
+				this.getListaPrecio(this.venta.cliente.idLista);
 				/*if (result.length > 0) {
 					 this.venta.cliente = result;
 				}else{
@@ -219,7 +219,7 @@ export class VentaAddComponent{
 				if (result.length > 0) {
 					 this.fabricas = result;
 					 ////console.log(("Fabricas",this.fabricas);
-					 this.getFabricaDeUsuario(this.fabricas[1].id);
+					 this.getFabricaDeUsuario(this.fabricas[0].id);
 				}else{
 					//console.log("ID:",this.id," Result Controler:",result.status);
 				}
@@ -280,11 +280,12 @@ export class VentaAddComponent{
 		this.venta.ivatotal =  ( (this.subtotal - formDescuento) * this.iva0)/100;
 		
 		/*Calculo (Subtotal - Descuento) + Iva*/
-		this.venta.totalventa = ( (this.subtotal - formDescuento) + this.venta.ivatotal );
+		this.venta.totalventa = ( this.subtotal - formDescuento);
 		////console.log(("venta",this.venta);
 
+
 		/*Total Pago*/
-		this.venta.pagototal = this.venta.totalventa
+		//this.venta.pagototal = this.venta.totalventa
 
 		/*Cargo DataPago*/
 		this.venta.datapago.clienteid = this.venta.cliente.id;
@@ -339,4 +340,26 @@ export class VentaAddComponent{
  		// }
 
 	}
+
+
+	addCliente(formCliente:number){
+		//console.log(this.venta);
+		this.getCliente(formCliente);
+		//console.log("cliente combo",this.venta.cliente);
+	}
+
+	addDescuento(formDescuento:number){
+		//console.log(formDescuento);
+		this.venta.descuento=formDescuento;
+		//console.log("Venta DEscuento", this.venta);
+	}
+
+	addEntrega(formEntrega:number){
+		//console.log(formDescuento);
+		this.venta.pagototal=formEntrega;
+		//console.log("Venta DEscuento", this.venta);
+	}
+
+
+
 }

@@ -25,7 +25,7 @@
                     </div>
                 </div>
     
-                <div class="col-sm-2">
+                <!--div class="col-sm-2">
                     <input [(ngModel)]="dias[0]" name="domingo" type="checkbox" class="form-check-input">
                     <p class="font-weight-light">Domingo</p>
                     <input [(ngModel)]="dias[1]"   name="lunes" type="checkbox" class="form-check-input"> 
@@ -46,6 +46,32 @@
                     <p class="font-weight-light">Viernes</p>  
                     <input [(ngModel)]="dias[6]" name="sabado" type="checkbox" class="form-check-input"> 
                     <p class="font-weight-light">Sabado</p>                           
+                </div-->
+
+                <div class="col-sm-2"> 
+                    <input class="form-radio-input" type="radio" value="DOMINGO" #dias="ngModel" name="dias" [ngModel]="ruta.dias"/>
+                    <p class="font-weight-light">Domingo</p>  
+                    <input class="form-radio-input" type="radio" value="MIERCOLES" #dias="ngModel" name="dias" [ngModel]="ruta.dias"/>
+                    <p class="font-weight-light">Miercoles</p>  
+                </div>
+
+                <div class="col-sm-2">
+                    <input class="form-radio-input" type="radio" value="LUNES" #dias="ngModel" name="dias" [ngModel]="ruta.dias"/>
+                    <p class="font-weight-light">Lunes</p>                      
+                    <input class="form-radio-input" type="radio" value="JUEVES" #dias="ngModel" name="dias" [ngModel]="ruta.dias" checked/>
+                    <p class="font-weight-light">Jueves</p>  
+                </div>
+
+                <div class="col-sm-2">
+                    <input class="form-radio-input" type="radio" value="MARTES" #dias="ngModel" name="dias" [ngModel]="ruta.dias"/>
+                    <p class="font-weight-light">Martes</p>  
+                    <input class="form-radio-input" type="radio" value="VIERNES" #dias="ngModel" name="dias" [ngModel]="ruta.dias" checked/>
+                    <p class="font-weight-light">Viernes</p>    
+                </div>
+
+                <div class="col-sm-2">
+                    <input class="form-radio-input" type="radio" value="SABADO" name="dias" [ngModel]="ruta.dias" checked/>
+                    <p class="font-weight-light">Sabado</p>
                 </div>
 
             </div>
@@ -76,7 +102,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" scope="col col-sm-4">Direccion / Cliente</th>
-                                    <th class="text-center" scope="col col-sm-3">Orden</th>
+                                    <!--th class="text-center" scope="col col-sm-3">Orden</th-->
                                 </tr>
 
                                 <tr>                                                      
@@ -90,11 +116,11 @@
                                         </select>
                                     </td>
 
-                                    <td>
+                                    <!--td>
                                         <div >
                                             <input class="form-control input-number" type="number" value="100" min="0" step="1" max="100" data-number-to-fixed="0" data-number-stepfactor="100" #descripcion="ngModel" name="ordenVisita" [(ngModel)]="rutaCliente.ordenVisita">
                                         </div>
-                                    </td>
+                                    </td-->
                                     <td>                    
                                         <button type="ngSubmitmit" value="Add Cliente" class="btn btn-link" >
                                             <img src="assets/bootstrap/image/ico/plus-5-16.ico" /> 
@@ -109,11 +135,11 @@
                                         Direccion: {{rutaCliente.cliente.direccion.direccion}} 
                                         /  Nombre: {{rutaCliente.cliente.nombre1}} {{rutaCliente.cliente.nombre2}}
                                     </td>
-                                    <td>
+                                    <!--td>
                                         <input class="form-control input-number" type="number" min="0" step="1" max="100" data-number-to-fixed="2" 
                                         data-number-stepfactor="100" #descripcion="ngModel" 
                                         [(ngModel)]="rutaCliente.ordenVisita" [ngModelOptions]="{standalone: true}" contenteditable="false">
-                                    </td>
+                                    </td-->
                                 </tr>
                             </tbody>
                         </table>

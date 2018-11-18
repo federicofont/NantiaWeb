@@ -4,13 +4,16 @@ import { NgForm} from '@angular/forms';
 
 import { ProductoService } from './producto.service';
 import { Producto } from './producto.model';
-import { Presentacion } from './presentacion.model';
+//import { Presentacion } from './presentacion.model';
+
+import { Envase } from '../envases/envase.model'
+import { EnvaseService } from '../envases/envase.service'
 
 
 @Component ({
 	selector: 'formProductoAdd',
 	templateUrl: '../productos/producto-add.html',
-	providers: [ProductoService],
+	providers: [ProductoService, EnvaseService],
 	styleUrls: ['./producto.style.css']
 })
 
@@ -18,6 +21,7 @@ export class ProductoAddComponent{
 	public titulo: string;
 	
 	producto: Producto = new Producto();
+	envases: Envase[] =[];
 	/*presentaciones:Presentacion[]=[];
 
 	  presentacion0 : Presentacion = new Presentacion(0,"1 Litro");
@@ -33,7 +37,8 @@ export class ProductoAddComponent{
 
 	constructor(private _productoService: ProductoService,
 				private _router:Router,
-				private _activatedRoute:ActivatedRoute){
+				private _activatedRoute:ActivatedRoute,
+				private _envaseService:  EnvaseService){
 		
 		this._activatedRoute.params
 			.subscribe( parametros=>{
@@ -63,6 +68,7 @@ export class ProductoAddComponent{
 
 		if(this.id != null){
 			this.getProducto();
+			this.getEnvases();
 
 		}
 
@@ -86,6 +92,24 @@ export class ProductoAddComponent{
 			}
 		)
 
+	}
+
+	getEnvases(){
+		this._envaseService.getEnvases().subscribe(
+			(result:any) =>{
+				//if (result.length > 0) {
+				if(result){
+					////console.log(("Result:",result.json());
+					 this.envases = result;//.json();
+				}else{
+					////console.log(("ID:",this.id," Result Controler:",result.status);
+				}
+
+			},
+			error =>{
+				//console.log(<any>error);
+			}
+		)
 	}
 
 	guardar(productoAdd:NgForm){
