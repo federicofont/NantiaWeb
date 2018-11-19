@@ -46,7 +46,7 @@ export class RepartoListComponent{
                 if (result.length > 0) {
                      this.repartos = result;
                      //console.logresult.json());
-                     console.log(this.repartos);
+                    // console.log(this.repartos);
                 }else{
                     //console.log("Result Controler",result.status); 
                 }
