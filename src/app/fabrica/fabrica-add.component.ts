@@ -195,7 +195,7 @@ export class FabricaAddComponent{
 				.subscribe((result : any) => {
  					if(result.id > 0){
  					//	//console.log("Result Controler",result.status);
- 						//this._router.navigate(['/fabrica']);
+ 						this._router.navigate(['/fabrica']);
  					}else{
  						//204 -- No Content
  					//	//console.log("Result Controler",result.status);

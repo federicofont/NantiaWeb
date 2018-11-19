@@ -7,7 +7,7 @@ import { Reporte } from './reporte.model';
 
 @Component({
     selector: 'CuentasXCobrar_List',
-    templateUrl: '../reportes/rep.CuentasXCobrar_List.html',
+    templateUrl: '../reportes/rep_CuentasXCobrar_List.html',
     providers: [ReporteService],
     styleUrls: ['./reportes.style.css']
 })

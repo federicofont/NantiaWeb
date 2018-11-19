@@ -55,9 +55,9 @@ import { RepartoAddComponent } from "./reparto/reparto-add.component";
 import { RepartoDetailComponent } from './reparto/reparto-detail.component';
 
 import { ReportesListComponent } from "./reportes/reportes-list.component";
-//import { ReportesListComponent } from "./reportes/reportes-list.component";
-//import { ReportesListComponent } from "./reportes/reportes-list.component";
-//import { ReportesListComponent } from "./reportes/reportes-list.component";
+import { RepCuentasXCobrar } from "./reportes/rep_CuentasXCobrar_List";
+//import { RepEnvases } from "./reportes/rep_Envases_List";
+//import { RepVentas } from "./reportes/rep_Ventas_List";
 
 
 import { VehiculoListComponent } from "./vehiculo/vehiculo-list.component";
@@ -139,7 +139,12 @@ const appRoutes: Routes = [
       { path: "venta-edit/:id", component: VentaAddComponent },
       { path: "venta-add", component: VentaAddComponent },
 
-      { path: "reportes", component: ReportesListComponent },      
+      { path: "reportes", component: ReportesListComponent }, 
+
+      { path: "repcuentasxcobrar", component: RepCuentasXCobrar }, 
+      //{ path: "repenvases", component: RepEnvases }, 
+      //{ path: "repventas", component: RepVentas },  
+   
 
       { path: "mapaCli", component: MapaCliComponent }
       //,{ path: '**', component: ErrorComponent }
