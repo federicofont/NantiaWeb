@@ -54,6 +54,9 @@ import { RepartoListComponent } from "./reparto/reparto-list.component";
 import { RepartoAddComponent } from "./reparto/reparto-add.component";
 import { RepartoDetailComponent } from './reparto/reparto-detail.component';
 
+import { ReportesListComponent } from "./reportes/reportes-list.component";
+
+
 import { VehiculoListComponent } from "./vehiculo/vehiculo-list.component";
 import { VehiculoAddComponent } from "./vehiculo/vehiculo-add.component";
 import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
@@ -62,6 +65,8 @@ import { AuthGuard } from "./login/guardas/AuthGuard";
 import { VentaListComponent } from "./venta/ventas-list.component";
 import { VentaAddComponent } from "./venta/venta-add.component";
 import { VentaDetailComponent } from './venta/venta-detail.component';
+
+
 
 const appRoutes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -130,6 +135,8 @@ const appRoutes: Routes = [
       { path: "venta/:id", component: VentaDetailComponent},
       { path: "venta-edit/:id", component: VentaAddComponent },
       { path: "venta-add", component: VentaAddComponent },
+
+      { path: "reportes", component: ReportesListComponent },      
 
       { path: "mapaCli", component: MapaCliComponent }
       //,{ path: '**', component: ErrorComponent }

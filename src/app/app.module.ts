@@ -78,6 +78,8 @@ import { RepartoListComponent } from './reparto/reparto-list.component';
 import { RepartoAddComponent } from './reparto/reparto-add.component';
 import { RepartoDetailComponent } from './reparto/reparto-detail.component';
 
+import { ReportesListComponent } from "./reportes/reportes-list.component";
+
 import { VehiculoListComponent } from './vehiculo/vehiculo-list.component';
 import { VehiculoAddComponent } from './vehiculo/vehiculo-add.component';
 import { VehiculoDetailComponent } from './vehiculo/vehiculo-detail.component';
@@ -139,6 +141,8 @@ import { LoginService } from './login/login.service';
     RepartoListComponent,
     RepartoAddComponent,
     RepartoDetailComponent,
+
+    ReportesListComponent,
 
     VehiculoListComponent,
     VehiculoAddComponent,

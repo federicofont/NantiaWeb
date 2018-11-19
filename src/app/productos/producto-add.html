@@ -59,6 +59,19 @@
                     </div>
                 </div>
             
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="form_name">Envase</label>
+                        <select #producto.envasesTipos.id="ngModel" [(ngModel)]="producto.envasesTipos.id" name="formCliente" class="custom-select mb-3" 
+                                (ngModelChange)="getEnvase(producto.envasesTipos.id)">
+                            <option *ngFor="let envase of envases; let ind = index"
+                            [ngValue]="envase.id">
+                                {{envase.descripcion}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
             </div>
 
         </div>

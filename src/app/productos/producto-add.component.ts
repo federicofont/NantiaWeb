@@ -21,6 +21,7 @@ export class ProductoAddComponent{
 	public titulo: string;
 	
 	producto: Producto = new Producto();
+	envase: Envase = new Envase();
 	envases: Envase[] =[];
 	/*presentaciones:Presentacion[]=[];
 
@@ -67,16 +68,17 @@ export class ProductoAddComponent{
 		this.presentaciones[6] = this.presentacion6;*/
 
 		if(this.id != null){
-			this.getProducto();
+			this.getProducto(this.id);
 			this.getEnvases();
-
+		}else{
+			this.getEnvases();
 		}
 
 	}
 
 
-	getProducto(){
-		this._productoService.getProducto(this.id).subscribe(
+	getProducto(idprod:number){
+		this._productoService.getProducto(idprod).subscribe(
 			(result:Producto) =>{
 				//if (result.length > 0) {
 				if(result){
@@ -101,6 +103,26 @@ export class ProductoAddComponent{
 				if(result){
 					////console.log(("Result:",result.json());
 					 this.envases = result;//.json();
+					 //console.log(this.envases);
+				}else{
+					////console.log(("ID:",this.id," Result Controler:",result.status);
+				}
+
+			},
+			error =>{
+				//console.log(<any>error);
+			}
+		)
+	}
+
+	getEnvase(id:number){
+		this._envaseService.getEnvase(id).subscribe(
+			(result:any) =>{
+				//if (result.length > 0) {
+				if(result){
+					////console.log(("Result:",result.json());
+					 this.envase = result;//.json();
+					 //console.log(this.envase);
 				}else{
 					////console.log(("ID:",this.id," Result Controler:",result.status);
 				}
@@ -115,6 +137,9 @@ export class ProductoAddComponent{
 	guardar(productoAdd:NgForm){
 		//Creo el producto desde el formulario
 		this.producto=productoAdd.value;
+		this.producto.envasesTipos=this.envase;
+		//console.log(this.producto.envasesTipos);
+
 		//console.log("Producto:",this.producto);
 		
 		if(this.id != null){

@@ -58,6 +58,15 @@
                                 class="form-control" />
                     </div>
                 </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="Nombre">Envase</label>
+                        <input  type="text" #descripcion="ngModel" name="envase" [(ngModel)]="producto.envasesTipos.descripcion" 
+                                class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
             
             </div>
 
