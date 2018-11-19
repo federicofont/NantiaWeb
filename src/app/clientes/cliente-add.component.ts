@@ -38,7 +38,7 @@ export class ClienteAddComponent {
 	listaPrecio: ListaPrecio = new ListaPrecio();
 	listaPrecios: ListaPrecio[] = [];
 	semana: boolean[] = [];
-	dias: string[] = [];
+	dias: boolean[] = [false,false,false,false,false,false,false,];
 
 	//Posicion de referencia de mapa
 	lat: number = -34.4549810;
@@ -183,7 +183,34 @@ export class ClienteAddComponent {
 				//this.cliente = result;
 				if (result.id) {
 					this.cliente = result;//.json();
-					//console.log("cliente:",this.cliente);
+					console.log("cliente:",this.cliente);
+					console.log("Dias:",this.dias);
+					this.cliente.dias.map(dia=>{
+						switch (dia) {
+							case "DOMINGO":
+								this.dias[0]=true;
+								break;
+							case "LUNES":
+								this.dias[1]=true;
+								break;
+							case "MARTES":
+								this.dias[2]=true;
+								break;
+							case "MIERCOLES":
+								this.dias[3]=true;
+								break;
+							case "JUEVES":
+								this.dias[4]=true;
+								break;
+							case "VIERNES":
+								this.dias[5]=true;
+								break;
+							case "SABADO":
+								this.dias[6]=true;
+								break;
+						}
+
+					})
 
 					/*for (var i = this.dias.length - 1; i >= 0; i--) {
 						for (var j = this.cliente.dias.length - 1; j >= 0; j--) {
@@ -236,7 +263,7 @@ export class ClienteAddComponent {
 		this.cliente.fechaNacimiento = this._fecha.getDateStrStr(clienteAdd.value.fechaNacimiento);
 		console.log("ListaPrecio", this.listaPrecio.id);
 		//this.cliente.idLista = this.listaPrecio.id;
-		this.cliente.dias= this.dias;
+		this.cliente.dias= this.guardoDias();
 		//console.log("Cliente",this.cliente)
 
 		if (this.id != null) {
@@ -249,6 +276,38 @@ export class ClienteAddComponent {
 			this.AddCliente();
 		}
 
+	}
+
+	guardoDias(){
+		console.log(this.dias);
+		let diasSelect=[];
+		for (var j = this.dias.length - 1; j >= 0; j--) {
+			if (this.dias[j])
+				switch (j) {
+					case 0:
+						diasSelect.push("DOMINGO");
+						break;
+					case 1:
+						diasSelect.push("LUNES");
+						break;
+					case 2:
+						diasSelect.push("MARTES");
+						break;
+					case 3:
+						diasSelect.push("MIERCOLES");
+						break;
+					case 4:
+						diasSelect.push("JUEVES");
+						break;
+					case 5:
+						diasSelect.push("VIERNES");
+						break;
+					case 6:
+						diasSelect.push("SABADO");
+						break;
+					}
+		}
+		return diasSelect;
 	}
 
 	getEnvases() {
