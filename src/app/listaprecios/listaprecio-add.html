@@ -86,6 +86,11 @@
                                                 #descripcion="ngModel" [(ngModel)]="productoLista.precio"
                                                 [ngModelOptions]="{standalone: true}" contenteditable="false">
                                         </td>
+                                        <td>
+                                            <button type="button" (click)="deleteProd(productoLista)" value="Add Producto" class="btn btn-link">
+                                                <img src="assets/bootstrap/image/ico/plus-5-16.ico" />
+                                            </button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

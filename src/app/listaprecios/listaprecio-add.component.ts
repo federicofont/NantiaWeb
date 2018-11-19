@@ -11,6 +11,8 @@ import { ProductoService } from '../productos/producto.service';
 import { ProductoLista } from './productolista.model';
 //import { ProductoListaService } from '../productolistas/productolista.service';
 
+import { forkJoin } from 'rxjs/observable/forkJoin';
+
 import { Fecha } from '../fecha';
 
 @Component({
@@ -64,48 +66,31 @@ export class ListaPrecioAddComponent {
 
 		if (this.id != null) {
 			this.getListaPrecio(this.id);
+		}else{
+			this.productosLista = [];
 		}
 
-
-		this.productosLista = [];
-		this.getProductos();
+		//this.getProductos();
 	}
 
 
 	getListaPrecio(id:number) {
-		////console.log(("entre al getlistaprecio");
-		this._listaprecioService.getListaPrecio(id).subscribe(
-			(result: ListaPrecio) => {
-				////console.log(("status:",result.status);
-				if (result.id > 0) {
-					this.listaprecio = result;//.json();
+		let a1 = this._listaprecioService.getListaPrecio(id);
+		let a2 = this._productoService.getProductos();
+
+		forkJoin([a1, a2]).subscribe(result => {
+				if (result[0].id > 0) {
+					this.listaprecio = result[0];//.json();
+					//console.log(this.listaprecio.setProductoLista);
 					this.productosLista = this.listaprecio.setProductoLista;
-
-					////console.log(("listaprecio:",this.listaprecio);
-					////console.log(("productosLista:",this.productosLista);
-
+					//console.log(this.productosLista);
 				} else {
 					////console.log(("ID:",this.id," Result Controler:",result.status);
 				}
 
-			},
-			error => {
-				//console.logerror);
-			}
-		)
-	}
-
-	getProductosLista() {
-		//this.productosLista;
-		////console.log(("productosLista:",this.productosLista);
-	}
-
-	getProductos() {
-		this._productoService.getProductos().subscribe(
-			(result : any) =>{
-				if (result.length > 0) {
-					this.productos = result;
-					////console.logresult.json());
+				if (result[1].length > 0) {
+					this.productos = result[1];
+					this.borroProductos();
 				} else {
 				//	//console.log("Result Controler", result.status);
 				}
@@ -116,8 +101,24 @@ export class ListaPrecioAddComponent {
 		);
 	}
 
+
+	borroProductos() {
+		//console.log("Rutaaa:",this.ruta);
+
+		this.productos = this.productos.filter(x => !this.listaprecio.setProductoLista.find(c => c.productos.productoId === x.productoId));
+	}
+
+	deleteProd(productoLista: ProductoLista){
+		this.productos.push(productoLista.productos);
+		this.productosLista=this.productosLista.filter(x => x.productos.productoId !== productoLista.productos.productoId);
+		console.log("Borrando",this.productosLista);
+		//console.log(productoLista.productos);
+	}
+
+
 	guardar(formlistaAdd: NgForm) {
 
+		console.log(this.productosLista);
 		this.listaprecio.setProductoLista = this.productosLista;
 		this.listaprecio.fechaAlta = this._Fecha.getDate();
 		////console.logthis.listaprecio.fechaAlta);
@@ -175,7 +176,7 @@ export class ListaPrecioAddComponent {
 		var ind: number = 0;
 		////console.logformproductosAdd);
 		var idProducto: number = formproductosAdd.controls['productoId'].value;
-		////console.log(("this.envases",this.envases);
+		//console.log("idProducto:",idProducto);
 		for (var i = this.productos.length - 1; i >= 0; i--) {
 			if (this.productos[i].productoId == idProducto)
 				ind = i;
@@ -188,8 +189,8 @@ export class ListaPrecioAddComponent {
 			this._Fecha.getDate(),
 			this.productos[ind]);
 
-		////console.log(("nuevo_envaseEnprestamo",nuevo_envaseEnprestamo);
 		this.productosLista.push(nuevo_productoLista);
+		this.borroProductos();
 		//this.getProductosLista();
 	}
 
