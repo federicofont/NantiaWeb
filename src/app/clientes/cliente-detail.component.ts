@@ -19,7 +19,7 @@ import { Fecha } from '../fecha';
 @Component ({
     selector: 'cliente-detail',
     templateUrl: './cliente-detail.html',
-    providers: [ClienteService],
+    providers: [ClienteService,ListaPrecioService],
     styleUrls: ['./cliente.style.css']
 })
 
@@ -37,7 +37,7 @@ export class ClienteDetailComponent{
     listaPrecio: ListaPrecio = new ListaPrecio();
     listaPrecios: ListaPrecio[] = [];
     semana: boolean[] = [];
-    dias: string[] = [];
+    dias: boolean[] = [false,false,false,false,false,false,false,];
 
     //Posicion de referencia de mapa
     lat: number = -34.4549810;
@@ -57,6 +57,7 @@ export class ClienteDetailComponent{
 
     constructor(private _clienteService: ClienteService,
                 private _router:Router,
+                private _listaPrecioService: ListaPrecioService,
                 private _activatedRoute:ActivatedRoute)
         {
         this.titulo = 'Cliente';
@@ -69,6 +70,7 @@ export class ClienteDetailComponent{
     
     ngOnInit(){
 
+        this.getListaPrecios();
         this.getCliente(this.id);
 
     }
@@ -84,6 +86,7 @@ export class ClienteDetailComponent{
                     //console.log("cliente:",this.cliente);
                     this.direccion = this.cliente.direccion;
                     this.envasesEnprestamo = this.cliente.setEnvasesEnPrestamo;
+                    this.cliente.fechaNacimiento= this.cliente.fechaNacimiento.substr(0,10);
                     //console.log("Get envasesEnprestamo",this.envasesEnprestamo);
                     //Cargo marcador del mapa
                     this.marcadores[0] = new Marcador("Nantia",
@@ -92,7 +95,32 @@ export class ClienteDetailComponent{
                         true
                     );
                     ////console.log("marcadores:",this.marcadores);
-                    console.log("cliente:", this.cliente);
+                    this.cliente.dias.map(dia=>{
+                        switch (dia) {
+                            case "DOMINGO":
+                                this.dias[0]=true;
+                                break;
+                            case "LUNES":
+                                this.dias[1]=true;
+                                break;
+                            case "MARTES":
+                                this.dias[2]=true;
+                                break;
+                            case "MIERCOLES":
+                                this.dias[3]=true;
+                                break;
+                            case "JUEVES":
+                                this.dias[4]=true;
+                                break;
+                            case "VIERNES":
+                                this.dias[5]=true;
+                                break;
+                            case "SABADO":
+                                this.dias[6]=true;
+                                break;
+                        }
+
+                    })
                     //this.actualizarMarcador( this.marcadores,
                     //                         this.cliente.direccion.coordLat,
                     //                         this.cliente.direccion.coordLon, 
@@ -111,6 +139,22 @@ export class ClienteDetailComponent{
                 ////console.log(<any>error);
             }
         )
+    }
+
+    getListaPrecios() {
+        this._listaPrecioService.getListaPrecios().subscribe(
+            result => {
+                if (result.length > 0) {
+                    this.listaPrecios = result;//.json();
+                    //console.log(result.json());
+                } else {
+                    console.log("Result Controler", result.status);
+                }
+            },
+            error => {
+                console.log(<any>error);
+            }
+        );
     }
 
 

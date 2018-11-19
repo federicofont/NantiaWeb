@@ -30,7 +30,7 @@ export class ClienteService{
 	addCliente(cliente:Cliente){
 		let body = JSON.stringify(cliente);
 		let headers = new HttpHeaders({'Content-Type':'application/json'});
-		console.log("Body_Cliente",body);
+		//console.log("Body_Cliente",body);
 		return this._http.post(this.url+'clientes',body,{headers: headers});
 		  
 	}

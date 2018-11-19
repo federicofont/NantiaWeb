@@ -103,7 +103,6 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" scope="col col-sm-4">Direccion / Cliente</th>
-                                    <th class="text-center" scope="col col-sm-3">Orden</th>
                                 </tr>
 
                             </thead>
@@ -114,11 +113,7 @@
                                         Direccion: {{rutaCliente.cliente.direccion.direccion}} 
                                         /  Nombre: {{rutaCliente.cliente.nombre1}} {{rutaCliente.cliente.nombre2}}
                                     </td>
-                                    <td>
-                                        <input class="form-control input-number" type="number" min="0" step="1" max="100" data-number-to-fixed="2" 
-                                        data-number-stepfactor="100" #descripcion="ngModel" 
-                                        [(ngModel)]="rutaCliente.ordenVisita" [ngModelOptions]="{standalone: true}" contenteditable="false">
-                                    </td>
+
                                 </tr>
                             </tbody>
                         </table>

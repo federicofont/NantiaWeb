@@ -208,16 +208,17 @@
                         <div class="help-block with-errors"></div>
                     </div>
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label for="form_name">Lista de Precio</label>
-                            <select class="form-control py-1" name="listaPrecio" [(ngModel)]="cliente.idLista">
-                            <option> {{cliente.idLista}} </option>
 
-                            <option *ngFor="let listaPrecio of listaPrecios"
-                                [value]="listaPrecio.id">{{listaPrecio.nombreLista}}
-                            </option>
-                        </select>
+                            <select [(ngModel)]="cliente.idLista" name="idLista" class="custom-select mb-3">
+                                <option *ngFor="let listaPrecio of listaPrecios; let ind = index"
+                                [ngValue]="listaPrecio.id">
+                                    {{listaPrecio.nombreLista}}
+                                </option>
+                            </select>
+
                         </div>
                     </div>
 
@@ -255,35 +256,6 @@
                             </table>
                         </div>
 
-                        <div class="col-sm-4">
-
-                            <tr>
-                                <td>
-                                    <span class="input-group-addon"> Agregar Envase </span>
-                                </td>
-                                <td>
-                                    <span class="input-group-addon"> # </span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <select [(ngModel)]="envase.id" name="id" class="custom-select">
-                                <option *ngFor="let tipo of envases; let ind = index" 
-                                    [ngValue]="tipo.id">{{tipo.descripcion}}
-                                </option>
-                            </select>
-                                </td>
-                                <td>
-                                    <input class="form-control input-number" type="number" value="0" min="0" max="100" step="1" #descripcion="ngModel" name="cantidad" [(ngModel)]="envaseEnprestamo.cantidad">
-                                </td>
-                            </tr>
-                            <button type="ngSubmitmit" value="Add Envase" class="btn btn-link">
-                            <img src="assets/bootstrap/image/ico/plus-5-16.ico" 
-                             style="float:center"/>
-                    </button>
-
-                        </div>
 
                     </div>
                 </form>

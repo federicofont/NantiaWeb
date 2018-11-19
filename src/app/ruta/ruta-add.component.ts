@@ -213,5 +213,12 @@ export class RutaAddComponent {
 	}
 
 
+	deleteCli(rutaCliente:RutaCliente){
+		this.clientes.push(rutaCliente.cliente);
+		this.ruta.setRutaCliente=this.ruta.setRutaCliente.filter(x => x.cliente.id !== rutaCliente.cliente.id);
+	}
+
+
+
 
 }

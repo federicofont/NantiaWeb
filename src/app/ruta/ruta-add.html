@@ -135,11 +135,11 @@
                                         Direccion: {{rutaCliente.cliente.direccion.direccion}} 
                                         /  Nombre: {{rutaCliente.cliente.nombre1}} {{rutaCliente.cliente.nombre2}}
                                     </td>
-                                    <!--td>
-                                        <input class="form-control input-number" type="number" min="0" step="1" max="100" data-number-to-fixed="2" 
-                                        data-number-stepfactor="100" #descripcion="ngModel" 
-                                        [(ngModel)]="rutaCliente.ordenVisita" [ngModelOptions]="{standalone: true}" contenteditable="false">
-                                    </td-->
+                                    <td>
+                                        <button type="button" (click)="deleteCli(rutaCliente)" value="Del Cliente" class="btn btn-link">
+                                            <img src="assets/bootstrap/image/ico/x-mark-16.ico" />
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

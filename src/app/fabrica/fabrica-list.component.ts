@@ -45,7 +45,7 @@ export class FabricaListComponent{
 			(result : any) =>{
 				if (result.length > 0) {
 					 this.fabricas = result;
-					 console.log(this.fabricas);
+					// console.log(this.fabricas);
 					// //console.logresult.json());
 				}else{
 				//	//console.log("Result Controler",result.status); 

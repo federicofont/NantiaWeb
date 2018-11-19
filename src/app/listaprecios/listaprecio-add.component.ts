@@ -111,14 +111,14 @@ export class ListaPrecioAddComponent {
 	deleteProd(productoLista: ProductoLista){
 		this.productos.push(productoLista.productos);
 		this.productosLista=this.productosLista.filter(x => x.productos.productoId !== productoLista.productos.productoId);
-		console.log("Borrando",this.productosLista);
+		//console.log("Borrando",this.productosLista);
 		//console.log(productoLista.productos);
 	}
 
 
 	guardar(formlistaAdd: NgForm) {
 
-		console.log(this.productosLista);
+		//console.log(this.productosLista);
 		this.listaprecio.setProductoLista = this.productosLista;
 		this.listaprecio.fechaAlta = this._Fecha.getDate();
 		////console.logthis.listaprecio.fechaAlta);

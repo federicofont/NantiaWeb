@@ -36,12 +36,14 @@ export class EnvaseDetailComponent{
 	getEnvase(id:number){
 		this._envaseService.getEnvase(id)
 			.subscribe((result : Envase) => {
-				if(result.id > 0){	 
+				if(result.id){	 
 					this.envase=result; 
-			 	}
+					//console.log(this.envase);
+					//console.log(result);
+				}
 			},
 		error => {
-					////console.log((<any>error);
+					console.log(<any>error);
 				})
 	}
 

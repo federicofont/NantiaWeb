@@ -171,7 +171,7 @@ export class ClienteAddComponent {
 
 		//this.marcadores[posicion].lat = nuevaLatAux;
 		//this.marcadores[posicion].lng = nuevaLongAux;
-		console.log("this.direccion", this.direccion);
+		//console.log("this.direccion", this.direccion);
 		//this.guardarStorage(marcadoresLS);
 	}
 
@@ -183,8 +183,8 @@ export class ClienteAddComponent {
 				//this.cliente = result;
 				if (result.id) {
 					this.cliente = result;//.json();
-					console.log("cliente:",this.cliente);
-					console.log("Dias:",this.dias);
+					//console.log("cliente:",this.cliente);
+					//console.log("Dias:",this.dias);
 					this.cliente.dias.map(dia=>{
 						switch (dia) {
 							case "DOMINGO":
@@ -252,7 +252,7 @@ export class ClienteAddComponent {
 	guardar(clienteAdd: NgForm) {
 
 		//Cargo las cordenadas del mapa en el objeto direccion
-		console.log("Guardar", this.cliente);
+		//console.log("Guardar", this.cliente);
 		//this.direccion.coordLat=this.marcadores[0].lat;
 		//this.direccion.coordLon=this.marcadores[0].lng;
 		//Asigno el objeto direccion dentro del objeto cliente
@@ -261,7 +261,7 @@ export class ClienteAddComponent {
 		this.cliente.fechaAlta = this._fecha.getDate();
 		//console.log("fechaNacimiento",clienteAdd.value.fechaNacimiento);
 		this.cliente.fechaNacimiento = this._fecha.getDateStrStr(clienteAdd.value.fechaNacimiento);
-		console.log("ListaPrecio", this.listaPrecio.id);
+		//console.log("ListaPrecio", this.listaPrecio.id);
 		//this.cliente.idLista = this.listaPrecio.id;
 		this.cliente.dias= this.guardoDias();
 		//console.log("Cliente",this.cliente)
@@ -279,7 +279,7 @@ export class ClienteAddComponent {
 	}
 
 	guardoDias(){
-		console.log(this.dias);
+		//console.log(this.dias);
 		let diasSelect=[];
 		for (var j = this.dias.length - 1; j >= 0; j--) {
 			if (this.dias[j])
@@ -317,7 +317,7 @@ export class ClienteAddComponent {
 					this.envases = result;//.json();
 					//console.log(result.json());
 				} else {
-					console.log("Result Controler", result.status);
+					//console.log("Result Controler", result.status);
 				}
 			},
 			error => {

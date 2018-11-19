@@ -49,7 +49,7 @@ export class ProductosListComponent{
 				(result : any) =>{
 					if (result.length > 0) {
 						 this.productos = result;
-						 console.log(this.productos);
+						// console.log(this.productos);
 					}else{
 				//		//console.log("Result Controler",result.status); 
 					}
