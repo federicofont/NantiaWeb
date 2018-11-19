@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+
 import { ReporteService } from './reportes.service';
+import { Reporte } from './reporte.model';
 
 @Component({
     selector: 'reportes-list',
@@ -12,13 +14,17 @@ export class ReportesListComponent{
     public titulo: string;
     public id:number;
 
+    public reporte:Reporte= new Reporte();
+    public reportes:Reporte[]=[];
+
+
     
     constructor(
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
         private _reporteService: ReporteService
     ){
-        this.titulo = 'Listado de ventas';
+        this.titulo = 'Reportes';
         this._activatedRoute.params
             .subscribe( parametros=>{
             this.id = parametros['id'];
@@ -30,6 +36,8 @@ export class ReportesListComponent{
         if (this.id==null) {
            // this.getVentasPeriodo();
            // this.getVentaPeriodo('2018-11-01','2018-11-20');
+
+           this.cargoReportes();
             this.getCuentasACobrar();
             this.getCuentaACobrar(56);
             this.getEnvasesEnPrestamo();
@@ -40,7 +48,11 @@ export class ReportesListComponent{
 
     }
 
-    
+   cargoReportes(){
+           this.reportes.push({id:1, descripcion:'Cuentas a Cobrar'});
+           this.reportes.push({id:2, descripcion:'Envases en Prestamo'});
+           this.reportes.push({id:3, descripcion: 'Ventas'});
+   }
 
 //ventas por periodo y o cliente
     getVentasPeriodo(){

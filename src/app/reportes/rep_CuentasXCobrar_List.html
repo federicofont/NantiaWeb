@@ -9,15 +9,15 @@
     <div class="card-header">
         <div class="row">
 
-            <div *ngFor="let reporte of reportes"class="card card-body col-sm-2 py-2">
+            <div *ngFor="let cuenta of cuentas"class="card card-body col-sm-2 py-2">
                 <div class="botones">
                     <img src="assets/bootstrap/image/ico/truck-16.ico" style="float:left"/> 
                 </div>
-                    <a> {{reporte.descripcion}} </a> 
+                    <a> {{cuenta.nombre1}} {{cuenta.nombre2}} </a> 
                     
                 <div class="botones">
 
-                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/envases',reporte.id]" href="#" class="btn btn-sm" value="Ver" /> 
+                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/envases',cuenta.id]" href="#" class="btn btn-sm" value="Ver" /> 
 
                 </div>
 

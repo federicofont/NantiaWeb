@@ -52,20 +52,20 @@ export class RutaAddComponent {
 
 	ngOnInit() {
 		if (this.id != null) {
-			this.getClientes();
+			this.getClientesConRuta();
 			//this.getRuta(this.id);
 			this.titulo = 'Editar Ruta'
 
 		} else {
 			this.titulo = 'Nueva Ruta'
-			this.getClientes();
+			this.getClientesSinruta();
 		}
 
 
 	}
 
 
-	getClientes() {
+	getClientesConRuta() {
 		let a1 = this._clienteSerivce.getClientes();
 		let a2 = this._rutaService.getRuta(this.id);
 
@@ -79,14 +79,28 @@ export class RutaAddComponent {
 			}
 
 			if (result[1].id > 0) {
-				this.ruta = result[1];
-				//console.log("Ruta_Result:",result.json());
-				this.borroClientes();
+					this.ruta = result[1];
+					this.borroClientes();
 			} else {
 				//console.log("Result Controler",result.status); 
 			}
 		})
+	}
 
+	getClientesSinruta() {
+		let a1 = this._clienteSerivce.getClientes();
+
+		forkJoin([a1]).subscribe(result => {
+			//console.log("clientes result",result);
+			if (result[0].length > 0) {
+				this.clientes = result[0];				
+				//	 console.log("Clientes:",this.clientes);
+			} else {
+				//console.log("Result Controler",result.status); 
+			}
+
+		})
+	}
 		/*this._clienteSerivce.getClientes().subscribe(
 			(result: any) => {
 				//console.log("clientes result",result);
@@ -116,8 +130,8 @@ export class RutaAddComponent {
 			error => {
 				console.log(<any>error);
 			}
-		);*/
-	}
+		);
+	}*/
 
 	borroClientes() {
 		//console.log("Rutaaa:",this.ruta);

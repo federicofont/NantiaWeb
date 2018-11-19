@@ -33,6 +33,7 @@ export class RepartoService{
 
 	editReparto(id, reparto:Reparto){
 		let body = JSON.stringify(reparto);
+		console.log("body",body);
 		let headers = new HttpHeaders({'Content-Type':'application/json'});
 
 		return this._http.put(this.url+'datareparto/'+reparto.id,body,{headers: headers});

@@ -55,6 +55,9 @@ import { RepartoAddComponent } from "./reparto/reparto-add.component";
 import { RepartoDetailComponent } from './reparto/reparto-detail.component';
 
 import { ReportesListComponent } from "./reportes/reportes-list.component";
+//import { ReportesListComponent } from "./reportes/reportes-list.component";
+//import { ReportesListComponent } from "./reportes/reportes-list.component";
+//import { ReportesListComponent } from "./reportes/reportes-list.component";
 
 
 import { VehiculoListComponent } from "./vehiculo/vehiculo-list.component";

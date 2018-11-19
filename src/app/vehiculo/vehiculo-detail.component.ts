@@ -51,7 +51,8 @@ export class VehiculoDetailComponent {
 
 	ngOnInit() {
 		if (this.id != null) {
-			this.getRepartos();
+			//this.getRepartos();
+			this.getVehiculo(this.id);
 			
 		} else {
 			//console.log("vehiculo:", this.vehiculo);
