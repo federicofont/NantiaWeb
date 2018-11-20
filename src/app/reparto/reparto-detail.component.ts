@@ -90,7 +90,7 @@ export class RepartoDetailComponent{
 
 		if(this.id != null){
 			this.getReparto(this.id);
-			this.titulo = 'Editar Reparto';
+			this.titulo = 'Reparto';
 		}else{
 			this.titulo = 'Nuevo Reparto';
 		}

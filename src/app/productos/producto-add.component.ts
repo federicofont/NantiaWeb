@@ -9,6 +9,8 @@ import { Producto } from './producto.model';
 import { Envase } from '../envases/envase.model'
 import { EnvaseService } from '../envases/envase.service'
 
+import { forkJoin } from 'rxjs/observable/forkJoin';
+
 
 @Component ({
 	selector: 'formProductoAdd',
@@ -23,16 +25,7 @@ export class ProductoAddComponent{
 	producto: Producto = new Producto();
 	envase: Envase = new Envase();
 	envases: Envase[] =[];
-	/*presentaciones:Presentacion[]=[];
 
-	  presentacion0 : Presentacion = new Presentacion(0,"1 Litro");
-	  presentacion1 : Presentacion = new Presentacion(1,"2 Litro");
-	  presentacion2 : Presentacion = new Presentacion(2,"3 Litro");
-	  presentacion3 : Presentacion = new Presentacion(3,"5 Litro");
-	  presentacion4 : Presentacion = new Presentacion(4,"10 Litros");
-	  presentacion5 : Presentacion = new Presentacion(5,"12 Litros");
-	  presentacion6 : Presentacion = new Presentacion(6,"20 Litros");
-	*/
 	nuevo:boolean=false;
 	id:number;
 
@@ -58,18 +51,9 @@ export class ProductoAddComponent{
 	 
 
 	ngOnInit(){
-		////console.log(('producto-add.component.ts cargado');
-		/*this.presentaciones[0] = this.presentacion0;
-		this.presentaciones[1] = this.presentacion1;
-		this.presentaciones[2] = this.presentacion2;
-		this.presentaciones[3] = this.presentacion3;
-		this.presentaciones[4] = this.presentacion4;
-		this.presentaciones[5] = this.presentacion5;
-		this.presentaciones[6] = this.presentacion6;*/
 
 		if(this.id != null){
 			this.getProducto(this.id);
-			this.getEnvases();
 		}else{
 			this.getEnvases();
 		}
@@ -77,17 +61,36 @@ export class ProductoAddComponent{
 	}
 
 
+	cargoEnvase(envase:number){
+		//console.log(envase);
+		this.getEnvase(envase);
+	}
+
 	getProducto(idprod:number){
-		this._productoService.getProducto(idprod).subscribe(
-			(result:Producto) =>{
-				//if (result.length > 0) {
-				if(result){
-					////console.log(("Result:",result.json());
-					 this.producto = result;//.json();
+		let a1 = this._productoService.getProducto(idprod);
+		let a2 = this._envaseService.getEnvases();
+
+		forkJoin([a1, a2]).subscribe(result => {
+				if(result[0]){
+					this.producto = result[0];
+					//console.log("antes",this.producto, this.envase);
+					if(this.producto)
+						if(this.producto.envasesTipos){
+							this.envase = this.producto.envasesTipos;
+						}else{
+							this.envase= new Envase();
+						}
+
 				}else{
 					////console.log(("ID:",this.id," Result Controler:",result.status);
 				}
 
+				if(result[1]){
+					this.envases = result[1];//.json();
+
+				}else{
+					////console.log(("ID:",this.id," Result Controler:",result.status);
+				}
 			},
 			error =>{
 				//console.log(<any>error);
@@ -99,15 +102,11 @@ export class ProductoAddComponent{
 	getEnvases(){
 		this._envaseService.getEnvases().subscribe(
 			(result:any) =>{
-				//if (result.length > 0) {
 				if(result){
-					////console.log(("Result:",result.json());
-					 this.envases = result;//.json();
-					 //console.log(this.envases);
+					 this.envases = result;
 				}else{
 					////console.log(("ID:",this.id," Result Controler:",result.status);
 				}
-
 			},
 			error =>{
 				//console.log(<any>error);
@@ -118,10 +117,8 @@ export class ProductoAddComponent{
 	getEnvase(id:number){
 		this._envaseService.getEnvase(id).subscribe(
 			(result:any) =>{
-				//if (result.length > 0) {
 				if(result){
-					////console.log(("Result:",result.json());
-					 this.envase = result;//.json();
+					 this.envase = result;
 					 //console.log(this.envase);
 				}else{
 					////console.log(("ID:",this.id," Result Controler:",result.status);
@@ -134,13 +131,7 @@ export class ProductoAddComponent{
 		)
 	}
 
-	guardar(productoAdd:NgForm){
-		//Creo el producto desde el formulario
-		this.producto=productoAdd.value;
-		this.producto.envasesTipos=this.envase;
-		//console.log(this.producto.envasesTipos);
-
-		//console.log("Producto:",this.producto);
+	guardar(){
 		
 		if(this.id != null){
 			//Llamo al servicio que actualiza el cliente
@@ -157,6 +148,23 @@ export class ProductoAddComponent{
 
 	updateProducto(){
 		//console.log("update:",this.producto);
+		if (this.producto.envasesTipos){
+			if(this.producto.envasesTipos.id === null){
+				//console.log("Envase vacio",this.producto.envasesTipos);
+				this.producto.envasesTipos =null;	
+			}
+		}else{
+			if(this.envase){
+				//console.log("Nuevo envase");
+				this.producto.envasesTipos=this.envase;
+			}else{
+				//console.log("sin envase");
+				this.producto.envasesTipos =null;	
+			}
+
+			
+		}
+
 		this._productoService.editProducto(this.id, this.producto)
 				.subscribe((result : any) => {
 				//////console.log("Result Controler",result.status);
@@ -170,9 +178,14 @@ export class ProductoAddComponent{
  				error => {
  					//console.log(<any>error);
  				})
-	}
+		}
 
-	AddProducto(){
+
+	AddProducto(){	
+		//console.log("add",this.producto)
+		if(this.producto.envasesTipos.id === null){
+			this.producto.envasesTipos = null;
+		}
 		this._productoService.addProducto(this.producto).subscribe(
 			(result : any) =>{
 				if(result){

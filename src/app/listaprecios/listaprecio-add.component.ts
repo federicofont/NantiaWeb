@@ -68,11 +68,26 @@ export class ListaPrecioAddComponent {
 			this.getListaPrecio(this.id);
 		}else{
 			this.productosLista = [];
+			this.getProductos();
 		}
 
 		//this.getProductos();
 	}
 
+	getProductos(){
+		this._productoService.getProductos().subscribe(
+			(result : any) =>{
+				if (result) {
+					 this.productos = result;
+				}else{
+					////console.log(("Result Controler",result.status); 
+				}
+			},
+			error =>{
+				////console.log((<any>error);
+			}
+		);
+	}
 
 	getListaPrecio(id:number) {
 		let a1 = this._listaprecioService.getListaPrecio(id);
@@ -104,7 +119,6 @@ export class ListaPrecioAddComponent {
 
 	borroProductos() {
 		//console.log("Rutaaa:",this.ruta);
-
 		this.productos = this.productos.filter(x => !this.listaprecio.setProductoLista.find(c => c.productos.productoId === x.productoId));
 	}
 
@@ -191,7 +205,6 @@ export class ListaPrecioAddComponent {
 
 		this.productosLista.push(nuevo_productoLista);
 		this.borroProductos();
-		//this.getProductosLista();
 	}
 
 

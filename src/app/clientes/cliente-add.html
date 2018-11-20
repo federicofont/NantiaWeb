@@ -269,10 +269,10 @@
                             <tr>
                                 <td>
                                     <select [(ngModel)]="envase.id" name="id" class="custom-select">
-                                <option *ngFor="let tipo of envases; let ind = index" 
-                                    [ngValue]="tipo.id">{{tipo.descripcion}}
-                                </option>
-                            </select>
+                                        <option *ngFor="let tipo of envases; let ind = index" 
+                                            [ngValue]="tipo.id">{{tipo.descripcion}}
+                                        </option>
+                                    </select>
                                 </td>
                                 <td>
                                     <input class="form-control input-number" type="number" value="0" min="0" max="100" step="1" #descripcion="ngModel" name="cantidad" [(ngModel)]="envaseEnprestamo.cantidad">

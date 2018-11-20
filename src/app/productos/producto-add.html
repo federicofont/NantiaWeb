@@ -24,7 +24,7 @@
                         <input  type="text" #nombre="ngModel" name="nombre" [(ngModel)]="producto.nombre" 
                                 class="form-control" placeholder="Nombre producto" minlength="4" required />
                         <span *ngIf="nombre.touched && !nombre.valid" class="label label-success" >
-                                El nombre de la lista no es valido.
+                                El nombre no es valido.
                         </span>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="Nombre">Presentación</label>
-                        <input  type="text" #descripcion="ngModel" name="presentacion" [(ngModel)]="producto.presentacion" 
+                        <input  type="text" #presentacion="ngModel" name="presentacion" [(ngModel)]="producto.presentacion" 
                                 class="form-control" />
                         <div class="help-block with-errors"></div>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="col-sm-3 py-3" style="text-align:center;">
                     <div class="form-group">
                         <label for="Activo"> Es retornable?</label>
-                        <input  type="checkbox"  #producto.retornable="ngModel" name="retornable" [(ngModel)]="producto.retornable" 
+                        <input  type="checkbox"  #retornable="ngModel" name="retornable" [(ngModel)]="producto.retornable" 
                                 class="form-control" />
                     </div>
                 </div>
@@ -62,14 +62,19 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="form_name">Envase</label>
-                        <select #producto.envasesTipos.id="ngModel" [(ngModel)]="producto.envasesTipos.id" name="formCliente" class="custom-select mb-3" 
-                                (ngModelChange)="getEnvase(producto.envasesTipos.id)">
-                            <option *ngFor="let envase of envases; let ind = index"
-                            [ngValue]="envase.id">
+                        <!--select [(ngModel)]="envase.id" name="id" class="custom-select mb-3">
+                            <option *ngFor="let envase of envases; let ind = index">
                                 {{envase.descripcion}}
+                            </option>
+                        </select-->
+                        <select [(ngModel)]="envase.id" name="envase" class="custom-select"
+                                (ngModelChange)="cargoEnvase(envase.id)">
+                            <option *ngFor="let envase of envases; let ind = index" 
+                                [ngValue]="envase.id">{{envase.descripcion}}
                             </option>
                         </select>
                     </div>
+
                 </div>
 
             </div>

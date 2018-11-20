@@ -277,10 +277,14 @@ export class VentaAddComponent{
 		////console.log(("subtotal", this.subtotal);
 	
 		/*Calculo el iva sobre el Subtotal - Descuento*/
-		this.venta.ivatotal =  ( (this.subtotal - formDescuento) * this.iva0)/100;
+		let descuento:number =0;
+		if(formDescuento){
+			descuento=formDescuento;
+		}
+		this.venta.ivatotal =  ( (this.subtotal - descuento) * this.iva0)/100;
 		
 		/*Calculo (Subtotal - Descuento) + Iva*/
-		this.venta.totalventa = ( this.subtotal - formDescuento);
+		this.venta.totalventa = ( this.subtotal - descuento);
 		////console.log(("venta",this.venta);
 
 
@@ -302,7 +306,7 @@ export class VentaAddComponent{
 		
 			//Creo el venta desde el formulario
 			//this.venta=ventaAdd.value;
-			//console.log("Venta:",this.venta);
+			console.log("Venta:",this.venta);
 		
 			this._ventaService.addVenta(this.venta)
 				.subscribe((result : Venta) => {
