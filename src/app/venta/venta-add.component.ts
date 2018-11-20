@@ -306,7 +306,7 @@ export class VentaAddComponent{
 		
 			//Creo el venta desde el formulario
 			//this.venta=ventaAdd.value;
-			console.log("Venta:",this.venta);
+		//	console.log("Venta:",this.venta);
 		
 			this._ventaService.addVenta(this.venta)
 				.subscribe((result : Venta) => {

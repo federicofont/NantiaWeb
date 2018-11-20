@@ -41,7 +41,7 @@ export class VehiculoDetailComponent {
 
 
 		if (this.id != null) {
-			this.titulo = 'Editar Vehiculo'
+			this.titulo = 'Vehiculo'
 		} else {
 			this.titulo = 'Nuevo Vehiculo';
 		}

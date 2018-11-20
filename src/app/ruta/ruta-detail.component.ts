@@ -54,7 +54,7 @@ export class RutaDetailComponent{
 		if(this.id != null){
 			this.getClientes();
 			this.getRuta(this.id);
-			this.titulo = 'Editar Ruta'
+			this.titulo = 'Ruta'
 		
 		}else{
 			this.titulo = 'Nueva Ruta'

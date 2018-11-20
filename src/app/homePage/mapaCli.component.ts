@@ -124,7 +124,7 @@ export class MapaCliComponent {
 			for (var i = this.clientes.length -1; i >= 0; i--) {
 				if(this.clientes[i].direccion.coordLat!=null){
 					this.marcadores.push( 
-						new Marcador(this.clientes[i].nombre1+''+this.clientes[i].nombre2,
+						new Marcador(this.clientes[i].nombre1+' '+this.clientes[i].nombre2,
 									parseFloat(this.clientes[i].direccion.coordLat),
 									parseFloat(this.clientes[i].direccion.coordLon),
 									false, this.icoCliente
