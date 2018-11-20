@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgForm} from '@angular/forms';
 import { ProductoService } from './producto.service';
 import { Producto } from './producto.model';
+import { Envase } from '../envases/envase.model'
 
 @Component ({
 	selector: 'producto-detail',
@@ -13,7 +14,8 @@ import { Producto } from './producto.model';
 
 export class ProductoDetailComponent{
 	public titulo: string;
-	producto: Producto = new Producto();
+	public producto: Producto = new Producto();
+	public envase:Envase = new Envase()
 	public id:number;
 
 	constructor(private _productoService: ProductoService,
@@ -37,6 +39,12 @@ export class ProductoDetailComponent{
 					if(result){
 						////console.log(("Result:",result.json());
 						 this.producto = result;
+						if(this.producto)
+							if(this.producto.envasesTipos){
+								this.envase = this.producto.envasesTipos;
+							}else{
+								this.envase= new Envase();
+							}
 					}else{
 						////console.log(("ID:",this.id," Result Controler:",result.status);
 					}

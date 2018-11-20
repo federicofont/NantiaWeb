@@ -222,7 +222,7 @@ export class ClienteAddComponent {
 					this.envasesEnprestamo = this.cliente.setEnvasesEnPrestamo;
 					//console.log("Get envasesEnprestamo",this.envasesEnprestamo);
 					//Cargo marcador del mapa
-					this.marcadores[0] = new Marcador("Nantia",
+					this.marcadores[0] = new Marcador(this.cliente.nombre1+' '+this.cliente.nombre2,
 						parseFloat(this.cliente.direccion.coordLat),
 						parseFloat(this.cliente.direccion.coordLon),
 						true

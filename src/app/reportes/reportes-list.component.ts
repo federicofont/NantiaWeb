@@ -38,10 +38,10 @@ export class ReportesListComponent{
            // this.getVentaPeriodo('2018-11-01','2018-11-20');
 
            this.cargoReportes();
-            this.getCuentasACobrar();
-            this.getCuentaACobrar(56);
-            this.getEnvasesEnPrestamo();
-            this.getEnvaseEnPrestamo(108);
+           // this.getCuentasACobrar();
+           // this.getCuentaACobrar(56);
+           // this.getEnvasesEnPrestamo();
+           // this.getEnvaseEnPrestamo(108);
         }else{
 
         }
@@ -51,7 +51,7 @@ export class ReportesListComponent{
    cargoReportes(){
            this.reportes.push({id:1, descripcion:'Cuentas a Cobrar'});
            this.reportes.push({id:2, descripcion:'Envases en Prestamo'});
-           this.reportes.push({id:3, descripcion: 'Ventas'});
+           //this.reportes.push({id:3, descripcion: 'Ventas'});
    }
 
 //ventas por periodo y o cliente

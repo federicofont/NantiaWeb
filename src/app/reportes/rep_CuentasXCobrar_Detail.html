@@ -1,0 +1,270 @@
+<body>
+
+    <div class="card-header border bg-light">
+        <img src="assets/bootstrap/image/ico/arrow-112-24.ico" [routerLink]="['/reporte/1']" href="#" value="Listado de Clientes" style="float:left" />
+        <h5 id="titulo"> {{titulo}} </h5>
+
+    </div>
+
+
+    <div class="bg-light">
+    <fieldset disabled>  
+        <!--form id="contact-form" method="post" action="contact.php" role="form"-->
+        <form (ngSubmit)="guardar(clienteAdd)" #clienteAdd="ngForm" id="formclienteAdd">
+
+            <!-- Datos Personales-->
+            <div class="card bg-light">
+
+                <div class="botones" id='margen'>
+                    <img src="assets/bootstrap/image/ico/guest-16.ico" style="float:left" />
+                </div>
+
+                <div class="row" id='margen'>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="Nombre">Nombre 1</label>
+                            <input type="text" #descripcion="ngModel" name="nombre2" [(ngModel)]="cliente.nombre2" class="form-control" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="Nombre">Nombre 2</label>
+                            <input type="text" #descripcion="ngModel" name="nombre1" [(ngModel)]="cliente.nombre1" class="form-control" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="fecha">Fecha de Nacimiento</label>
+                            <input type="date" #descripcion="ngModel" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-3" id='margen2'>
+                        <div class="form-group">
+                            <label for="Documento">Nro. Documento</label>
+                            <input type="text" #descripcion="ngModel" name="nroDocumento" [(ngModel)]="cliente.nroDocumento" class="form-control" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2  py-3">
+                        <div class="form-group">
+                            <label for="Tpo">Tpo. Documento</label>
+                            <select class="form-control py-1" name="tipoDocumento" [(ngModel)]="cliente.tipoDocumento">
+                            <option>{{cliente.tipoDocumento}} </option>
+
+                            <option *ngFor="let doc of documentos"
+                                    [value]="doc.id">{{doc.tipo}}
+                            </option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <!--div class="col-sm-3 py-3" style="text-align:center;">
+                        <div class="form-group">
+                            <label for="Activo">Activo</label>
+                            <input type="checkbox" #descripcion="ngModel" name="activo" [(ngModel)]="cliente.activo" class="form-control" />
+                        </div>
+                    </div-->
+
+                </div>
+
+            </div>
+
+            <!-- Datos de contacto-->
+            <div class="card bg-light">
+
+                <div class="botones" id="margen">
+                    <img src="assets/bootstrap/image/ico/business-contact-16.ico" style="float:left" />
+                </div>
+
+                <div class="row" id="margen">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="form_phone">Telefono</label>
+                            <input type="text" #descripcion="ngModel" name="telefono" [(ngModel)]="direccion.telefono" class="form-control" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="form_phone">Celular</label>
+                            <input type="text" #descripcion="ngModel" name="celular" [(ngModel)]="cliente.celular" class="form-control" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-6" id="margen2">
+                        <div class="form-group">
+                            <label for="form_phone">Direccion de correo electronico</label>
+                            <input type="email" #descripcion="ngModel" name="mail" [(ngModel)]="cliente.mail" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Direccion-->
+            <div class="card bg-light">
+
+                <div class="botones" id="margen">
+                    <img src="assets/bootstrap/image/ico/home-16.ico" style="float:left" />
+                </div>
+
+                <div class="row" id="margen">
+                    <!--div class="col-sm-6"-->
+                    <div class="form-group  col-sm-3">
+                        <label for="form_phone">Departamento</label>
+                        <input type="text" #descripcion="ngModel" name="departamento" [(ngModel)]="direccion.departamento" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group  col-sm-3">
+                        <label for="form_phone">Ciudad</label>
+                        <input type="text" #descripcion="ngModel" name="ciudad" [(ngModel)]="direccion.ciudad" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group  col-sm-3">
+                        <label for="form_phone">Codigo Postal</label>
+                        <input type="number" #descripcion="ngModel" name="codPostal" [(ngModel)]="direccion.codPostal" class="form-control" />
+                    </div>
+
+                    <div class="form-group  col-sm-6">
+                        <label for="form_phone">Direccion</label>
+                        <input type="text" #descripcion="ngModel" name="direccion" [(ngModel)]="direccion.direccion" class="form-control" />
+                    </div>
+
+                    <div class="map container col-sm-12">
+                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+
+                            <agm-marker *ngFor="let marcador of marcadores; let i = index" [latitude]="marcador.lat" [longitude]="marcador.lng" >
+
+                                <agm-info-window>
+                                    <strong>{{marcador.nombre}}</strong>
+                                    <!--button (click)="borrarMarcador(i)" class="btn-alert">Borrar</button-->
+                                </agm-info-window>
+
+                            </agm-marker>
+                        </agm-map>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Datos de venta-->
+            <div class="card bg-light">
+
+                <div class="botones" id="margen">
+                    <img src="assets/bootstrap/image/ico/business-contact-16.ico" style="float:left" />
+                </div>
+
+                <span class="input-group-addon" id="margen"> Dias de Visita </span>
+
+                <div class="row" id="margen2">
+
+                    <div class="col-sm-2">
+                        <input [(ngModel)]="dias[0]" name="domingo" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Domingo</p>
+                        <input [(ngModel)]="dias[1]" name="lunes" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Lunes</p>
+                        <input [(ngModel)]="dias[2]" name="martes" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Martes</p>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <input [(ngModel)]="dias[3]" name="miercoles" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Miercoles</p>
+                        <input [(ngModel)]="dias[4]" name="jueves" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Jueves</p>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <input [(ngModel)]="dias[5]" name="viernes" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Viernes</p>
+                        <input [(ngModel)]="dias[6]" name="sabado" type="checkbox" class="form-check-input">
+                        <p class="font-weight-light">Sabado</p>
+                    </div>
+
+
+                    <div class="col-sm-2">
+                        <label for="Saldo">Saldo</label>
+                        <input type="number" #descripcion="ngModel" name="saldo" [(ngModel)]="cliente.saldo" class="form-control" />
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="form_name">Lista de Precio</label>
+
+                            <select [(ngModel)]="cliente.idLista" name="idLista" class="custom-select mb-3">
+                                <option *ngFor="let listaPrecio of listaPrecios; let ind = index"
+                                [ngValue]="listaPrecio.id">
+                                    {{listaPrecio.nombreLista}}
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Envases en prestamo-->
+            <div class="card bg-light">
+
+                <div class="botones" id="margen">
+                    <img src="assets/bootstrap/image/ico/soda-bottle-16.ico" style="float:left" />
+                </div>
+
+                <form (ngSubmit)="addEnvaseEnPrestamo(envaseAdd)" #envaseAdd="ngForm" id="addEnvaseEnPrestamo">
+                    <div class="row" id="margen">
+
+                        <div class="col-sm-4">
+                            <span class="input-group-addon"> Envases en Prestamo </span>
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Envase</th>
+                                        <th scope="col">Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ep of envasesEnprestamo">
+                                        <td>{{ep.envasetipos.descripcion}} </td>
+                                        <td>{{ep.cantidad}} </td>
+                                        <!--input class="form-control input-number" type="number" value="0" min="0" max="100" step="1" #descripcion="ngModel" name="cantidad"  [(ngModel)]="envaseEnprestamo.cantidad"-->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </form>
+
+            </div>
+
+
+        </form>
+    </fieldset>
+    </div>
+
+</body>

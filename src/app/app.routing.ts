@@ -55,7 +55,13 @@ import { RepartoAddComponent } from "./reparto/reparto-add.component";
 import { RepartoDetailComponent } from './reparto/reparto-detail.component';
 
 import { ReportesListComponent } from "./reportes/reportes-list.component";
+//Reportes
 import { RepCuentasXCobrar } from "./reportes/rep_CuentasXCobrar_List";
+import { RepCuentasXCobrarDetail } from "./reportes/rep_CuentasXCobrar_Detail";
+
+import { RepEnvases } from "./reportes/RepEnvases/rep_EnvasesPrestamo_List";
+//import { RepEnvasesDetail } from "./reportes/RepEnvases/rep_EnvasesPrestamo_Detail";
+
 //import { RepEnvases } from "./reportes/rep_Envases_List";
 //import { RepVentas } from "./reportes/rep_Ventas_List";
 
@@ -141,7 +147,11 @@ const appRoutes: Routes = [
 
       { path: "reportes", component: ReportesListComponent }, 
 
-      { path: "repcuentasxcobrar", component: RepCuentasXCobrar }, 
+      { path: "reporte/1", component: RepCuentasXCobrar }, 
+      { path: "repcuentasxcobrardetail/:id", component: RepCuentasXCobrarDetail }, 
+ 
+      { path: "reporte/2", component: RepEnvases }, 
+      { path: "repenvases/:id", component: RepEnvases }, 
       //{ path: "repenvases", component: RepEnvases }, 
       //{ path: "repventas", component: RepVentas },  
    

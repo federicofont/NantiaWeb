@@ -81,6 +81,11 @@ import { RepartoDetailComponent } from './reparto/reparto-detail.component';
 import { ReportesListComponent } from "./reportes/reportes-list.component";
 
 import { RepCuentasXCobrar } from "./reportes/rep_CuentasXCobrar_List";
+import { RepCuentasXCobrarDetail } from "./reportes/rep_CuentasXCobrar_Detail";
+
+import { RepEnvases } from "./reportes/RepEnvases/rep_EnvasesPrestamo_List";
+//import { RepEnvasesDetail } from "./reportes/RepEnvases/rep_EnvasesPrestamo_Detail";
+
 //import { RepEnvases } from "./reportes/rep_Envases_List";
 //import { RepVentas } from "./reportes/rep_Ventas_List";
 
@@ -149,7 +154,9 @@ import { LoginService } from './login/login.service';
 
     ReportesListComponent,
     RepCuentasXCobrar,
-//  RepEnvases,
+    RepCuentasXCobrarDetail,
+    RepEnvases,
+    //RepEnvasesDetail,
 //  RepVentas,
 
 

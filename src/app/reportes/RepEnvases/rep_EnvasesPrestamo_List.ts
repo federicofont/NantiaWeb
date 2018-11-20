@@ -1,31 +1,29 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { ReporteService } from './reportes.service';
-import { Reporte } from './reporte.model';
+import { ReporteService } from '../../reportes/reportes.service';
+import { Reporte } from '../../reportes/reporte.model';
 
 
 @Component({
-    selector: 'CuentasXCobrar_List',
-    templateUrl: '../reportes/rep_CuentasXCobrar_List.html',
+    selector: 'RepEnvases_List',
+    templateUrl: './rep_EnvasesPrestamo_List.html',
     providers: [ReporteService],
-    styleUrls: ['./reportes.style.css']
+    styleUrls: ['../reportes.style.css']
 })
-export class RepCuentasXCobrar{
+export class RepEnvases{
     public titulo: string;
     public id:number;
-
-    public cuentas= null;
-    public cuenta=[];
-
-
+    
+    public prestamos;
+    public prestamo;
     
     constructor(
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
         private _reporteService: ReporteService
     ){
-        this.titulo = 'Cuentas por Cobrar';
+        this.titulo = 'Envases en Préstamo';
         this._activatedRoute.params
             .subscribe( parametros=>{
             this.id = parametros['id'];
@@ -37,24 +35,24 @@ ngOnInit(){
 
 		if (this.id==null) {
 
-			this.getCuentasACobrar();
+			this.getEnvasesEnPrestamo();
 
 		}else{
 
-			this.getCuentaACobrar(this.id);
+			this.getEnvaseEnPrestamo(this.id);
 			
 		}
 
 	}
 
 
-//Cuentas a Cobrar Por clientes y antigüedad
-    getCuentasACobrar(){
-        this._reporteService.getCuentasACobrar().subscribe(
+//Stock de Envases a préstamo
+    getEnvasesEnPrestamo(){
+        this._reporteService.getEnvasesEnPrestamo().subscribe(
             (result : any) =>{
-                if (result.length > 0) {
-                     this.cuentas=result;
-                     console.log("cuentas", this.cuenta); 
+                if (result) {
+                    this.prestamos = result;
+                     console.log("Envases", this.prestamos); 
                 }else{
                     //console.log("Result Controler",result.status); 
                 }
@@ -65,12 +63,11 @@ ngOnInit(){
         );
     }
 
-    getCuentaACobrar(id:number){
-        this._reporteService.getCuentaACobrar(id).subscribe(
+    getEnvaseEnPrestamo(id:number){
+        this._reporteService.getEnvaseEnPrestamo(id).subscribe(
             (result : any) =>{
                 if (result.length > 0) {
-                     console.log("getCuentaACobrar", result); 
-                     this.cuenta;
+                     console.log("getEnvaseEnPrestamo", result); 
                 }else{
                     //console.log("Result Controler",result.status); 
                 }

@@ -13,7 +13,7 @@ import { Envase } from './envase.model';
 
 export class EnvaseDetailComponent{
 	public titulo: string;
-	public envase:Envase;
+	public envase:Envase=new Envase();
 	public id:number;
 
 	constructor(private _envaseService: EnvaseService,

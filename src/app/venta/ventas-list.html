@@ -11,8 +11,9 @@
 
             <div *ngFor="let venta of ventas"class="card card-body col-sm-2 py-2">
                 <div class="botones">
-                    <img src="assets/bootstrap/image/ico/truck-16.ico" style="float:left"/> 
+                    <img src="assets/bootstrap/image/ico/cart-74-16.ico" style="float:left"/> 
                 </div>
+                    <a>Fecha:  {{venta.fecha}} </a>
                     <a>{{venta.cliente.nombre1}} {{venta.cliente.nombre2}} </a> 
                     <a></a>
                     <a>Total Venta: {{venta.totalventa}} </a>

@@ -1,7 +1,6 @@
 <body>
 
       <div class="card-header border bg-light">
-        <img src="assets/bootstrap/image/ico/add-32.ico" alt="Nuevo Cliente" style="float:left"  [routerLink]="['/venta-add']" href="#" class="btn btn-sm" value="Nuevo Cliente" />
          <h5 id="titulo"> {{titulo}} </h5>
       </div>
   
@@ -11,13 +10,13 @@
 
             <div *ngFor="let reporte of reportes"class="card card-body col-sm-2 py-2">
                 <div class="botones">
-                    <img src="assets/bootstrap/image/ico/truck-16.ico" style="float:left"/> 
+                    <img src="assets/bootstrap/image/ico/clipboard-2-16.ico" style="float:left"/> 
                 </div>
                     <a> {{reporte.descripcion}} </a> 
                     
                 <div class="botones">
 
-                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/repcuentasxcobrar']" href="#" class="btn btn-sm" value="Ver" /> 
+                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/reporte',reporte.id]" href="#" class="btn btn-sm" value="Ver" /> 
 
                 </div>
 

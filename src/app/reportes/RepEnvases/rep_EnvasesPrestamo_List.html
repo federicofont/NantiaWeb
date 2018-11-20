@@ -9,16 +9,16 @@
     <div class="card-header">
         <div class="row">
 
-            <div *ngFor="let cuenta of cuentas"class="card card-body col-sm-2 py-2">
+            <div *ngFor="let prestamo of prestamos"class="card card-body col-sm-2 py-2">
                 <div class="botones">
-                    <img src="assets/bootstrap/image/ico/banknotes-16.ico" style="float:left"/> 
+                    <img src="assets/bootstrap/image/ico/soda-bottle-16.ico" style="float:left"/> 
                 </div>
-                    <a> Cliente: {{cuenta.nombre1}} {{cuenta.nombre2}} </a>
-                    <a> Saldo $u: {{cuenta.saldo}} </a>
+                    <a> Cliente: {{prestamo.nombre1}} {{prestamo.nombre2}} </a>
+                    <a> Cantidad: {{prestamo.cantidad}} </a>
                     
                 <div class="botones">
 
-                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/repcuentasxcobrardetail',cuenta.id]" href="#" class="btn btn-sm" value="Ver" /> 
+                    <img src="assets/bootstrap/image/ico/search-16.ico" alt="Ver" style="float:left"  [routerLink]="['/repcuentasxcobrardetail',prestamo.id]" href="#" class="btn btn-sm" value="Ver" /> 
 
                 </div>
 

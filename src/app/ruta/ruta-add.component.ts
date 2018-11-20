@@ -71,16 +71,18 @@ export class RutaAddComponent {
 
 		forkJoin([a1, a2]).subscribe(result => {
 			//console.log("clientes result",result);
-			if (result[0].length > 0) {
+			if (result[0]) {
 				this.clientes = result[0];				
 				//	 console.log("Clientes:",this.clientes);
 			} else {
 				//console.log("Result Controler",result.status); 
 			}
 
-			if (result[1].id > 0) {
+			if (result[1]) {
+				console.log("result",result);
 					this.ruta = result[1];
 					this.borroClientes();
+					console.log("rutaStart",this.ruta);
 			} else {
 				//console.log("Result Controler",result.status); 
 			}
@@ -92,7 +94,7 @@ export class RutaAddComponent {
 
 		forkJoin([a1]).subscribe(result => {
 			//console.log("clientes result",result);
-			if (result[0].length > 0) {
+			if (result[0]) {
 				this.clientes = result[0];				
 				//	 console.log("Clientes:",this.clientes);
 			} else {
@@ -180,7 +182,7 @@ export class RutaAddComponent {
 					})
 		} else {
 			// Update ruta
-
+			console.log("update",this.ruta);
 			this._rutaService.editRuta(this.ruta)
 				.subscribe((result: any) => {
 					if (result.id > 0) {
