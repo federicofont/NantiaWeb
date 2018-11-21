@@ -79,10 +79,10 @@ export class RutaAddComponent {
 			}
 
 			if (result[1]) {
-				console.log("result",result);
+				//console.log("result",result);
 					this.ruta = result[1];
 					this.borroClientes();
-					console.log("rutaStart",this.ruta);
+					//console.log("rutaStart",this.ruta);
 			} else {
 				//console.log("Result Controler",result.status); 
 			}

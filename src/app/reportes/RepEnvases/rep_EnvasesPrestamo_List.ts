@@ -23,7 +23,7 @@ export class RepEnvases{
         private _router: Router,
         private _reporteService: ReporteService
     ){
-        this.titulo = 'Envases en Préstamo';
+        this.titulo = 'Clientes con Envases en Préstamo';
         this._activatedRoute.params
             .subscribe( parametros=>{
             this.id = parametros['id'];
